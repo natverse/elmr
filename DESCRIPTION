@@ -11,6 +11,7 @@ License: GPL-3
 LazyData: TRUE
 Imports:
     nat,
+    nat.templatebrains,
     nat.flybrains,
     nabor,
     igraph

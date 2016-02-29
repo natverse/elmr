@@ -2,6 +2,7 @@
 
 export(stitch_neuron)
 export(stitch_neurons)
+import(nat.templatebrains)
 importFrom(igraph,E)
 importFrom(igraph,set_edge_attr)
 importFrom(nat,as.neuron)

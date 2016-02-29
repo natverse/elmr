@@ -1,0 +1,15 @@
+Package: elmr
+Type: Package
+Title: Support for working with light and electron microscopy fly brain data
+Version: 0.1
+Author: Gregory Jefferis
+Maintainer: Gregory Jefferis <jefferis@gmail.com>
+Description: Provides tools to move between adult brain EM and light level
+    data, emphasising the interaction between the CATMAID web application and
+    the R Neuroanatomy Toolbox package.
+License: GPL-3
+LazyData: TRUE
+Imports:
+    nat,
+    nat.flybrains
+RoxygenNote: 5.0.1.9000

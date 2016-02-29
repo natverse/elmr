@@ -1,3 +1,5 @@
+[![Travis-CI Build Status](https://travis-ci.org/jefferis/elmr.svg?branch=master)](https://travis-ci.org/jefferis/elmr)
+
 # elmr
 
 Provides tools to move between adult brain EM and light level data, emphasising

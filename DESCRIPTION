@@ -11,5 +11,7 @@ License: GPL-3
 LazyData: TRUE
 Imports:
     nat,
-    nat.flybrains
+    nat.flybrains,
+    nabor,
+    igraph
 RoxygenNote: 5.0.1.9000

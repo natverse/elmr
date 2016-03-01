@@ -9,10 +9,10 @@ Description: Provides tools to move between adult brain EM and light level
     the R Neuroanatomy Toolbox package.
 License: GPL-3
 LazyData: TRUE
+Depends: nat.flybrains
 Imports:
     nat,
     nat.templatebrains,
-    nat.flybrains,
     nabor,
     igraph
 RoxygenNote: 5.0.1.9000

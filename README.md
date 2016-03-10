@@ -11,8 +11,11 @@ package borrows both a name and uses data.
 
 For the impatient ...
 
-```r # install if (!require("devtools")) install.packages("devtools") 
+```r
+# install
+if (!require("devtools")) install.packages("devtools") 
 devtools::install_github("jefferis/elmr")
+```
 
 # use library(elmr)
 

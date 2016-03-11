@@ -23,4 +23,8 @@ this function overrides the nat.templatebrains function of the
 
 wraps \code{\link[nat.templatebrains]{xform_brain}}
 }
+\examples{
+library(nat)
+kcs13.fafb=xform_brain(kcs20[1:3], sample=FCWB, reference=FAFB11)
+}
 

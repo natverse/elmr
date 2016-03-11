@@ -9,6 +9,10 @@
 #' @inheritParams nat.templatebrains::xform_brain
 #' @import nat.flybrains
 #' @importFrom nat xform
+#' @export
+#' @examples
+#' library(nat)
+#' kcs13.fafb=xform_brain(kcs20[1:3], sample=FCWB, reference=FAFB11)
 xform_brain<-function(x, sample, reference, ...){
   reference=as.character(reference)
   if(isTRUE(reference=="FAFB11")){

@@ -2,6 +2,7 @@
 
 export(stitch_neuron)
 export(stitch_neurons)
+export(xform_brain)
 import(nat.flybrains)
 import(nat.templatebrains)
 importFrom(igraph,E)

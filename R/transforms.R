@@ -14,18 +14,15 @@
 #' library(nat)
 #' kcs13.fafb=xform_brain(kcs20[1:3], sample=FCWB, reference=FAFB11)
 xform_brain<-function(x, sample, reference, ...){
-  reference=as.character(reference)
-  if(isTRUE(reference=="FAFB11")){
-    if(!isTRUE(identical(sample, nat.flybrains::JFRC2013)))
+  if(isTRUE(as.character(reference)=="FAFB11")){
+    if(!identical(sample, nat.flybrains::JFRC2013))
       x=nat.templatebrains::xform_brain(x, sample=sample, reference=nat.flybrains::JFRC2013, ...)
-    nat::xform(x, jfrc20132fafb)
-  } else if(isTRUE(sample=="FAFB11")) {
+    return(nat::xform(x, jfrc20132fafb))
+  } else if(isTRUE(as.character(sample)=="FAFB11")) {
     x=nat::xform(x, jfrc20132fafb, swap=T)
-    if(!isTRUE(identical(reference, nat.flybrains::JFRC2013)))
-      nat.templatebrains::xform_brain(x, sample=nat.flybrains::JFRC2013, reference=reference, ...)
-  } else {
-    stop("unsupported reference brains")
+    if(identical(reference, nat.flybrains::JFRC2013)) return(x)
   }
+  nat.templatebrains::xform_brain(x, sample=sample, reference=reference, ...)
 }
 
 jfrc20132fafb<-function(xyz, swap=FALSE,  ...){

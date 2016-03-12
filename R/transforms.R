@@ -68,6 +68,6 @@ elm_landmarks <- memoise::memoise(elm_landmarks_)
 elm_landmarks_ <- function(u="https://raw.githubusercontent.com/saalfeldlab/elm/master/lm-em-landmarks.csv") {
   tf=tempfile(fileext = '.csv')
   on.exit(unlink(tf))
-  downloader::download(u, destfile=tf)
+  downloader::download(u, destfile=tf, quiet=!interactive())
   read.csv(tf, col.names = c("Label", "Use", "X","Y","Z", "X1","Y1","Z1"))
 }

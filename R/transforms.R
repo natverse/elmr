@@ -47,8 +47,6 @@ elmem2fafb<-function(xyz, invert=FALSE){
 }
 
 jfrc20132elmem<-function(xyz, swap=FALSE, sxyz=nat::voxdims(nat.flybrains::JFRC2013), ...){
-  if(!requireNamespace('Morpho', quietly = TRUE))
-    stop("Suggested package Morpho is not available")
   if(!swap) xyz=t(t(xyz)/sxyz)
   l0=data.matrix(elm_landmarks()[,c("X","Y","Z"), drop=F])
   l1=data.matrix(elm_landmarks()[,c("X1","Y1","Z1"), drop=F])

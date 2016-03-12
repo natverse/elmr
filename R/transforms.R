@@ -21,19 +21,23 @@ xform_brain<-function(x, sample, reference, ...){
   } else if(isTRUE(as.character(sample)=="FAFB11")) {
     x=nat::xform(x, jfrc20132fafb, swap=T)
     if(identical(reference, nat.flybrains::JFRC2013)) return(x)
+    sample=nat.flybrains::JFRC2013
   }
   nat.templatebrains::xform_brain(x, sample=sample, reference=reference, ...)
 }
 
-jfrc20132fafb <- function(xyz, ...) UseMethod("jfrc20132fafb")
-
-jfrc20132fafb.data.frame <- function(xyz, ...) {
-  xyzt=jfrc20132fafb(xyzmatrix(xyz), ...)
-  xyzmatrix(xyz) <- xyzt
-  xyz
+#' @importFrom nat xyzmatrix xyzmatrix<-
+jfrc20132fafb <- function(xyz, ...) {
+  if(!is.matrix(xyz)){
+    xyzt=jfrc20132fafb_matrix(xyzmatrix(xyz), ...)
+    xyzmatrix(xyz) <- xyzt
+    xyz
+  } else {
+    jfrc20132fafb_matrix(xyz, ...)
+  }
 }
 
-jfrc20132fafb.matrix<-function(xyz, swap=FALSE,  ...){
+jfrc20132fafb_matrix<-function(xyz, swap=FALSE,  ...){
   if(swap){
     xyzt=elmem2fafb(xyz, invert=TRUE)
     jfrc20132elmem(xyzt, swap=TRUE)

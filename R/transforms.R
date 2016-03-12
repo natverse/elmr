@@ -25,11 +25,18 @@ xform_brain<-function(x, sample, reference, ...){
   nat.templatebrains::xform_brain(x, sample=sample, reference=reference, ...)
 }
 
-jfrc20132fafb<-function(xyz, swap=FALSE,  ...){
+jfrc20132fafb <- function(xyz, ...) UseMethod("jfrc20132fafb")
+
+jfrc20132fafb.data.frame <- function(xyz, ...) {
+  xyzt=jfrc20132fafb(xyzmatrix(xyz), ...)
+  xyzmatrix(xyz) <- xyzt
+  xyz
+}
+
+jfrc20132fafb.matrix<-function(xyz, swap=FALSE,  ...){
   if(swap){
     xyzt=elmem2fafb(xyz, invert=TRUE)
     jfrc20132elmem(xyzt, swap=TRUE)
-
   } else {
     xyzt=jfrc20132elmem(xyz)
     elmem2fafb(xyzt)

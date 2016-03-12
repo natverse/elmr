@@ -31,6 +31,18 @@ Neurons will be ordered by default such the largest (by node count)
   \emph{master}. Closest is here defined by the distance between nearest
   endpoints.
 }
+\examples{
+\dontrun{
+pn57334=read.neurons.catmaid("name:PN 57334")
+# there were 3 fragments when I wrote this that all contained PN 57334 in
+# their name
+length(pn57334)
+summary(pn57334)
+pn57334.whole=stitch_neurons(pn57334)
+summary(pn57334.whole)
+plot3d(pn57334.whole)
+}
+}
 \seealso{
 \code{\link{stitch_neuron}}
 }

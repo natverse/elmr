@@ -64,6 +64,17 @@ stitch_neuron<-function(a, b){
 #' @importFrom igraph E set_edge_attr
 #' @seealso \code{\link{stitch_neuron}}
 #' @export
+#' @examples
+#' \dontrun{
+#' pn57334=read.neurons.catmaid("name:PN 57334")
+#' # there were 3 fragments when I wrote this that all contained PN 57334 in
+#' # their name
+#' length(pn57334)
+#' summary(pn57334)
+#' pn57334.whole=stitch_neurons(pn57334)
+#' summary(pn57334.whole)
+#' plot3d(pn57334.whole)
+#' }
 stitch_neurons <- function(x, prefer_soma=TRUE, sort=TRUE, warndist=1000) {
   if(!is.neuronlist(x)) stop("x must be a neuronlist object!")
   if(length(x)<=1) return(x)

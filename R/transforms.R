@@ -65,14 +65,16 @@ jfrc20132elmem<-function(xyz, swap=FALSE, sxyz=nat::voxdims(nat.flybrains::JFRC2
   else Morpho::tps3d(xyz, l0, l1, ...)
 }
 
-# this will be cached per R session
-# we can decide later if we just want to bundle them with the package
-#' @importFrom memoise memoise
-elm_landmarks <- memoise::memoise(elm_landmarks_)
-
 elm_landmarks_ <- function(u="https://raw.githubusercontent.com/saalfeldlab/elm/master/lm-em-landmarks.csv") {
   tf=tempfile(fileext = '.csv')
   on.exit(unlink(tf))
   downloader::download(u, destfile=tf, quiet=!interactive())
   read.csv(tf, col.names = c("Label", "Use", "X","Y","Z", "X1","Y1","Z1"))
 }
+
+# this will be cached per R session
+# we can decide later if we just want to bundle them with the package
+#' @importFrom memoise memoise
+elm_landmarks <- memoise::memoise()
+
+

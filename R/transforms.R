@@ -11,8 +11,20 @@
 #' @importFrom nat xform
 #' @export
 #' @examples
+#' # position of antennal lobe glomeruli "V" in JFRC2013 template brain
+#' vgloms.jfrc2013=data.frame(X=c(316,229),
+#'   Y=c(143, 139),
+#'   Z=c(26,22),
+#'   row.names=c("V_L", "V_R"))
+#' # Convert to FAFB11 coordinates
+#' xform_brain(vgloms.jfrc2013, sample = JFRC2013, reference = FAFB11)
+#'
+#' \dontrun{
+#' # Conversion of neurons from FlyCircuit template
+#' # NB this conversion depends on a full install of nat.flybrains and CMTK
 #' library(nat)
 #' kcs13.fafb=xform_brain(kcs20[1:3], sample=FCWB, reference=FAFB11)
+#' }
 xform_brain<-function(x, sample, reference, ...){
   if(isTRUE(as.character(reference)=="FAFB11")){
     if(!identical(sample, nat.flybrains::JFRC2013))

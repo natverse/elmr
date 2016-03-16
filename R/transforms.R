@@ -75,6 +75,6 @@ elm_landmarks_ <- function(u="https://raw.githubusercontent.com/saalfeldlab/elm/
 # this will be cached per R session
 # we can decide later if we just want to bundle them with the package
 #' @importFrom memoise memoise
-elm_landmarks <- memoise::memoise()
+elm_landmarks <- memoise::memoise(elm_landmarks_)
 
 

@@ -15,24 +15,35 @@ For the impatient ...
 # install
 if (!require("devtools")) install.packages("devtools") 
 devtools::install_github("jefferis/elmr")
+
+# use
+library(elmr)
+
+# run examples 
+example("open_fafb")
+
+# get overview help for package 
+?elmr 
+
+# help for functions/data 
+?FAFB
+?open_fafb
+?xform_brain
+?stitch_neurons
+?tpsreg
 ```
 
-# use library(elmr)
+## Installation
 
-# run examples example("xxx")
+Currently there isn't a released version on [CRAN](http://cran.r-project.org/).
 
-# get overview help for package ?elmr # help for functions ?xxx
+### Development version
+You can use the **devtools** package to install the development version:
 
-# run tests library(testthat) test_package("elmr") ```
-
-## Installation Currently there isn't a released version on
-[CRAN](http://cran.r-project.org/).
-
-### Development version You can use the **devtools** package to install the
-development version:
-
-```r if (!require("devtools")) install.packages("devtools") 
-devtools::install_github("jefferis/elmr") ```
+```r 
+if (!require("devtools")) install.packages("devtools")
+devtools::install_github("jefferis/elmr")
+```
 
 Note: Windows users need [Rtools](http://www.murdoch-sutherland.com/Rtools/) and
 [devtools](http://CRAN.R-project.org/package=devtools) to install this way.

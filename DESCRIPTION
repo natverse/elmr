@@ -10,9 +10,10 @@ Description: Provides tools to move between adult brain EM and light level
 License: GPL-3
 LazyData: TRUE
 Depends: nat.flybrains
-Imports: 
+Imports:
     nat,
     nat.templatebrains,
+    catmaid,
     nabor,
     igraph,
     Morpho,

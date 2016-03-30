@@ -6,3 +6,14 @@ FAFB11 <- nat.templatebrains::templatebrain(
                                          voxdims = c(4,4,35))),
   origin=c(0,0,0)
 )
+
+FAFB12 <- nat.templatebrains::templatebrain(
+  name = "FAFB12",
+  type = 'Stitched serial section EM volume of whole adult female brain',
+  sex = 'F',
+  dims = c(229791L, 142889L, 7063L),
+  voxdims = c(4, 4, 35),
+  origin = c(0, 0, 0),
+  BoundingBox = structure(c(0, 919160, 0, 571552, 0, 247170), .Dim = 2:3, class = "boundingbox"),
+  units = "nm"
+)

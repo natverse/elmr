@@ -7,6 +7,8 @@ FAFB11 <- nat.templatebrains::templatebrain(
   origin=c(0,0,0)
 )
 
+# Created by
+# FAFB12=elmr:::make_template()
 FAFB12 <- nat.templatebrains::templatebrain(
   name = "FAFB12",
   type = 'Stitched serial section EM volume of whole adult female brain',

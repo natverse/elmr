@@ -1,14 +1,14 @@
-fetchn<-function(skids, mirror=TRUE, conn=NULL, ref=nat.flybrains::FCWB) {
-  x=read.neurons.catmaid(skids, conn=conn)
-  xt=xform_brain(x, sample="FAFB12", ref=ref)
-  if(mirror) xt=mirror_brain(xt, ref)
-  attr(xt,'space')=as.character(ref)
+fetchn<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FCWB) {
+  x=catmaid::read.neurons.catmaid(skids, conn=conn)
+  xt=xform_brain(x, sample="FAFB12", reference = reference)
+  if(mirror) xt=mirror_brain(xt, reference)
+  attr(xt,'space')=as.character(reference)
   xt
 }
 
 fetchdp<-function(skids, mirror=TRUE, conn=NULL, ...) {
   xt=fetchn(skids=skids, mirror=mirror, conn=conn, ...)
-  xdp=dotprops(xt, resample=1, k=5)
+  xdp=nat::dotprops(xt, resample=1, k=5)
   attr(xdp,'space')=attr(xt,'space')
   xdp
 }
@@ -27,7 +27,8 @@ fetchdp<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #'   right.)
 #' @param normalised Whether to return normalised NBLAST scores
 #' @param .parallel Whether to parallelise the nblast search (see details of
-#'   \code{\link[nat.nblast]{nblast}})
+#'   \code{\link[nat.nblast]{nblast}} for how to use the parallel interface
+#'   provided by the \code{doMC} package.)
 #' @param ... Additional parameters passed to \code{\link[nat.nblast]{nblast}}
 #'
 #' @return an object of class nblastfafb for which \code{plot3d}, \code{summary}
@@ -53,10 +54,10 @@ nblast_fafb <- function(skids, db=dps, conn=NULL, mirror=TRUE, normalised=TRUE, 
   n=fetchn(skids=skids, mirror=mirror, conn=conn)
   if(length(n)>1) n=elmr::stitch_neurons(n)
   else n=n[[1]]
-  xdp=dotprops(n, resample=1, k=5)
-  sc=nblast(xdp, db, normalised=normalised, .parallel=.parallel, ...)
+  xdp=nat::dotprops(n, resample=1, k=5)
+  sc=nat.nblast::nblast(xdp, db, normalised=normalised, .parallel=.parallel, ...)
   sc=sort(sc, decreasing = T)
-  scr=nblast(db[names(sc)[1:100]], neuronlist(xdp), normalised=normalised,
+  scr=nat.nblast::nblast(db[names(sc)[1:100]], nat::neuronlist(xdp), normalised=normalised,
              .parallel=.parallel, ...)
   reslist=list(sc=sc, scr=scr, n=n)
   reslist$space="FCWB"
@@ -65,28 +66,27 @@ nblast_fafb <- function(skids, db=dps, conn=NULL, mirror=TRUE, normalised=TRUE, 
 }
 
 #' @export
-summary.nblastfafb <- function(object, n=10, sortmu=T, kable=FALSE, ...) {
+summary.nblastfafb <- function(object, n=10, sortmu=T, ...) {
   gns=names(object$sc)[1:n]
 
   df=data.frame(score=object$sc[1:n])
   if(!is.null(object$scr)){
     df$muscore=(df$score+object$scr[1:n])/2
   }
-  df$ntype=fc_neuron_type(gns)
-  df$glom=fc_glom(gns)
+  df$ntype=flycircuit::fc_neuron_type(gns)
+  df$glom=flycircuit::fc_glom(gns)
   df=cbind(df, dps[gns,c("Driver", "Gender")])
   if(sortmu && !is.null(df['muscore'])){
     df$n=1:n
     df=df[order(df$muscore, decreasing = T), ]
   }
-  if(kable) {
-    knitr::kable(df, digits = 3, ...)
-  } else df
+ df
 }
 
 #' @export
+#' @importFrom rgl plot3d
 plot3d.nblastfafb <- function(x, hits=1:10, surf=TRUE, add=TRUE, ...){
-  if(!add) open3d()
+  if(!add) rgl::open3d()
   plot3d(x$n, lwd=3, col='black', WithNodes=FALSE)
   if(surf){
     surfname=paste0(x$space,'.surf')

@@ -14,14 +14,18 @@ Depends:
     nat.flybrains
 Imports:
     nat,
+    rgl,
     nat.templatebrains,
     catmaid,
+    nat.nblast,
     nabor,
     igraph,
     Morpho,
     stringr
 RoxygenNote: 5.0.1.9000
-Suggests: testthat
+Suggests:
+    flycircuit,
+    testthat
 Remotes:
     jefferis/nat,
     jefferislab/nat.templatebrains,

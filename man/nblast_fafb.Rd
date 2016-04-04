@@ -22,7 +22,8 @@ right.)}
 \item{normalised}{Whether to return normalised NBLAST scores}
 
 \item{.parallel}{Whether to parallelise the nblast search (see details of
-\code{\link[nat.nblast]{nblast}})}
+\code{\link[nat.nblast]{nblast}} for how to use the parallel interface
+provided by the \code{doMC} package.)}
 
 \item{...}{Additional parameters passed to \code{\link[nat.nblast]{nblast}}}
 }

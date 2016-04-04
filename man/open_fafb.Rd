@@ -4,7 +4,7 @@
 \alias{open_fafb}
 \title{Open FAFB CATMAID in browser at a given XYZ location}
 \usage{
-open_fafb(x, s = rgl::select3d(), mirror = FALSE, sample = elmr::FAFB11,
+open_fafb(x, s = rgl::select3d(), mirror = FALSE, sample = elmr::FAFB12,
   zoom = 1, open = interactive())
 }
 \arguments{

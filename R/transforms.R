@@ -41,23 +41,12 @@ xform_brain<-function(x, sample, reference, ...){
 #' @importFrom nat xyzmatrix xyzmatrix<-
 jfrc20132fafb <- function(xyz, ...) {
   if(!is.matrix(xyz)){
-    xyzt=jfrc20132fafb_matrix(xyzmatrix(xyz), ...)
+    xyzt=jfrc20132elmem(xyzmatrix(xyz), ...)
     xyzmatrix(xyz) <- xyzt
     xyz
   } else {
-    jfrc20132fafb_matrix(xyz, ...)
+    jfrc20132elmem(xyz, ...)
   }
-}
-
-jfrc20132fafb_matrix<-function(xyz, swap=FALSE,  ...){
-  jfrc20132elmem(xyz, swap=swap)
-}
-
-elmem2fafb<-function(xyz, invert=FALSE){
-  # compose affine matrix based on translation then scaling
-  am=nat::cmtkparams2affmat(sx=4,sy=4,sz=35)
-  if(invert) am=solve(am)
-  nat::xformpoints(am, xyz)
 }
 
 jfrc20132elmem<-function(xyz, swap=FALSE, sxyz=nat::voxdims(nat.flybrains::JFRC2013), ...){

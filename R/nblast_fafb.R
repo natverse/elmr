@@ -34,6 +34,7 @@ fetchdp<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #' @return an object of class nblastfafb for which \code{plot3d}, \code{summary}
 #'   and \code{hist} methods exist.
 #' @export
+#' @importFrom nat.nblast nblast
 #' @seealso \code{\link[nat.nblast]{nblast}}
 #'
 #' @examples
@@ -60,7 +61,7 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
   xdp=nat::dotprops(n, resample=1, k=5)
   sc=nat.nblast::nblast(xdp, db, normalised=normalised, .parallel=.parallel, ...)
   sc=sort(sc, decreasing = T)
-  scr=nat.nblast::nblast(db[names(sc)[1:100]], nat::neuronlist(xdp), normalised=normalised,
+  scr=nblast(db[names(sc)[1:100]], nat::neuronlist(xdp), normalised=normalised,
              .parallel=.parallel, ...)
   reslist=list(sc=sc, scr=scr, n=n)
   reslist$space="FCWB"

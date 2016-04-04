@@ -81,7 +81,7 @@ elm_landmarks_ <- function(u="https://raw.githubusercontent.com/saalfeldlab/elm/
   tf=tempfile(fileext = '.csv')
   on.exit(unlink(tf))
   downloader::download(u, destfile=tf, quiet=!interactive())
-  read.csv(tf, col.names = c("Label", "Use", "X","Y","Z", "X1","Y1","Z1"))
+  read.csv(tf, col.names = c("Label", "Use", "X","Y","Z", "X1","Y1","Z1"), header = FALSE)
 }
 
 # this will be cached per R session

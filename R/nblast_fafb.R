@@ -38,10 +38,7 @@ fetchdp<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #'
 #' @examples
 #' \dontrun{
-#' # load dps object (see details)
-#'
-#' # load https://github.com/jefferislab/nat.flybrains
-#' library(nat.flybrains)
+#' # first load dps object (see details)
 #'
 #' # nblast neuron 27884
 #' PN27884f=nblast_fafb(27884, mirror = FALSE)
@@ -50,7 +47,13 @@ fetchdp<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #' # plot results, just top hit
 #' plot3d(PN27884f, hits=1)
 #' }
-nblast_fafb <- function(skids, db=dps, conn=NULL, mirror=TRUE, normalised=TRUE, .parallel=T, ...) {
+nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE, .parallel=T, ...) {
+  if(is.null(db)){
+    if(exists('dps')) db=get('dps') else{
+      stop("You must have the dps object containing flycircuit neurons loaded!\n",
+           "See details of nblast_fafb documentation!")
+    }
+  }
   n=fetchn(skids=skids, mirror=mirror, conn=conn)
   if(length(n)>1) n=elmr::stitch_neurons(n)
   else n=n[[1]]

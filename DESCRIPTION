@@ -11,13 +11,13 @@ License: GPL-3
 LazyData: TRUE
 Depends:
     R (>= 2.10),
-    nat.flybrains
+    nat.flybrains,
+    nat.nblast
 Imports:
     nat,
     rgl,
     nat.templatebrains,
     catmaid,
-    nat.nblast,
     nabor,
     igraph,
     Morpho,

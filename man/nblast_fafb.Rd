@@ -4,7 +4,7 @@
 \alias{nblast_fafb}
 \title{NBLAST EM tracing against flycircuit neurons}
 \usage{
-nblast_fafb(skids, db = dps, conn = NULL, mirror = TRUE,
+nblast_fafb(skids, db = NULL, conn = NULL, mirror = TRUE,
   normalised = TRUE, .parallel = T, ...)
 }
 \arguments{
@@ -40,10 +40,7 @@ Still depends on an object called \code{dps} containing registered
 }
 \examples{
 \dontrun{
-# load dps object (see details)
-
-# load https://github.com/jefferislab/nat.flybrains
-library(nat.flybrains)
+# first load dps object (see details)
 
 # nblast neuron 27884
 PN27884f=nblast_fafb(27884, mirror = FALSE)

@@ -9,25 +9,29 @@ test_that("can transform using elm landmarks",{
                            Y = c(427872.3, 421129.0),
                            Z = c(52743.34, 58401.36),
                            row.names = c("V_L", "V_R"))
+  vgloms.fafb12=data.frame(X = c(506303.0, 414870.1),
+                           Y = c(291381.6, 280601.0),
+                           Z = c(52406.59, 58402.50),
+                           row.names = c("V_L", "V_R"))
 
-  expect_equal(xform_brain(vgloms.jfrc2013, sample  = JFRC2013, reference = FAFB11)
-               , vgloms.fafb11, tolerance=0.001)
+  expect_equal(xform_brain(vgloms.jfrc2013, sample  = JFRC2013, reference = FAFB12)
+               , vgloms.fafb12, tolerance=0.001)
 
   # make sure that we can wrap the points in an object and get the same
   # results.
   fakenl <- neuronlist(dotprops(vgloms.jfrc2013, k=2))
-  fakenl.fafb <- xform_brain(fakenl, sample  = JFRC2013, reference = FAFB11)
-  expect_equal(xyzmatrix(fakenl.fafb), xyzmatrix(vgloms.fafb11), tolerance=0.001)
+  fakenl.fafb <- xform_brain(fakenl, sample  = JFRC2013, reference = FAFB12)
+  expect_equal(xyzmatrix(fakenl.fafb), xyzmatrix(vgloms.fafb12), tolerance=0.001)
 
   # see if we can do a test using additional bridging registrations
   tb <- try(bridging_sequence("JFRC2", "JFRC2013"), silent = TRUE)
   if(inherits(tb, 'try-error'))
     skip("JFRC2_JFRC2013 bridging reg not available")
 
-  expect_is(kc1 <- xform_brain(nat::kcs20[1], sample=FCWB, reference = FAFB11),
+  expect_is(kc1 <- xform_brain(nat::kcs20[1], sample=FCWB, reference = FAFB12),
             'neuronlist')
   # NB there is some round trip error
-  expect_equal(xform_brain(kc1, reference = FCWB, sample=FAFB11),
+  expect_equal(xform_brain(kc1, reference = FCWB, sample=FAFB12),
                kcs20[1],
                tolerance=0.2)
 })

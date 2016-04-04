@@ -55,7 +55,7 @@ jfrc20132fafb_matrix<-function(xyz, swap=FALSE,  ...){
 
 elmem2fafb<-function(xyz, invert=FALSE){
   # compose affine matrix based on translation then scaling
-  am=nat::cmtkparams2affmat(sx=4,sy=4,sz=3.5)
+  am=nat::cmtkparams2affmat(sx=4,sy=4,sz=35)
   if(invert) am=solve(am)
   nat::xformpoints(am, xyz)
 }

@@ -46,7 +46,7 @@ open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB11,
     xyz=xform_brain(xyz, sample = sample, reference = elmr::FAFB11)
 
   xyzi=as.integer(xyz)
-  url=sprintf("https://neuropil.janelia.org/tracing/fafb/v11/?pid=1&zp=%d&yp=%d&xp=%d&tool=tracingtool&sid0=7&s0=%f",
+  url=sprintf("https://neuropil.janelia.org/tracing/fafb/v12/?pid=1&zp=%d&yp=%d&xp=%d&tool=tracingtool&sid0=7&s0=%f",
               xyzi[3], xyzi[2], xyzi[1], zoom)
   if(open){
     browseURL(url)

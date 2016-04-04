@@ -16,21 +16,21 @@
 #'   Y=c(143, 139),
 #'   Z=c(26,22),
 #'   row.names=c("V_L", "V_R"))
-#' # Convert to FAFB11 coordinates
-#' xform_brain(vgloms.jfrc2013, sample = JFRC2013, reference = FAFB11)
+#' # Convert to FAFB12 coordinates
+#' xform_brain(vgloms.jfrc2013, sample = JFRC2013, reference = FAFB12)
 #'
 #' \dontrun{
 #' # Conversion of neurons from FlyCircuit template
 #' # NB this conversion depends on a full install of nat.flybrains and CMTK
 #' library(nat)
-#' kcs13.fafb=xform_brain(kcs20[1:3], sample=FCWB, reference=FAFB11)
+#' kcs13.fafb=xform_brain(kcs20[1:3], sample=FCWB, reference=FAFB12)
 #' }
 xform_brain<-function(x, sample, reference, ...){
-  if(isTRUE(as.character(reference)=="FAFB11")){
+  if(isTRUE(as.character(reference)=="FAFB12")){
     if(!identical(sample, nat.flybrains::JFRC2013))
       x=nat.templatebrains::xform_brain(x, sample=sample, reference=nat.flybrains::JFRC2013, ...)
     return(nat::xform(x, jfrc20132fafb))
-  } else if(isTRUE(as.character(sample)=="FAFB11")) {
+  } else if(isTRUE(as.character(sample)=="FAFB12")) {
     x=nat::xform(x, jfrc20132fafb, swap=T)
     if(identical(reference, nat.flybrains::JFRC2013)) return(x)
     sample=nat.flybrains::JFRC2013
@@ -41,29 +41,12 @@ xform_brain<-function(x, sample, reference, ...){
 #' @importFrom nat xyzmatrix xyzmatrix<-
 jfrc20132fafb <- function(xyz, ...) {
   if(!is.matrix(xyz)){
-    xyzt=jfrc20132fafb_matrix(xyzmatrix(xyz), ...)
+    xyzt=jfrc20132elmem(xyzmatrix(xyz), ...)
     xyzmatrix(xyz) <- xyzt
     xyz
   } else {
-    jfrc20132fafb_matrix(xyz, ...)
+    jfrc20132elmem(xyz, ...)
   }
-}
-
-jfrc20132fafb_matrix<-function(xyz, swap=FALSE,  ...){
-  if(swap){
-    xyzt=elmem2fafb(xyz, invert=TRUE)
-    jfrc20132elmem(xyzt, swap=TRUE)
-  } else {
-    xyzt=jfrc20132elmem(xyz)
-    elmem2fafb(xyzt)
-  }
-}
-
-elmem2fafb<-function(xyz, invert=FALSE){
-  # compose affine matrix based on translation then scaling
-  am=nat::cmtkparams2affmat(sx=4,sy=4,sz=3.5)
-  if(invert) am=solve(am)
-  nat::xformpoints(am, xyz)
 }
 
 jfrc20132elmem<-function(xyz, swap=FALSE, sxyz=nat::voxdims(nat.flybrains::JFRC2013), ...){

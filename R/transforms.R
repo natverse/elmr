@@ -26,11 +26,11 @@
 #' kcs13.fafb=xform_brain(kcs20[1:3], sample=FCWB, reference=FAFB11)
 #' }
 xform_brain<-function(x, sample, reference, ...){
-  if(isTRUE(as.character(reference)=="FAFB11")){
+  if(isTRUE(as.character(reference)=="FAFB12")){
     if(!identical(sample, nat.flybrains::JFRC2013))
       x=nat.templatebrains::xform_brain(x, sample=sample, reference=nat.flybrains::JFRC2013, ...)
     return(nat::xform(x, jfrc20132fafb))
-  } else if(isTRUE(as.character(sample)=="FAFB11")) {
+  } else if(isTRUE(as.character(sample)=="FAFB12")) {
     x=nat::xform(x, jfrc20132fafb, swap=T)
     if(identical(reference, nat.flybrains::JFRC2013)) return(x)
     sample=nat.flybrains::JFRC2013
@@ -50,13 +50,7 @@ jfrc20132fafb <- function(xyz, ...) {
 }
 
 jfrc20132fafb_matrix<-function(xyz, swap=FALSE,  ...){
-  if(swap){
-    xyzt=elmem2fafb(xyz, invert=TRUE)
-    jfrc20132elmem(xyzt, swap=TRUE)
-  } else {
-    xyzt=jfrc20132elmem(xyz)
-    elmem2fafb(xyzt)
-  }
+  jfrc20132elmem(xyz, swap=swap)
 }
 
 elmem2fafb<-function(xyz, invert=FALSE){

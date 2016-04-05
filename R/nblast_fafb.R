@@ -55,6 +55,11 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
            "See details of nblast_fafb documentation!")
     }
   }
+  if(.parallel){
+    if(!isNamespaceLoaded('foreach') || foreach::getDoParWorkers()==1){
+      warning("see ?nblast and doMC::registerDoMC for details of setting up parallel nblast")
+    }
+  }
   n=fetchn(skids=skids, mirror=mirror, conn=conn)
   if(length(n)>1) n=elmr::stitch_neurons(n)
   else n=n[[1]]

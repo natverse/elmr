@@ -7,3 +7,4 @@ env:
 cache: packages
 r_github_packages:
 - jefferislab/nat.flybrains
+- jefferis/catmaid

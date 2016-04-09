@@ -23,7 +23,7 @@ Imports:
 RoxygenNote: 5.0.1.9000
 Suggests: testthat
 Remotes:
-    jefferis/nat
-    jefferislab/nat.templatebrains
+    jefferis/nat,
+    jefferislab/nat.templatebrains,
     jefferislab/nat.flybrains,
     jefferis/catmaid

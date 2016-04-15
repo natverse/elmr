@@ -13,3 +13,14 @@ NULL
 #' @examples
 #' FAFB12
 NULL
+
+#' ELM Landmarks created by Bock & Saalfeld groups at Janelia
+#'
+#' These are used to map locations in EM (FAFB) space to JFRC2013 (aka DPX)
+#' space, in conjunction with a thin plate spline library.
+#'
+#' @name elm.landmarks
+#' @docType data
+#' @examples
+#' head(elm.landmarks)
+NULL

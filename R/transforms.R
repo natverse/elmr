@@ -51,8 +51,7 @@ jfrc20132fafb <- function(xyz, ...) {
 
 jfrc20132elmem<-function(xyz, swap=FALSE, sxyz=nat::voxdims(nat.flybrains::JFRC2013), ...){
   if(!swap) xyz=t(t(xyz)/sxyz)
-  elmlm=elm_landmarks()
-  elmlm=elmlm[elmlm[,"Use"],]
+  elmlm=elmr::elm.landmarks[elmr::elm.landmarks[,"Use"],]
   l0=data.matrix(elmlm[,c("X","Y","Z"), drop=F])
   l1=data.matrix(elmlm[,c("X1","Y1","Z1"), drop=F])
   if(swap) {

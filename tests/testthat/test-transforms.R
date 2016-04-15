@@ -9,9 +9,9 @@ test_that("can transform using elm landmarks",{
                            Y = c(427872.3, 421129.0),
                            Z = c(52743.34, 58401.36),
                            row.names = c("V_L", "V_R"))
-  vgloms.fafb12=data.frame(X = c(506303.0, 414870.1),
-                           Y = c(291381.6, 280601.0),
-                           Z = c(52406.59, 58402.50),
+  vgloms.fafb12=data.frame(X = c(505996.4, 411437.2),
+                           Y = c(288772.6, 282167.5),
+                           Z = c(52530.38, 58400.24),
                            row.names = c("V_L", "V_R"))
 
   expect_equal(xform_brain(vgloms.jfrc2013, sample  = JFRC2013, reference = FAFB12)

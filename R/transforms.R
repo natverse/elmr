@@ -51,8 +51,10 @@ jfrc20132fafb <- function(xyz, ...) {
 
 jfrc20132elmem<-function(xyz, swap=FALSE, sxyz=nat::voxdims(nat.flybrains::JFRC2013), ...){
   if(!swap) xyz=t(t(xyz)/sxyz)
-  l0=data.matrix(elm_landmarks()[,c("X","Y","Z"), drop=F])
-  l1=data.matrix(elm_landmarks()[,c("X1","Y1","Z1"), drop=F])
+  elmlm=elm_landmarks()
+  elmlm=elmlm[elmlm[,"Use"],]
+  l0=data.matrix(elmlm[,c("X","Y","Z"), drop=F])
+  l1=data.matrix(elmlm[,c("X1","Y1","Z1"), drop=F])
   if(swap) {
     res=Morpho::tps3d(xyz, l1, l0, ...)
     t(t(res)*sxyz)
@@ -64,7 +66,9 @@ elm_landmarks_ <- function(u="https://raw.githubusercontent.com/saalfeldlab/elm/
   tf=tempfile(fileext = '.csv')
   on.exit(unlink(tf))
   downloader::download(u, destfile=tf, quiet=!interactive())
-  read.csv(tf, col.names = c("Label", "Use", "X","Y","Z", "X1","Y1","Z1"), header = FALSE)
+  x=read.csv(tf, col.names = c("Label", "Use", "X","Y","Z", "X1","Y1","Z1"), header = FALSE)
+  x$Use=as.logical(x$Use)
+  x
 }
 
 # this will be cached per R session

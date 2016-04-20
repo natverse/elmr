@@ -19,7 +19,7 @@ Imports:
     nat.templatebrains,
     catmaid,
     nabor,
-    igraph,
+    igraph (>= 1.0),
     Morpho,
     stringr
 RoxygenNote: 5.0.1.9000

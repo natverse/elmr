@@ -7,7 +7,8 @@
 #' @export
 #' @seealso \code{\link{reglist}}, \code{\link[nat]{read.landmarks}}
 tpsreg<-function(refmat, tarmat, ...){
-  structure(list(refmat=refmat, tarmat=tarmat, ...), class='tpsreg')
+  structure(list(refmat=data.matrix(refmat), tarmat=data.matrix(tarmat), ...),
+            class='tpsreg')
 }
 
 #' @description \code{xformpoints.tpsreg} provides

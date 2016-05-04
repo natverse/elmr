@@ -19,7 +19,7 @@ NULL
 #' These are used to map locations in EM (FAFB) space to JFRC2013 (aka DPX)
 #' space, in conjunction with a thin plate spline library.
 #'
-#' @details X,Y,Z correspond to locati?ons in JFRC2013 template brain. However,
+#' @details X,Y,Z correspond to locations in JFRC2013 template brain. However,
 #'   they are in raw voxel coordinates. In contrast, X1,Y1,Z1 (which contain
 #'   locations in FAFB space) are in nm.
 #'

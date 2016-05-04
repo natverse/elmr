@@ -11,17 +11,22 @@ License: GPL-3
 LazyData: TRUE
 Depends:
     R (>= 2.10),
-    nat.flybrains
+    nat.flybrains,
+    nat.nblast
 Imports:
     nat,
+    rgl,
     nat.templatebrains,
     catmaid,
     nabor,
-    igraph,
+    igraph (>= 1.0),
     Morpho,
     stringr
 RoxygenNote: 5.0.1.9000
-Suggests: testthat
+Suggests:
+    flycircuit,
+    foreach,
+    testthat
 Remotes:
     jefferis/nat,
     jefferislab/nat.templatebrains,

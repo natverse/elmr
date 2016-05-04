@@ -15,6 +15,7 @@ X,Y,Z correspond to locations in JFRC2013 template brain. However,
 }
 \examples{
 head(elm.landmarks)
+
 \dontrun{
 # Show landmarks in the context of the JFRC2013 template brain
 library(nat.flybrains)

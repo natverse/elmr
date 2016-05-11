@@ -19,6 +19,9 @@
 #' functional CMTK installation. See \code{\link[nat]{cmtk.bindir}} for more
 #' information and advice about installation.
 #'
+#' \item \code{\link{nblast_fafb}} which allows you to nblast catmaid tracings
+#' against a set of neuron skeletons e.g. from flycircuit.
+#'
 #' \item \code{\link{stitch_neurons}} which allows neuron fragments to be
 #' stitched together reasonably intelligently.
 #'

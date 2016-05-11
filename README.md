@@ -27,6 +27,8 @@ example("open_fafb")
 
 # help for functions/data 
 ?FAFB
+?fetchn_fafb
+?nblast_fafb
 ?open_fafb
 ?xform_brain
 ?stitch_neurons

@@ -1,4 +1,21 @@
-fetchn<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FCWB) {
+#' Fetch neurons from FAFB catmaid server, transforming them as appropriate
+#'
+#' @description \code{fetchn_fafb} is a thin wrapper around the
+#'   \code{catmaid::\link[catmaid]{read.neurons.catmaid}} function with the
+#'   additional convenience of auromating conversion to a reference brain.
+#' @export
+#' @inheritParams nblast_fafb
+#' @param reference The reference brain to which the neurons will be
+#'   transformed, either a \code{\link[nat.templatebrains]{templatebrain}}
+#'   object such as \code{\link[nat.flybrains]{FCWB}} or a character vector
+#'   naming such an object.
+#' @examples
+#' \dontrun{
+#' # fetch all neurons with an annotation exactly matching "KC" and convert
+#' # to JFRC2013 space
+#' kcs=fetchn_fafb("annotation:^KC$", reference=JFRC2013)
+#' }
+fetchn_fafb<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FCWB) {
   x=catmaid::read.neurons.catmaid(skids, conn=conn)
   xt=xform_brain(x, sample="FAFB12", reference = reference)
   if(mirror) xt=mirror_brain(xt, reference)
@@ -6,8 +23,13 @@ fetchn<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FCWB) {
   xt
 }
 
-fetchdp<-function(skids, mirror=TRUE, conn=NULL, ...) {
-  xt=fetchn(skids=skids, mirror=mirror, conn=conn, ...)
+#' @export
+#' @description \code{fetchdp_fafb} extends \code{fetchn_fafb} by additionally converting
+#'   neurons to the \code{\link[nat]{dotprops}} representation suitable for
+#'   \code{\link[nat.nblast]{nblast}}.
+#' @rdname fetchn_fafb
+fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
+  xt=fetchn_fafb(skids=skids, mirror=mirror, conn=conn, ...)
   xdp=nat::dotprops(xt, resample=1, k=5)
   attr(xdp,'templatebrain')=attr(xt,'templatebrain')
   xdp
@@ -63,7 +85,7 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
       warning("see ?nblast and doMC::registerDoMC for details of setting up parallel nblast")
     }
   }
-  n=fetchn(skids=skids, mirror=mirror, conn=conn)
+  n=fetchn_fafb(skids=skids, mirror=mirror, conn=conn)
   if(length(n)>1) n=elmr::stitch_neurons(n)
   else n=n[[1]]
   xdp=nat::dotprops(n, resample=1, k=5)

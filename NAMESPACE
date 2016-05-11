@@ -3,6 +3,8 @@
 S3method(plot3d,nblastfafb)
 S3method(summary,nblastfafb)
 S3method(xformpoints,tpsreg)
+export(fetchdp_fafb)
+export(fetchn_fafb)
 export(nblast_fafb)
 export(open_fafb)
 export(stitch_neuron)

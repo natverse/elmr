@@ -45,6 +45,20 @@ You can use the **devtools** package to install the development version:
 ```r 
 if (!require("devtools")) install.packages("devtools")
 devtools::install_github("jefferis/elmr")
+
+# to transform skeletons to template brains other than JFRC2013, you also need
+# a CMTK installation (see https://github.com/jefferis/nat/#external-dependencies)
+# and to download some additional bridging registrations.
+library(nat.flybrains)
+download_jefferislab_registrations()
+
+```
+Note that this should install also install the latest version of the necessary 
+dependencies. To carry out nblast comparisons with flycircuit neurons, you may
+need to install optional dependencies by installing as follows:
+
+```
+devtools::install_github("jefferis/elmr", dependencies=TRUE)
 ```
 
 Note: Windows users need [Rtools](http://www.murdoch-sutherland.com/Rtools/) and

@@ -2,14 +2,14 @@ fetchn<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FCWB) {
   x=catmaid::read.neurons.catmaid(skids, conn=conn)
   xt=xform_brain(x, sample="FAFB12", reference = reference)
   if(mirror) xt=mirror_brain(xt, reference)
-  attr(xt,'space')=as.character(reference)
+  attr(xt,'templatebrain')=as.character(reference)
   xt
 }
 
 fetchdp<-function(skids, mirror=TRUE, conn=NULL, ...) {
   xt=fetchn(skids=skids, mirror=mirror, conn=conn, ...)
   xdp=nat::dotprops(xt, resample=1, k=5)
-  attr(xdp,'space')=attr(xt,'space')
+  attr(xdp,'templatebrain')=attr(xt,'templatebrain')
   xdp
 }
 
@@ -111,15 +111,18 @@ summary.nblastfafb <- function(object, n=10, sortmu=T, db=NULL, ...) {
 
 #' @export
 #' @importFrom rgl plot3d
-plot3d.nblastfafb <- function(x, hits=1:10, surf=TRUE, add=TRUE, ...){
+plot3d.nblastfafb <- function(x, hits=1:10, surf=TRUE, add=TRUE, db=NULL, ...){
   if(!add) rgl::open3d()
   plot3d(x$n, lwd=3, col='black', WithNodes=FALSE)
   if(surf){
-    surfname=paste0(x$space,'.surf')
+    surfname=paste0(x$templatebrain,'.surf')
     if(exists(surfname))
       plot3d(get(surfname), col='grey', alpha=.25)
   }
-  if(x$space=='FCWB' && length(hits)){
+  # see if we can get the space for the plotting database
+  db=getdb(db)
+  space=attr(db,'templatebrain')
+  if((isTRUE(x$templatebrain==space) || x$templatebrain== 'FCWB') && length(hits)) {
     plot3d(names(x$sc[hits]), soma=TRUE)
   }
 }

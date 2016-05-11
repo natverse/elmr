@@ -5,12 +5,13 @@
 \title{NBLAST EM tracing against flycircuit neurons}
 \usage{
 nblast_fafb(skids, db = NULL, conn = NULL, mirror = TRUE,
-  normalised = TRUE, .parallel = T, ...)
+  normalised = TRUE, .parallel = TRUE, ...)
 }
 \arguments{
 \item{skids}{catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})}
 
-\item{db}{A neuronlist object containing neurons to search}
+\item{db}{A neuronlist object containing neurons to search. Defaults to the
+value of \code{options('nat.default.neuronlist')}.}
 
 \item{conn}{a \code{catmaid} connection object (see
 \code{\link[catmaid]{catmaid_connection}})}
@@ -35,12 +36,16 @@ an object of class nblastfafb for which \code{plot3d}, \code{summary}
 NBLAST EM tracing against flycircuit neurons
 }
 \details{
-Still depends on an object called \code{dps} containing registered
-  flycircuit.tw neurons that must be obtained by contacting Greg Jefferis.
+Still depends on having a \code{\link[nat]{neuronlist}} containing
+  registered flycircuit.tw neurons. The example code downloads a set of
+  projection neurons. The full data must be requested from Greg Jefferis.
 }
 \examples{
 \dontrun{
-# first load dps object (see details)
+# first load neuronlist object containing flycircuit neurons (see details)
+allpndps=flycircuit::load_si_data('allpndps.rds')
+# ... and set that as the default for queries and plotting
+options(nat.default.neuronlist='allpndps')
 
 # nblast neuron 27884
 PN27884f=nblast_fafb(27884, mirror = FALSE)

@@ -16,10 +16,12 @@ fetchdp<-function(skids, mirror=TRUE, conn=NULL, ...) {
 
 #' NBLAST EM tracing against flycircuit neurons
 #'
-#' @details Still depends on an object called \code{dps} containing registered
-#'   flycircuit.tw neurons that must be obtained by contacting Greg Jefferis.
+#' @details Still depends on having a \code{\link[nat]{neuronlist}} containing
+#'   registered flycircuit.tw neurons. The example code downloads a set of
+#'   projection neurons. The full data must be requested from Greg Jefferis.
 #' @param skids catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})
-#' @param db A neuronlist object containing neurons to search
+#' @param db A neuronlist object containing neurons to search. Defaults to the
+#'   value of \code{options('nat.default.neuronlist')}.
 #' @param conn a \code{catmaid} connection object (see
 #'   \code{\link[catmaid]{catmaid_connection}})
 #' @param mirror whether to mirror the neuron (default \code{TRUE} since
@@ -39,7 +41,10 @@ fetchdp<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #'
 #' @examples
 #' \dontrun{
-#' # first load dps object (see details)
+#' # first load neuronlist object containing flycircuit neurons (see details)
+#' allpndps=flycircuit::load_si_data('allpndps.rds')
+#' # ... and set that as the default for queries and plotting
+#' options(nat.default.neuronlist='allpndps')
 #'
 #' # nblast neuron 27884
 #' PN27884f=nblast_fafb(27884, mirror = FALSE)
@@ -48,13 +53,8 @@ fetchdp<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #' # plot results, just top hit
 #' plot3d(PN27884f, hits=1)
 #' }
-nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE, .parallel=T, ...) {
-  if(is.null(db)){
-    if(exists('dps')) db=get('dps') else{
-      stop("You must have the dps object containing flycircuit neurons loaded!\n",
-           "See details of nblast_fafb documentation!")
-    }
-  }
+nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE, .parallel=TRUE, ...) {
+  db=getdb(db)
   if(.parallel){
     if(!isNamespaceLoaded('foreach') || foreach::getDoParWorkers()==1){
       warning("see ?nblast and doMC::registerDoMC for details of setting up parallel nblast")
@@ -74,8 +74,20 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
   reslist
 }
 
+getdb <- function(db){
+  if(is.null(db)){
+    defaultdb <- getOption('nat.default.neuronlist')
+    if(exists(defaultdb)) {
+      db=get(defaultdb)
+    } else{
+      stop("You must have a neuronlist containing flycircuit neurons loaded!\n",
+           "See details of nblast_fafb documentation!")
+    }
+  }
+}
+
 #' @export
-summary.nblastfafb <- function(object, n=10, sortmu=T, ...) {
+summary.nblastfafb <- function(object, n=10, sortmu=T, db=NULL, ...) {
   gns=names(object$sc)[1:n]
 
   df=data.frame(score=object$sc[1:n])
@@ -84,7 +96,9 @@ summary.nblastfafb <- function(object, n=10, sortmu=T, ...) {
   }
   df$ntype=flycircuit::fc_neuron_type(gns)
   df$glom=flycircuit::fc_glom(gns)
-  df=cbind(df, dps[gns,c("Driver", "Gender")])
+
+  db=getdb(db)
+  df=cbind(df, db[gns,c("Driver", "Gender")])
   if(sortmu && !is.null(df['muscore'])){
     df$n=1:n
     df=df[order(df$muscore, decreasing = T), ]

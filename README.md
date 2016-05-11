@@ -51,10 +51,9 @@ devtools::install_github("jefferis/elmr")
 # and to download some additional bridging registrations.
 library(nat.flybrains)
 download_jefferislab_registrations()
-
 ```
-Note that this should install also install the latest version of the necessary 
-dependencies. To carry out nblast comparisons with flycircuit neurons, you may
+Note that this should also install the latest version of the necessary 
+dependencies. To carry out nblast comparisons with [flycircuit.tw](http://flycircuit.tw) neurons, you may
 need to install optional dependencies by installing as follows:
 
 ```

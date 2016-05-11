@@ -46,6 +46,9 @@ fetchdp<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #' # ... and set that as the default for queries and plotting
 #' options(nat.default.neuronlist='allpndps')
 #'
+#' # then make sure you are loged in to catmaid server
+#' # catmaid::catmaid_login(<your connection args>)
+#'
 #' # nblast neuron 27884
 #' PN27884f=nblast_fafb(27884, mirror = FALSE)
 #' # summary table of results

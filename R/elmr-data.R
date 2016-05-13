@@ -1,17 +1,37 @@
-#' Assembly v11 of FAFB full adult female brain EM volume
+#' templatebrain for assembled FAFB full adult female brain EM volume
 #'
-#' @name FAFB11
-#' @docType data
-#' @examples
-#' FAFB11
-NULL
-
-#' Assembly v12 of FAFB full adult female brain EM volume
+#' @description \bold{FAFB} \code{\link[nat.templatebrains]{templatebrain}}
+#'   objects encapsulate the physical dimensions of assembled FAFB serial
+#'   section data. There is a different \code{templatebrain} for each assembly
+#'   version.They are used to define the transformations between FAFB and other
+#'   templates like \code{\link[nat.flybrains]{JFRC2013}} (see
+#'   \code{\link{xform_brain}})
 #'
-#' @name FAFB12
+#' @details  \code{FAFB12} is the default FAFB assembly since 2016-04-01.
+#' @name FAFB
 #' @docType data
+#' @seealso \code{\link[nat.templatebrains]{templatebrain}},
+#'   \code{\link{xform_brain}}
 #' @examples
 #' FAFB12
+#' dim(FAFB12)
+#' voxdims(FAFB12)
+#' boundingbox(FAFB12)
+NULL
+
+#' @description \code{FAFB12} Assembly v12 of FAFB full adult female brain EM
+#'   volume (2016-04-01)
+#' @name FAFB12
+#' @rdname FAFB
+#' @docType data
+NULL
+
+#' @description \code{FAFB11} Assembly v11 of FAFB full adult female brain EM
+#'   volume (2016-02-09)
+#'
+#' @name FAFB11
+#' @rdname FAFB
+#' @docType data
 NULL
 
 #' ELM Landmarks created by Bock & Saalfeld groups at Janelia

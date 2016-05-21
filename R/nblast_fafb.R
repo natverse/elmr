@@ -94,7 +94,7 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
   scr=nblast(db[names(sc)[1:100]], nat::neuronlist(xdp), normalised=normalised,
              .parallel=.parallel, ...)
   reslist=list(sc=sc, scr=scr, n=n)
-  reslist$space="FCWB"
+  reslist$templatebrain="FCWB"
   class(reslist)='nblastfafb'
   reslist
 }

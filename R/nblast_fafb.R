@@ -100,11 +100,11 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
 }
 
 getdb <- function(db){
-  if(is.null(db)){
+  if(is.null(db)) {
     defaultdb <- getOption('nat.default.neuronlist')
-    if(exists(defaultdb)) {
+    if(!is.null(defaultdb) && exists(defaultdb)) {
       db=get(defaultdb)
-    } else{
+    } else {
       stop("You must have a neuronlist containing flycircuit neurons loaded!\n",
            "See details of nblast_fafb documentation!")
     }

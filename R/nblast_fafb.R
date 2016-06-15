@@ -109,6 +109,7 @@ getdb <- function(db){
            "See details of nblast_fafb documentation!")
     }
   }
+  db
 }
 
 #' @export

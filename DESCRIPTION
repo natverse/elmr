@@ -22,13 +22,12 @@ Imports:
     igraph (>= 1.0),
     Morpho,
     stringr
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 5.0.1
 Suggests:
     flycircuit,
     foreach,
     testthat
-Remotes:
-    jefferis/nat,
+Remotes: jefferis/nat,
     jefferislab/nat.templatebrains,
     jefferislab/nat.flybrains,
     jefferis/rcatmaid,

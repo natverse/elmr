@@ -2,7 +2,7 @@
 % Please edit documentation in R/nblast_fafb.R
 \name{nblast_fafb}
 \alias{nblast_fafb}
-\title{NBLAST EM tracing against flycircuit neurons}
+\title{NBLAST EM tracing against flycircuit (or other databases of) neurons}
 \usage{
 nblast_fafb(skids, db = NULL, conn = NULL, mirror = TRUE,
   normalised = TRUE, reverse = FALSE, reference = nat.flybrains::FCWB,
@@ -23,7 +23,7 @@ right.)}
 
 \item{normalised}{Whether to return normalised NBLAST scores}
 
-\item{reverse}{Treat the FAFB skeleton as NBKAST target rather than query
+\item{reverse}{Treat the FAFB skeleton as NBLAST target rather than query
 (sensible if \code{db} contains partial skeletons/tracts; default
 \code{FALSE}).}
 
@@ -43,16 +43,17 @@ an object of class nblastfafb for which \code{plot3d}, \code{summary}
   and \code{hist} methods exist.
 }
 \description{
-NBLAST EM tracing against flycircuit neurons
+NBLAST EM tracing against flycircuit (or other databases of) neurons
 }
 \details{
 Still depends on having a \code{\link[nat]{neuronlist}} containing
-  registered flycircuit.tw neurons. The example code downloads a set of
-  projection neurons. The full data must be requested from Greg Jefferis.
+  registered neurons (usually from flycircuit.tw). The example code downloads
+  a set of projection neurons. The full data must be requested from Greg
+  Jefferis.
 }
 \examples{
 \dontrun{
-# first load neuronlist object containing flycircuit neurons (see details)
+# first load neuronlist object containing registered neurons (see details)
 allpndps=flycircuit::load_si_data('allpndps.rds')
 # ... and set that as the default for queries and plotting
 options(nat.default.neuronlist='allpndps')

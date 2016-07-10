@@ -36,11 +36,12 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 }
 
 
-#' NBLAST EM tracing against flycircuit neurons
+#' NBLAST EM tracing against flycircuit (or other databases of) neurons
 #'
 #' @details Still depends on having a \code{\link[nat]{neuronlist}} containing
-#'   registered flycircuit.tw neurons. The example code downloads a set of
-#'   projection neurons. The full data must be requested from Greg Jefferis.
+#'   registered neurons (usually from flycircuit.tw). The example code downloads
+#'   a set of projection neurons. The full data must be requested from Greg
+#'   Jefferis.
 #' @param skids catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})
 #' @param db A neuronlist object containing neurons to search. Defaults to the
 #'   value of \code{options('nat.default.neuronlist')}.
@@ -50,7 +51,7 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #'   flycircuit neurons are on fly's left and most FAFB tracings are on fly's
 #'   right.)
 #' @param normalised Whether to return normalised NBLAST scores
-#' @param reverse Treat the FAFB skeleton as NBKAST target rather than query
+#' @param reverse Treat the FAFB skeleton as NBLAST target rather than query
 #'   (sensible if \code{db} contains partial skeletons/tracts; default
 #'   \code{FALSE}).
 #' @param .parallel Whether to parallelise the nblast search (see details of
@@ -67,7 +68,7 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #'
 #' @examples
 #' \dontrun{
-#' # first load neuronlist object containing flycircuit neurons (see details)
+#' # first load neuronlist object containing registered neurons (see details)
 #' allpndps=flycircuit::load_si_data('allpndps.rds')
 #' # ... and set that as the default for queries and plotting
 #' options(nat.default.neuronlist='allpndps')
@@ -92,6 +93,8 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
     }
   }
   n=fetchn_fafb(skids=skids, mirror=mirror, conn=conn, reference = reference)
+  # store the templatebrain for later
+  templatebrain=attr(n, "templatebrain")
   if(length(n)>1) n=elmr::stitch_neurons(n)
   else n=n[[1]]
   xdp=nat::dotprops(n, resample=1, k=5)
@@ -108,7 +111,7 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
                .parallel=.parallel, ...)
   }
   reslist=list(sc=sc, scr=scr, n=n)
-  reslist$templatebrain="FCWB"
+  reslist$templatebrain=templatebrain
   class(reslist)='nblastfafb'
   reslist
 }
@@ -119,7 +122,7 @@ getdb <- function(db){
     if(!is.null(defaultdb) && exists(defaultdb)) {
       db=get(defaultdb)
     } else {
-      stop("You must have a neuronlist containing flycircuit neurons loaded!\n",
+      stop("You must have a neuronlist containing registered neurons loaded!\n",
            "See details of nblast_fafb documentation!")
     }
   }
@@ -138,7 +141,12 @@ summary.nblastfafb <- function(object, n=10, sortmu=T, db=NULL, ...) {
   df$glom=flycircuit::fc_glom(gns)
 
   db=getdb(db)
-  df=cbind(df, db[gns,c("Driver", "Gender")])
+  dbdf=as.data.frame(db)
+  available_cols=intersect(c("Driver", "Gender"), colnames(dbdf))
+  df <- if(length(available_cols))
+    cbind(df, dbdf[gns, available_cols])
+  else
+    cbind(df, dbdf[gns, ])
   if(sortmu && !is.null(df['muscore'])){
     df$n=1:n
     df=df[order(df$muscore, decreasing = T), ]
@@ -156,11 +164,10 @@ plot3d.nblastfafb <- function(x, hits=1:10, surf=TRUE, add=TRUE, db=NULL, ...){
     if(exists(surfname))
       plot3d(get(surfname), col='grey', alpha=.25)
   }
-  # see if we can get the space for the plotting database
-  db=getdb(db)
-  space=attr(db,'templatebrain')
-  if((isTRUE(x$templatebrain==space) || x$templatebrain== 'FCWB') && length(hits)) {
-    plot3d(names(x$sc[hits]), soma=TRUE)
+  # Now plot the hits if requested
+  if(length(hits)) {
+    db=getdb(db)
+    plot3d(names(x$sc[hits]), db=db, soma=TRUE)
   }
 }
 

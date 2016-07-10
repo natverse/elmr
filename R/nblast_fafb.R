@@ -50,10 +50,14 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #'   flycircuit neurons are on fly's left and most FAFB tracings are on fly's
 #'   right.)
 #' @param normalised Whether to return normalised NBLAST scores
+#' @param reverse Treat the FAFB skeleton as NBKAST target rather than query
+#'   (sensible if \code{db} contains partial skeletons/tracts; default
+#'   \code{FALSE}).
 #' @param .parallel Whether to parallelise the nblast search (see details of
 #'   \code{\link[nat.nblast]{nblast}} for how to use the parallel interface
 #'   provided by the \code{doMC} package.)
 #' @param ... Additional parameters passed to \code{\link[nat.nblast]{nblast}}
+#' @inheritParams fetchn_fafb
 #'
 #' @return an object of class nblastfafb for which \code{plot3d}, \code{summary}
 #'   and \code{hist} methods exist.
@@ -78,21 +82,31 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #' # plot results, just top hit
 #' plot3d(PN27884f, hits=1)
 #' }
-nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE, .parallel=TRUE, ...) {
+nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
+                        reverse=FALSE, reference=nat.flybrains::FCWB,
+                        .parallel=TRUE, ...) {
   db=getdb(db)
   if(.parallel){
     if(!isNamespaceLoaded('foreach') || foreach::getDoParWorkers()==1){
       warning("see ?nblast and doMC::registerDoMC for details of setting up parallel nblast")
     }
   }
-  n=fetchn_fafb(skids=skids, mirror=mirror, conn=conn)
+  n=fetchn_fafb(skids=skids, mirror=mirror, conn=conn, reference = reference)
   if(length(n)>1) n=elmr::stitch_neurons(n)
   else n=n[[1]]
   xdp=nat::dotprops(n, resample=1, k=5)
-  sc=nat.nblast::nblast(xdp, db, normalised=normalised, .parallel=.parallel, ...)
-  sc=sort(sc, decreasing = T)
-  scr=nblast(db[names(sc)[1:100]], nat::neuronlist(xdp), normalised=normalised,
-             .parallel=.parallel, ...)
+  if(reverse) {
+    sc=nat.nblast::nblast(db, nat::neuronlist(xdp), normalised=normalised,
+                          .parallel=.parallel, ...)
+    sc=sort(sc, decreasing = T)
+    scr=nblast(nat::neuronlist(xdp), db[names(sc)[1:100]], normalised=normalised,
+               .parallel=.parallel, ...)
+  } else {
+    sc=nat.nblast::nblast(xdp, db, normalised=normalised, .parallel=.parallel, ...)
+    sc=sort(sc, decreasing = T)
+    scr=nblast(db[names(sc)[1:100]], nat::neuronlist(xdp), normalised=normalised,
+               .parallel=.parallel, ...)
+  }
   reslist=list(sc=sc, scr=scr, n=n)
   reslist$templatebrain="FCWB"
   class(reslist)='nblastfafb'

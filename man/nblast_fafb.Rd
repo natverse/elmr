@@ -5,7 +5,8 @@
 \title{NBLAST EM tracing against flycircuit neurons}
 \usage{
 nblast_fafb(skids, db = NULL, conn = NULL, mirror = TRUE,
-  normalised = TRUE, .parallel = TRUE, ...)
+  normalised = TRUE, reverse = FALSE, reference = nat.flybrains::FCWB,
+  .parallel = TRUE, ...)
 }
 \arguments{
 \item{skids}{catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})}
@@ -21,6 +22,15 @@ flycircuit neurons are on fly's left and most FAFB tracings are on fly's
 right.)}
 
 \item{normalised}{Whether to return normalised NBLAST scores}
+
+\item{reverse}{Treat the FAFB skeleton as NBKAST target rather than query
+(sensible if \code{db} contains partial skeletons/tracts; default
+\code{FALSE}).}
+
+\item{reference}{The reference brain to which the neurons will be
+transformed, either a \code{\link[nat.templatebrains]{templatebrain}}
+object such as \code{\link[nat.flybrains]{FCWB}} or a character vector
+naming such an object.}
 
 \item{.parallel}{Whether to parallelise the nblast search (see details of
 \code{\link[nat.nblast]{nblast}} for how to use the parallel interface

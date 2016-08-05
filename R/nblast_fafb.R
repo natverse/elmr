@@ -158,7 +158,7 @@ summary.nblastfafb <- function(object, n=10, sortmu=T, db=NULL, ...) {
 #' @importFrom rgl plot3d
 plot3d.nblastfafb <- function(x, hits=1:10, surf=TRUE, add=TRUE, db=NULL, ...){
   if(!add) rgl::open3d()
-  plot3d(x$n, lwd=3, col='black', WithNodes=FALSE)
+  plot3d(x$n, lwd=3, col='black', WithNodes=FALSE, ...)
   if(surf){
     surfname=paste0(x$templatebrain,'.surf')
     if(exists(surfname))

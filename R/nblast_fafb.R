@@ -171,6 +171,8 @@ plot3d.nblastfafb <- function(x, hits=1:10, surf=TRUE, add=TRUE, db=NULL, ...){
   }
 }
 
+#' @importFrom graphics hist
+#' @export
 hist.nblastfafb<-function(x, br=100, col='red', ...) {
   hist(x$sc, br=br, col=col, ...)
 }

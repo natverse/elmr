@@ -16,6 +16,7 @@
 #' @param zoom The CATMAID zoom factor (defaults to 1)
 #' @details Note that
 #' @export
+#' @importFrom utils browseURL
 #' @seealso xform_brain
 #' @examples
 #' open_fafb(c(316, 143, 26), sample=JFRC2013, open=FALSE)

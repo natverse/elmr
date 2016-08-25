@@ -26,9 +26,12 @@ RoxygenNote: 5.0.1
 Suggests:
     flycircuit,
     foreach,
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 Remotes: jefferis/nat,
     jefferislab/nat.templatebrains,
     jefferislab/nat.flybrains,
     jefferis/rcatmaid,
     jefferis/flycircuit
+VignetteBuilder: knitr

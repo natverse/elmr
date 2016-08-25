@@ -10,7 +10,7 @@
 #'
 #'   \itemize{
 #'
-#'   \item \code{\link{xform_brain}}
+#'   \item \code{\link[nat.templatebrains]{xform_brain}}
 #'
 #'   allows you to transform FAFB data into a large number of other template
 #'   brain spaces by making use of the \code{\link{nat.templatebrains}} and
@@ -53,4 +53,5 @@
 #' @docType package
 #' @keywords package
 #' @import nat.templatebrains
+#' @import nat.flybrains
 NULL

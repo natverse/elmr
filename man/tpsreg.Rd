@@ -7,7 +7,7 @@
 \usage{
 tpsreg(refmat, tarmat, ...)
 
-\method{xformpoints}{tpsreg}(reg, points, swap = FALSE, ...)
+\method{xformpoints}{tpsreg}(reg, points, swap = NULL, ...)
 }
 \arguments{
 \item{refmat, tarmat}{The reference and target matrices}
@@ -18,7 +18,8 @@ tpsreg(refmat, tarmat, ...)
 
 \item{points}{The 3D points to transform}
 
-\item{swap}{Whether to change the direction of registration}
+\item{swap}{Whether to change the direction of registration (default of
+\code{NULL} checks if reg has a \code{attr('swap'=TRUE)}) otherwise}
 }
 \description{
 \code{tpsreg} creates an object encapsulating a thin plate spine

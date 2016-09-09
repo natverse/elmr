@@ -10,7 +10,7 @@
 #'
 #'   \itemize{
 #'
-#'   \item \code{\link{xform_brain}}
+#'   \item \code{\link[nat.templatebrains]{xform_brain}}
 #'
 #'   allows you to transform FAFB data into a large number of other template
 #'   brain spaces by making use of the \code{\link{nat.templatebrains}} and
@@ -48,9 +48,26 @@
 #'   server it is recommended to put authentication in your
 #'   \code{\link{Rprofile}} file.
 #'
+#' @examples
+#' # position of antennal lobe glomeruli "V" in JFRC2013 template brain
+#' vgloms.jfrc2013=data.frame(X=c(316,229),
+#'   Y=c(143, 139),
+#'   Z=c(26,22),
+#'   row.names=c("V_L", "V_R"))
+#' # Convert to FAFB12 coordinates
+#' xform_brain(vgloms.jfrc2013, sample = JFRC2013, reference = FAFB12)
+#'
+#' \dontrun{
+#' # Conversion of neurons from FlyCircuit template
+#' # NB this conversion depends on a full install of nat.flybrains and CMTK
+#' library(nat)
+#' kcs13.fafb=xform_brain(kcs20[1:3], sample=FCWB, reference=FAFB12)
+#' }
+#'
 #' @name elmr-package
 #' @aliases elmr
 #' @docType package
 #' @keywords package
 #' @import nat.templatebrains
+#' @import nat.flybrains
 NULL

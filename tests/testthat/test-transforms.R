@@ -17,6 +17,9 @@ test_that("can transform using elm landmarks",{
   expect_equal(xform_brain(vgloms.jfrc2013, sample  = JFRC2013, reference = FAFB12)
                , vgloms.fafb12, tolerance=0.001)
 
+  expect_equal(xform_brain(vgloms.fafb12, sample = FAFB12, reference = JFRC2013)
+               , vgloms.jfrc2013, tolerance=0.03)
+
   # make sure that we can wrap the points in an object and get the same
   # results.
   fakenl <- neuronlist(dotprops(vgloms.jfrc2013, k=2))

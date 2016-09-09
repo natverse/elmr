@@ -15,12 +15,12 @@ tpsreg<-function(refmat, tarmat, ...){
 #' @rdname tpsreg
 #' @param reg The \code{tpsreg} registration object
 #' @param points The 3D points to transform
-#' @param swap Whether to change the direction of registration
+#' @param swap Whether to change the direction of registration (default of
+#'   \code{NULL} checks if reg has a \code{attr('swap'=TRUE)}) otherwise
 #' @export
 #' @importFrom nat xformpoints
-xformpoints.tpsreg <- function(reg, points, swap=FALSE, ...){
-  # FIXME handle swap
-  if(swap){
+xformpoints.tpsreg <- function(reg, points, swap=NULL, ...){
+  if(isTRUE(swap) || isTRUE(attr(reg, 'swap'))) {
     tmp=reg$refmat
     reg$refmat=reg$tarmat
     reg$tarmat=tmp

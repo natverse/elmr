@@ -2,12 +2,22 @@
 #'
 #' @description \code{tpsreg} creates an object encapsulating a thin plate spine
 #'   transform mapping a paired landmark set.
-#' @param refmat,tarmat The reference and target matrices
+#' @param sample,reference Matrices defining the sample (or floating) and
+#'   reference (desired target after transformation) spaces. See details.
 #' @param ... additional arguments passed to xformpoints.tpsreg
+#' @details  Note that we use the \bold{nat} convention for naming the
+#'   sample/reference space arguments but these actually clash with the
+#'   nomenclature in the underlying \code{Morpho3d::tps3d} function. \itemize{
+#'
+#'   \item refmat (Morpho3d) == sample (nat)
+#'
+#'   \item tarmat (Morpho3d) == reference (nat)
+#'
+#'   }
 #' @export
 #' @seealso \code{\link{reglist}}, \code{\link[nat]{read.landmarks}}
-tpsreg<-function(refmat, tarmat, ...){
-  structure(list(refmat=data.matrix(refmat), tarmat=data.matrix(tarmat), ...),
+tpsreg<-function(sample, reference, ...){
+  structure(list(refmat=data.matrix(sample), tarmat=data.matrix(reference), ...),
             class='tpsreg')
 }
 

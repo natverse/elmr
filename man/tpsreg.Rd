@@ -5,12 +5,13 @@
 \alias{xformpoints.tpsreg}
 \title{Thin plate spline registrations via nat::xform and friends}
 \usage{
-tpsreg(refmat, tarmat, ...)
+tpsreg(sample, reference, ...)
 
 \method{xformpoints}{tpsreg}(reg, points, swap = NULL, ...)
 }
 \arguments{
-\item{refmat, tarmat}{The reference and target matrices}
+\item{sample, reference}{Matrices defining the sample (or floating) and
+reference (desired target after transformation) spaces. See details.}
 
 \item{...}{additional arguments passed to xformpoints.tpsreg}
 
@@ -26,6 +27,17 @@ tpsreg(refmat, tarmat, ...)
   transform mapping a paired landmark set.
 
 \code{xformpoints.tpsreg} provides
+}
+\details{
+Note that we use the \bold{nat} convention for naming the
+  sample/reference space arguments but these actually clash with the
+  nomenclature in the underlying \code{Morpho3d::tps3d} function. \itemize{
+
+  \item refmat (Morpho3d) == sample (nat)
+
+  \item tarmat (Morpho3d) == reference (nat)
+
+  }
 }
 \seealso{
 \code{\link{reglist}}, \code{\link[nat]{read.landmarks}}

@@ -62,3 +62,12 @@ devtools::install_github("jefferis/elmr", dependencies=TRUE)
 
 Note: Windows users need [Rtools](http://www.murdoch-sutherland.com/Rtools/) and
 [devtools](http://CRAN.R-project.org/package=devtools) to install this way.
+
+### Updating
+
+**elmr** and its dependencies are still under fairly heavy development. You can 
+conveniently bring the devlopment versions up to date by doing:
+
+```r
+devtools::update_packages("elmr", dependencies = TRUE)
+```

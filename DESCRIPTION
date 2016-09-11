@@ -16,7 +16,7 @@ Depends:
 Imports:
     nat,
     rgl,
-    nat.templatebrains (>= 0.7),
+    nat.templatebrains (>= 0.8),
     catmaid,
     nabor,
     igraph (>= 1.0),

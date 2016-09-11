@@ -19,7 +19,6 @@ fetchn_fafb<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FC
   x=catmaid::read.neurons.catmaid(skids, conn=conn)
   xt=xform_brain(x, sample="FAFB12", reference = reference)
   if(mirror) xt=mirror_brain(xt, reference)
-  attr(xt,'templatebrain')=as.character(reference)
   xt
 }
 
@@ -31,7 +30,7 @@ fetchn_fafb<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FC
 fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
   xt=fetchn_fafb(skids=skids, mirror=mirror, conn=conn, ...)
   xdp=nat::dotprops(xt, resample=1, k=5)
-  attr(xdp,'templatebrain')=attr(xt,'templatebrain')
+  regtemplate(xdp)=regtemplate(xt)
   xdp
 }
 
@@ -94,9 +93,10 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
   }
   n=fetchn_fafb(skids=skids, mirror=mirror, conn=conn, reference = reference)
   # store the templatebrain for later
-  templatebrain=attr(n, "templatebrain")
+  tb=regtemplate(n)
   if(length(n)>1) n=elmr::stitch_neurons(n)
   else n=n[[1]]
+  regtemplate(n)=tb
   xdp=nat::dotprops(n, resample=1, k=5)
   if(reverse) {
     sc=nat.nblast::nblast(db, nat::neuronlist(xdp), normalised=normalised,
@@ -111,7 +111,6 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
                .parallel=.parallel, ...)
   }
   reslist=list(sc=sc, scr=scr, n=n)
-  reslist$templatebrain=templatebrain
   class(reslist)='nblastfafb'
   reslist
 }
@@ -160,9 +159,9 @@ plot3d.nblastfafb <- function(x, hits=1:10, surf=TRUE, add=TRUE, db=NULL, ...){
   if(!add) rgl::open3d()
   plot3d(x$n, lwd=3, col='black', WithNodes=FALSE, ...)
   if(surf){
-    surfname=paste0(x$templatebrain,'.surf')
-    if(exists(surfname))
-      plot3d(get(surfname), col='grey', alpha=.25)
+    rt=regtemplate(x$n)
+    if(!is.null(rt))
+      plot3d(rt, col='grey', alpha=.25)
   }
   # Now plot the hits if requested
   if(length(hits)) {

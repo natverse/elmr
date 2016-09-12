@@ -31,7 +31,10 @@ if(!nzchar(cmtk.bindir())){
     cat("Unable to download bridging registrations! Some examples will not run.")
   else full.bridging=TRUE
 }
+# set up for 3d plots based on rgl package
 rgl::setupKnitr()
+# frontal view
+view3d(userMatrix=rgl::rotationMatrix(angle = pi, 1,0,0), zoom=0.6)
 ```
 
 

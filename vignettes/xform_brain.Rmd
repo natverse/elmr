@@ -8,10 +8,31 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+## Intro
 
 In combination with several other nat packages, elmr allows you to convert 3D 
 objects (skeletons, surfaces, images) between FAFB EM space and a number of light
 level template brains.
+
+### Setup
+In order to run some of the examples we need to ensure that we have CMTK 
+available and the [nat.flybrains](https://github.com/jefferislab/nat.flybrains) 
+package fully installed to provide bridging
+registrations. We will make some of our examples run conditionally based on this.
+
+```{r, message=FALSE}
+full.bridging=FALSE
+library(nat)
+if(!nzchar(cmtk.bindir())){
+  cat("CMTK not available! Some examples will not run.")
+} else {
+  djrok=try(nat.flybrains::download_jefferislab_registrations())
+  if(inherits(djrok, "try-error")) 
+    cat("Unable to download bridging registrations! Some examples will not run.")
+  else full.bridging=TRUE
+}
+```
+
 
 ## Example - 3D locations
 
@@ -35,17 +56,12 @@ Our second example converts some neurons from a light level space other than
 JFRC2013 to FAFB, making use of additional bridging registrations supplied by
 the nat.flybrains package.
 
-```{r}
+```{r, eval=full.bridging}
 # Conversion of neurons from FlyCircuit template
 # NB this conversion depends on a full install of nat.flybrains and CMTK
-if(nzchar(cmtk.bindir())){
-  library(nat)
-  Cell07PNs13.fafb=xform_brain(Cell07PNs[1:3], sample=IS2, reference=FAFB12)
-  plot(Cell07PNs13.fafb)
-} else {
-  message("CMTK not available! Skipping example.")
-}
-
+# ensure that we have all the relevant bridging registrations downloaded
+Cell07PNs13.fafb=xform_brain(Cell07PNs[1:3], sample=IS2, reference=FAFB12)
+plot(Cell07PNs13.fafb)
 ```
 
 ## Neurons + Surface

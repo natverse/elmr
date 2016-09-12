@@ -57,3 +57,19 @@ NULL
 #' spheres3d(xyz, col = ifelse(elm.landmarks$Use, "green", 'red'), radius = 4)
 #' }
 NULL
+
+
+#' Sample EM tracings (homolougous pair of neurons wrapping around lateral horn)
+#'
+#' @details These neurons were traced by Greg Jefferis because they appeared to be a
+#' homologous pair from the left and right side of the brain. They contain dense
+#' core vesicles (which made it easier to find matching cell bodies) and skirt
+#' around the outside of the lateral horn.
+#'
+#' @examples
+#' \dontrun{
+#' dense_core_neurons <- read.neurons.catmaid(c(713968, 822008))
+#' }
+#' @docType data
+#' @name dense_core_neurons
+NULL

@@ -31,6 +31,7 @@ if(!nzchar(cmtk.bindir())){
     cat("Unable to download bridging registrations! Some examples will not run.")
   else full.bridging=TRUE
 }
+rgl::setupKnitr()
 ```
 
 
@@ -57,7 +58,7 @@ JFRC2013 to FAFB, making use of additional bridging registrations supplied by
 the nat.flybrains package.
 
 ```{r, eval=full.bridging}
-# Conversion of neurons from FlyCircuit template
+# Conversion of neurons from the IS2 light level template brain
 # NB this conversion depends on a full install of nat.flybrains and CMTK
 # ensure that we have all the relevant bridging registrations downloaded
 Cell07PNs13.fafb=xform_brain(Cell07PNs[1:3], sample=IS2, reference=FAFB12)
@@ -65,8 +66,41 @@ plot(Cell07PNs13.fafb)
 ```
 
 ## Neurons + Surface
-WIP
-```{r}
+We can transform neurons and surfaces in order to compare EM tracings with
+light derived meshes describing the whole brain or neuropil subdomains.
 
+We'll start with an example where we convert a brain surface mesh to FAFB12 
+space and then plot a pair of sample neurons distributed with **elmr**:
+```{r, rgl=TRUE}
+FAFB12.surf=xform_brain(JFRC2013.surf, sample = JFRC2013, reference = FAFB12)
+# NB plot3d.templaterain gives nice defaults for brain surface plot but assumes
+# that the surface object is called XXXX.surf
+plot3d(FAFB12)
+plot3d(dense_core_neurons, lwd=2, soma=3000)
 ```
 
+There are also surface objects available for individual neuropil domains:
+
+```{r, eval=full.bridging, rgl=TRUE}
+FAFB12NP.surf=xform_brain(JFRC2NP.surf, sample = JFRC2, reference = FAFB12)
+plot3d(FAFB12NP.surf, "LH", alpha=0.4)
+plot3d(dense_core_neurons, lwd=2, soma=3000)
+```
+
+## Default sample space
+
+nat.templatebrains and elmr now provide support for tagging objects e.g. neurons/surfaces
+with a template space. You can get / set this using the `regtemplate` function.
+We can repeat the earlier example, this time 
+```{r, eval=full.bridging}
+# set the template space for the input coordinates
+regtemplate(vgloms.jfrc2013)=JFRC2013
+# now we do not need to specify it in the xform_brain call
+vgloms.fafb=xform_brain(vgloms.jfrc2013, reference = FAFB12)
+# check ouput space
+regtemplate(vgloms.fafb)
+```
+
+This becomes quite useful when particular pieces of data are reused extensively 
+in an interactive R session, especially if they are already distributed in 
+tagged form.

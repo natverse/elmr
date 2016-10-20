@@ -23,7 +23,8 @@ Imports:
     Morpho,
     stringr,
     httr,
-    jsonlite
+    jsonlite,
+    plyr
 RoxygenNote: 5.0.1
 Suggests:
     flycircuit,

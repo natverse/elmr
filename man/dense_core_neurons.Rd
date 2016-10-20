@@ -14,6 +14,7 @@ core vesicles (which made it easier to find matching cell bodies) and skirt
 around the outside of the lateral horn.
 }
 \examples{
+plot(dense_core_neurons)
 \dontrun{
 dense_core_neurons <- read.neurons.catmaid(c(713968, 822008))
 }

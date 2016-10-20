@@ -67,6 +67,7 @@ NULL
 #' around the outside of the lateral horn.
 #'
 #' @examples
+#' plot(dense_core_neurons)
 #' \dontrun{
 #' dense_core_neurons <- read.neurons.catmaid(c(713968, 822008))
 #' }

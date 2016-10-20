@@ -1,5 +1,5 @@
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET content stop_for_status
+#' @importFrom httr GET content http_error
 #' @importFrom plyr aaply
 fafb_world_mapper <- function(xyz, from, to, baseurl="http://tem-services.int.janelia.org:8080/render-ws/v1/owner/flyTEM/project/FAFB00/stack", ...) {
   if(is.data.frame(xyz)) {
@@ -24,14 +24,18 @@ map_1 <- function(xyz, from, to, baseurl) {
   subpath1=sprintf("/%s_align_tps/z/%d/world-to-local-coordinates/%f,%f",
                    from, as.integer(xyz[3]), xyz[1], xyz[2])
   res1_raw=httr::GET(paste0(baseurl, subpath1))
-  stop_for_status(res1_raw)
+  if(http_error(res1_raw)){
+    stop("Failed to transform points with query: ", subpath1)
+  }
   res1=fromJSON(content(res1_raw, as='text', encoding='UTF-8'), simplifyVector = T)
   # v13_align_tps/tile/150126171511052023.3864.0/local-to-world-coordinates/1221.9181157357234,1370.8960213087994
   # stack, tile, x, y
   subpath2=sprintf("/%s_align_tps/tile/%s/local-to-world-coordinates/%f,%f",
                    to, res1$tileId[1], res1$local[[1]][1], res1$local[[1]][2])
   res2_raw=httr::GET(paste0(baseurl, subpath2))
-  stop_for_status(res2_raw)
+  if(http_error(res2_raw)){
+    stop("Failed to transform points with query: ", subpath2)
+  }
   res2=fromJSON(content(res2_raw, as='text', encoding='UTF-8'), simplifyVector = T)
   unlist(res2$world)
 }

@@ -5,6 +5,7 @@
 \alias{FAFB}
 \alias{FAFB11}
 \alias{FAFB12}
+\alias{FAFB13}
 \title{templatebrain for assembled FAFB full adult female brain EM volume}
 \description{
 \bold{FAFB} \code{\link[nat.templatebrains]{templatebrain}}
@@ -14,6 +15,9 @@
   templates like \code{\link[nat.flybrains]{JFRC2013}} (see
   \code{\link{xform_brain}})
 
+\code{FAFB13} Assembly v13 of FAFB full adult female brain EM
+  volume (2016-10).
+
 \code{FAFB12} Assembly v12 of FAFB full adult female brain EM
   volume (2016-04-01)
 
@@ -22,6 +26,11 @@
 }
 \details{
 \code{FAFB12} is the default FAFB assembly since 2016-04-01.
+  \code{FAFB13} is in preview as of 2016-10-20 but is not production ready.
+  Furthermore the dimensions of the FAFB13 volume are not yet confirmed. It
+  is hoped that the v13 assembly will correct some substantial distortions in
+  anterior parts of the brain such as the antennal lobe and initial
+  indications are promising.
 }
 \examples{
 FAFB12

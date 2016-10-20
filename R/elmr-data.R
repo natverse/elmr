@@ -8,6 +8,11 @@
 #'   \code{\link{xform_brain}})
 #'
 #' @details  \code{FAFB12} is the default FAFB assembly since 2016-04-01.
+#'   \code{FAFB13} is in preview as of 2016-10-20 but is not production ready.
+#'   Furthermore the dimensions of the FAFB13 volume are not yet confirmed. It
+#'   is hoped that the v13 assembly will correct some substantial distortions in
+#'   anterior parts of the brain such as the antennal lobe and initial
+#'   indications are promising.
 #' @name FAFB
 #' @docType data
 #' @seealso \code{\link[nat.templatebrains]{templatebrain}},
@@ -18,6 +23,14 @@
 #' voxdims(FAFB12)
 #' boundingbox(FAFB12)
 NULL
+
+#' @description \code{FAFB13} Assembly v13 of FAFB full adult female brain EM
+#'   volume (2016-10).
+#' @name FAFB13
+#' @rdname FAFB
+#' @docType data
+NULL
+
 
 #' @description \code{FAFB12} Assembly v12 of FAFB full adult female brain EM
 #'   volume (2016-04-01)

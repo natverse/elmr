@@ -21,7 +21,9 @@ Imports:
     nabor,
     igraph (>= 1.0),
     Morpho,
-    stringr
+    stringr,
+    httr,
+    jsonlite
 RoxygenNote: 5.0.1
 Suggests:
     flycircuit,

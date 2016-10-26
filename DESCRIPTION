@@ -2,7 +2,7 @@ Package: elmr
 Type: Package
 Title: Support for working with light and electron microscopy fly brain data
 Version: 0.1
-Author: Gregory Jefferis
+Authors@R: person("Gregory", "Jefferis", , "jefferis@gmail.com", role = c("aut", "cre"))
 Maintainer: Gregory Jefferis <jefferis@gmail.com>
 Description: Provides tools to move between adult brain EM and light level
     data, emphasising the interaction between the CATMAID web application and
@@ -29,6 +29,8 @@ Suggests:
     testthat,
     knitr,
     rmarkdown
+URL: https://github.com/jefferis/elmr
+BugReports: https://github.com/jefferis/elmr/issues
 Remotes: jefferis/nat,
     jefferislab/nat.templatebrains,
     jefferislab/nat.flybrains,

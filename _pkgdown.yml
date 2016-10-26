@@ -1,0 +1,29 @@
+reference:
+- title: Package Help
+  desc: Provides an overview of key functions and classes
+  contents:
+  - elmr-package
+- title: Fetching and searching neurons
+  desc: Fetch and transform neurons or NBLAST them
+  contents:
+  - fetchn_fafb
+  - nblast_fafb
+- title: Working with neuron structures
+  desc: Provides an overview of key functions and classes
+  contents:
+  - distal_to
+  - stitch_neuron
+  - stitch_neurons
+- title: Interacting with CATMAID server
+  contents:
+  - open_fafb
+- title: Support functions
+  desc: Functions intended primarily for developer use
+  contents:
+  - tpsreg
+- title: Data
+  desc: Data objects
+  contents:
+    - FAFB
+    - elm.landmarks
+    - dense_core_neurons

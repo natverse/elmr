@@ -59,7 +59,7 @@ NULL
 NULL
 
 
-#' Sample EM tracings (homolougous pair of neurons wrapping around lateral horn)
+#' Sample EM tracings (homologous pair of neurons wrapping around lateral horn)
 #'
 #' @details These neurons were traced by Greg Jefferis because they appeared to be a
 #' homologous pair from the left and right side of the brain. They contain dense

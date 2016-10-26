@@ -3,9 +3,9 @@
 \docType{data}
 \name{dense_core_neurons}
 \alias{dense_core_neurons}
-\title{Sample EM tracings (homolougous pair of neurons wrapping around lateral horn)}
+\title{Sample EM tracings (homologous pair of neurons wrapping around lateral horn)}
 \description{
-Sample EM tracings (homolougous pair of neurons wrapping around lateral horn)
+Sample EM tracings (homologous pair of neurons wrapping around lateral horn)
 }
 \details{
 These neurons were traced by Greg Jefferis because they appeared to be a

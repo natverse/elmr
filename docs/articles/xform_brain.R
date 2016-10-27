@@ -34,7 +34,7 @@ plot(Cell07PNs13.fafb)
 FAFB12.surf=xform_brain(JFRC2013.surf, sample = JFRC2013, reference = FAFB12)
 # NB plot3d.templaterain gives nice defaults for brain surface plot but assumes
 # that the surface object is called XXXX.surf
-plot3d(FAFB12)
+plot3d(FAFB12.surf, alpha=.3, col='grey')
 plot3d(dense_core_neurons, lwd=2, soma=3000)
 
 ## ---- eval=full.bridging, rgl=TRUE---------------------------------------

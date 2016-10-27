@@ -26,12 +26,16 @@ reference (desired target after transformation) spaces. See details.}
 \code{tpsreg} creates an object encapsulating a thin plate spine
   transform mapping a paired landmark set.
 
-\code{xformpoints.tpsreg} provides
+\code{xformpoints.tpsreg} enables \code{\link[nat]{xform}} and
+  friends to transform 3d vertices (or more complex objects containing 3d
+  vertices) using a thin plate spline mapping stored in a \code{tpsreg}
+  object.
 }
 \details{
 Note that we use the \bold{nat} convention for naming the
   sample/reference space arguments but these actually clash with the
-  nomenclature in the underlying \code{Morpho3d::tps3d} function. \itemize{
+  nomenclature in the underlying \code{Morpho::\link[Morpho]{tps3d}}
+  function. \itemize{
 
   \item refmat (Morpho3d) == sample (nat)
 
@@ -40,6 +44,6 @@ Note that we use the \bold{nat} convention for naming the
   }
 }
 \seealso{
-\code{\link{reglist}}, \code{\link[nat]{read.landmarks}}
+\code{\link[nat]{reglist}}, \code{\link[nat]{read.landmarks}}
 }
 

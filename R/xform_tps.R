@@ -7,7 +7,8 @@
 #' @param ... additional arguments passed to xformpoints.tpsreg
 #' @details  Note that we use the \bold{nat} convention for naming the
 #'   sample/reference space arguments but these actually clash with the
-#'   nomenclature in the underlying \code{Morpho3d::tps3d} function. \itemize{
+#'   nomenclature in the underlying \code{Morpho::\link[Morpho]{tps3d}}
+#'   function. \itemize{
 #'
 #'   \item refmat (Morpho3d) == sample (nat)
 #'
@@ -15,13 +16,16 @@
 #'
 #'   }
 #' @export
-#' @seealso \code{\link{reglist}}, \code{\link[nat]{read.landmarks}}
+#' @seealso \code{\link[nat]{reglist}}, \code{\link[nat]{read.landmarks}}
 tpsreg<-function(sample, reference, ...){
   structure(list(refmat=data.matrix(sample), tarmat=data.matrix(reference), ...),
             class='tpsreg')
 }
 
-#' @description \code{xformpoints.tpsreg} provides
+#' @description \code{xformpoints.tpsreg} enables \code{\link[nat]{xform}} and
+#'   friends to transform 3d vertices (or more complex objects containing 3d
+#'   vertices) using a thin plate spline mapping stored in a \code{tpsreg}
+#'   object.
 #' @rdname tpsreg
 #' @param reg The \code{tpsreg} registration object
 #' @param points The 3D points to transform

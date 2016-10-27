@@ -81,7 +81,10 @@
     <p><code>tpsreg</code> creates an object encapsulating a thin plate spine
   transform mapping a paired landmark set.</p>
 
-    <p><code>xformpoints.tpsreg</code> provides</p>
+    <p><code>xformpoints.tpsreg</code> enables <code><a href='http://www.rdocumentation.org/packages/nat/topics/xform'>xform</a></code> and
+  friends to transform 3d vertices (or more complex objects containing 3d
+  vertices) using a thin plate spline mapping stored in a <code>tpsreg</code>
+  object.</p>
     
 
     <pre><span class='fu'>tpsreg</span>(<span class='no'>sample</span>, <span class='no'>reference</span>, <span class='no'>...</span>)
@@ -109,7 +112,8 @@ reference (desired target after transformation) spaces. See details.</dd>
 
     <p>Note that we use the <b>nat</b> convention for naming the
   sample/reference space arguments but these actually clash with the
-  nomenclature in the underlying <code>Morpho3d::tps3d</code> function. <ul>
+  nomenclature in the underlying <code>Morpho::<a href='http://www.rdocumentation.org/packages/Morpho/topics/tps3d'>tps3d</a></code>
+  function. <ul>
 <li> refmat (Morpho3d) == sample (nat)</p>
     <p></li>
 <li> tarmat (Morpho3d) == reference (nat)</p>
@@ -118,7 +122,7 @@ reference (desired target after transformation) spaces. See details.</dd>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code>reglist</code>, <code><a href='http://www.rdocumentation.org/packages/nat/topics/read.landmarks'>read.landmarks</a></code></p>
+    <p><code><a href='http://www.rdocumentation.org/packages/nat/topics/reglist'>reglist</a></code>, <code><a href='http://www.rdocumentation.org/packages/nat/topics/read.landmarks'>read.landmarks</a></code></p>
     
 
   </div>

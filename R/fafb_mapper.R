@@ -1,7 +1,8 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET content http_error
 #' @importFrom plyr aaply
-fafb_world_mapper <- function(xyz, from, to, baseurl="http://tem-services.int.janelia.org:8080/render-ws/v1/owner/flyTEM/project/FAFB00/stack", ...) {
+fafb_world_mapper <- function(xyz, from, to, baseurl="http://tem-services.int.janelia.org:8080/render-ws/v1/owner/flyTEM/project/FAFB00/stack",
+                              method='many', ...) {
   if(is.data.frame(xyz)) {
     xyz=as.matrix(xyz)
   } else if(!is.matrix(xyz)){
@@ -12,8 +13,12 @@ fafb_world_mapper <- function(xyz, from, to, baseurl="http://tem-services.int.ja
     tt=try(map_1(...))
     if(inherits(tt,'try-error')) rep(NA_real_, 3L) else tt
   }
-  res=aaply(xyz, 1, try_map_1, from=from, to=to, baseurl=baseurl,
+  if(method=="many") {
+    res=map_many(xyz, from=from, to=to, baseurl=baseurl, ...)
+  } else {
+    res=aaply(xyz, 1, try_map_1, from=from, to=to, baseurl=baseurl,
         .progress = ifelse(interactive()&&nrow(xyz)>1, 'text', 'none'), ...)
+  }
   dimnames(res)=list(NULL, c("X","Y","Z"))
   res
 }
@@ -38,4 +43,20 @@ map_1 <- function(xyz, from, to, baseurl) {
   }
   res2=fromJSON(content(res2_raw, as='text', encoding='UTF-8'), simplifyVector = T)
   unlist(res2$world)
+}
+
+map_many <- function(xyz, from, to, baseurl) {
+  if(!identical(ncol(xyz), 3L))
+    stop("I need an Nx3 matrix!")
+  body=lapply(1:nrow(xyz), function(r) list(world=xyz[r,]))
+  subpath1=sprintf("/%s_align_tps/world-to-local-coordinates", from)
+  res1_raw=httr::PUT(paste0(baseurl, subpath1), body = body, encode="json")
+  # what we get back is not in the same form as what we need for the next query
+  res1_list=unlist(content(res1_raw, simplifyVector=T, simplifyDataFrame=F), recursive = F)
+
+  subpath2=sprintf("/%s_align_tps/local-to-world-coordinates", to)
+  res2_raw=httr::PUT(paste0(baseurl, subpath2), body = res1_list, encode="json")
+  l=content(res2_raw, simplifyVector=T)$world
+  xyzt=do.call(rbind, l)
+  xyzt
 }

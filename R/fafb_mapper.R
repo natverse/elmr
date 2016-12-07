@@ -14,7 +14,6 @@
 #' \dontrun{
 #' FAFB12.surf=xform_brain(JFRC2013.surf, sample = JFRC2013, reference = FAFB12)
 #' FAFB13.surf=xform_brain(JFRC2013.surf, sample=JFRC2013, ref=FAFB13)
-#' xform_brain(FAFB12, )
 #' }
 fafb_world_mapper <- function(xyz, from, to, baseurl="http://tem-services.int.janelia.org:8080/render-ws/v1/owner/flyTEM/project/FAFB00/stack",
                               method='single', ...) {

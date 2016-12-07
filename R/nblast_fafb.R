@@ -17,7 +17,7 @@
 #' }
 fetchn_fafb<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FCWB) {
   x=catmaid::read.neurons.catmaid(skids, conn=conn)
-  xt=xform_brain(x, sample="FAFB12", reference = reference)
+  xt=xform_brain(x, sample="FAFB13", reference = reference)
   if(mirror) xt=mirror_brain(xt, reference)
   xt
 }

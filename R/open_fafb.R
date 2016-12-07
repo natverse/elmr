@@ -28,7 +28,7 @@
 #' # same but mirrors selected points to opposite hemisphere
 #' open_fafb(kcs20, sample=FCWB, mirror=TRUE)
 #' }
-open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB12,
+open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB13,
                     zoom=1, open=interactive()) {
   if(is.vector(x, mode='numeric') && length(x)==3 ){
     xyz=matrix(x, ncol=3)
@@ -47,7 +47,7 @@ open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB12,
   if(substr(csample, 1, 4)=="FAFB"){
     fafb.version=substr(csample,5,nchar(csample))
   } else {
-    xyz=xform_brain(xyz, sample = sample, reference = elmr::FAFB12)
+    xyz=xform_brain(xyz, sample = sample, reference = elmr::FAFB13)
     fafb.version="12"
   }
 

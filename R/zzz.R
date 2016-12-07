@@ -2,7 +2,7 @@
 
   # Define and register a compound registration that maps FAFB12 to JFRC2013
   # first landmarks-based thin plate splines
-  elmlm=elmr::elm.landmarks[elmr::elm.landmarks[,"Use"],]
+  elmlm=elmr::elm.landmarks.12[elmr::elm.landmarks.12[,"Use"],]
   # JFRC2013 pixel space
   l0=data.matrix(elmlm[,c("X","Y","Z"), drop=F])
   # FAFB nm space
@@ -16,6 +16,15 @@
   nat.templatebrains::add_reglist(JFRC2013_FAFB12,
                                   reference = nat.flybrains::JFRC2013,
                                   sample = elmr::FAFB12)
+
+  # Define and register a compound registration that maps FAFB13 to JFRC2013
+  elmlm=elmr::elm.landmarks[elmr::elm.landmarks[,"Use"],]
+  JFRC2013_FAFB13 <-
+    nat::reglist(tpsreg(data.matrix(elmlm[, c("X1", "Y1", "Z1"), drop = F]),
+                        l0), m)
+  nat.templatebrains::add_reglist(JFRC2013_FAFB13,
+                                  reference = nat.flybrains::JFRC2013,
+                                  sample = elmr::FAFB13)
 
   # Define bridging registration between FAFB12 and FAFB13 based on TEM services
   # API

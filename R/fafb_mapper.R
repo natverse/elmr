@@ -17,7 +17,7 @@
 #' xform_brain(FAFB12, )
 #' }
 fafb_world_mapper <- function(xyz, from, to, baseurl="http://tem-services.int.janelia.org:8080/render-ws/v1/owner/flyTEM/project/FAFB00/stack",
-                              method='many', ...) {
+                              method='single', ...) {
   if(is.data.frame(xyz)) {
     xyz=as.matrix(xyz)
   } else if(!is.matrix(xyz)){

@@ -98,16 +98,18 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
   else n=n[[1]]
   regtemplate(n)=tb
   xdp=nat::dotprops(n, resample=1, k=5)
+  # number of reverse scores to calculate
+  nrev=min(length(db), 100)
   if(reverse) {
     sc=nat.nblast::nblast(db, nat::neuronlist(xdp), normalised=normalised,
                           .parallel=.parallel, ...)
     sc=sort(sc, decreasing = T)
-    scr=nblast(nat::neuronlist(xdp), db[names(sc)[1:100]], normalised=normalised,
+    scr=nblast(nat::neuronlist(xdp), db[names(sc)[1:nrev]], normalised=normalised,
                .parallel=.parallel, ...)
   } else {
     sc=nat.nblast::nblast(xdp, db, normalised=normalised, .parallel=.parallel, ...)
     sc=sort(sc, decreasing = T)
-    scr=nblast(db[names(sc)[1:100]], nat::neuronlist(xdp), normalised=normalised,
+    scr=nblast(db[names(sc)[1:nrev]], nat::neuronlist(xdp), normalised=normalised,
                .parallel=.parallel, ...)
   }
   reslist=list(sc=sc, scr=scr, n=n)

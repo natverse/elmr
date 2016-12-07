@@ -14,7 +14,6 @@
 #' @param open Whether to open the url in the browser or simply return it.
 #'   Defaults to \code{TRUE} when R is running in interactive mode.
 #' @param zoom The CATMAID zoom factor (defaults to 1)
-#' @details Note that
 #' @export
 #' @importFrom utils browseURL
 #' @seealso xform_brain

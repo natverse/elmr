@@ -32,8 +32,6 @@ Note that if object \code{x} contains exactly one point then CATMAID
   will be opened immediately at that location, whereas if there is more than
   1 point, the function will stop and wait for the user to make an
   interactive selection in a \code{rgl} window.
-
-Note that
 }
 \examples{
 open_fafb(c(316, 143, 26), sample=JFRC2013, open=FALSE)

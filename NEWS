@@ -1,0 +1,10 @@
+elmr 0.2
+========
+* switch to FAFB13 as default template brain
+* much new functionality including transforming between template brains via
+  xform_brain
+* nblast_fafb for searches
+
+elmr 0.1
+========
+* first version

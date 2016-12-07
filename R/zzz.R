@@ -22,14 +22,14 @@
   s12=diag(c(nat::voxdims(elmr::FAFB12),1))
   s13=diag(c(nat::voxdims(elmr::FAFB13),1))
   FAFB13_FAFB12 <- nat::reglist(solve(s12),
-                                function(xyz, ...) fafb_world_mapper(xyz, from="v12", to='v13'),
+                                function(xyz, ...) fafb_world_mapper(xyz, from="v12", to='v13', ...),
                                 s13)
   nat.templatebrains::add_reglist(FAFB13_FAFB12,
                                   reference = elmr::FAFB13,
                                   sample = elmr::FAFB12)
 
   FAFB12_FAFB13 <- nat::reglist(solve(s13),
-                                function(xyz, ...) fafb_world_mapper(xyz, from="v13", to='v12'),
+                                function(xyz, ...) fafb_world_mapper(xyz, from="v13", to='v12', ...),
                                 s12)
   nat.templatebrains::add_reglist(FAFB12_FAFB13,
                                   reference = elmr::FAFB12,

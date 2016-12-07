@@ -1,6 +1,21 @@
+#' Convert coordinates between different FAFB assemblies
+#'
+#' @description \code{fafb_world_mapper} provides a low-level interface to map
+#'   coordinates based on the \code{tem-services} API available from inside the
+#'   HHMI Janelia VPN. The hope is to make this service generally available in
+#'   due course.
+#'
+#'   End users are not presently expected to use this directly. Instead they
+#'   should use \code{xform_brain} to transform data. See examples.
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET content http_error
 #' @importFrom plyr aaply
+#' @examples
+#' \dontrun{
+#' FAFB12.surf=xform_brain(JFRC2013.surf, sample = JFRC2013, reference = FAFB12)
+#' FAFB13.surf=xform_brain(JFRC2013.surf, sample=JFRC2013, ref=FAFB13)
+#' xform_brain(FAFB12, )
+#' }
 fafb_world_mapper <- function(xyz, from, to, baseurl="http://tem-services.int.janelia.org:8080/render-ws/v1/owner/flyTEM/project/FAFB00/stack",
                               method='many', ...) {
   if(is.data.frame(xyz)) {

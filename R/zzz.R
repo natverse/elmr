@@ -16,6 +16,9 @@
   nat.templatebrains::add_reglist(JFRC2013_FAFB12,
                                   reference = nat.flybrains::JFRC2013,
                                   sample = elmr::FAFB12)
+
+  # Define bridging registration between FAFB12 and FAFB13 based on TEM services
+  # API
   s12=diag(c(nat::voxdims(elmr::FAFB12),1))
   s13=diag(c(nat::voxdims(elmr::FAFB13),1))
   FAFB13_FAFB12 <- nat::reglist(solve(s12),

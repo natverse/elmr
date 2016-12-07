@@ -6,7 +6,21 @@
 \usage{
 fafb_world_mapper(xyz, from, to,
   baseurl = "http://tem-services.int.janelia.org:8080/render-ws/v1/owner/flyTEM/project/FAFB00/stack",
-  method = "single", ...)
+  method = c("single", "many"), ...)
+}
+\arguments{
+\item{xyz}{xyz coordinates (in nm)}
+
+\item{from, to}{Assemblies to convert between e.g. \code{"v12"}, \code{"v13"}.}
+
+\item{baseurl}{path to janelia tem-services server (not externally visible at
+the moment)}
+
+\item{method}{Whether to try and convert multiple coordinates at once.
+Defaults to 'single'. The 'many' method currently appears fragile and not
+much faster.}
+
+\item{...}{Additional arguments (currently unused)}
 }
 \description{
 \code{fafb_world_mapper} provides a low-level interface to map

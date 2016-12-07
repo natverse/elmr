@@ -1,5 +1,14 @@
 #' Convert coordinates between different FAFB assemblies
 #'
+#' @param xyz xyz coordinates (in nm)
+#' @param from,to Assemblies to convert between e.g. \code{"v12"}, \code{"v13"}.
+#' @param baseurl path to janelia tem-services server (not externally visible at
+#'   the moment)
+#' @param method Whether to try and convert multiple coordinates at once.
+#'   Defaults to 'single'. The 'many' method currently appears fragile and not
+#'   much faster.
+#' @param ... Additional arguments (currently unused)
+#'
 #' @description \code{fafb_world_mapper} provides a low-level interface to map
 #'   coordinates based on the \code{tem-services} API available from inside the
 #'   HHMI Janelia VPN. The hope is to make this service generally available in
@@ -16,7 +25,8 @@
 #' FAFB13.surf=xform_brain(JFRC2013.surf, sample=JFRC2013, ref=FAFB13)
 #' }
 fafb_world_mapper <- function(xyz, from, to, baseurl="http://tem-services.int.janelia.org:8080/render-ws/v1/owner/flyTEM/project/FAFB00/stack",
-                              method='single', ...) {
+                              method=c('single', 'many'), ...) {
+  method=match.arg(method)
   if(is.data.frame(xyz)) {
     xyz=as.matrix(xyz)
   } else if(!is.matrix(xyz)){

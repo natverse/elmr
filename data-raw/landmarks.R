@@ -15,5 +15,12 @@ elm_landmarks_ <- function(u="https://raw.githubusercontent.com/saalfeldlab/elm/
 }
 
 elm.landmarks <- elm_landmarks_()
+elm.landmarks.12=elm.landmarks
+# NB only transform landmarks in use.
+elm.landmarks[elm.landmarks$Use,6:8]=xform_brain(elm.landmarks[elm.landmarks$Use,6:8], sample =FAFB12, reference = FAFB13, method='single')
+# alternatively try to transform all
+# elm.landmarks[,6:8]=xform_brain(elm.landmarks[,6:8], sample =FAFB12, reference = FAFB13, method='single')
 
+elm.landmarks=subset(elm.landmarks, Use)
 devtools::use_data(elm.landmarks, overwrite = T)
+devtools::use_data(elm.landmarks.12, overwrite = T)

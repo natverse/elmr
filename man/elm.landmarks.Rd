@@ -3,15 +3,21 @@
 \docType{data}
 \name{elm.landmarks}
 \alias{elm.landmarks}
+\alias{elm.landmarks.12}
 \title{ELM Landmarks created by Bock & Saalfeld groups at Janelia}
 \description{
 These are used to map locations in EM (FAFB) space to JFRC2013 (aka DPX)
 space, in conjunction with a thin plate spline library.
+
+\code{elm.landmarks.12} contains the landmark positions used for
+  the FAFB12 assembly as a historical record.
 }
 \details{
 X,Y,Z correspond to locations in JFRC2013 template brain. However,
   they are in raw voxel coordinates. In contrast, X1,Y1,Z1 (which contain
   locations in FAFB space) are in nm.
+
+  The current iteration of these landmarks are in FAFB13 space
 }
 \examples{
 head(elm.landmarks)

@@ -56,6 +56,8 @@ NULL
 #'   they are in raw voxel coordinates. In contrast, X1,Y1,Z1 (which contain
 #'   locations in FAFB space) are in nm.
 #'
+#'   The current iteration of these landmarks are in FAFB13 space
+#'
 #' @name elm.landmarks
 #' @docType data
 #' @examples
@@ -69,6 +71,13 @@ NULL
 #' xyz=scale(elm.landmarks[,c("X","Y","Z")], scale = 1/voxdims(JFRC2013), center = FALSE)
 #' spheres3d(xyz, col = ifelse(elm.landmarks$Use, "green", 'red'), radius = 4)
 #' }
+NULL
+
+#' @description \code{elm.landmarks.12} contains the landmark positions used for
+#'   the FAFB12 assembly as a historical record.
+#' @name elm.landmarks.12
+#' @rdname elm.landmarks
+#' @docType data
 NULL
 
 

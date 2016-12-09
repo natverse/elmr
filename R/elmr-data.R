@@ -56,6 +56,9 @@ NULL
 #'
 #' @name elm.landmarks
 #' @docType data
+#' @references
+#' See \url{https://github.com/saalfeldlab/elm} for the original source of the
+#' landmarks.
 #' @examples
 #' head(elm.landmarks)
 #'

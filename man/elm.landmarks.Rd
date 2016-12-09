@@ -31,4 +31,8 @@ xyz=scale(elm.landmarks[,c("X","Y","Z")], scale = 1/voxdims(JFRC2013), center = 
 spheres3d(xyz, col = ifelse(elm.landmarks$Use, "green", 'red'), radius = 4)
 }
 }
+\references{
+See \url{https://github.com/saalfeldlab/elm} for the original source of the
+landmarks.
+}
 

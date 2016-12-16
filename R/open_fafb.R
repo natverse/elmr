@@ -48,7 +48,7 @@ open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB13,
     fafb.version=substr(csample,5,nchar(csample))
   } else {
     xyz=xform_brain(xyz, sample = sample, reference = elmr::FAFB13)
-    fafb.version="12"
+    fafb.version="13"
   }
 
 

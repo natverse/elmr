@@ -21,6 +21,7 @@ reference:
   desc: Functions intended primarily for developer use
   contents:
   - tpsreg
+  - fafb_world_mapper
 - title: Data
   desc: Data objects
   contents:

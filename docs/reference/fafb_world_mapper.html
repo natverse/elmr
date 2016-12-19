@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>templatebrain for assembled FAFB full adult female brain EM volume — FAFB • elmr</title>
+<title>Convert coordinates between different FAFB assemblies — fafb_world_mapper • elmr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -74,67 +74,52 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>templatebrain for assembled FAFB full adult female brain EM volume</h1>
+    <h1>Convert coordinates between different FAFB assemblies</h1>
     </div>
 
     
-    <p><b>FAFB</b> <code><a href='http://www.rdocumentation.org/packages/nat.templatebrains/topics/templatebrain'>templatebrain</a></code>
-  objects encapsulate the physical dimensions of assembled FAFB serial
-  section data. There is a different <code>templatebrain</code> for each assembly
-  version.They are used to define the transformations between FAFB and other
-  templates like <code><a href='http://www.rdocumentation.org/packages/nat.flybrains/topics/JFRC2013'>JFRC2013</a></code> (see
-  <code>xform_brain</code>)</p>
+    <p><code>fafb_world_mapper</code> provides a low-level interface to map
+  coordinates based on the <code>tem-services</code> API available from inside the
+  HHMI Janelia VPN. The hope is to make this service generally available in
+  due course.</p>
 
-    <p><code>FAFB13</code> Assembly v13 of FAFB full adult female brain EM
-  volume (2016-12-07 - ).</p>
-
-    <p><code>FAFB12</code> Assembly v12 of FAFB full adult female brain EM
-  volume (2016-04-01 to 2016-12-06)</p>
-
-    <p><code>FAFB11</code> Assembly v11 of FAFB full adult female brain EM
-  volume (2016-02-09)</p>
+    <p>End users are not presently expected to use this directly. Instead they
+  should use <code>xform_brain</code> to transform data. See examples.</p>
     
 
-        
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>FAFB13</code> is the default FAFB assembly since 2016-12-07.</p>
+    <pre><span class='fu'>fafb_world_mapper</span>(<span class='no'>xyz</span>, <span class='no'>from</span>, <span class='no'>to</span>,
+  <span class='kw'>baseurl</span> <span class='kw'>=</span> <span class='st'>"http://tem-services.int.janelia.org:8080/render-ws/v1/owner/flyTEM/project/FAFB00/stack"</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"single"</span>, <span class='st'>"many"</span>), <span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <p><code><a href='http://www.rdocumentation.org/packages/nat.templatebrains/topics/templatebrain'>templatebrain</a></code>,
-  <code>xform_brain</code></p>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <dl class="dl-horizontal">
+      <dt>xyz</dt>
+      <dd>xyz coordinates (in nm)</dd>
+      <dt>from, to</dt>
+      <dd>Assemblies to convert between e.g. <code>&quot;v12&quot;</code>, <code>&quot;v13&quot;</code>.</dd>
+      <dt>baseurl</dt>
+      <dd>path to janelia tem-services server (not externally visible at
+the moment)</dd>
+      <dt>method</dt>
+      <dd>Whether to try and convert multiple coordinates at once.
+Defaults to &#39;single&#39;. The &#39;many&#39; method currently appears fragile and not
+much faster.</dd>
+      <dt>...</dt>
+      <dd>Additional arguments (currently unused)</dd>
+    </dl>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>FAFB13</span></div><div class='output co'>#&gt; === Template Brain === 
-#&gt; Name: FAFB13 
-#&gt; Short Name: FAFB13 
-#&gt; Type: Stitched serial section EM volume of whole adult female brain 
-#&gt; Sex:  F 
-#&gt; Dimensions:229791 x 142889 x 7063 voxels
-#&gt; Voxel size:
-#&gt;   x = 4 nm
-#&gt;   y = 4 NA
-#&gt;   z = 35 NA
-#&gt; Bounding box (nm):
-#&gt;   x = 0, y = 0, z = 0,
-#&gt;   x = 919160, y = 571552, z = 247170.
-#&gt; Description: 
-#&gt; DOI:</div><div class='input'><span class='fu'>dim</span>(<span class='no'>FAFB13</span>)</div><div class='output co'>#&gt; [1] 229791 142889   7063</div><div class='input'><span class='fu'>voxdims</span>(<span class='no'>FAFB13</span>)</div><div class='output co'>#&gt; [1]  4  4 35</div><div class='input'><span class='fu'>boundingbox</span>(<span class='no'>FAFB13</span>)</div><div class='output co'>#&gt;        [,1]   [,2]   [,3]
-#&gt; [1,]      0      0      0
-#&gt; [2,] 919160 571552 247170
-#&gt; attr(,&quot;class&quot;)
-#&gt; [1] &quot;boundingbox&quot;</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>## Not run: ------------------------------------</span>
+<span class='co'># FAFB12.surf=xform_brain(JFRC2013.surf, sample = JFRC2013, reference = FAFB12)</span>
+<span class='co'># FAFB13.surf=xform_brain(JFRC2013.surf, sample=JFRC2013, ref=FAFB13)</span>
+<span class='co'>## ---------------------------------------------</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
+      <li><a href="#arguments">Arguments</a></li>
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

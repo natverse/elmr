@@ -38,7 +38,7 @@
       <h1>Transforming between FAFB and light level template brains</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2016-10-27</h4>
+            <h4 class="date">2016-12-19</h4>
           </div>
 
     
@@ -68,17 +68,17 @@ rgl::<span class="kw">setupKnitr</span>()
 </div>
 <div id="example---3d-locations" class="section level2">
 <h2 class="hasAnchor"><html><body><a href="#example---3d-locations" class="anchor"> </a></body></html>Example - 3D locations</h2>
-<p>As our first example, we take the position of the centre of the left and right olfactory V glomeruli (CO2 responsive). We transform these from JFRC2013 to FAFB12 space.</p>
+<p>As our first example, we take the position of the centre of the left and right olfactory V glomeruli (CO2 responsive). We transform these from JFRC2013 to FAFB13 space.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(elmr)
 vgloms.jfrc2013=<span class="kw">data.frame</span>(<span class="dt">X=</span><span class="kw">c</span>(<span class="dv">316</span>,<span class="dv">229</span>),
   <span class="dt">Y=</span><span class="kw">c</span>(<span class="dv">143</span>, <span class="dv">139</span>),
   <span class="dt">Z=</span><span class="kw">c</span>(<span class="dv">26</span>,<span class="dv">22</span>),
   <span class="dt">row.names=</span><span class="kw">c</span>(<span class="st">"V_L"</span>, <span class="st">"V_R"</span>))
-<span class="co"># Convert to FAFB12 coordinates</span>
-<span class="kw">xform_brain</span>(vgloms.jfrc2013, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB12)</code></pre></div>
+<span class="co"># Convert to FAFB13 coordinates</span>
+<span class="kw">xform_brain</span>(vgloms.jfrc2013, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB13)</code></pre></div>
 <pre><code>##            X        Y        Z
-## V_L 505996.4 288772.6 52530.38
-## V_R 411437.2 282167.5 58400.24</code></pre>
+## V_L 654888.2 364041.6 52530.59
+## V_R 540192.1 358546.6 58400.33</code></pre>
 </div>
 <div id="neurons" class="section level2">
 <h2 class="hasAnchor"><html><body><a href="#neurons" class="anchor"> </a></body></html>Neurons</h2>
@@ -86,23 +86,23 @@ vgloms.jfrc2013=<span class="kw">data.frame</span>(<span class="dt">X=</span><sp
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Conversion of neurons from the IS2 light level template brain</span>
 <span class="co"># NB this conversion depends on a full install of nat.flybrains and CMTK</span>
 <span class="co"># ensure that we have all the relevant bridging registrations downloaded</span>
-Cell07PNs13.fafb=<span class="kw">xform_brain</span>(Cell07PNs[<span class="dv">1</span>:<span class="dv">3</span>], <span class="dt">sample=</span>IS2, <span class="dt">reference=</span>FAFB12)
+Cell07PNs13.fafb=<span class="kw">xform_brain</span>(Cell07PNs[<span class="dv">1</span>:<span class="dv">3</span>], <span class="dt">sample=</span>IS2, <span class="dt">reference=</span>FAFB13)
 <span class="kw">plot</span>(Cell07PNs13.fafb)</code></pre></div>
 <p><img src="xform_brain_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
 </div>
 <div id="neurons-surface" class="section level2">
 <h2 class="hasAnchor"><html><body><a href="#neurons-surface" class="anchor"> </a></body></html>Neurons + Surface</h2>
 <p>We can transform neurons and surfaces in order to compare EM tracings with light derived meshes describing the whole brain or neuropil subdomains.</p>
-<p>We&rsquo;ll start with an example where we convert a brain surface mesh to FAFB12 space and then plot a pair of sample neurons distributed with <strong>elmr</strong>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAFB12.surf=<span class="kw">xform_brain</span>(JFRC2013.surf, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB12)
+<p>We&rsquo;ll start with an example where we convert a brain surface mesh to FAFB13 space and then plot a pair of sample neurons distributed with <strong>elmr</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAFB13.surf=<span class="kw">xform_brain</span>(JFRC2013.surf, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB13)
 <span class="co"># NB plot3d.templaterain gives nice defaults for brain surface plot but assumes</span>
 <span class="co"># that the surface object is called XXXX.surf</span>
-<span class="kw">plot3d</span>(FAFB12.surf, <span class="dt">alpha=</span>.<span class="dv">3</span>, <span class="dt">col=</span><span class="st">'grey'</span>)
+<span class="kw">plot3d</span>(FAFB13.surf, <span class="dt">alpha=</span>.<span class="dv">3</span>, <span class="dt">col=</span><span class="st">'grey'</span>)
 <span class="kw">plot3d</span>(dense_core_neurons, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">soma=</span><span class="dv">3000</span>)</code></pre></div>
 <p><img src="xform_brain_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
 <p>There are also surface objects available for individual neuropil domains:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAFB12NP.surf=<span class="kw">xform_brain</span>(JFRC2NP.surf, <span class="dt">sample =</span> JFRC2, <span class="dt">reference =</span> FAFB12)
-<span class="kw">plot3d</span>(FAFB12NP.surf, <span class="st">"LH"</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAFB13NP.surf=<span class="kw">xform_brain</span>(JFRC2NP.surf, <span class="dt">sample =</span> JFRC2, <span class="dt">reference =</span> FAFB13)
+<span class="kw">plot3d</span>(FAFB13NP.surf, <span class="st">"LH"</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>)
 <span class="kw">plot3d</span>(dense_core_neurons, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">soma=</span><span class="dv">3000</span>)</code></pre></div>
 <p><img src="xform_brain_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
 </div>
@@ -112,14 +112,15 @@ Cell07PNs13.fafb=<span class="kw">xform_brain</span>(Cell07PNs[<span class="dv">
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set the template space for the input coordinates</span>
 <span class="kw">regtemplate</span>(vgloms.jfrc2013)=JFRC2013
 <span class="co"># now we do not need to specify it in the xform_brain call</span>
-vgloms.fafb=<span class="kw">xform_brain</span>(vgloms.jfrc2013, <span class="dt">reference =</span> FAFB12)
+vgloms.fafb=<span class="kw">xform_brain</span>(vgloms.jfrc2013, <span class="dt">reference =</span> FAFB13)
 <span class="co"># check ouput space</span>
 <span class="kw">regtemplate</span>(vgloms.fafb)</code></pre></div>
 <pre><code>## === Template Brain === 
-## Name: FAFB12 
-## Short Name: FAFB12 
+## Name: FAFB13 
+## Short Name: FAFB13 
 ## Type: Stitched serial section EM volume of whole adult female brain 
 ## Sex:  F 
+## Dimensions:229791 x 142889 x 7063 voxels
 ## Voxel size:
 ##   x = 4 nm
 ##   y = 4 NA

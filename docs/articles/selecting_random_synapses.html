@@ -94,9 +94,33 @@ synapse_urls=<span class="kw">sapply</span>(<span class="dv">1</span>:<span clas
             <span class="dt">active_skeleton_id =</span> random_syn$post_skid[i],
             <span class="dt">active_node_id =</span> random_syn$post_node_id[i], <span class="dt">open =</span> F)
 )</code></pre></div>
+<p>So here are the results</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(synapse_urls)</code></pre></div>
+<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=136710&amp;yp=232486&amp;xp=443771&amp;tool=tracingtool&amp;sid0=7&amp;s0=1.000000&amp;active_skeleton_id=479739&amp;active_node_id=2556226"
+## [2] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=135485&amp;yp=246516&amp;xp=435011&amp;tool=tracingtool&amp;sid0=7&amp;s0=1.000000&amp;active_skeleton_id=497267&amp;active_node_id=2595991"
+## [3] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=129745&amp;yp=239469&amp;xp=430337&amp;tool=tracingtool&amp;sid0=7&amp;s0=1.000000&amp;active_skeleton_id=493098&amp;active_node_id=2590171"
+## [4] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=133350&amp;yp=242587&amp;xp=433577&amp;tool=tracingtool&amp;sid0=7&amp;s0=1.000000&amp;active_skeleton_id=480770&amp;active_node_id=2557243"
+## [5] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=140350&amp;yp=230538&amp;xp=442830&amp;tool=tracingtool&amp;sid0=7&amp;s0=1.000000&amp;active_skeleton_id=479155&amp;active_node_id=2555826"
+## [6] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=129150&amp;yp=237901&amp;xp=430010&amp;tool=tracingtool&amp;sid0=7&amp;s0=1.000000&amp;active_skeleton_id=487780&amp;active_node_id=2574274"</code></pre>
+</div>
+<div id="using-the-results" class="section level2">
+<h2 class="hasAnchor"><html><body><a href="#using-the-results" class="anchor"> </a></body></html>Using the results</h2>
+<p>Let&rsquo;s make a plot to get an idea of where those synapses are: First fetch the full structure of the seed PN</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">seedpn=<span class="kw">read.neuron.catmaid</span>(<span class="dv">61221</span>)</code></pre></div>
+<p>Now plot the selected and unselected synapses</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># find bounding box containing selected synapses</span>
+synapse_bounds=<span class="kw">apply</span>(random_syn[,<span class="kw">c</span>(<span class="st">"post_node_x"</span>, <span class="st">"post_node_y"</span>, <span class="st">"post_node_z"</span>)],<span class="dv">2</span>,range)
+<span class="kw">plot</span>(seedpn, <span class="dt">WithNodes=</span>F, <span class="dt">boundingbox=</span>synapse_bounds)
+<span class="co"># plot the synapses we didn't select</span>
+cda1.lh %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(!post_node_id %in%<span class="st"> </span>random_syn$post_node_id &amp;<span class="st"> </span>pre_skid %in%<span class="st"> </span>random_syn$pre_skid) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(post_node_x:post_node_y) %&gt;%
+<span class="st">  </span><span class="kw">points</span>(<span class="dt">col=</span><span class="st">'grey'</span>)
+<span class="co"># and then the ones we did</span>
+<span class="kw">points</span>(random_syn$post_node_x, random_syn$post_node_y, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">pch=</span><span class="dv">19</span>)</code></pre></div>
+<p><img src="selecting_random_synapses_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
 <p>Then you can open those urls directly in CATMAID:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(synapse_urls)
-for (u in synapse_urls) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for (u in synapse_urls) {
   <span class="kw">readline</span>(<span class="st">"Press a key to move to open the next synapse (or Esc to cancel)."</span>)
   <span class="kw">browseURL</span>(u)
 }</code></pre></div>
@@ -120,6 +144,7 @@ tf=<span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span clas
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked"><li><a href="#intro">Intro</a></li>
       <li><a href="#selecting-synapses">Selecting synapses</a></li>
+      <li><a href="#using-the-results">Using the results</a></li>
       </ul></div>
       </div>
 

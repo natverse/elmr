@@ -83,10 +83,39 @@ synapse_urls=sapply(1:nrow(random_syn),
 )
 ```
 
+So here are the results
+
+```{r}
+head(synapse_urls)
+```
+
+## Using the results
+
+Let's make a plot to get an idea of where those synapses are:
+First fetch the full structure of the seed PN
+
+```{r}
+seedpn=read.neuron.catmaid(61221)
+```
+
+Now plot the selected and unselected synapses 
+
+```{r}
+# find bounding box containing selected synapses
+synapse_bounds=apply(random_syn[,c("post_node_x", "post_node_y", "post_node_z")],2,range)
+plot(seedpn, WithNodes=F, boundingbox=synapse_bounds)
+# plot the synapses we didn't select
+cda1.lh %>%
+  filter(!post_node_id %in% random_syn$post_node_id & pre_skid %in% random_syn$pre_skid) %>%
+  select(post_node_x:post_node_y) %>%
+  points(col='grey')
+# and then the ones we did
+points(random_syn$post_node_x, random_syn$post_node_y, col='red', pch=19)
+```
+
 Then you can open those urls directly in CATMAID:
 
 ```{r, eval=FALSE}
-head(synapse_urls)
 for (u in synapse_urls) {
   readline("Press a key to move to open the next synapse (or Esc to cancel).")
   browseURL(u)

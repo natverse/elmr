@@ -1,0 +1,114 @@
+---
+title: "Selecting random synapses"
+author: "Gregory Jefferis"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Selecting random synapses}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+## Intro
+You can select synapses within a spatial region and then carrying out a 
+random sub-sampling. This might be useful as part of a strategy for defining
+connectivity without reconsrtucting all connections.
+
+### Setup
+In order to run some of the examples we need to ensure that we have CMTK 
+available and the [nat.flybrains](https://github.com/jefferislab/nat.flybrains) 
+package fully installed to provide bridging
+registrations. We will make some of our examples run conditionally based on this.
+
+```{r, message=FALSE}
+full.bridging=FALSE
+library(nat)
+if(!nzchar(cmtk.bindir())){
+  cat("CMTK not available! Some examples will not run.")
+} else {
+  djrok=try(nat.flybrains::download_jefferislab_registrations())
+  if(inherits(djrok, "try-error")) 
+    cat("Unable to download bridging registrations! Some examples will not run.")
+  else full.bridging=TRUE
+}
+# set up for 3d plots based on rgl package
+rgl::setupKnitr()
+# frontal view
+view3d(userMatrix=rgl::rotationMatrix(angle = pi, 1,0,0), zoom=0.6)
+```
+
+
+## Selecting synapses 
+
+We're going to look at synapses downstream of DA1 PNs
+
+```{r, message=FALSE}
+library(elmr)
+library(catmaid)
+cda1=catmaid_get_connectors_between('name:PN Glomerulus DA1')
+```
+
+We then want to select synapses within a neuropil region, the lateral horn,
+so we need to construct a mesh in the same space as the neurons:
+
+```{r}
+FAFBNP.surf=xform_brain(JFRC2NP.surf, sample = JFRC2, reference = FAFB13)
+lhr=as.mesh3d(FAFBNP.surf, 'LH_R')
+```
+
+Now we can select just those synapses within the volume
+
+```{r}
+library(dplyr)
+# nb selection is based the on the xyz location of (presynaptic) connector node
+cda1$inlh=select(cda1, connector_x:connector_z) %>% 
+  pointsinside(surf = lhr)
+cda1 %>%
+  filter(inlh) ->
+  cda1.lh
+```
+
+Now let's take a random 10% sample of the post-synaptic connector nodes for just
+one PN:
+
+```{r}
+cda1.lh %>%
+  filter(pre_skid==61221) %>%
+  sample_frac(size=0.1) ->
+random_syn
+
+synapse_urls=sapply(1:nrow(random_syn), 
+       function(i) open_fafb(random_syn[i, c("post_node_x", "post_node_y", "post_node_z")],
+            active_skeleton_id = random_syn$post_skid[i],
+            active_node_id = random_syn$post_node_id[i], open = F)
+)
+```
+
+Then you can open those urls directly in CATMAID:
+
+```{r, eval=FALSE}
+head(synapse_urls)
+for (u in synapse_urls) {
+  readline("Press a key to move to open the next synapse (or Esc to cancel).")
+  browseURL(u)
+}
+```
+
+or write them to a text file
+
+```{r, eval=FALSE}
+writeLines(synapse_urls, con = 'PN61221_rand_synapse_urls.txt')
+```
+
+or upload them to a google doc
+
+```{r, eval=FALSE}
+library(googlesheets)
+random_syn$url=synapse_urls
+random_syn$tracer=""
+random_syn$date_started=""
+tf=tempfile(fileext = '.tsv')
+write.table(random_syn, file=tf, sep="\t")
+gs_upload(tf, sheet_title = 'PN61221_rand_synapse_urls')
+unlink(tf)
+```
+

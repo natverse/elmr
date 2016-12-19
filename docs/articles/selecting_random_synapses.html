@@ -87,13 +87,14 @@ cda1 %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cda1.lh %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(pre_skid==<span class="dv">61221</span>) %&gt;%
 <span class="st">  </span><span class="kw">sample_frac</span>(<span class="dt">size=</span><span class="fl">0.1</span>) -&gt;
-random_syn
-
-synapse_urls=<span class="kw">sapply</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(random_syn), 
+random_syn</code></pre></div>
+<p>We can then construct CATMAID URLs for all those synapses:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">synapse_urls=<span class="kw">sapply</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(random_syn), 
        function(i) <span class="kw"><a href="../reference/open_fafb.html">open_fafb</a></span>(random_syn[i, <span class="kw">c</span>(<span class="st">"post_node_x"</span>, <span class="st">"post_node_y"</span>, <span class="st">"post_node_z"</span>)],
             <span class="dt">active_skeleton_id =</span> random_syn$post_skid[i],
             <span class="dt">active_node_id =</span> random_syn$post_node_id[i], <span class="dt">open =</span> F)
 )</code></pre></div>
+<p>That was a little bit clunky but we basically feed the <code>open_fafb</code> function the data one row at a time centering the URL on the postsynaptic node and selecting that node in the CATMAID viewer.</p>
 <p>So here are the results</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(synapse_urls)</code></pre></div>
 <pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=136710&amp;yp=232486&amp;xp=443771&amp;tool=tracingtool&amp;sid0=7&amp;s0=1.000000&amp;active_skeleton_id=479739&amp;active_node_id=2556226"
@@ -118,7 +119,7 @@ cda1.lh %&gt;%
 <span class="st">  </span><span class="kw">points</span>(<span class="dt">col=</span><span class="st">'grey'</span>)
 <span class="co"># and then the ones we did</span>
 <span class="kw">points</span>(random_syn$post_node_x, random_syn$post_node_y, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">pch=</span><span class="dv">19</span>)</code></pre></div>
-<p><img src="selecting_random_synapses_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
+<p><img src="selecting_random_synapses_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
 <p>Then you can open those urls directly in CATMAID:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for (u in synapse_urls) {
   <span class="kw">readline</span>(<span class="st">"Press a key to move to open the next synapse (or Esc to cancel)."</span>)

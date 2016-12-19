@@ -75,13 +75,21 @@ cda1.lh %>%
   filter(pre_skid==61221) %>%
   sample_frac(size=0.1) ->
 random_syn
+```
 
+We can then construct CATMAID URLs for all those synapses:
+
+```{r}
 synapse_urls=sapply(1:nrow(random_syn), 
        function(i) open_fafb(random_syn[i, c("post_node_x", "post_node_y", "post_node_z")],
             active_skeleton_id = random_syn$post_skid[i],
             active_node_id = random_syn$post_node_id[i], open = F)
 )
 ```
+
+That was a little bit clunky but we basically feed the `open_fafb` function the
+data one row at a time centering the URL on the postsynaptic node and selecting
+that node in the CATMAID viewer.
 
 So here are the results
 

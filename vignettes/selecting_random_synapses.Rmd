@@ -14,10 +14,20 @@ random sub-sampling. This might be useful as part of a strategy for defining
 connectivity without reconsrtucting all connections.
 
 ### Setup
-In order to run some of the examples we need to ensure that we have CMTK 
-available and the [nat.flybrains](https://github.com/jefferislab/nat.flybrains) 
-package fully installed to provide bridging
-registrations. We will make some of our examples run conditionally based on this.
+First load main packages
+```{r}
+library(elmr)
+library(catmaid)
+```
+
+In order to run some of the examples we need to ensure that we:
+
+* have CMTK available 
+* have the [nat.flybrains](https://github.com/jefferislab/nat.flybrains) package
+fully installed to provide bridging registrations
+* can login to the FAFB catmaid server
+
+We will make some of our examples run conditionally based on this.
 
 ```{r, message=FALSE}
 full.bridging=FALSE
@@ -30,6 +40,12 @@ if(!nzchar(cmtk.bindir())){
     cat("Unable to download bridging registrations! Some examples will not run.")
   else full.bridging=TRUE
 }
+
+cl=try(catmaid_login())
+catmaid_available=inherits(cl, "catmaid_connection")
+
+run_vignette=full.bridging & catmaid_available
+
 # set up for 3d plots based on rgl package
 rgl::setupKnitr()
 # frontal view
@@ -41,23 +57,21 @@ view3d(userMatrix=rgl::rotationMatrix(angle = pi, 1,0,0), zoom=0.6)
 
 We're going to look at synapses downstream of DA1 PNs
 
-```{r, message=FALSE}
-library(elmr)
-library(catmaid)
+```{r, message=FALSE, eval=run_vignette}
 cda1=catmaid_get_connectors_between('name:PN Glomerulus DA1')
 ```
 
 We then want to select synapses within a neuropil region, the lateral horn,
 so we need to construct a mesh in the same space as the neurons:
 
-```{r}
+```{r, eval=full.bridging}
 FAFBNP.surf=xform_brain(JFRC2NP.surf, sample = JFRC2, reference = FAFB13)
 lhr=as.mesh3d(FAFBNP.surf, 'LH_R')
 ```
 
 Now we can select just those synapses within the volume
 
-```{r}
+```{r, eval=run_vignette}
 library(dplyr)
 # nb selection is based the on the xyz location of (presynaptic) connector node
 cda1$inlh=select(cda1, connector_x:connector_z) %>% 
@@ -70,7 +84,7 @@ cda1 %>%
 Now let's take a random 10% sample of the post-synaptic connector nodes for just
 one PN:
 
-```{r}
+```{r, eval=run_vignette}
 cda1.lh %>%
   filter(pre_skid==61221) %>%
   sample_frac(size=0.1) ->
@@ -79,7 +93,7 @@ random_syn
 
 We can then construct CATMAID URLs for all those synapses:
 
-```{r}
+```{r, eval=run_vignette}
 synapse_urls=sapply(1:nrow(random_syn), 
        function(i) open_fafb(random_syn[i, c("post_node_x", "post_node_y", "post_node_z")],
             active_skeleton_id = random_syn$post_skid[i],
@@ -93,7 +107,7 @@ that node in the CATMAID viewer.
 
 So here are the results
 
-```{r}
+```{r, eval=run_vignette}
 head(synapse_urls)
 ```
 
@@ -102,13 +116,13 @@ head(synapse_urls)
 Let's make a plot to get an idea of where those synapses are:
 First fetch the full structure of the seed PN
 
-```{r}
+```{r, eval=catmaid_available}
 seedpn=read.neuron.catmaid(61221)
 ```
 
 Now plot the selected and unselected synapses 
 
-```{r}
+```{r, eval=run_vignette}
 # find bounding box containing selected synapses
 synapse_bounds=apply(random_syn[,c("post_node_x", "post_node_y", "post_node_z")],2,range)
 plot(seedpn, WithNodes=F, boundingbox=synapse_bounds)

@@ -49,7 +49,14 @@
 <p>You can select synapses within a spatial region and then carrying out a random sub-sampling. This might be useful as part of a strategy for defining connectivity without reconsrtucting all connections.</p>
 <div id="setup" class="section level3">
 <h3 class="hasAnchor"><html><body><a href="#setup" class="anchor"> </a></body></html>Setup</h3>
-<p>In order to run some of the examples we need to ensure that we have CMTK available and the <a href="https://github.com/jefferislab/nat.flybrains">nat.flybrains</a> package fully installed to provide bridging registrations. We will make some of our examples run conditionally based on this.</p>
+<p>First load main packages</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(elmr)
+<span class="kw">library</span>(catmaid)</code></pre></div>
+<p>In order to run some of the examples we need to ensure that we:</p>
+<ul><li>have CMTK available</li>
+<li>have the <a href="https://github.com/jefferislab/nat.flybrains">nat.flybrains</a> package fully installed to provide bridging registrations</li>
+<li>can login to the FAFB catmaid server</li>
+</ul><p>We will make some of our examples run conditionally based on this.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">full.bridging=<span class="ot">FALSE</span>
 <span class="kw">library</span>(nat)
 if(!<span class="kw">nzchar</span>(<span class="kw">cmtk.bindir</span>())){
@@ -60,6 +67,12 @@ if(!<span class="kw">nzchar</span>(<span class="kw">cmtk.bindir</span>())){
     <span class="kw">cat</span>(<span class="st">"Unable to download bridging registrations! Some examples will not run."</span>)
   else full.bridging=<span class="ot">TRUE</span>
 }
+
+cl=<span class="kw">try</span>(<span class="kw">catmaid_login</span>())
+catmaid_available=<span class="kw">inherits</span>(cl, <span class="st">"catmaid_connection"</span>)
+
+run_vignette=full.bridging &amp;<span class="st"> </span>catmaid_available
+
 <span class="co"># set up for 3d plots based on rgl package</span>
 rgl::<span class="kw">setupKnitr</span>()
 <span class="co"># frontal view</span>
@@ -69,9 +82,7 @@ rgl::<span class="kw">setupKnitr</span>()
 <div id="selecting-synapses" class="section level2">
 <h2 class="hasAnchor"><html><body><a href="#selecting-synapses" class="anchor"> </a></body></html>Selecting synapses</h2>
 <p>We&rsquo;re going to look at synapses downstream of DA1 PNs</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(elmr)
-<span class="kw">library</span>(catmaid)
-cda1=<span class="kw">catmaid_get_connectors_between</span>(<span class="st">'name:PN Glomerulus DA1'</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cda1=<span class="kw">catmaid_get_connectors_between</span>(<span class="st">'name:PN Glomerulus DA1'</span>)</code></pre></div>
 <p>We then want to select synapses within a neuropil region, the lateral horn, so we need to construct a mesh in the same space as the neurons:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAFBNP.surf=<span class="kw">xform_brain</span>(JFRC2NP.surf, <span class="dt">sample =</span> JFRC2, <span class="dt">reference =</span> FAFB13)
 lhr=<span class="kw">as.mesh3d</span>(FAFBNP.surf, <span class="st">'LH_R'</span>)</code></pre></div>
@@ -119,7 +130,7 @@ cda1.lh %&gt;%
 <span class="st">  </span><span class="kw">points</span>(<span class="dt">col=</span><span class="st">'grey'</span>)
 <span class="co"># and then the ones we did</span>
 <span class="kw">points</span>(random_syn$post_node_x, random_syn$post_node_y, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">pch=</span><span class="dv">19</span>)</code></pre></div>
-<p><img src="selecting_random_synapses_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
+<p><img src="selecting_random_synapses_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
 <p>Then you can open those urls directly in CATMAID:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for (u in synapse_urls) {
   <span class="kw">readline</span>(<span class="st">"Press a key to move to open the next synapse (or Esc to cancel)."</span>)

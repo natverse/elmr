@@ -5,7 +5,8 @@
 \title{Open FAFB CATMAID in browser at a given XYZ location}
 \usage{
 open_fafb(x, s = rgl::select3d(), mirror = FALSE, sample = elmr::FAFB13,
-  zoom = 1, open = interactive())
+  zoom = 1, open = interactive(), active_skeleton_id = NULL,
+  active_node_id = NULL, ...)
 }
 \arguments{
 \item{x}{A numeric vector or any object compatible with
@@ -23,6 +24,11 @@ open_fafb(x, s = rgl::select3d(), mirror = FALSE, sample = elmr::FAFB13,
 
 \item{open}{Whether to open the url in the browser or simply return it.
 Defaults to \code{TRUE} when R is running in interactive mode.}
+
+\item{active_skeleton_id, active_node_id}{Set highlighted skeleton and node in
+CATMAID.}
+
+\item{...}{Additional arguments to be added to URL.}
 }
 \description{
 Open FAFB CATMAID in browser at a given XYZ location

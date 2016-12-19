@@ -14,6 +14,9 @@
 #' @param open Whether to open the url in the browser or simply return it.
 #'   Defaults to \code{TRUE} when R is running in interactive mode.
 #' @param zoom The CATMAID zoom factor (defaults to 1)
+#' @param active_skeleton_id,active_node_id Set highlighted skeleton and node in
+#'   CATMAID.
+#' @param ... Additional arguments to be added to URL.
 #' @export
 #' @importFrom utils browseURL
 #' @seealso xform_brain
@@ -29,7 +32,8 @@
 #' open_fafb(kcs20, sample=FCWB, mirror=TRUE)
 #' }
 open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB13,
-                    zoom=1, open=interactive()) {
+                    zoom=1, open=interactive(),
+                    active_skeleton_id=NULL, active_node_id=NULL, ...) {
   if(is.vector(x, mode='numeric') && length(x)==3 ){
     xyz=matrix(x, ncol=3)
   } else {
@@ -55,6 +59,14 @@ open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB13,
   xyzi=as.integer(xyz)
   url=sprintf("https://neuropil.janelia.org/tracing/fafb/v%s/?pid=1&zp=%d&yp=%d&xp=%d&tool=tracingtool&sid0=7&s0=%f",
               fafb.version,xyzi[3], xyzi[2], xyzi[1], zoom)
+  apl=pairlist(...)
+  apl$active_skeleton_id=active_skeleton_id
+  apl$active_node_id=active_node_id
+  if(length(apl)){
+    # interpret as extra params
+    url=paste0(url, "&", paste(names(apl), sep="=", apl, collapse = "&"))
+  }
+
   if(open){
     browseURL(url)
     invisible(url)

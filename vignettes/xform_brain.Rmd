@@ -75,17 +75,24 @@ light derived meshes describing the whole brain or neuropil subdomains.
 We'll start with an example where we convert a brain surface mesh to FAFB13 
 space and then plot a pair of sample neurons distributed with **elmr**:
 ```{r, rgl=TRUE}
-FAFB13.surf=xform_brain(JFRC2013.surf, sample = JFRC2013, reference = FAFB13)
+FAFB13JFRC2013.surf=xform_brain(JFRC2013.surf, sample = JFRC2013, reference = FAFB13)
 # NB plot3d.templaterain gives nice defaults for brain surface plot but assumes
 # that the surface object is called XXXX.surf
-plot3d(FAFB13.surf, alpha=.3, col='grey')
+plot3d(FAFB13JFRC2013.surf, alpha=.3, col='grey')
 plot3d(dense_core_neurons, lwd=2, soma=3000)
 ```
 
-There are also surface objects available for individual neuropil domains:
+There are also surface objects available for individual neuropil domains that
+have been pre-transformed using this approach:
 
-```{r, eval=full.bridging, rgl=TRUE}
+```{r, eval=FALSE}
 FAFB13NP.surf=xform_brain(JFRC2NP.surf, sample = JFRC2, reference = FAFB13)
+```
+
+and bundled with the `elmr` package.
+
+We can plot neuropil subsets as follows:
+```{r, eval=full.bridging, rgl=TRUE}
 plot3d(FAFB13NP.surf, "LH", alpha=0.4)
 plot3d(dense_core_neurons, lwd=2, soma=3000)
 ```

@@ -11,7 +11,7 @@ vignette: >
 ## Intro
 You can select synapses within a spatial region and then carrying out a 
 random sub-sampling. This might be useful as part of a strategy for defining
-connectivity without reconsrtucting all connections.
+connectivity without reconstructing all connections.
 
 ### Setup
 First load main packages

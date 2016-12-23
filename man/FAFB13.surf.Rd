@@ -23,14 +23,24 @@ These neuropil regions are generated from the
   are much less dense in other areas. Therefore these surfaces are clearly
   not less accurate in the left brain hemisphere and show significanct
   displacements in the optic lobes.
+
+  The acronyms for the neuropil regions are those used in Ito et al. 2014 and
+  can also be looked up at \url{http://virtualflybrain.org}.
 }
 \examples{
 boundingbox(FAFB13.surf)
-
-
+FAFB13NP.surf$RegionList
 \dontrun{
-plot3d(FAFB13NP.surf, "LH", alpha=0.4)
-plot3d(dense_core_neurons, lwd=2, soma=3000)
+plot3d(FAFB13.surf)
+# a short cut which plots the surface in semi-transparent grey.
+clear3d()
+plot3d(FAFB13)
+
+# plot right lateral horn
+plot3d(FAFB13NP.surf, "LH_R", alpha=0.4)
+# plot both antennal lobe surfaces (second arg is regex if no exact match)
+# note use of initial anchor (^) to avoid matches to LAL
+plot3d(FAFB13NP.surf, "^AL", alpha=0.4)
 }
 }
 \seealso{

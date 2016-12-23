@@ -38,7 +38,7 @@
       <h1>Transforming between FAFB and light level template brains</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2016-12-19</h4>
+            <h4 class="date">2016-12-23</h4>
           </div>
 
     
@@ -94,17 +94,19 @@ Cell07PNs13.fafb=<span class="kw">xform_brain</span>(Cell07PNs[<span class="dv">
 <h2 class="hasAnchor"><html><body><a href="#neurons-surface" class="anchor"> </a></body></html>Neurons + Surface</h2>
 <p>We can transform neurons and surfaces in order to compare EM tracings with light derived meshes describing the whole brain or neuropil subdomains.</p>
 <p>We&rsquo;ll start with an example where we convert a brain surface mesh to FAFB13 space and then plot a pair of sample neurons distributed with <strong>elmr</strong>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAFB13.surf=<span class="kw">xform_brain</span>(JFRC2013.surf, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB13)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAFB13JFRC2013.surf=<span class="kw">xform_brain</span>(JFRC2013.surf, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB13)
 <span class="co"># NB plot3d.templaterain gives nice defaults for brain surface plot but assumes</span>
 <span class="co"># that the surface object is called XXXX.surf</span>
-<span class="kw">plot3d</span>(FAFB13.surf, <span class="dt">alpha=</span>.<span class="dv">3</span>, <span class="dt">col=</span><span class="st">'grey'</span>)
+<span class="kw">plot3d</span>(FAFB13JFRC2013.surf, <span class="dt">alpha=</span>.<span class="dv">3</span>, <span class="dt">col=</span><span class="st">'grey'</span>)
 <span class="kw">plot3d</span>(dense_core_neurons, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">soma=</span><span class="dv">3000</span>)</code></pre></div>
 <p><img src="xform_brain_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
-<p>There are also surface objects available for individual neuropil domains:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAFB13NP.surf=<span class="kw">xform_brain</span>(JFRC2NP.surf, <span class="dt">sample =</span> JFRC2, <span class="dt">reference =</span> FAFB13)
-<span class="kw">plot3d</span>(FAFB13NP.surf, <span class="st">"LH"</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>)
+<p>There are also surface objects available for individual neuropil domains that have been pre-transformed using this approach:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAFB13NP.surf=<span class="kw">xform_brain</span>(JFRC2NP.surf, <span class="dt">sample =</span> JFRC2, <span class="dt">reference =</span> FAFB13)</code></pre></div>
+<p>and bundled with the <code>elmr</code> package.</p>
+<p>We can plot neuropil subsets as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot3d</span>(FAFB13NP.surf, <span class="st">"LH"</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>)
 <span class="kw">plot3d</span>(dense_core_neurons, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">soma=</span><span class="dv">3000</span>)</code></pre></div>
-<p><img src="xform_brain_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
+<p><img src="xform_brain_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
 </div>
 <div id="default-sample-space" class="section level2">
 <h2 class="hasAnchor"><html><body><a href="#default-sample-space" class="anchor"> </a></body></html>Default sample space</h2>

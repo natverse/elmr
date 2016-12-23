@@ -18,33 +18,19 @@ First load main packages
 ```{r}
 library(elmr)
 library(catmaid)
+library(nat)
 ```
 
 In order to run some of the examples we need to ensure that we:
 
-* have CMTK available 
-* have the [nat.flybrains](https://github.com/jefferislab/nat.flybrains) package
-fully installed to provide bridging registrations
 * can login to the FAFB catmaid server
 
-We will make some of our examples run conditionally based on this.
+We will most our examples run conditionally based on this.
 
 ```{r, message=FALSE}
-full.bridging=FALSE
-library(nat)
-if(!nzchar(cmtk.bindir())){
-  cat("CMTK not available! Some examples will not run.")
-} else {
-  djrok=try(nat.flybrains::download_jefferislab_registrations())
-  if(inherits(djrok, "try-error")) 
-    cat("Unable to download bridging registrations! Some examples will not run.")
-  else full.bridging=TRUE
-}
-
 cl=try(catmaid_login())
 catmaid_available=inherits(cl, "catmaid_connection")
-
-run_vignette=full.bridging & catmaid_available
+run_vignette=catmaid_available
 
 # set up for 3d plots based on rgl package
 rgl::setupKnitr()
@@ -61,19 +47,28 @@ We're going to look at synapses downstream of DA1 PNs
 cda1=catmaid_get_connectors_between('name:PN Glomerulus DA1')
 ```
 
-We then want to select synapses within a neuropil region, the lateral horn,
-so we need to construct a mesh in the same space as the neurons:
+If we wanted to get the upstream synapses, we could do that as follows:
 
-```{r, eval=full.bridging}
-FAFBNP.surf=xform_brain(JFRC2NP.surf, sample = JFRC2, reference = FAFB13)
-lhr=as.mesh3d(FAFBNP.surf, 'LH_R')
+```{r, message=FALSE, eval=FALSE}
+cda1.in=catmaid_get_connectors_between(post_skids = 'name:PN Glomerulus DA1')
 ```
 
-Now we can select just those synapses within the volume
+We then want to select synapses within a neuropil region, the lateral horn. The
+`elmr` package now has a neuropil surface object `FAFBNP13.surf` that we can use
+for this purpose. To look for points inside the right LH, we can extract just
+that region from the surface object containing all neuropils as follows:
+
+```{r}
+# convert subset of regions to rgl::mesh3d object
+lhr=as.mesh3d(FAFB13NP.surf, 'LH_R')
+```
+
+Now we can select just those synapses within the LH volume, by piping the
+XYZ positions of the presynaptic connector node to the `pointsinside` function.
 
 ```{r, eval=run_vignette}
 library(dplyr)
-# nb selection is based the on the xyz location of (presynaptic) connector node
+# make a new logical column indicating if connector is inside LH
 cda1$inlh=select(cda1, connector_x:connector_z) %>% 
   pointsinside(surf = lhr)
 cda1 %>%

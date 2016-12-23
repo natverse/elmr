@@ -1,0 +1,6 @@
+library(nat.flybrains)
+FAFB13.surf=xform_brain(JFRC2.surf, sample = JFRC2, reference = FAFB13)
+FAFB13NP.surf=xform_brain(JFRC2NP.surf, sample = JFRC2, reference = FAFB13)
+library(devtools)
+use_data(FAFB13.surf)
+use_data(FAFB13NP.surf)

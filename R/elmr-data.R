@@ -95,3 +95,38 @@ NULL
 #' @docType data
 #' @name dense_core_neurons
 NULL
+
+#' FAFB13 brain and neuropil surface objects
+#'
+#' @description \code{FAFB13.surf} describes the neuropil surface of the FAFB13
+#'   brain.
+#'
+#' @details These neuropil regions are generated from the
+#'   \code{\link[nat.flybrains]{JFRC2.surf}} and
+#'   \code{\link[nat.flybrains]{JFRC2NP.surf}} objects, respectively. Because
+#'   they are not defined from FAFB13 itself by transformed using bridging
+#'   registrations, they are only as good as those bridging registrations. In
+#'   particular although the \code{\link{elm.landmarks}} used to bridge
+#'   FAFB13-JFRC2013 are well defined in the fly's right brain hemisphere, they
+#'   are much less dense in other areas. Therefore these surfaces are clearly
+#'   not less accurate in the left brain hemisphere and show significanct
+#'   displacements in the optic lobes.
+#' @examples
+#' boundingbox(FAFB13.surf)
+#'
+#'
+#' \dontrun{
+#' plot3d(FAFB13NP.surf, "LH", alpha=0.4)
+#' plot3d(dense_core_neurons, lwd=2, soma=3000)
+#' }
+#' @docType data
+#' @name FAFB13.surf
+#' @seealso \code{\link{FAFB13}}, \code{\link{FAFB13}}
+NULL
+
+#' @description \code{FAFB13NP.surf} is a surface object for the Ito et al
+#'   (2014) neuropil regions in FAFB13 space
+#' @docType data
+#' @name FAFB13NP.surf
+#' @rdname FAFB13.surf
+NULL

@@ -4,3 +4,4 @@
 ^data-raw$
 ^_pkgdown\.yml$
 ^docs$
+^\.httr-oauth$

@@ -1,7 +1,7 @@
 Package: elmr
 Type: Package
 Title: Support for working with light and electron microscopy fly brain data
-Version: 0.2.1
+Version: 0.3
 Authors@R: person("Gregory","Jefferis", email="jefferis@gmail.com", role = c("aut", "cre"))
 Description: Provides tools to move between adult brain EM and light level
     data, emphasising the interaction between the CATMAID web application and

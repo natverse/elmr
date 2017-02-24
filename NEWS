@@ -1,3 +1,15 @@
+elmr 0.3
+========
+* make nblast_fafb parallelised by default
+* give open_fafb arguments for selecting neuron/nodes (#24)
+* add FAFB13 brain and neuropil surface objects
+* complete switch to FAFB13 assembly (vignettes etc)
+* fix open_fafb for v13 (#23)
+
+elmr 0.2.1
+==========
+* teach nblast_fafb to cope with db length <100 (#22)
+
 elmr 0.2
 ========
 * switch to FAFB13 as default template brain

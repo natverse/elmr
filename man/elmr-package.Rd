@@ -58,6 +58,18 @@ collaborators).
   server it is recommended to put authentication in your
   \code{\link{Rprofile}} file.
 }
+
+\section{Options}{
+ There is one package option: \itemize{
+
+  \item \code{elmr.nblast.cores} Set the default number of cores to use for
+  parallel nblast. You will need to ensure that the doParallel package (a
+  suggested but not strict dependency of elmr is installed)
+
+  }
+
+  You can set these options in your \code{\link{Rprofile}} file.
+}
 \examples{
 # position of antennal lobe glomeruli "V" in JFRC2013 template brain
 vgloms.jfrc2013=data.frame(X=c(316,229),
@@ -66,6 +78,9 @@ vgloms.jfrc2013=data.frame(X=c(316,229),
   row.names=c("V_L", "V_R"))
 # Convert to FAFB12 coordinates
 xform_brain(vgloms.jfrc2013, sample = JFRC2013, reference = FAFB13)
+
+# Show state of elmr package options
+options()[grep('^elmr', names(options()))]
 
 \dontrun{
 # Conversion of neurons from FlyCircuit template

@@ -28,6 +28,7 @@ RoxygenNote: 5.0.1
 Suggests:
     flycircuit,
     foreach,
+    doParallel,
     testthat,
     knitr,
     rmarkdown

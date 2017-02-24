@@ -32,8 +32,8 @@ transformed, either a \code{\link[nat.templatebrains]{templatebrain}}
 object such as \code{\link[nat.flybrains]{FCWB}} or a character vector
 naming such an object.}
 
-\item{.parallel}{Whether to parallelise the nblast search (see details of
-\code{\link[nat.nblast]{nblast}} for how to use the parallel interface
+\item{.parallel}{Whether to parallelise the nblast search (see details and
+also \code{\link[nat.nblast]{nblast}} for how to use the parallel interface
 provided by the \code{doMC} package.)}
 
 \item{...}{Additional parameters passed to \code{\link[nat.nblast]{nblast}}}
@@ -50,6 +50,15 @@ Still depends on having a \code{\link[nat]{neuronlist}} containing
   registered neurons (usually from flycircuit.tw). The example code downloads
   a set of projection neurons. The full data must be requested from Greg
   Jefferis.
+
+  When \code{.parallel=TRUE}, nblast_fafb will parallelise the search across
+  multiple cores if possible. You can set an option specifying a default
+  number of cores \code{elmr.nblast.cores}. See \code{\link{elmr-package}}.
+  Otherwise the default will either be roughly half the number of cores as
+  determined by \code{\link[doParallel]{registerDoParallel}}. If your machine
+  does not have multiple cores (or you do not want to use them), the search
+  will be a bit more efficient if you set the option
+  \code{elmr.nblast.cores=1} or the argument \code{.parallel=TRUE}.
 }
 \examples{
 \dontrun{
@@ -70,6 +79,8 @@ plot3d(PN27884f, hits=1)
 }
 }
 \seealso{
-\code{\link[nat.nblast]{nblast}}
+\code{\link[nat.nblast]{nblast}},
+  \code{\link[doParallel]{registerDoParallel}} for setting spreading load
+  across cores.
 }
 

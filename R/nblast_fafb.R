@@ -41,6 +41,16 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #'   registered neurons (usually from flycircuit.tw). The example code downloads
 #'   a set of projection neurons. The full data must be requested from Greg
 #'   Jefferis.
+#'
+#'   When \code{.parallel=TRUE}, nblast_fafb will parallelise the search across
+#'   multiple cores if possible. You can set an option specifying a default
+#'   number of cores \code{elmr.nblast.cores}. See \code{\link{elmr-package}}.
+#'   Otherwise the default will either be roughly half the number of cores as
+#'   determined by \code{\link[doParallel]{registerDoParallel}}. If your machine
+#'   does not have multiple cores (or you do not want to use them), the search
+#'   will be a bit more efficient if you set the option
+#'   \code{elmr.nblast.cores=1} or the argument \code{.parallel=TRUE}.
+#'
 #' @param skids catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})
 #' @param db A neuronlist object containing neurons to search. Defaults to the
 #'   value of \code{options('nat.default.neuronlist')}.
@@ -53,8 +63,8 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #' @param reverse Treat the FAFB skeleton as NBLAST target rather than query
 #'   (sensible if \code{db} contains partial skeletons/tracts; default
 #'   \code{FALSE}).
-#' @param .parallel Whether to parallelise the nblast search (see details of
-#'   \code{\link[nat.nblast]{nblast}} for how to use the parallel interface
+#' @param .parallel Whether to parallelise the nblast search (see details and
+#'   also \code{\link[nat.nblast]{nblast}} for how to use the parallel interface
 #'   provided by the \code{doMC} package.)
 #' @param ... Additional parameters passed to \code{\link[nat.nblast]{nblast}}
 #' @inheritParams fetchn_fafb
@@ -63,7 +73,9 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #'   and \code{hist} methods exist.
 #' @export
 #' @importFrom nat.nblast nblast
-#' @seealso \code{\link[nat.nblast]{nblast}}
+#' @seealso \code{\link[nat.nblast]{nblast}},
+#'   \code{\link[doParallel]{registerDoParallel}} for setting spreading load
+#'   across cores.
 #'
 #' @examples
 #' \dontrun{
@@ -86,10 +98,10 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
                         reverse=FALSE, reference=nat.flybrains::FCWB,
                         .parallel=TRUE, ...) {
   db=getdb(db)
-  if(.parallel){
-    if(!isNamespaceLoaded('foreach') || foreach::getDoParWorkers()==1){
-      warning("see ?nblast and doMC::registerDoMC for details of setting up parallel nblast")
-    }
+  if(.parallel) {
+    if(!requireNamespace("doParallel", quietly = TRUE))
+      stop("Please install the doParallel package to use multiple cores with nblast!")
+    doParallel::registerDoParallel(cores=getOption('elmr.nblast.cores'))
   }
   n=fetchn_fafb(skids=skids, mirror=mirror, conn=conn, reference = reference)
   # store the templatebrain for later

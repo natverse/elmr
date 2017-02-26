@@ -1,3 +1,11 @@
+elmr 0.4
+========
+* switch FAFB13-JFRC2013 transform to 170211_new_ELM_landmarks_v7.csv
+  (71 landmarks more evenly spaced on both sides of the brain)
+* update FAFB13 and FAFB13NP surface objects accordingly
+* fix open_fafb after change in stack id handling
+* add landmarks vignette
+
 elmr 0.3
 ========
 * make nblast_fafb parallelised by default

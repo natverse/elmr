@@ -57,7 +57,7 @@
       <h1>Selecting random synapses</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2017-02-20</h4>
+            <h4 class="date">2017-02-26</h4>
           </div>
 
     
@@ -72,9 +72,8 @@
 <html><body><a href="#setup" class="anchor"> </a></body></html>Setup</h3>
 <p>First load main packages</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(elmr)
-<span class="kw">library</span>(catmaid)</code></pre></div>
-<pre><code>## Loading required package: httr</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nat)</code></pre></div>
+<span class="kw">library</span>(catmaid)
+<span class="kw">library</span>(nat)</code></pre></div>
 <p>In order to run some of the examples we need to ensure that we:</p>
 <ul>
 <li>can login to the FAFB catmaid server</li>
@@ -101,19 +100,8 @@ rgl::<span class="kw">setupKnitr</span>()
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># convert subset of regions to rgl::mesh3d object</span>
 lhr=<span class="kw">as.mesh3d</span>(FAFB13NP.surf, <span class="st">'LH_R'</span>)</code></pre></div>
 <p>Now we can select just those synapses within the LH volume, by piping the XYZ positions of the presynaptic connector node to the <code>pointsinside</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:nat':
-## 
-##     intersect, setdiff, union</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a new logical column indicating if connector is inside LH</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="co"># make a new logical column indicating if connector is inside LH</span>
 cda1$inlh=<span class="kw">select</span>(cda1, connector_x:connector_z) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">pointsinside</span>(<span class="dt">surf =</span> lhr)
 cda1 %&gt;%
@@ -133,12 +121,12 @@ random_syn</code></pre></div>
 <p>That was a little bit clunky but we basically feed the <code>open_fafb</code> function the data one row at a time centering the URL on the postsynaptic node and selecting that node in the CATMAID viewer.</p>
 <p>So here are the results</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(synapse_urls)</code></pre></div>
-<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=136640&amp;yp=232370&amp;xp=444058&amp;tool=tracingtool&amp;sid0=7&amp;s0=1.000000&amp;active_skeleton_id=479777&amp;active_node_id=2556248"
-## [2] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=136710&amp;yp=246623&amp;xp=434170&amp;tool=tracingtool&amp;sid0=7&amp;s0=1.000000&amp;active_skeleton_id=497491&amp;active_node_id=2596204"
-## [3] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=129780&amp;yp=240158&amp;xp=430919&amp;tool=tracingtool&amp;sid0=7&amp;s0=1.000000&amp;active_skeleton_id=493221&amp;active_node_id=2590199"
-## [4] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=133175&amp;yp=239704&amp;xp=434313&amp;tool=tracingtool&amp;sid0=7&amp;s0=1.000000&amp;active_skeleton_id=480814&amp;active_node_id=2557295"
-## [5] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=140350&amp;yp=230538&amp;xp=442830&amp;tool=tracingtool&amp;sid0=7&amp;s0=1.000000&amp;active_skeleton_id=479155&amp;active_node_id=2555826"
-## [6] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=128695&amp;yp=237547&amp;xp=431137&amp;tool=tracingtool&amp;sid0=7&amp;s0=1.000000&amp;active_skeleton_id=487888&amp;active_node_id=2574445"</code></pre>
+<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=136640&amp;yp=232370&amp;xp=444058&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=479777&amp;active_node_id=2556248"
+## [2] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=136780&amp;yp=246294&amp;xp=434041&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=497506&amp;active_node_id=2596208"
+## [3] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=129710&amp;yp=239856&amp;xp=430842&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=493226&amp;active_node_id=2590200"
+## [4] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=133175&amp;yp=239704&amp;xp=434313&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=480814&amp;active_node_id=2557295"
+## [5] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=140350&amp;yp=230538&amp;xp=442830&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=479155&amp;active_node_id=2555826"
+## [6] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=128730&amp;yp=237111&amp;xp=431303&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=487909&amp;active_node_id=2574491"</code></pre>
 </div>
 <div id="using-the-results" class="section level2">
 <h2 class="hasAnchor">

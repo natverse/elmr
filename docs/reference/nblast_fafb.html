@@ -111,8 +111,8 @@ transformed, either a <code><a href='http://www.rdocumentation.org/packages/nat.
 object such as <code><a href='http://www.rdocumentation.org/packages/nat.flybrains/topics/FCWB'>FCWB</a></code> or a character vector
 naming such an object.</dd>
       <dt>.parallel</dt>
-      <dd>Whether to parallelise the nblast search (see details of
-<code><a href='http://www.rdocumentation.org/packages/nat.nblast/topics/nblast'>nblast</a></code> for how to use the parallel interface
+      <dd>Whether to parallelise the nblast search (see details and
+also <code><a href='http://www.rdocumentation.org/packages/nat.nblast/topics/nblast'>nblast</a></code> for how to use the parallel interface
 provided by the <code>doMC</code> package.)</dd>
       <dt>...</dt>
       <dd>Additional parameters passed to <code><a href='http://www.rdocumentation.org/packages/nat.nblast/topics/nblast'>nblast</a></code></dd>
@@ -129,10 +129,20 @@ provided by the <code>doMC</code> package.)</dd>
   registered neurons (usually from flycircuit.tw). The example code downloads
   a set of projection neurons. The full data must be requested from Greg
   Jefferis.</p>
+    <p>When <code>.parallel=TRUE</code>, nblast_fafb will parallelise the search across
+  multiple cores if possible. You can set an option specifying a default
+  number of cores <code>elmr.nblast.cores</code>. See <code><a href='elmr-package.html'>elmr-package</a></code>.
+  Otherwise the default will either be roughly half the number of cores as
+  determined by <code><a href='http://www.rdocumentation.org/packages/doParallel/topics/registerDoParallel'>registerDoParallel</a></code>. If your machine
+  does not have multiple cores (or you do not want to use them), the search
+  will be a bit more efficient if you set the option
+  <code>elmr.nblast.cores=1</code> or the argument <code>.parallel=TRUE</code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='http://www.rdocumentation.org/packages/nat.nblast/topics/nblast'>nblast</a></code></p>
+    <p><code><a href='http://www.rdocumentation.org/packages/nat.nblast/topics/nblast'>nblast</a></code>,
+  <code><a href='http://www.rdocumentation.org/packages/doParallel/topics/registerDoParallel'>registerDoParallel</a></code> for setting spreading load
+  across cores.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

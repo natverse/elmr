@@ -130,6 +130,16 @@ collaborators).</p>
   server it is recommended to put authentication in your
   <code>Rprofile</code> file.</p>
     
+    <h2 class="hasAnchor" id="options"><a class="anchor" href="#options"></a>Options</h2>
+
+    <p>There is one package option: <ul>
+<li> <code>elmr.nblast.cores</code> Set the default number of cores to use for
+  parallel nblast. You will need to ensure that the doParallel package (a
+  suggested but not strict dependency of elmr is installed)</p>
+    <p></li>
+</ul></p>
+    <p>You can set these options in your <code>Rprofile</code> file.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># position of antennal lobe glomeruli "V" in JFRC2013 template brain</span>
@@ -141,6 +151,10 @@ collaborators).</p>
 <span class='fu'>xform_brain</span>(<span class='no'>vgloms.jfrc2013</span>, <span class='kw'>sample</span> <span class='kw'>=</span> <span class='no'>JFRC2013</span>, <span class='kw'>reference</span> <span class='kw'>=</span> <span class='no'>FAFB13</span>)</div><div class='output co'>#&gt;            X        Y        Z
 #&gt; V_L 655021.4 371548.0 45612.92
 #&gt; V_R 536193.0 359548.5 55372.38</div><div class='input'>
+<span class='co'># Show state of elmr package options</span>
+<span class='fu'>options</span>()[<span class='fu'>grep</span>(<span class='st'>'^elmr'</span>, <span class='fu'>names</span>(<span class='fu'>options</span>()))]</div><div class='output co'>#&gt; $elmr.nblast.cores
+#&gt; [1] 7
+#&gt; </div><div class='input'>
 <span class='co'>## Not run: ------------------------------------</span>
 <span class='co'># # Conversion of neurons from FlyCircuit template</span>
 <span class='co'># # NB this conversion depends on a full install of nat.flybrains and CMTK</span>
@@ -155,6 +169,8 @@ collaborators).</p>
       <li><a href="#interesting-functions-data">Interesting functions/data</a></li>
 
       <li><a href="#authentication">Authentication</a></li>
+
+      <li><a href="#options">Options</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

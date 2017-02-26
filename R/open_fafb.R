@@ -57,7 +57,7 @@ open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB13,
 
 
   xyzi=as.integer(xyz)
-  url=sprintf("https://neuropil.janelia.org/tracing/fafb/v%s/?pid=1&zp=%d&yp=%d&xp=%d&tool=tracingtool&sid0=7&s0=%f",
+  url=sprintf("https://neuropil.janelia.org/tracing/fafb/v%s/?pid=1&zp=%d&yp=%d&xp=%d&tool=tracingtool&sid0=5&s0=%f",
               fafb.version,xyzi[3], xyzi[2], xyzi[1], zoom)
   apl=pairlist(...)
   apl$active_skeleton_id=active_skeleton_id

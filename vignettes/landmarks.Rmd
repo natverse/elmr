@@ -91,14 +91,24 @@ spheres3d(xyz, col = jet.colors(10)[cut(deltas, 10)], radius = 4)
 texts3d(xyz, texts = 1:nrow(xyz)-1, adj = c(1,1))
 ```
 
+Based on this, I would definitely suggest checking the following landmarks
+
+59/32
+27
+30
+52
+18
+
 Compare the leave one out landmark position with manually defined position
 
 ```{r, rgl=TRUE}
 clear3d()
 view3d(userMatrix=rgl::rotationMatrix(angle = pi, 1,0,0), zoom=0.7)
 for(i in 1:nrow(xyz)){
-  segments3d(rbind(xyz[i, , drop=FALSE], xyzt.loo[i, , drop=FALSE]), col=jet.colors(10)[cut(deltas, 10)][i], lwd=2)
+  segments3d(rbind(xyz[i, , drop=FALSE], xyzt.loo[i, , drop=FALSE]), col=jet.colors(10)[cut(deltas, 10)][i], lwd=3)
 }
+points3d(xyz)
+texts3d(xyz, texts = 1:nrow(xyz)-1, adj = c(1,1))
 plot3d(JFRC2013)
 ```
 
@@ -126,7 +136,7 @@ brain and then find exactly the same landmarks on the other side of the brain.
 For the JFRC2013 brain we can exactly mirror points from one side to the other 
 using an image-based registration distributed with the `nat.flybrains` package.
 
-We can write out the mirror image position of all the points that we used like so:
+We can find the mirror image position of all the points that we used like so:
 
 ```{r, rgl=TRUE}
 #  nb this is conditioned on being able to find CMTK
@@ -139,11 +149,19 @@ if(isTRUE(nzchar(cmtk.bindir()))){
   plot3d(JFRC2013)
   view3d(userMatrix=rgl::rotationMatrix(angle = pi, 1,0,0), zoom=0.7)
 
-  xyzm.pixels=scale(xyzm, scale = voxdims(JFRC2013), center = FALSE)
-  colnames(xyzm.pixels)=c("XM","YM","ZM")
-  write.table(cbind(elm.landmarks, xyzm.pixels), 'elm.landmarks-with-mirror.tsv',col.names = T, sep='\t', row.names = F)
 }
 ```
+
+One could then write out a table of landmarks including these mirrored positions
+like so:
+
+```{r, eval=FALSE}
+xyzm.pixels=scale(xyzm, scale = voxdims(JFRC2013), center = FALSE)
+colnames(xyzm.pixels)=c("XM","YM","ZM")
+write.table(cbind(elm.landmarks, xyzm.pixels), 'elm.landmarks-with-mirror.tsv',
+            col.names = T, sep='\t', row.names = F)
+```
+
 
 If one were then to take the mirror image landmarks in JFRC2013 space and 
 manually pick the corresponding locations in EM space, one should be able to 

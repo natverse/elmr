@@ -17,6 +17,9 @@ reference:
 - title: Interacting with CATMAID server
   contents:
   - open_fafb
+- title: Summarising tracer contributions
+  contents:
+  - summarise_contribution
 - title: Support functions
   desc: Functions intended primarily for developer use
   contents:
@@ -26,5 +29,6 @@ reference:
   desc: Data objects
   contents:
     - FAFB
+    - FAFB13.surf
     - elm.landmarks
     - dense_core_neurons

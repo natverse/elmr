@@ -40,14 +40,16 @@ A data.frame describing contributions or for
   contribution written to the console by \code{\link{cat}}.
 }
 \description{
-Summarise tracer contributions / suggest authorship for set of neurons
+\code{summarise_contribution} produces a data.frame of
+  contributions by user. \code{suggest_authorship} can use this to suggest
+  which contributors meet defined authorship/acknowledgement criteria.
 
 \code{suggest_authorship} suggests how to acknowledge
   individuals
 
 \code{write_authors} produces a list of authors
 
-\code{write_ack} produces an acknowldgements wording.
+\code{write_ack} produces an acknowledgements wording.
 }
 \examples{
 \donttest{

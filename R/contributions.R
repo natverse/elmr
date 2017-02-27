@@ -1,5 +1,8 @@
 #' Summarise tracer contributions / suggest authorship for set of neurons
 #'
+#' @description \code{summarise_contribution} produces a data.frame of
+#'   contributions by user. \code{suggest_authorship} can use this to suggest
+#'   which contributors meet defined authorship/acknowledgement criteria.
 #' @inheritParams nblast_fafb
 #' @param x A data frame containing the output of summarise_contribution
 #' @param type Whether to summarise contributinons towards arbour (nodes) or
@@ -72,7 +75,7 @@ write_authors <- function(x, ...) {
   with(subset(x, action=='auth'), cat(paste(full_name, collapse=", ")))
 }
 
-#' @description \code{write_ack} produces an acknowldgements wording.
+#' @description \code{write_ack} produces an acknowledgements wording.
 #' @export
 #' @rdname summarise_contribution
 write_ack <- function(x, ...) {

@@ -1,4 +1,4 @@
-[![Travis-CI Build Status](https://travis-ci.org/jefferis/elmr.svg?branch=master)](https://travis-ci.org/jefferis/elmr)
+[![Travis-CI Build Status](https://travis-ci.org/jefferis/elmr.svg?branch=master)](https://travis-ci.org/jefferis/elmr) [![DOI](https://zenodo.org/badge/52780580.svg)](https://zenodo.org/badge/latestdoi/52780580)
 
 # elmr
 

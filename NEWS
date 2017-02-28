@@ -1,3 +1,8 @@
+elmr 0.4.1
+==========
+
+* Add functions to summarise tracer effort
+
 elmr 0.4
 ========
 * switch FAFB13-JFRC2013 transform to 170211_new_ELM_landmarks_v7.csv

@@ -35,6 +35,7 @@ plot3d(JFRC2013)
 # note that the landmarks are in raw voxel coordinates and must be scaled
 xyz=scale(elm.landmarks[,c("X","Y","Z")], scale = 1/voxdims(JFRC2013), center = FALSE)
 xyz=as.data.frame(xyz)
+rownames(xyz)=sub("Pt-","",elm.landmarks$Label)
 spheres3d(xyz, col = ifelse(elm.landmarks$Use, "green", 'red'), radius = 4)
 ```
 
@@ -48,6 +49,7 @@ Let's first look at the FAFB landmarks
 ```{r}
 # note that these positions are in nm units and do not need scaling
 xyz.fafb=elm.landmarks[,c("X1","Y1","Z1")]
+rownames(xyz.fafb)=sub("Pt-","",elm.landmarks$Label)
 kable(head(xyz.fafb))
 ```
 
@@ -88,7 +90,7 @@ jet.colors <-
 plot3d(JFRC2013)
 spheres3d(xyz, col = jet.colors(10)[cut(deltas, 10)], radius = 4)
 # nb these are numbered from 0 like the elm landmarks
-texts3d(xyz, texts = 1:nrow(xyz)-1, adj = c(1,1))
+texts3d(xyz, texts = rownames(xyz), adj = c(1,1))
 ```
 
 Based on this, I would definitely suggest checking the following landmarks
@@ -108,7 +110,7 @@ for(i in 1:nrow(xyz)){
   segments3d(rbind(xyz[i, , drop=FALSE], xyzt.loo[i, , drop=FALSE]), col=jet.colors(10)[cut(deltas, 10)][i], lwd=3)
 }
 points3d(xyz)
-texts3d(xyz, texts = 1:nrow(xyz)-1, adj = c(1,1))
+texts3d(xyz, texts = rownames(xyz), adj = c(1,1))
 plot3d(JFRC2013)
 ```
 

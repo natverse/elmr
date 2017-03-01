@@ -57,7 +57,7 @@
       <h1>Landmarks</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2017-02-27</h4>
+            <h4 class="date">2017-03-01</h4>
           </div>
 
     
@@ -87,6 +87,7 @@ rgl::<span class="kw">setupKnitr</span>()
 <span class="co"># note that the landmarks are in raw voxel coordinates and must be scaled</span>
 xyz=<span class="kw">scale</span>(elm.landmarks[,<span class="kw">c</span>(<span class="st">"X"</span>,<span class="st">"Y"</span>,<span class="st">"Z"</span>)], <span class="dt">scale =</span> <span class="dv">1</span>/<span class="kw">voxdims</span>(JFRC2013), <span class="dt">center =</span> <span class="ot">FALSE</span>)
 xyz=<span class="kw">as.data.frame</span>(xyz)
+<span class="kw">rownames</span>(xyz)=<span class="kw">sub</span>(<span class="st">"Pt-"</span>,<span class="st">""</span>,elm.landmarks$Label)
 <span class="kw">spheres3d</span>(xyz, <span class="dt">col =</span> <span class="kw">ifelse</span>(elm.landmarks$Use, <span class="st">"green"</span>, <span class="st">'red'</span>), <span class="dt">radius =</span> <span class="dv">4</span>)</code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-2-1.png" width="480"></p>
 </div>
@@ -97,40 +98,48 @@ xyz=<span class="kw">as.data.frame</span>(xyz)
 <p>Let’s first look at the FAFB landmarks</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note that these positions are in nm units and do not need scaling</span>
 xyz.fafb=elm.landmarks[,<span class="kw">c</span>(<span class="st">"X1"</span>,<span class="st">"Y1"</span>,<span class="st">"Z1"</span>)]
+<span class="kw">rownames</span>(xyz.fafb)=<span class="kw">sub</span>(<span class="st">"Pt-"</span>,<span class="st">""</span>,elm.landmarks$Label)
 <span class="kw">kable</span>(<span class="kw">head</span>(xyz.fafb))</code></pre></div>
 <table class="table">
 <thead><tr class="header">
+<th></th>
 <th align="right">X1</th>
 <th align="right">Y1</th>
 <th align="right">Z1</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td>0</td>
 <td align="right">591360.1</td>
 <td align="right">287783.6</td>
 <td align="right">97510.11</td>
 </tr>
 <tr class="even">
+<td>1</td>
 <td align="right">525666.5</td>
 <td align="right">172470.4</td>
 <td align="right">80994.73</td>
 </tr>
 <tr class="odd">
+<td>2</td>
 <td align="right">595391.6</td>
 <td align="right">263523.1</td>
 <td align="right">84156.77</td>
 </tr>
 <tr class="even">
+<td>3</td>
 <td align="right">501080.2</td>
 <td align="right">253465.3</td>
 <td align="right">98233.34</td>
 </tr>
 <tr class="odd">
+<td>5</td>
 <td align="right">528543.2</td>
 <td align="right">338099.9</td>
 <td align="right">19349.01</td>
 </tr>
 <tr class="even">
+<td>6</td>
 <td align="right">670999.9</td>
 <td align="right">179097.9</td>
 <td align="right">67561.69</td>
@@ -156,6 +165,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(<span class="kw">cbind</span>(elm.landmarks, <span class="dt">delta=</span>deltas))</code></pre></div>
 <table class="table">
 <thead><tr class="header">
+<th></th>
 <th align="left">Label</th>
 <th align="left">Use</th>
 <th align="right">X</th>
@@ -168,6 +178,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td>0</td>
 <td align="left">Pt-0</td>
 <td align="left">TRUE</td>
 <td align="right">702.1487</td>
@@ -179,6 +190,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">4.495873</td>
 </tr>
 <tr class="even">
+<td>1</td>
 <td align="left">Pt-1</td>
 <td align="left">TRUE</td>
 <td align="right">571.4001</td>
@@ -190,6 +202,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">4.439362</td>
 </tr>
 <tr class="odd">
+<td>2</td>
 <td align="left">Pt-2</td>
 <td align="left">TRUE</td>
 <td align="right">715.8113</td>
@@ -201,6 +214,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">2.110814</td>
 </tr>
 <tr class="even">
+<td>3</td>
 <td align="left">Pt-3</td>
 <td align="left">TRUE</td>
 <td align="right">513.0022</td>
@@ -212,6 +226,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">6.576990</td>
 </tr>
 <tr class="odd">
+<td>5</td>
 <td align="left">Pt-5</td>
 <td align="left">TRUE</td>
 <td align="right">602.0898</td>
@@ -223,6 +238,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">11.787314</td>
 </tr>
 <tr class="even">
+<td>6</td>
 <td align="left">Pt-6</td>
 <td align="left">TRUE</td>
 <td align="right">867.0125</td>
@@ -234,6 +250,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">4.625576</td>
 </tr>
 <tr class="odd">
+<td>7</td>
 <td align="left">Pt-7</td>
 <td align="left">TRUE</td>
 <td align="right">935.2109</td>
@@ -245,6 +262,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">7.413386</td>
 </tr>
 <tr class="even">
+<td>8</td>
 <td align="left">Pt-8</td>
 <td align="left">TRUE</td>
 <td align="right">935.2109</td>
@@ -256,6 +274,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">11.278113</td>
 </tr>
 <tr class="odd">
+<td>9</td>
 <td align="left">Pt-9</td>
 <td align="left">TRUE</td>
 <td align="right">935.2109</td>
@@ -267,6 +286,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">11.335541</td>
 </tr>
 <tr class="even">
+<td>10</td>
 <td align="left">Pt-10</td>
 <td align="left">TRUE</td>
 <td align="right">509.7629</td>
@@ -278,6 +298,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">10.118559</td>
 </tr>
 <tr class="odd">
+<td>11</td>
 <td align="left">Pt-11</td>
 <td align="left">TRUE</td>
 <td align="right">509.2284</td>
@@ -289,6 +310,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">5.534175</td>
 </tr>
 <tr class="even">
+<td>12</td>
 <td align="left">Pt-12</td>
 <td align="left">TRUE</td>
 <td align="right">509.2284</td>
@@ -300,6 +322,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">8.871823</td>
 </tr>
 <tr class="odd">
+<td>14</td>
 <td align="left">Pt-14</td>
 <td align="left">TRUE</td>
 <td align="right">1106.8503</td>
@@ -311,6 +334,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">12.835334</td>
 </tr>
 <tr class="even">
+<td>17</td>
 <td align="left">Pt-17</td>
 <td align="left">TRUE</td>
 <td align="right">718.4719</td>
@@ -322,6 +346,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">3.665553</td>
 </tr>
 <tr class="odd">
+<td>18</td>
 <td align="left">Pt-18</td>
 <td align="left">TRUE</td>
 <td align="right">776.9947</td>
@@ -333,6 +358,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">6.290179</td>
 </tr>
 <tr class="even">
+<td>19</td>
 <td align="left">Pt-19</td>
 <td align="left">TRUE</td>
 <td align="right">839.6388</td>
@@ -344,6 +370,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">5.201948</td>
 </tr>
 <tr class="odd">
+<td>20</td>
 <td align="left">Pt-20</td>
 <td align="left">TRUE</td>
 <td align="right">601.2203</td>
@@ -355,6 +382,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">4.807353</td>
 </tr>
 <tr class="even">
+<td>21</td>
 <td align="left">Pt-21</td>
 <td align="left">TRUE</td>
 <td align="right">653.3550</td>
@@ -366,6 +394,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">2.656390</td>
 </tr>
 <tr class="odd">
+<td>23</td>
 <td align="left">Pt-23</td>
 <td align="left">TRUE</td>
 <td align="right">646.4883</td>
@@ -377,6 +406,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">14.515807</td>
 </tr>
 <tr class="even">
+<td>24</td>
 <td align="left">Pt-24</td>
 <td align="left">TRUE</td>
 <td align="right">769.5130</td>
@@ -388,6 +418,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">2.592245</td>
 </tr>
 <tr class="odd">
+<td>25</td>
 <td align="left">Pt-25</td>
 <td align="left">TRUE</td>
 <td align="right">1150.4870</td>
@@ -399,6 +430,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">13.362692</td>
 </tr>
 <tr class="even">
+<td>26</td>
 <td align="left">Pt-26</td>
 <td align="left">TRUE</td>
 <td align="right">1045.9179</td>
@@ -410,6 +442,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">2.592961</td>
 </tr>
 <tr class="odd">
+<td>27</td>
 <td align="left">Pt-27</td>
 <td align="left">TRUE</td>
 <td align="right">389.1564</td>
@@ -421,6 +454,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">8.591221</td>
 </tr>
 <tr class="even">
+<td>39</td>
 <td align="left">Pt-39</td>
 <td align="left">TRUE</td>
 <td align="right">294.9652</td>
@@ -432,6 +466,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">7.061507</td>
 </tr>
 <tr class="odd">
+<td>40</td>
 <td align="left">Pt-40</td>
 <td align="left">TRUE</td>
 <td align="right">241.6744</td>
@@ -443,6 +478,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">7.200079</td>
 </tr>
 <tr class="even">
+<td>41</td>
 <td align="left">Pt-41</td>
 <td align="left">TRUE</td>
 <td align="right">370.7507</td>
@@ -454,6 +490,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">2.181738</td>
 </tr>
 <tr class="odd">
+<td>42</td>
 <td align="left">Pt-42</td>
 <td align="left">TRUE</td>
 <td align="right">356.8177</td>
@@ -465,6 +502,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">4.847158</td>
 </tr>
 <tr class="even">
+<td>43</td>
 <td align="left">Pt-43</td>
 <td align="left">TRUE</td>
 <td align="right">311.3398</td>
@@ -476,6 +514,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">24.673536</td>
 </tr>
 <tr class="odd">
+<td>44</td>
 <td align="left">Pt-44</td>
 <td align="left">TRUE</td>
 <td align="right">435.6423</td>
@@ -487,6 +526,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">19.237017</td>
 </tr>
 <tr class="even">
+<td>45</td>
 <td align="left">Pt-45</td>
 <td align="left">TRUE</td>
 <td align="right">325.9132</td>
@@ -498,6 +538,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">21.649187</td>
 </tr>
 <tr class="odd">
+<td>46</td>
 <td align="left">Pt-46</td>
 <td align="left">TRUE</td>
 <td align="right">197.7791</td>
@@ -509,6 +550,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">15.990273</td>
 </tr>
 <tr class="even">
+<td>47</td>
 <td align="left">Pt-47</td>
 <td align="left">TRUE</td>
 <td align="right">120.6732</td>
@@ -520,6 +562,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">14.886355</td>
 </tr>
 <tr class="odd">
+<td>48</td>
 <td align="left">Pt-48</td>
 <td align="left">TRUE</td>
 <td align="right">162.5141</td>
@@ -531,6 +574,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">16.122111</td>
 </tr>
 <tr class="even">
+<td>49</td>
 <td align="left">Pt-49</td>
 <td align="left">TRUE</td>
 <td align="right">413.3632</td>
@@ -542,6 +586,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">4.643610</td>
 </tr>
 <tr class="odd">
+<td>50</td>
 <td align="left">Pt-50</td>
 <td align="left">TRUE</td>
 <td align="right">542.6337</td>
@@ -553,6 +598,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">9.397889</td>
 </tr>
 <tr class="even">
+<td>51</td>
 <td align="left">Pt-51</td>
 <td align="left">TRUE</td>
 <td align="right">732.8606</td>
@@ -564,6 +610,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">3.135272</td>
 </tr>
 <tr class="odd">
+<td>52</td>
 <td align="left">Pt-52</td>
 <td align="left">TRUE</td>
 <td align="right">763.4152</td>
@@ -575,6 +622,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">5.725675</td>
 </tr>
 <tr class="even">
+<td>53</td>
 <td align="left">Pt-53</td>
 <td align="left">TRUE</td>
 <td align="right">673.4191</td>
@@ -586,6 +634,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">8.988793</td>
 </tr>
 <tr class="odd">
+<td>54</td>
 <td align="left">Pt-54</td>
 <td align="left">TRUE</td>
 <td align="right">522.3014</td>
@@ -597,6 +646,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">8.007639</td>
 </tr>
 <tr class="even">
+<td>55</td>
 <td align="left">Pt-55</td>
 <td align="left">TRUE</td>
 <td align="right">918.1357</td>
@@ -608,6 +658,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">12.130931</td>
 </tr>
 <tr class="odd">
+<td>56</td>
 <td align="left">Pt-56</td>
 <td align="left">TRUE</td>
 <td align="right">1021.5445</td>
@@ -619,6 +670,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">4.104513</td>
 </tr>
 <tr class="even">
+<td>57</td>
 <td align="left">Pt-57</td>
 <td align="left">TRUE</td>
 <td align="right">1212.4784</td>
@@ -630,6 +682,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">18.177230</td>
 </tr>
 <tr class="odd">
+<td>58</td>
 <td align="left">Pt-58</td>
 <td align="left">TRUE</td>
 <td align="right">1249.0229</td>
@@ -641,6 +694,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">4.574636</td>
 </tr>
 <tr class="even">
+<td>59</td>
 <td align="left">Pt-59</td>
 <td align="left">TRUE</td>
 <td align="right">1174.4594</td>
@@ -652,6 +706,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">22.373505</td>
 </tr>
 <tr class="odd">
+<td>60</td>
 <td align="left">Pt-60</td>
 <td align="left">TRUE</td>
 <td align="right">1077.1313</td>
@@ -663,6 +718,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">17.742575</td>
 </tr>
 <tr class="even">
+<td>61</td>
 <td align="left">Pt-61</td>
 <td align="left">TRUE</td>
 <td align="right">1112.7070</td>
@@ -674,6 +730,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">19.347517</td>
 </tr>
 <tr class="odd">
+<td>62</td>
 <td align="left">Pt-62</td>
 <td align="left">TRUE</td>
 <td align="right">1306.1523</td>
@@ -685,6 +742,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">7.594850</td>
 </tr>
 <tr class="even">
+<td>63</td>
 <td align="left">Pt-63</td>
 <td align="left">TRUE</td>
 <td align="right">1328.8859</td>
@@ -696,6 +754,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">12.448687</td>
 </tr>
 <tr class="odd">
+<td>64</td>
 <td align="left">Pt-64</td>
 <td align="left">TRUE</td>
 <td align="right">549.6954</td>
@@ -707,6 +766,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">12.925469</td>
 </tr>
 <tr class="even">
+<td>65</td>
 <td align="left">Pt-65</td>
 <td align="left">TRUE</td>
 <td align="right">765.1116</td>
@@ -718,6 +778,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">7.625301</td>
 </tr>
 <tr class="odd">
+<td>66</td>
 <td align="left">Pt-66</td>
 <td align="left">TRUE</td>
 <td align="right">785.3950</td>
@@ -729,6 +790,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">6.358484</td>
 </tr>
 <tr class="even">
+<td>67</td>
 <td align="left">Pt-67</td>
 <td align="left">TRUE</td>
 <td align="right">491.9622</td>
@@ -740,6 +802,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">13.309858</td>
 </tr>
 <tr class="odd">
+<td>68</td>
 <td align="left">Pt-68</td>
 <td align="left">TRUE</td>
 <td align="right">636.6000</td>
@@ -751,6 +814,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">18.791822</td>
 </tr>
 <tr class="even">
+<td>69</td>
 <td align="left">Pt-69</td>
 <td align="left">TRUE</td>
 <td align="right">751.5368</td>
@@ -762,6 +826,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">10.800934</td>
 </tr>
 <tr class="odd">
+<td>70</td>
 <td align="left">Pt-70</td>
 <td align="left">TRUE</td>
 <td align="right">248.6964</td>
@@ -773,6 +838,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">14.752904</td>
 </tr>
 <tr class="even">
+<td>71</td>
 <td align="left">Pt-71</td>
 <td align="left">TRUE</td>
 <td align="right">371.3233</td>
@@ -784,6 +850,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">6.101949</td>
 </tr>
 <tr class="odd">
+<td>72</td>
 <td align="left">Pt-72</td>
 <td align="left">TRUE</td>
 <td align="right">125.3698</td>
@@ -795,6 +862,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">13.397052</td>
 </tr>
 <tr class="even">
+<td>73</td>
 <td align="left">Pt-73</td>
 <td align="left">TRUE</td>
 <td align="right">366.0449</td>
@@ -806,6 +874,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">8.953431</td>
 </tr>
 <tr class="odd">
+<td>74</td>
 <td align="left">Pt-74</td>
 <td align="left">TRUE</td>
 <td align="right">297.1745</td>
@@ -817,6 +886,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">12.326181</td>
 </tr>
 <tr class="even">
+<td>75</td>
 <td align="left">Pt-75</td>
 <td align="left">TRUE</td>
 <td align="right">120.6515</td>
@@ -828,6 +898,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">19.538183</td>
 </tr>
 <tr class="odd">
+<td>76</td>
 <td align="left">Pt-76</td>
 <td align="left">TRUE</td>
 <td align="right">371.7625</td>
@@ -839,6 +910,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">5.209407</td>
 </tr>
 <tr class="even">
+<td>77</td>
 <td align="left">Pt-77</td>
 <td align="left">TRUE</td>
 <td align="right">863.6581</td>
@@ -850,6 +922,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">6.422350</td>
 </tr>
 <tr class="odd">
+<td>78</td>
 <td align="left">Pt-78</td>
 <td align="left">TRUE</td>
 <td align="right">877.3450</td>
@@ -861,6 +934,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">4.434200</td>
 </tr>
 <tr class="even">
+<td>79</td>
 <td align="left">Pt-79</td>
 <td align="left">TRUE</td>
 <td align="right">887.6924</td>
@@ -872,6 +946,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">2.511654</td>
 </tr>
 <tr class="odd">
+<td>80</td>
 <td align="left">Pt-80</td>
 <td align="left">TRUE</td>
 <td align="right">456.7993</td>
@@ -883,6 +958,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">4.602266</td>
 </tr>
 <tr class="even">
+<td>81</td>
 <td align="left">Pt-81</td>
 <td align="left">TRUE</td>
 <td align="right">457.2808</td>
@@ -894,6 +970,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">9.982881</td>
 </tr>
 <tr class="odd">
+<td>82</td>
 <td align="left">Pt-82</td>
 <td align="left">TRUE</td>
 <td align="right">543.1608</td>
@@ -905,6 +982,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">5.349113</td>
 </tr>
 <tr class="even">
+<td>83</td>
 <td align="left">Pt-83</td>
 <td align="left">TRUE</td>
 <td align="right">610.5969</td>
@@ -916,6 +994,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">3.590523</td>
 </tr>
 <tr class="odd">
+<td>84</td>
 <td align="left">Pt-84</td>
 <td align="left">TRUE</td>
 <td align="right">687.3255</td>
@@ -927,6 +1006,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">2.896198</td>
 </tr>
 <tr class="even">
+<td>85</td>
 <td align="left">Pt-85</td>
 <td align="left">TRUE</td>
 <td align="right">637.3402</td>
@@ -938,6 +1018,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <td align="right">6.317059</td>
 </tr>
 <tr class="odd">
+<td>86</td>
 <td align="left">Pt-86</td>
 <td align="left">TRUE</td>
 <td align="right">601.4145</td>
@@ -960,7 +1041,7 @@ jet.colors &lt;-
 <span class="kw">plot3d</span>(JFRC2013)
 <span class="kw">spheres3d</span>(xyz, <span class="dt">col =</span> <span class="kw">jet.colors</span>(<span class="dv">10</span>)[<span class="kw">cut</span>(deltas, <span class="dv">10</span>)], <span class="dt">radius =</span> <span class="dv">4</span>)
 <span class="co"># nb these are numbered from 0 like the elm landmarks</span>
-<span class="kw">texts3d</span>(xyz, <span class="dt">texts =</span> <span class="dv">1</span>:<span class="kw">nrow</span>(xyz)-<span class="dv">1</span>, <span class="dt">adj =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
+<span class="kw">texts3d</span>(xyz, <span class="dt">texts =</span> <span class="kw">rownames</span>(xyz), <span class="dt">adj =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-6-1.png" width="768"></p>
 <p>Based on this, I would definitely suggest checking the following landmarks</p>
 <p>59/32 27 30 52 18</p>
@@ -971,7 +1052,7 @@ for(i in <span class="dv">1</span>:<span class="kw">nrow</span>(xyz)){
   <span class="kw">segments3d</span>(<span class="kw">rbind</span>(xyz[i, , <span class="dt">drop=</span><span class="ot">FALSE</span>], xyzt.loo[i, , <span class="dt">drop=</span><span class="ot">FALSE</span>]), <span class="dt">col=</span><span class="kw">jet.colors</span>(<span class="dv">10</span>)[<span class="kw">cut</span>(deltas, <span class="dv">10</span>)][i], <span class="dt">lwd=</span><span class="dv">3</span>)
 }
 <span class="kw">points3d</span>(xyz)
-<span class="kw">texts3d</span>(xyz, <span class="dt">texts =</span> <span class="dv">1</span>:<span class="kw">nrow</span>(xyz)-<span class="dv">1</span>, <span class="dt">adj =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))
+<span class="kw">texts3d</span>(xyz, <span class="dt">texts =</span> <span class="kw">rownames</span>(xyz), <span class="dt">adj =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))
 <span class="kw">plot3d</span>(JFRC2013)</code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
 <p>Now of course this is not just a measure of consistency in each landmark point, but it will also depend strongly on the extent to which the neighbouring points can define the required registration; in areas requiring substantial non-rigid deformation this may be a problem; this will be further emphasised when the neighbouring points are distant. We can check the latter point like so:</p>

@@ -13,22 +13,30 @@ elm_landmarks_ <- function(u="https://raw.githubusercontent.com/saalfeldlab/elm/
   x$Use=as.logical(x$Use)
   x
 }
-
+if(FALSE) {
 elm.landmarks <- elm_landmarks_()
 elm.landmarks.12=elm.landmarks
 # NB only transform landmarks in use.
 elm.landmarks[elm.landmarks$Use,6:8]=xform_brain(elm.landmarks[elm.landmarks$Use,6:8], sample =FAFB12, reference = FAFB13, method='single')
 # alternatively try to transform all
 # elm.landmarks[,6:8]=xform_brain(elm.landmarks[,6:8], sample =FAFB12, reference = FAFB13, method='single')
-
 elm.landmarks=subset(elm.landmarks, Use)
 devtools::use_data(elm.landmarks, overwrite = T)
 devtools::use_data(elm.landmarks.12, overwrite = T)
+}
 
-elm.landmarks.feb17=read.csv('data-raw/170211_new_ELM_landmarks_v7.csv',
-                             col.names = c("Label", "Use", "X","Y","Z", "X1","Y1","Z1"),
-                             header = FALSE)
-elm.landmarks.feb17$Use=as.logical(elm.landmarks.feb17$Use)
+
+read_elm_csv <- function(x) {
+  y = read.csv(
+    x,
+    col.names = c("Label", "Use", "X", "Y", "Z", "X1", "Y1", "Z1"),
+    header = FALSE
+  )
+  y$Use = as.logical(y$Use)
+  y
+}
+elm.landmarks.feb17=read_elm_csv('data-raw/170211_new_ELM_landmarks_v7.csv')
+elm.landmarks.mar17=read_elm_csv('data-raw/170303_ELM_landmarks_v14.csv')
 elm.landmarks.v13.2016=elm.landmarks
-elm.landmarks=elm.landmarks.feb17
+elm.landmarks=elm.landmarks.mar17
 devtools::use_data(elm.landmarks, overwrite = T)

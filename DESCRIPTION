@@ -23,7 +23,8 @@ Imports:
     stringr,
     httr,
     jsonlite,
-    plyr
+    plyr,
+    dplyr
 RoxygenNote: 5.0.1
 Suggests:
     flycircuit,

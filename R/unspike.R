@@ -52,7 +52,7 @@ unspike.neuron <- function(x, threshold, ...) {
     s=sl[[i]]
     # interpolate this segment
     dold=d[s, , drop=FALSE]
-    dnew=unspike_segment(dold, ...)
+    dnew=unspike_segment(dold, threshold = threshold, ...)
     if(is.null(dnew)) next
     dl[[length(dl)+1]]=dnew
     # if we've got here, we need to do something

@@ -11,12 +11,12 @@ LazyData: TRUE
 Depends:
     R (>= 2.10),
     nat.flybrains,
-    nat.nblast
+    nat.nblast,
+    catmaid
 Imports:
     nat,
     rgl,
     nat.templatebrains (>= 0.8),
-    catmaid,
     nabor,
     igraph (>= 1.0),
     Morpho,

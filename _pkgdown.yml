@@ -14,6 +14,7 @@ reference:
   - distal_to
   - stitch_neuron
   - stitch_neurons
+  - unspike
 - title: Interacting with CATMAID server
   contents:
   - open_fafb

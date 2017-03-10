@@ -47,8 +47,9 @@ Remove artefactual spikes in neuron tracing due to registration errors
 da1pns=read.neurons.catmaid("annotation:^glomerulus DA1$")
 # set threshold to 5000 nm
 da1pns.fix=unspike(da1pns, threshold=5000)
-plot3d(da1pns.fix, col='red')
-plot3d(da1pns, col='black')
+plot(da1pns, col='red', WithNodes=FALSE)
+# overplot fixed neuron leaving red spikes visible
+plot(da1pns.fix, col='black', WithNodes=FALSE, add=TRUE)
 }
 }
 \seealso{

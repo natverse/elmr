@@ -130,30 +130,30 @@ nodes, the second for synapses.</dd>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>pnsc</span><span class='kw'>=</span><span class='fu'>summarise_contribution</span>(<span class='st'>"annotation:^PN$"</span>)
 <span class='fu'>suggest_authorship</span>(<span class='no'>pnsc</span>)</div><div class='output co'>#&gt;     id      n              full_name        pct     cpct action
-#&gt; 1   12 110422          Jacob Ratliff 15.7925524 15.79255   auth
-#&gt; 2   11  80683        bailey harrison 11.5392812 27.33183   auth
-#&gt; 3   26  70361             Jawaid Ali 10.0630289 37.39486   auth
-#&gt; 4   13  63207           Addy Adesina  9.0398640 46.43473   auth
-#&gt; 5   54  42322        Ben Koppenhaver  6.0528916 52.48762   auth
-#&gt; 6   25  39600          Lucia Kmecova  5.6635913 58.15121   auth
-#&gt; 7   53  37918      Najla Masoodpanah  5.4230317 63.57424   auth
-#&gt; 8    4  34354           Corey Fisher  4.9133084 68.48755    ack
-#&gt; 9   61  31142         Benjamin Gorko  4.4539283 72.94148    ack
-#&gt; 10  17  28372              Adam John  4.0577629 76.99924    ack
-#&gt; 11 117  26541         Ruairi Roberts  3.7958933 80.79513    ack
-#&gt; 12  22  21093     Michael Lingelbach  3.0167205 83.81185    ack
-#&gt; 13  50  18610       Shahrozia Imtiaz  2.6616019 86.47346    ack
-#&gt; 14  29  15861         Nadiya Sharifi  2.2684399 88.74190    ack
-#&gt; 15  75  14827          Philipp Ranft  2.1205573 90.86245    ack
-#&gt; 16  55   9288          Greg Jefferis  1.3283696 92.19082    ack
-#&gt; 17  27   7848             Sri Murthy  1.1224208 93.31324    ack
-#&gt; 18 120   4888 Amelia Edmondson-Stait  0.6990817 94.01233    ack
-#&gt; 19 118   4260         Clement Hallou  0.6092651 94.62159    ack
-#&gt; 20  94   4044       Philipp Schlegel  0.5783728 95.19996    ack
-#&gt; 21  28   3769           Bindu Gampah  0.5390423 95.73901    ack
-#&gt; 22 123   3142             Fiona Love  0.4493688 96.18837    ack
-#&gt; 23  76   3056           Steven Calle  0.4370691 96.62544    ack
-#&gt; 24   2   3039              Davi Bock  0.4346377 97.06008    ack</div><div class='input'><span class='fu'>write_authors</span>(<span class='no'>pnsc</span>, <span class='kw'>auth</span><span class='kw'>=</span><span class='fl'>3.0</span>)</div><div class='output co'>#&gt; Jacob Ratliff, bailey harrison, Jawaid Ali, Addy Adesina, Ben Koppenhaver, Lucia Kmecova, Najla Masoodpanah, Corey Fisher, Benjamin Gorko, Adam John, Ruairi Roberts, Michael Lingelbach</div><div class='input'><span class='fu'>write_ack</span>(<span class='no'>pnsc</span>)</div><div class='output co'>#&gt; We thank Corey Fisher, Benjamin Gorko, Adam John, Ruairi Roberts, Michael Lingelbach, Shahrozia Imtiaz, Nadiya Sharifi, Philipp Ranft, Greg Jefferis, Sri Murthy, Amelia Edmondson-Stait, Clement Hallou, Philipp Schlegel, Bindu Gampah, Fiona Love, Steven Calle, Davi Bock for contributing 33.5 % of reconstructed arbour cable.</div><div class='input'>
+#&gt; 1   12 110422          Jacob Ratliff 15.7902037 15.79020   auth
+#&gt; 2   11  80683        bailey harrison 11.5375650 27.32777   auth
+#&gt; 3   26  70398             Jawaid Ali 10.0668233 37.39459   auth
+#&gt; 4   13  63207           Addy Adesina  9.0385196 46.43311   auth
+#&gt; 5   54  42322        Ben Koppenhaver  6.0519915 52.48510   auth
+#&gt; 6   25  39600          Lucia Kmecova  5.6627490 58.14785   auth
+#&gt; 7   53  37918      Najla Masoodpanah  5.4222251 63.57008   auth
+#&gt; 8    4  34354           Corey Fisher  4.9125777 68.48265    ack
+#&gt; 9   61  31142         Benjamin Gorko  4.4532659 72.93592    ack
+#&gt; 10  17  28372              Adam John  4.0571594 76.99308    ack
+#&gt; 11 117  26607         Ruairi Roberts  3.8047667 80.79785    ack
+#&gt; 12  22  21093     Michael Lingelbach  3.0162718 83.81412    ack
+#&gt; 13  50  18610       Shahrozia Imtiaz  2.6612060 86.47532    ack
+#&gt; 14  29  15861         Nadiya Sharifi  2.2681026 88.74343    ack
+#&gt; 15  75  14827          Philipp Ranft  2.1202419 90.86367    ack
+#&gt; 16  55   9288          Greg Jefferis  1.3281720 92.19184    ack
+#&gt; 17  27   7848             Sri Murthy  1.1222539 93.31410    ack
+#&gt; 18 120   4888 Amelia Edmondson-Stait  0.6989777 94.01307    ack
+#&gt; 19 118   4260         Clement Hallou  0.6091745 94.62225    ack
+#&gt; 20  94   4044       Philipp Schlegel  0.5782868 95.20053    ack
+#&gt; 21  28   3769           Bindu Gampah  0.5389621 95.73950    ack
+#&gt; 22 123   3143             Fiona Love  0.4494450 96.18894    ack
+#&gt; 23  76   3056           Steven Calle  0.4370041 96.62595    ack
+#&gt; 24   2   3039              Davi Bock  0.4345731 97.06052    ack</div><div class='input'><span class='fu'>write_authors</span>(<span class='no'>pnsc</span>, <span class='kw'>auth</span><span class='kw'>=</span><span class='fl'>3.0</span>)</div><div class='output co'>#&gt; Jacob Ratliff, bailey harrison, Jawaid Ali, Addy Adesina, Ben Koppenhaver, Lucia Kmecova, Najla Masoodpanah, Corey Fisher, Benjamin Gorko, Adam John, Ruairi Roberts, Michael Lingelbach</div><div class='input'><span class='fu'>write_ack</span>(<span class='no'>pnsc</span>)</div><div class='output co'>#&gt; We thank Corey Fisher, Benjamin Gorko, Adam John, Ruairi Roberts, Michael Lingelbach, Shahrozia Imtiaz, Nadiya Sharifi, Philipp Ranft, Greg Jefferis, Sri Murthy, Amelia Edmondson-Stait, Clement Hallou, Philipp Schlegel, Bindu Gampah, Fiona Love, Steven Calle, Davi Bock for contributing 33.5 % of reconstructed arbour cable.</div><div class='input'>
 <span class='no'>pnsc</span><span class='kw'>=</span><span class='fu'>summarise_contribution</span>(<span class='st'>"annotation:^PN$"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>'synapses'</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

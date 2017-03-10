@@ -129,9 +129,9 @@ abline(deltabynearest3)
 summary(deltabynearest3)
 ```
 
-So there is a correlation between neighbour distance and our calculated delta,
-but with an R^2 of about 0.21 it's not super strong. Furthermore it could also
-be explained by Davi placing more landmarks in areas where he is more certain.
+So there is a correlation between neighbour distance and our calculated delta;
+with an R^2 of about 0.4 it's reasonably strong. This may be explained by
+Davi placing more landmarks in areas where he is more certain.
 
 Perhaps the ideal thing would be to find a set of landmarks on one side of the
 brain and then find exactly the same landmarks on the other side of the brain.

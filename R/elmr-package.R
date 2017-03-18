@@ -56,7 +56,7 @@
 #'
 #'   }
 #'
-#'   You can set these options in your \code{\link[base]{Rprofile}} file.
+#'   You can set this option in your \code{\link[base]{Rprofile}} file.
 #'
 #' @examples
 #' # position of antennal lobe glomeruli "V" in JFRC2013 template brain

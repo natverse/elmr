@@ -1,0 +1,85 @@
+---
+title: "Making Surface Meshes"
+author: "Gregory Jefferis"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Making surface meshes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+## Intro
+You can use 3D data pulled from CATMAID to create meshes. You can also do the 
+same with light level data and then transform into FAFB space.
+
+### Setup
+First load main packages
+```{r, message=FALSE}
+library(elmr)
+cl=try(catmaid_login())
+catmaid_available=inherits(cl, "catmaid_connection")
+library(knitr)
+opts_chunk$set(eval=catmaid_available)
+```
+
+In order to run some of this example we need to ensure that we:
+
+* can login to the FAFB catmaid server
+
+We will most our examples run conditionally based on this.
+
+```{r, message=FALSE}
+library(dplyr)
+library(alphashape3d)
+library(rgl)
+# set up for 3d plots based on rgl package
+rgl::setupKnitr()
+# frontal view
+view3d(userMatrix=rgl::rotationMatrix(angle = pi, 1,0,0), zoom=0.8)
+```
+
+
+## Selecting synapses 
+
+We're going to use synapses between PNs and KCs to define a mesh
+
+```{r, message=FALSE}
+pntokc = catmaid_get_connectors_between(pre_skids = 'annotation:^PN$',
+                                        post_skids = 'annotation:^KC$')
+# select 3d position of presynaptic connectors
+pntokc %>% 
+  distinct(connector_id, .keep_all=TRUE) %>%
+  select(connector_x:connector_z) %>%
+  data.matrix -> cxyz
+```
+
+Now we can make an alphashape based on those connector positions. We need to set
+the alpha value in the ashape3d function to something sensible based on the 
+spatial scale of our data - he we use alpha=6000 nm.
+
+```{r}
+calyx.a=ashape3d(cxyz, alpha = 6000)
+calyx=as.mesh3d(calyx.a)
+```
+
+We can compare the resultant mesh with the location of the connectors
+
+```{r, rgl=TRUE}
+wire3d(calyx)
+points3d(cxyz, col='red')
+points3d(pntokc[,c('post_node_x','post_node_y','post_node_z')], col='blue')
+```
+
+We can also compare with the mesh supplied with elmr
+
+```{r, rgl=TRUE}
+wire3d(calyx)
+plot3d(FAFB13NP.surf, "MB_CA_R", alpha=.3)
+view3d(userMatrix=rgl::rotationMatrix(angle = pi, 1,0,0), zoom=0.8)
+```
+And in dorsal view as well
+```{r, rgl=TRUE}
+wire3d(calyx)
+plot3d(FAFB13NP.surf, "MB_CA_R", alpha=.3)
+view3d(userMatrix=rgl::rotationMatrix(angle = -pi/2, 1,0,0), zoom=0.8)
+```

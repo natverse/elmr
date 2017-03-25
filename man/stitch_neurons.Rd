@@ -46,4 +46,3 @@ plot3d(pn57334.whole)
 \seealso{
 \code{\link{stitch_neuron}}
 }
-

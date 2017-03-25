@@ -46,4 +46,3 @@ Note that we use the \bold{nat} convention for naming the
 \seealso{
 \code{\link[nat]{reglist}}, \code{\link[nat]{read.landmarks}}
 }
-

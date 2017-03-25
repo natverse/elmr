@@ -35,4 +35,3 @@ spheres3d(xyz, col = ifelse(elm.landmarks$Use, "green", 'red'), radius = 4)
 See \url{https://github.com/saalfeldlab/elm} for the original source of the
 landmarks.
 }
-

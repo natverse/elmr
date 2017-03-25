@@ -21,4 +21,3 @@ into the neuron's point array.}
 \description{
 Return indices of points in a neuron distal to a given node
 }
-

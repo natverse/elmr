@@ -19,4 +19,3 @@ plot(dense_core_neurons)
 dense_core_neurons <- read.neurons.catmaid(c(713968, 822008))
 }
 }
-

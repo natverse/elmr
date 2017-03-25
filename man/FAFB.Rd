@@ -3,9 +3,9 @@
 \docType{data}
 \name{FAFB}
 \alias{FAFB}
-\alias{FAFB11}
-\alias{FAFB12}
 \alias{FAFB13}
+\alias{FAFB12}
+\alias{FAFB11}
 \title{templatebrain for assembled FAFB full adult female brain EM volume}
 \description{
 \bold{FAFB} \code{\link[nat.templatebrains]{templatebrain}}
@@ -37,4 +37,3 @@ boundingbox(FAFB13)
 \code{\link[nat.templatebrains]{templatebrain}},
   \code{\link{xform_brain}}
 }
-

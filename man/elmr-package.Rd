@@ -2,8 +2,8 @@
 % Please edit documentation in R/elmr-package.R
 \docType{package}
 \name{elmr-package}
-\alias{elmr}
 \alias{elmr-package}
+\alias{elmr}
 \title{Bridge light and EM flybrain datasets}
 \description{
 \bold{elmr} builds on the \bold{nat} and \bold{catmaid} packages to provide
@@ -70,6 +70,7 @@ collaborators).
 
   You can set these options in your \code{\link{Rprofile}} file.
 }
+
 \examples{
 # position of antennal lobe glomeruli "V" in JFRC2013 template brain
 vgloms.jfrc2013=data.frame(X=c(316,229),
@@ -91,4 +92,3 @@ kcs13.fafb=xform_brain(kcs20[1:3], sample=FCWB, reference=FAFB13)
 
 }
 \keyword{package}
-

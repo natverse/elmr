@@ -55,4 +55,3 @@ plot(da1pns.fix, col='black', WithNodes=FALSE, add=TRUE)
 \seealso{
 \code{\link[nat]{smooth_neuron}}
 }
-

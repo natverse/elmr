@@ -46,4 +46,3 @@ plot3d(FAFB13NP.surf, "^AL", alpha=0.4)
 \seealso{
 \code{\link{FAFB13}}, \code{\link{FAFB13}}
 }
-

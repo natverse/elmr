@@ -83,4 +83,3 @@ plot3d(PN27884f, hits=1)
   \code{\link[doParallel]{registerDoParallel}} for setting spreading load
   across cores.
 }
-

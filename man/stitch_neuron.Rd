@@ -21,4 +21,3 @@ Note that for CATMAID neurons the neuron with the soma tag will be
 \seealso{
 \code{\link{stitch_neurons}}
 }
-

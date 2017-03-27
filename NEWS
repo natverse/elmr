@@ -1,6 +1,12 @@
+elmr 0.4.2
+==========
+* update to 170303_ELM_landmarks_v14 landmarks (including transforming surfaces)
+* first version of unspike function
+* new vignette - making meshes programmatically
+* insist on nat >= 1.8.8
+
 elmr 0.4.1
 ==========
-
 * Add functions to summarise tracer effort
 
 elmr 0.4

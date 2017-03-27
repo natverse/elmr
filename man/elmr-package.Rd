@@ -68,7 +68,7 @@ collaborators).
 
   }
 
-  You can set these options in your \code{\link{Rprofile}} file.
+  You can set this option in your \code{\link[base]{Rprofile}} file.
 }
 
 \examples{

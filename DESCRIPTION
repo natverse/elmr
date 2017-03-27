@@ -14,7 +14,7 @@ Depends:
     nat.nblast,
     catmaid
 Imports:
-    nat,
+    nat (>= 1.8.8),
     rgl,
     nat.templatebrains (>= 0.8),
     nabor,

@@ -12,6 +12,11 @@
 #'
 #'   Handling consecutive points or end points should be a fairly
 #'   straightforward addition. Branch points require a litle more thought.
+#'
+#' @section node ids and connectors: unspike has the side effect of losing the
+#'   catmaid node ids in the output neuron. connector/tag information is
+#'   retained although the node ids are translated to the new numbering system.
+#'
 #' @param x A neuron, or neuronlist
 #' @param threshold A numeric threshold for an XY distance that would be
 #'   considered suspicious.
@@ -31,6 +36,14 @@
 #' }
 #' @seealso \code{\link[nat]{smooth_neuron}}
 unspike <- function(x, threshold, ...) UseMethod('unspike')
+
+
+#' @export
+#' @importFrom catmaid copy_tags_connectors
+unspike.catmaidneuron <- function(x, threshold, ...) {
+  r = NextMethod()
+  copy_tags_connectors(new=r, old=x)
+}
 
 #' @export
 #' @rdname unspike

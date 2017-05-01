@@ -1,9 +1,16 @@
-sudo: true
 language: r
+sudo: false
+dist: trusty
+cache:
+  packages: true
+  directories:
+  - $HOME/usr/local
 warnings_are_errors: true
 before_install:
-  - bash <(wget -q -O- http://neuro.debian.net/_files/neurodebian-travis.sh)
-  - sudo apt-get install cmtk --no-install-recommends
+  - curl -OL https://raw.githubusercontent.com/jefferis/nat/master/build-cmtk.sh
+  - bash build-cmtk.sh
+before_script:
+  - export PATH=$PATH:$HOME/usr/local/bin
 r_binary_packages:
   - RcppEigen
   - igraph
@@ -21,4 +28,3 @@ env:
   global:
     - secure: U5L4JHPa5/mpcDjL60XZVDXtT/nQe4lyhCG6pIj7dF8N6iLRO/vh0ChPxZsBhunKaNMnu59MEqn9nvp09kodV7DzW1nNV+UVi2ZtXpAFejHOK6T4d31vGShCnoM5BkTeMp7exX8yfKWw3Zw0JY47sHTLFihYbwUFqsus0aqT0hIK
     - RGL_USE_NULL=TRUE
-cache: packages

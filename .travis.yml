@@ -11,8 +11,6 @@ before_install:
   - bash build-cmtk.sh
 before_script:
   - export PATH=$PATH:$HOME/usr/local/bin
-r_build_args: --no-build-vignettes --no-manual --no-resave-data
-r_check_args: --no-manual
 r_binary_packages:
   - RcppEigen
   - igraph

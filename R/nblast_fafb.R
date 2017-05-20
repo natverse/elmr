@@ -103,7 +103,8 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
       stop("Please install the doParallel package to use multiple cores with nblast!")
     doParallel::registerDoParallel(cores=getOption('elmr.nblast.cores'))
   }
-  n=fetchn_fafb(skids=skids, mirror=mirror, conn=conn, reference = reference)
+  if (is.neuronlist(skids)) n = skids
+  else n=fetchn_fafb(skids=skids, mirror=mirror, conn=conn, reference = reference)
   # store the templatebrain for later
   tb=regtemplate(n)
   if(length(n)>1) n=elmr::stitch_neurons(n)

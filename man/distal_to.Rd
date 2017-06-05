@@ -23,13 +23,15 @@ Return indices of points in a neuron distal to a given node
 }
 \examples{
 \donttest{
-# Fetch a finished DL1 projection neuron
+## Fetch a finished DL1 projection neuron
 finished_pns=catmaid_get_neuronnames('annotation:^LH_DONE')
 # should only be one neuron but pick first just in case
 dl1skid=names(grep('DL1', finished_pns, value = TRUE))[1]
 dl1=read.neuron.catmaid(dl1skid)
 
-# subset to part of neuron distal to a tag "SCHLEGEL_LH"
+## subset to part of neuron distal to a tag "SCHLEGEL_LH"
+# nb distal_to can accept either the PointNo vertex id or raw index as a
+# pivot point
 dl1.lh=subset(dl1, distal_to(dl1,node.pointno = dl1$tags$SCHLEGEL_LH))
 plot(dl1,col='blue', WithNodes = FALSE)
 plot(dl1.lh, col='red', WithNodes = FALSE, add=TRUE)

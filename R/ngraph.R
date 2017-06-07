@@ -8,6 +8,7 @@
 #' @param ... Additional
 #' @export
 #' @importFrom nat rootpoints
+#' @seealso \code{\link[nat]{subset.neuron}}, \code{\link[nat]{prune}}
 #' @examples
 #' \donttest{
 #' ## Fetch a finished DL1 projection neuron

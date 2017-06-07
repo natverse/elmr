@@ -37,3 +37,6 @@ plot(dl1,col='blue', WithNodes = FALSE)
 plot(dl1.lh, col='red', WithNodes = FALSE, add=TRUE)
 }
 }
+\seealso{
+\code{\link[nat]{subset.neuron}}, \code{\link[nat]{prune}}
+}

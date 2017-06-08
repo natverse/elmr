@@ -2,7 +2,7 @@ reference:
 - title: Package Help
   desc: Provides an overview of key functions and classes
   contents:
-  - elmr-package
+  - "`elmr-package`"
 - title: Fetching and searching neurons
   desc: Fetch and transform neurons or NBLAST them
   contents:

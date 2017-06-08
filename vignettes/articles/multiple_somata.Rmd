@@ -1,0 +1,121 @@
+---
+title: "Finding Neurons with Multiple Somata"
+author: "Gregory Jefferis"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+---
+## Intro
+Occasionally CATMAID users add the soma tag multiple times in error. We can
+find such neurons and generate catmaid URLs to inspect them.
+
+### Setup
+First load main packages
+```{r, message=FALSE}
+library(elmr)
+cl=try(catmaid_login())
+catmaid_available=inherits(cl, "catmaid_connection")
+library(knitr)
+# only run if catmaid available
+# and cache so only run once per day
+opts_chunk$set(eval=inherits(cl, "catmaid_connection"),cache.extra=Sys.Date())
+library(dplyr)
+rgl::setupKnitr()
+```
+
+## Finding neurons with multiple somata
+First let's fetch information about all the labels (aka tags) applied to nodes
+in the current project.
+```{r, cache=FALSE}
+label_stats=catmaid_get_label_stats()
+```
+
+Now let's restrict to cases where there are multiple soma tags per skeleton
+```{r, munge soma tags}
+# select soma labels
+soma_labels = label_stats %>%
+  filter(labelName == 'soma') %>%
+  group_by(skeletonID)
+
+# select skeleton ids for neurons with multiple cell bodies
+multiple_soma = soma_labels %>%
+  count(skeletonID) %>%
+  filter(n > 1) %>%
+  arrange(desc(n))
+  multiple_soma_info = soma_labels %>%
+  filter(skeletonID %in% multiple_soma$skeletonID)
+
+multiple_soma_info = soma_labels %>% 
+  filter(skeletonID%in% multiple_soma$skeletonID)
+```
+
+## XYZ position of the nodes we picked
+
+```{r, cache=FALSE}
+# we don't have a built in function to get the xyz coords of a node yet
+node_xyz <- function(tnid) catmaid_fetch(
+    "1/node/get_location",
+    body = list(tnid = tnid),
+    simplifyVector = T,
+    include_headers = F
+)
+# Vectorize automatically converts a scalar function (taking one input) to 
+# a vectorised one
+vnode_xyz=Vectorize(node_xyz)
+# note that we need to transpose the results of vnode_xyz to get X,Y,Z columns
+multiple_soma_info[,c("X", "Y", "Z")]=t(vnode_xyz(multiple_soma_info$treenodeID))[,-1]
+```
+
+Now let's calculate the distance from the neuropil surface
+
+```{r, neuropil distance}
+multiple_soma_info$d=pointsinside(xyzmatrix(multiple_soma_info),
+                                  FAFB13.surf, rval = 'distance')
+multiple_soma_info %>% 
+  arrange(skeletonID, d) %>% 
+  group_by(skeletonID) %>% 
+  mutate(rank=row_number()) -> multiple_soma_info
+kable(multiple_soma_info)
+```
+This lets us see that in some cases there are two soma tags outside the neuropil
+(negative d) and closes together - these are probably duplicates -  whereas in 
+other cases it is likely that points were added in error.
+We can also plot the points colouring them by their rank order (most external 
+first). 
+
+```{r, rgl=TRUE, fig.width=8, fig.height=6}
+# make a colour palette with as many entries as the maximum number of soma 
+# tags in a neuron
+pal=rainbow(max(multiple_soma_info$rank))
+multiple_soma_info %>% 
+  with(expr = spheres3d(X,Y,Z, col=pal[rank], rad=2000))
+plot3d(FAFB13)
+par3d(zoom=.6)
+```
+
+Now we can use this information to construct an url for each node.  
+
+```{r, make urls}
+multiple_soma_info %>%
+  rowwise() %>%
+  mutate(url = open_fafb(
+    cbind(X, Y, Z),
+    active_skeleton_id = skeletonID,
+    active_node_id = treenodeID,
+    open = FALSE
+  )) -> multiple_soma_info
+
+```
+
+## Google sheet
+Let's make a google sheet with all those urls that we can then review manually:
+
+```{r, googlesheet, eval=FALSE}
+library(googlesheets)
+tf=tempfile(fileext = '.tsv')
+multiple_soma_info %>% 
+  arrange(skeletonID, d) %>% 
+  group_by(skeletonID) %>%
+  write.table(file=tf, sep="\t", row.names = FALSE)
+gs_upload(tf, sheet_title = 'multi_soma_neurons')
+unlink(tf)
+```

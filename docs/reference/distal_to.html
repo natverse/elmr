@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -81,30 +83,62 @@
     <p>Return indices of points in a neuron distal to a given node</p>
     
 
-    <pre><span class='fu'>distal_to</span>(<span class='no'>x</span>, <span class='kw'>node.idx</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>node.pointno</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>root</span> <span class='kw'>=</span> <span class='fu'>rootpoints</span>(<span class='no'>x</span>),
+    <pre class="usage"><span class='fu'>distal_to</span>(<span class='no'>x</span>, <span class='kw'>node.idx</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>node.pointno</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>root</span> <span class='kw'>=</span> <span class='fu'>rootpoints</span>(<span class='no'>x</span>),
   <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>x</dt>
-      <dd>A neuron</dd>
-      <dt>node.idx, node.pointno</dt>
-      <dd>The id of node beyond which distal points will
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>A neuron</p></td>
+    </tr>
+    <tr>
+      <th>node.idx, node.pointno</th>
+      <td><p>The id of node beyond which distal points will
 be selected. <code>node.idx</code> defines the integer index (counting from 1)
-into the neuron&#39;s point array.</dd>
-      <dt>root</dt>
-      <dd>The root node of the neuron for the purpose of selection.</dd>
-      <dt>...</dt>
-      <dd>Additional</dd>
-    </dl>
+into the neuron's point array.</p></td>
+    </tr>
+    <tr>
+      <th>root</th>
+      <td><p>The root node of the neuron for the purpose of selection.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='http://www.rdocumentation.org/packages/nat/topics/subset.neuron'>subset.neuron</a></code>, <code><a href='http://www.rdocumentation.org/packages/nat/topics/prune'>prune</a></code></p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'>## Fetch a finished DL1 projection neuron</span>
+<span class='no'>finished_pns</span><span class='kw'>=</span><span class='fu'>catmaid_get_neuronnames</span>(<span class='st'>'annotation:^LH_DONE'</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: 'rbind.pages' is deprecated.</span>
+#&gt; <span class='warning'>Use 'rbind_pages' instead.</span>
+#&gt; <span class='warning'>See help("Deprecated")</span></div><div class='input'><span class='co'># should only be one neuron but pick first just in case</span>
+<span class='no'>dl1skid</span><span class='kw'>=</span><span class='fu'>names</span>(<span class='fu'>grep</span>(<span class='st'>'DL1'</span>, <span class='no'>finished_pns</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))[<span class='fl'>1</span>]
+<span class='no'>dl1</span><span class='kw'>=</span><span class='fu'>read.neuron.catmaid</span>(<span class='no'>dl1skid</span>)
+
+<span class='co'>## subset to part of neuron distal to a tag "SCHLEGEL_LH"</span>
+<span class='co'># nb distal_to can accept either the PointNo vertex id or raw index as a</span>
+<span class='co'># pivot point</span>
+<span class='no'>dl1.lh</span><span class='kw'>=</span><span class='fu'>subset</span>(<span class='no'>dl1</span>, <span class='fu'>distal_to</span>(<span class='no'>dl1</span>,<span class='kw'>node.pointno</span> <span class='kw'>=</span> <span class='no'>dl1</span>$<span class='no'>tags</span>$<span class='no'>SCHLEGEL_LH</span>))
+<span class='fu'>plot</span>(<span class='no'>dl1</span>,<span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>dl1.lh</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><img src='distal_to-5.png' alt='' width='540' height='400' /><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

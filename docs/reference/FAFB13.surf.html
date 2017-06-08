@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -79,9 +81,9 @@
 
     
     <p><code>FAFB13.surf</code> describes the neuropil surface of the FAFB13
-  brain.</p>
+  brain.
 
-    <p><code>FAFB13NP.surf</code> is a surface object for the Ito et al
+    <code>FAFB13NP.surf</code> is a surface object for the Ito et al
   (2014) neuropil regions in FAFB13 space</p>
     
 
@@ -94,12 +96,12 @@
   they are not defined from FAFB13 itself but transformed using bridging
   registrations, they are only as good as those bridging registrations. In
   particular although the <code><a href='elm.landmarks.html'>elm.landmarks</a></code> used to bridge
-  FAFB13-JFRC2013 are well defined in the fly&#39;s right brain hemisphere, they
+  FAFB13-JFRC2013 are well defined in the fly's right brain hemisphere, they
   are somewhat less dense in other areas. Therefore these surfaces are clearly
   likely less accurate in the left brain hemisphere and show significanct
   displacements in the optic lobes. Note that updated landmarks in March 2017
   significantly improved the situation.</p>
-    <p>The acronyms for the neuropil regions are those used in Ito et al. 2014 and
+<p>The acronyms for the neuropil regions are those used in Ito et al. 2014 and
   can also be looked up at <a href = 'http://virtualflybrain.org'>http://virtualflybrain.org</a>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -111,31 +113,31 @@
     <pre class="examples"><div class='input'><span class='fu'>boundingbox</span>(<span class='no'>FAFB13.surf</span>)</div><div class='output co'>#&gt;          [,1]     [,2]     [,3]
 #&gt; [1,] 286193.4 156861.7    726.1
 #&gt; [2,] 913545.7 467546.8 235903.3
-#&gt; attr(,&quot;class&quot;)
-#&gt; [1] &quot;boundingbox&quot;</div><div class='input'><span class='no'>FAFB13NP.surf</span>$<span class='no'>RegionList</span></div><div class='output co'>#&gt;  [1] &quot;AME_R&quot;    &quot;LO_R&quot;     &quot;NO&quot;       &quot;BU_R&quot;     &quot;PB&quot;       &quot;LH_R&quot;    
-#&gt;  [7] &quot;LAL_R&quot;    &quot;SAD&quot;      &quot;CAN_R&quot;    &quot;AMMC_R&quot;   &quot;ICL_R&quot;    &quot;VES_R&quot;   
-#&gt; [13] &quot;IB_R&quot;     &quot;ATL_R&quot;    &quot;CRE_R&quot;    &quot;MB_PED_R&quot; &quot;MB_VL_R&quot;  &quot;MB_ML_R&quot; 
-#&gt; [19] &quot;FLA_R&quot;    &quot;LOP_R&quot;    &quot;EB&quot;       &quot;AL_R&quot;     &quot;ME_R&quot;     &quot;FB&quot;      
-#&gt; [25] &quot;SLP_R&quot;    &quot;SIP_R&quot;    &quot;SMP_R&quot;    &quot;AVLP_R&quot;   &quot;PVLP_R&quot;   &quot;IVLP_R&quot;  
-#&gt; [31] &quot;PLP_R&quot;    &quot;AOTU_R&quot;   &quot;GOR_R&quot;    &quot;MB_CA_R&quot;  &quot;SPS_R&quot;    &quot;IPS_R&quot;   
-#&gt; [37] &quot;SCL_R&quot;    &quot;EPA_R&quot;    &quot;GNG&quot;      &quot;PRW&quot;      &quot;GA_R&quot;     &quot;AME_L&quot;   
-#&gt; [43] &quot;LO_L&quot;     &quot;BU_L&quot;     &quot;LH_L&quot;     &quot;LAL_L&quot;    &quot;CAN_L&quot;    &quot;AMMC_L&quot;  
-#&gt; [49] &quot;ICL_L&quot;    &quot;VES_L&quot;    &quot;IB_L&quot;     &quot;ATL_L&quot;    &quot;CRE_L&quot;    &quot;MB_PED_L&quot;
-#&gt; [55] &quot;MB_VL_L&quot;  &quot;MB_ML_L&quot;  &quot;FLA_L&quot;    &quot;LOP_L&quot;    &quot;AL_L&quot;     &quot;ME_L&quot;    
-#&gt; [61] &quot;SLP_L&quot;    &quot;SIP_L&quot;    &quot;SMP_L&quot;    &quot;AVLP_L&quot;   &quot;PVLP_L&quot;   &quot;IVLP_L&quot;  
-#&gt; [67] &quot;PLP_L&quot;    &quot;AOTU_L&quot;   &quot;GOR_L&quot;    &quot;MB_CA_L&quot;  &quot;SPS_L&quot;    &quot;IPS_L&quot;   
-#&gt; [73] &quot;SCL_L&quot;    &quot;EPA_L&quot;    &quot;GA_L&quot;    </div><div class='input'><span class='co'>## Not run: ------------------------------------</span>
-<span class='co'># plot3d(FAFB13.surf)</span>
-<span class='co'># # a short cut which plots the surface in semi-transparent grey.</span>
-<span class='co'># clear3d()</span>
-<span class='co'># plot3d(FAFB13)</span>
-<span class='co'># </span>
-<span class='co'># # plot right lateral horn</span>
-<span class='co'># plot3d(FAFB13NP.surf, "LH_R", alpha=0.4)</span>
-<span class='co'># # plot both antennal lobe surfaces (second arg is regex if no exact match)</span>
-<span class='co'># # note use of initial anchor (^) to avoid matches to LAL</span>
-<span class='co'># plot3d(FAFB13NP.surf, "^AL", alpha=0.4)</span>
-<span class='co'>## ---------------------------------------------</span></div></pre>
+#&gt; attr(,"class")
+#&gt; [1] "boundingbox"</div><div class='input'><span class='no'>FAFB13NP.surf</span>$<span class='no'>RegionList</span></div><div class='output co'>#&gt;  [1] "AME_R"    "LO_R"     "NO"       "BU_R"     "PB"       "LH_R"    
+#&gt;  [7] "LAL_R"    "SAD"      "CAN_R"    "AMMC_R"   "ICL_R"    "VES_R"   
+#&gt; [13] "IB_R"     "ATL_R"    "CRE_R"    "MB_PED_R" "MB_VL_R"  "MB_ML_R" 
+#&gt; [19] "FLA_R"    "LOP_R"    "EB"       "AL_R"     "ME_R"     "FB"      
+#&gt; [25] "SLP_R"    "SIP_R"    "SMP_R"    "AVLP_R"   "PVLP_R"   "IVLP_R"  
+#&gt; [31] "PLP_R"    "AOTU_R"   "GOR_R"    "MB_CA_R"  "SPS_R"    "IPS_R"   
+#&gt; [37] "SCL_R"    "EPA_R"    "GNG"      "PRW"      "GA_R"     "AME_L"   
+#&gt; [43] "LO_L"     "BU_L"     "LH_L"     "LAL_L"    "CAN_L"    "AMMC_L"  
+#&gt; [49] "ICL_L"    "VES_L"    "IB_L"     "ATL_L"    "CRE_L"    "MB_PED_L"
+#&gt; [55] "MB_VL_L"  "MB_ML_L"  "FLA_L"    "LOP_L"    "AL_L"     "ME_L"    
+#&gt; [61] "SLP_L"    "SIP_L"    "SMP_L"    "AVLP_L"   "PVLP_L"   "IVLP_L"  
+#&gt; [67] "PLP_L"    "AOTU_L"   "GOR_L"    "MB_CA_L"  "SPS_L"    "IPS_L"   
+#&gt; [73] "SCL_L"    "EPA_L"    "GA_L"    </div><div class='input'><span class='fu'>not_run</span>({
+  <span class='fu'>plot3d</span>(<span class='no'>FAFB13.surf</span>)
+  <span class='co'># a short cut which plots the surface in semi-transparent grey.</span>
+  <span class='fu'>clear3d</span>()
+  <span class='fu'>plot3d</span>(<span class='no'>FAFB13</span>)
+
+  <span class='co'># plot right lateral horn</span>
+  <span class='fu'>plot3d</span>(<span class='no'>FAFB13NP.surf</span>, <span class='st'>"LH_R"</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.4</span>)
+  <span class='co'># plot both antennal lobe surfaces (second arg is regex if no exact match)</span>
+  <span class='co'># note use of initial anchor (^) to avoid matches to LAL</span>
+  <span class='fu'>plot3d</span>(<span class='no'>FAFB13NP.surf</span>, <span class='st'>"^AL"</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.4</span>)
+})</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

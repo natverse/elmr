@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -79,9 +81,9 @@
 
     
     <p>These are used to map locations in EM (FAFB) space to JFRC2013 (aka DPX)
-space, in conjunction with a thin plate spline library.</p>
+space, in conjunction with a thin plate spline library.
 
-    <p><code>elm.landmarks.12</code> contains the landmark positions used for
+    <code>elm.landmarks.12</code> contains the landmark positions used for
   the FAFB12 assembly as a historical record.</p>
     
 
@@ -91,7 +93,7 @@ space, in conjunction with a thin plate spline library.</p>
     <p>X,Y,Z correspond to locations in JFRC2013 template brain. However,
   they are in raw voxel coordinates. In contrast, X1,Y1,Z1 (which contain
   locations in FAFB space) are in nm.</p>
-    <p>The current iteration of these landmarks are in FAFB13 space</p>
+<p>The current iteration of these landmarks are in FAFB13 space</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -107,14 +109,14 @@ landmarks.</p>
 #&gt; 4  Pt-6 TRUE 867.0125  31.91925 276.2234 670999.9 179097.9  67561.69
 #&gt; 5  Pt-7 TRUE 935.2109 234.22952 351.5181 702703.9 251846.4 127865.89
 #&gt; 6  Pt-8 TRUE 935.2109 232.62607 405.5008 702633.2 250322.0 162468.60</div><div class='input'>
-<span class='co'>## Not run: ------------------------------------</span>
-<span class='co'># # Show landmarks in the context of the JFRC2013 template brain</span>
-<span class='co'># library(nat.flybrains)</span>
-<span class='co'># plot3d(JFRC2013)</span>
-<span class='co'># # note that the landmarks are in raw voxel coordinates and must be scaled</span>
-<span class='co'># xyz=scale(elm.landmarks[,c("X","Y","Z")], scale = 1/voxdims(JFRC2013), center = FALSE)</span>
-<span class='co'># spheres3d(xyz, col = ifelse(elm.landmarks$Use, "green", 'red'), radius = 4)</span>
-<span class='co'>## ---------------------------------------------</span></div></pre>
+<span class='fu'>not_run</span>({
+  <span class='co'># Show landmarks in the context of the JFRC2013 template brain</span>
+  <span class='fu'>library</span>(<span class='no'>nat.flybrains</span>)
+  <span class='fu'>plot3d</span>(<span class='no'>JFRC2013</span>)
+  <span class='co'># note that the landmarks are in raw voxel coordinates and must be scaled</span>
+  <span class='no'>xyz</span><span class='kw'>=</span><span class='fu'>scale</span>(<span class='no'>elm.landmarks</span>[,<span class='fu'>c</span>(<span class='st'>"X"</span>,<span class='st'>"Y"</span>,<span class='st'>"Z"</span>)], <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>1</span>/<span class='fu'>voxdims</span>(<span class='no'>JFRC2013</span>), <span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='fu'>spheres3d</span>(<span class='no'>xyz</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'>ifelse</span>(<span class='no'>elm.landmarks</span>$<span class='no'>Use</span>, <span class='st'>"green"</span>, <span class='st'>'red'</span>), <span class='kw'>radius</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+})</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

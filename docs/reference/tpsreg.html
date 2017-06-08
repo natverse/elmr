@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -79,46 +81,55 @@
 
     
     <p><code>tpsreg</code> creates an object encapsulating a thin plate spine
-  transform mapping a paired landmark set.</p>
+  transform mapping a paired landmark set.
 
-    <p><code>xformpoints.tpsreg</code> enables <code><a href='http://www.rdocumentation.org/packages/nat/topics/xform'>xform</a></code> and
+    <code>xformpoints.tpsreg</code> enables <code><a href='http://www.rdocumentation.org/packages/nat/topics/xform'>xform</a></code> and
   friends to transform 3d vertices (or more complex objects containing 3d
   vertices) using a thin plate spline mapping stored in a <code>tpsreg</code>
   object.</p>
     
 
-    <pre><span class='fu'>tpsreg</span>(<span class='no'>sample</span>, <span class='no'>reference</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>tpsreg</span>(<span class='no'>sample</span>, <span class='no'>reference</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for tpsreg</span>
 <span class='fu'>xformpoints</span>(<span class='no'>reg</span>, <span class='no'>points</span>, <span class='kw'>swap</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>sample, reference</dt>
-      <dd>Matrices defining the sample (or floating) and
-reference (desired target after transformation) spaces. See details.</dd>
-      <dt>...</dt>
-      <dd>additional arguments passed to xformpoints.tpsreg</dd>
-      <dt>reg</dt>
-      <dd>The <code>tpsreg</code> registration object</dd>
-      <dt>points</dt>
-      <dd>The 3D points to transform</dd>
-      <dt>swap</dt>
-      <dd>Whether to change the direction of registration (default of
-<code>NULL</code> checks if reg has a <code>attr(&#39;swap&#39;=TRUE)</code>) otherwise</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>sample, reference</th>
+      <td><p>Matrices defining the sample (or floating) and
+reference (desired target after transformation) spaces. See details.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional arguments passed to xformpoints.tpsreg</p></td>
+    </tr>
+    <tr>
+      <th>reg</th>
+      <td><p>The <code>tpsreg</code> registration object</p></td>
+    </tr>
+    <tr>
+      <th>points</th>
+      <td><p>The 3D points to transform</p></td>
+    </tr>
+    <tr>
+      <th>swap</th>
+      <td><p>Whether to change the direction of registration (default of
+<code>NULL</code> checks if reg has a <code>attr('swap'=TRUE)</code>) otherwise</p></td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Note that we use the <b>nat</b> convention for naming the
   sample/reference space arguments but these actually clash with the
   nomenclature in the underlying <code>Morpho::<a href='http://www.rdocumentation.org/packages/Morpho/topics/tps3d'>tps3d</a></code>
-  function. <ul>
-<li> refmat (Morpho3d) == sample (nat)</p>
-    <p></li>
-<li> tarmat (Morpho3d) == reference (nat)</p>
-    <p></li>
-</ul></p>
+  function.</p><ul>
+<li><p>refmat (Morpho3d) == sample (nat)</p></li>
+<li><p>tarmat (Morpho3d) == reference (nat)</p></li>
+</ul>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

@@ -9,7 +9,7 @@
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -57,7 +57,7 @@
       <h1>Landmarks</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2017-03-27</h4>
+            <h4 class="date">2017-06-08</h4>
           </div>
 
     
@@ -65,11 +65,11 @@
 <div class="contents">
 <div id="intro" class="section level2">
 <h2 class="hasAnchor">
-<html><body><a href="#intro" class="anchor"> </a></body></html>Intro</h2>
+<a href="#intro" class="anchor"></a>Intro</h2>
 <p>One of the core features of elmr is to enable data in the FAFB EM space to be transformed into one of a number of standard light level template brains. This transformation depends on manually selected landmarks. We can inspect these landmarks and to try to</p>
 <div id="setup" class="section level3">
 <h3 class="hasAnchor">
-<html><body><a href="#setup" class="anchor"> </a></body></html>Setup</h3>
+<a href="#setup" class="anchor"></a>Setup</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(elmr)
 <span class="kw">library</span>(knitr)
 opts_chunk$<span class="kw">set</span>(<span class="dt">fig.width=</span><span class="dv">5</span>, <span class="dt">fig.height=</span><span class="dv">5</span>)
@@ -81,7 +81,7 @@ rgl::<span class="kw">setupKnitr</span>()
 </div>
 <div id="landmarks" class="section level2">
 <h2 class="hasAnchor">
-<html><body><a href="#landmarks" class="anchor"> </a></body></html>Landmarks</h2>
+<a href="#landmarks" class="anchor"></a>Landmarks</h2>
 <p>The standard landmarks used by elmr were specified by Davi Bock on the FAFB and JFRC2013 brains. We can plot the landmarks in the context of the JFRC2013 brain as follows.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot3d</span>(JFRC2013)
 <span class="co"># note that the landmarks are in raw voxel coordinates and must be scaled</span>
@@ -93,7 +93,7 @@ xyz=<span class="kw">as.data.frame</span>(xyz)
 </div>
 <div id="landmamarks-based-transform" class="section level2">
 <h2 class="hasAnchor">
-<html><body><a href="#landmamarks-based-transform" class="anchor"> </a></body></html>Landmamarks based transform</h2>
+<a href="#landmamarks-based-transform" class="anchor"></a>Landmamarks based transform</h2>
 <p>The standard <code>elm.landmarks</code> set is used within to the elmr package to register a transformation that can map FAFB-&gt;JFRC2013 space in conjunction with the <code>xform_brain</code> functions provided by the <code>nat.templatebrains</code> packages.</p>
 <p>Let’s first look at the FAFB landmarks</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note that these positions are in nm units and do not need scaling</span>

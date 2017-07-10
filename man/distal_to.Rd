@@ -14,7 +14,9 @@ distal_to(x, node.idx = NULL, node.pointno = NULL, root = rootpoints(x),
 be selected. \code{node.idx} defines the integer index (counting from 1)
 into the neuron's point array.}
 
-\item{root}{The root node of the neuron for the purpose of selection.}
+\item{root}{The root node of the neuron for the purpose of selection. You
+will rarely need to change this from the default value
+(\code{rootpoints(x)}).}
 
 \item{...}{Additional}
 }

@@ -4,7 +4,9 @@
 #' @param node.idx,node.pointno The id of node beyond which distal points will
 #'   be selected. \code{node.idx} defines the integer index (counting from 1)
 #'   into the neuron's point array.
-#' @param root The root node of the neuron for the purpose of selection.
+#' @param root The root node of the neuron for the purpose of selection. You
+#'   will rarely need to change this from the default value
+#'   (\code{rootpoints(x)}).
 #' @param ... Additional
 #' @export
 #' @importFrom nat rootpoints

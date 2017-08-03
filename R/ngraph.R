@@ -3,11 +3,15 @@
 #' @param x A neuron
 #' @param node.idx,node.pointno The id of node beyond which distal points will
 #'   be selected. \code{node.idx} defines the integer index (counting from 1)
-#'   into the neuron's point array.
-#' @param root The root node of the neuron for the purpose of selection. You
-#'   will rarely need to change this from the default value
-#'   (\code{rootpoints(x)}).
-#' @param ... Additional
+#'   into the neuron's point array whereas \code{node.pointno} matches the
+#'   PointNo column which will be the catmaid id for a node.
+#' @param root.idx,root.pointno The root node of the neuron for the purpose of
+#'   selection. You will rarely need to change this from the default value. See
+#'   \code{node} argument for the difference between \code{root.idx} and
+#'   \code{root.pointno} forms.
+#' @return Integer 1-based indices into the point array of points that are
+#'   distal to the specified node when traversing the neuron from the root to
+#'   that node.
 #' @export
 #' @importFrom nat rootpoints
 #' @seealso \code{\link[nat]{subset.neuron}}, \code{\link[nat]{prune}}
@@ -26,19 +30,27 @@
 #' plot(dl1,col='blue', WithNodes = FALSE)
 #' plot(dl1.lh, col='red', WithNodes = FALSE, add=TRUE)
 #' }
-distal_to <- function(x, node.idx=NULL, node.pointno=NULL, root=rootpoints(x),
-                      ...) {
+distal_to <- function(x, node.idx=NULL, node.pointno=NULL, root.idx=NULL,
+                      root.pointno=NULL) {
   if(is.null(node.idx)) {
     if(is.null(node.pointno))
       stop("At least one of node.idx or node.pointno must be supplied")
-    node.idx=pmatch(node.pointno, x$d$PointNo)
+    node.idx=match(node.pointno, x$d$PointNo)
     if(is.na(node.idx))
       stop("Invalid node.pointno. It should match an entry in x$d$PointNo!")
   }
+  if(is.null(root.idx) && is.null(root.pointno)) {
+    g=as.ngraph(x)
+  } else {
+    if(!is.null(root.pointno))
+      root.idx=match(root.pointno, x$d$PointNo)
+    if(length(root.idx)>1)
+      stop("A single unique root point must be supplied")
+    # we need to re-root the graph onto the supplied root
+    gorig=as.ngraph(x)
+    g=nat:::as.directed.usingroot(gorig, root = root.idx)
+  }
 
-  if(length(root)>1) stop("A single unique root point must be supplied")
-
-  g=as.ngraph(x)
   gdfs=igraph::dfs(g, root=node.idx, unreachable = FALSE)
   as.integer(gdfs$order)[!is.na(gdfs$order)]
 }

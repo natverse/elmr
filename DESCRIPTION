@@ -32,7 +32,8 @@ Suggests:
     doParallel,
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    alphashape3d
 URL: https://github.com/jefferis/elmr
 BugReports: https://github.com/jefferis/elmr/issues
 Remotes: jefferis/nat,

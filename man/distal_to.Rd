@@ -4,21 +4,26 @@
 \alias{distal_to}
 \title{Return indices of points in a neuron distal to a given node}
 \usage{
-distal_to(x, node.idx = NULL, node.pointno = NULL, root = rootpoints(x),
-  ...)
+distal_to(x, node.idx = NULL, node.pointno = NULL, root.idx = NULL,
+  root.pointno = NULL)
 }
 \arguments{
 \item{x}{A neuron}
 
 \item{node.idx, node.pointno}{The id of node beyond which distal points will
 be selected. \code{node.idx} defines the integer index (counting from 1)
-into the neuron's point array.}
+into the neuron's point array whereas \code{node.pointno} matches the
+PointNo column which will be the catmaid id for a node.}
 
-\item{root}{The root node of the neuron for the purpose of selection. You
-will rarely need to change this from the default value
-(\code{rootpoints(x)}).}
-
-\item{...}{Additional}
+\item{root.idx, root.pointno}{The root node of the neuron for the purpose of
+selection. You will rarely need to change this from the default value. See
+\code{node} argument for the difference between \code{root.idx} and
+\code{root.pointno} forms.}
+}
+\value{
+Integer 1-based indices into the point array of points that are
+  distal to the specified node when traversing the neuron from the root to
+  that node.
 }
 \description{
 Return indices of points in a neuron distal to a given node

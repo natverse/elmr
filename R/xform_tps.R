@@ -17,6 +17,38 @@
 #'   }
 #' @export
 #' @seealso \code{\link[nat]{reglist}}, \code{\link[nat]{read.landmarks}}
+#' @examples
+#' \donttest{
+#' ## A full worked example of using landmarks based registration to construct
+#' ## a mirroring registration from one side of the brain to the other.
+#'
+#' # read in set of landmarks defined in FAFB CATMAID
+#' emlandmarks=read.neurons.catmaid('annotation:^GJLandmark')
+#' # Match up L and R pairs
+#' library(stringr)
+#' emlandmarks[,'side']=str_match(emlandmarks[,'name'], "([LR]) Landmark")[,2]
+#' emlandmarks[,'shortname']=str_match(emlandmarks[,'name'], "(.*)([LR]) Landmark.*")[,2]
+#' emlandmarks[,'shortname']=sub("[_ ]+$", "", emlandmarks[,'shortname'])
+#' library(dplyr)
+#' lmpairs=inner_join(
+#'   filter(emlandmarks[,], side=="L"),
+#'   filter(emlandmarks[,], side=="R"),
+#'   by='shortname', suffix=c(".L",".R"))
+#'
+#' # find mean xyz position of each landmark (they are drawn as a little cross)
+#' lmxyz=t(sapply(emlandmarks, function(x) colMeans(xyzmatrix(x))))
+#' # construct thin plate splines registration
+#' mirror_reg=tpsreg(
+#'   lmxyz[as.character(lmpairs$skid.R),],
+#'   lmxyz[as.character(lmpairs$skid.L),]
+#' )
+#' # map RHS DA2 PNs onto left and compare with LHS neurons
+#' da2pns.R=read.neurons.catmaid('name:^PN Glomerulus DA2')
+#' da2pns.L=read.neurons.catmaid('name:Left uPN mALT DA2')
+#' da2pns.R.L=xform(da2pns.R, reg = mirror_reg)
+#' plot(da2pns.L, col='red')
+#' plot(da2pns.R.L, col='blue', add=T)
+#' }
 tpsreg<-function(sample, reference, ...){
   structure(list(refmat=data.matrix(sample), tarmat=data.matrix(reference), ...),
             class='tpsreg')

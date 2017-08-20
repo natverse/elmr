@@ -76,8 +76,9 @@ multiple_soma_info %>%
   mutate(rank=row_number()) -> multiple_soma_info
 kable(multiple_soma_info)
 ```
+
 This lets us see that in some cases there are two soma tags outside the neuropil
-(negative d) and closes together - these are probably duplicates -  whereas in 
+(negative d) and close together - these are probably duplicates - whereas in 
 other cases it is likely that points were added in error.
 We can also plot the points colouring them by their rank order (most external 
 first). 

@@ -15,6 +15,10 @@
 #' # fetch all neurons with an annotation exactly matching "KC" and convert
 #' # to JFRC2013 space
 #' kcs=fetchn_fafb("annotation:^KC$", reference=JFRC2013)
+#'
+#' # supplying a neuronlist, it will mirror and convert the neurons
+#' # to a reference brain
+#' dc_nl=fetchn_fafb(dense_core_neurons, reference=JFRC2013)
 #' }
 fetchn_fafb<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FCWB) {
   if (is.neuronlist(skids)) {

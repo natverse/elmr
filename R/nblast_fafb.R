@@ -2,7 +2,8 @@
 #'
 #' @description \code{fetchn_fafb} is a thin wrapper around the
 #'   \code{catmaid::\link[catmaid]{read.neurons.catmaid}} function with the
-#'   additional convenience of auromating conversion to a reference brain.
+#'   additional convenience of automating conversion to a reference brain.
+#'   Input can also be a pre-downloaded neuronlist.
 #' @export
 #' @inheritParams nblast_fafb
 #' @param reference The reference brain to which the neurons will be
@@ -16,7 +17,8 @@
 #' kcs=fetchn_fafb("annotation:^KC$", reference=JFRC2013)
 #' }
 fetchn_fafb<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FCWB) {
-  x=catmaid::read.neurons.catmaid(skids, conn=conn)
+  if (is.neuronlist(skids)) x = skids
+  else x=catmaid::read.neurons.catmaid(skids, conn=conn)
   xt=xform_brain(x, sample="FAFB13", reference = reference)
   if(mirror) xt=mirror_brain(xt, reference)
   xt
@@ -103,8 +105,7 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
       stop("Please install the doParallel package to use multiple cores with nblast!")
     doParallel::registerDoParallel(cores=getOption('elmr.nblast.cores'))
   }
-  if (is.neuronlist(skids)) n = skids
-  else n=fetchn_fafb(skids=skids, mirror=mirror, conn=conn, reference = reference)
+  n=fetchn_fafb(skids=skids, mirror=mirror, conn=conn, reference = reference)
   # store the templatebrain for later
   tb=regtemplate(n)
   if(length(n)>1) n=elmr::stitch_neurons(n)

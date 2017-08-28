@@ -17,7 +17,8 @@ write_authors(x, ...)
 write_ack(x, ...)
 }
 \arguments{
-\item{skids}{catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})}
+\item{skids}{catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})
+or a neuronlist}
 
 \item{type}{Whether to summarise contributinons towards arbour (nodes) or
 synapses}

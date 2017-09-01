@@ -46,4 +46,21 @@
                                   sample = elmr::FAFB13)
 
 
+  # Define bridging registrations between FAFB13 and FAFB14 based on TEM services
+  # API
+  s14=diag(c(nat::voxdims(elmr::FAFB14),1))
+  FAFB14_FAFB13 <- nat::reglist(solve(s13),
+                                function(xyz, ...) fafb_world_mapper(xyz, from="v13", to='v14', ...),
+                                s14)
+  nat.templatebrains::add_reglist(FAFB14_FAFB13,
+                                  reference = elmr::FAFB14,
+                                  sample = elmr::FAFB13)
+
+  FAFB13_FAFB14 <- nat::reglist(solve(s14),
+                                function(xyz, ...) fafb_world_mapper(xyz, from="v14", to='v13', ...),
+                                s13)
+  nat.templatebrains::add_reglist(FAFB13_FAFB14,
+                                  reference = elmr::FAFB13,
+                                  sample = elmr::FAFB14)
+
 }

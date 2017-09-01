@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -51,10 +52,37 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/articles/multiple_somata.html">Finding Neurons with Multiple Somata</a>
+    </li>
+    <li>
+      <a href="../articles/landmarks.html">Landmarks</a>
+    </li>
+    <li>
+      <a href="../articles/making_meshes.html">Making Surface Meshes</a>
+    </li>
+    <li>
+      <a href="../articles/selecting_random_synapses.html">Selecting random synapses</a>
+    </li>
+    <li>
+      <a href="../articles/xform_brain.html">Transforming between FAFB and light level template brains </a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -143,40 +171,36 @@ nodes, the second for synapses.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='no'>pnsc</span><span class='kw'>=</span><span class='fu'>summarise_contribution</span>(<span class='st'>"annotation:^PN$"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: 'rbind.pages' is deprecated.</span>
-#&gt; <span class='warning'>Use 'rbind_pages' instead.</span>
-#&gt; <span class='warning'>See help("Deprecated")</span></div><div class='input'><span class='fu'>suggest_authorship</span>(<span class='no'>pnsc</span>)</div><div class='output co'>#&gt;     id      n              full_name        pct     cpct action
-#&gt; 1   12 110390          Jacob Ratliff 14.1789588 14.17896   auth
-#&gt; 2   11  80119        bailey harrison 10.2908234 24.46978   auth
-#&gt; 3  117  74829         Ruairi Roberts  9.6113534 34.08114   auth
-#&gt; 4   26  73087             Jawaid Ali  9.3876036 43.46874   auth
-#&gt; 5   13  63201           Addy Adesina  8.1178039 51.58654   auth
-#&gt; 6   54  43030        Ben Koppenhaver  5.5269553 57.11350   auth
-#&gt; 7   25  41750          Lucia Kmecova  5.3625467 62.47605   auth
-#&gt; 8   53  39793      Najla Masoodpanah  5.1111813 67.58723   auth
-#&gt; 9    4  34859           Corey Fisher  4.4774375 72.06466    ack
-#&gt; 10  61  33943         Benjamin Gorko  4.3597826 76.42445    ack
-#&gt; 11  17  28484              Adam John  3.6586055 80.08305    ack
-#&gt; 12  22  20948     Michael Lingelbach  2.6906498 82.77370    ack
-#&gt; 13  50  18735       Shahrozia Imtiaz  2.4064027 85.18010    ack
-#&gt; 14  29  15934         Nadiya Sharifi  2.0466304 87.22673    ack
-#&gt; 15  75  14828          Philipp Ranft  1.9045711 89.13131    ack
-#&gt; 16 109  12046             Alex Bates  1.5472392 90.67855    ack
-#&gt; 17  94  11884       Philipp Schlegel  1.5264313 92.20498    ack
-#&gt; 18  55   9487          Greg Jefferis  1.2185504 93.42353    ack
-#&gt; 19  27   7890             Sri Murthy  1.0134250 94.43695    ack
-#&gt; 20  44   4625             Ala Haddad  0.5940546 95.03101    ack
-#&gt; 21 120   4609 Amelia Edmondson-Stait  0.5919995 95.62301    ack
-#&gt; 22 118   4260         Clement Hallou  0.5471724 96.17018    ack
-#&gt; 23  28   3769           Bindu Gampah  0.4841063 96.65428    ack
-#&gt; 24 123   3281             Fiona Love  0.4214255 97.07571    ack
-#&gt; 25  76   3279           Steven Calle  0.4211686 97.49688    ack
-#&gt; 26   2   3039              Davi Bock  0.3903420 97.88722    ack</div><div class='input'><span class='fu'>write_authors</span>(<span class='no'>pnsc</span>, <span class='kw'>auth</span><span class='kw'>=</span><span class='fl'>3.0</span>)</div><div class='output co'>#&gt; Jacob Ratliff, bailey harrison, Ruairi Roberts, Jawaid Ali, Addy Adesina, Ben Koppenhaver, Lucia Kmecova, Najla Masoodpanah, Corey Fisher, Benjamin Gorko, Adam John</div><div class='input'><span class='fu'>write_ack</span>(<span class='no'>pnsc</span>)</div><div class='output co'>#&gt; We thank Corey Fisher, Benjamin Gorko, Adam John, Michael Lingelbach, Shahrozia Imtiaz, Nadiya Sharifi, Philipp Ranft, Alex Bates, Philipp Schlegel, Greg Jefferis, Sri Murthy, Ala Haddad, Amelia Edmondson-Stait, Clement Hallou, Bindu Gampah, Fiona Love, Steven Calle, Davi Bock for contributing 30.3 % of reconstructed arbour cable.</div><div class='input'>
-<span class='no'>pnsc</span><span class='kw'>=</span><span class='fu'>summarise_contribution</span>(<span class='st'>"annotation:^PN$"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>'synapses'</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: 'rbind.pages' is deprecated.</span>
-#&gt; <span class='warning'>Use 'rbind_pages' instead.</span>
-#&gt; <span class='warning'>See help("Deprecated")</span></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>pnsc</span><span class='kw'>=</span><span class='fu'>summarise_contribution</span>(<span class='st'>"annotation:^PN$"</span>)
+<span class='fu'>suggest_authorship</span>(<span class='no'>pnsc</span>)</div><div class='output co'>#&gt;     id      n              full_name        pct     cpct action
+#&gt; 1   12 110309          Jacob Ratliff 13.5606368 13.56064   auth
+#&gt; 2  117  98851         Ruairi Roberts 12.1520684 25.71271   auth
+#&gt; 3   11  80580        bailey harrison  9.9059561 35.61866   auth
+#&gt; 4   26  73323             Jawaid Ali  9.0138300 44.63249   auth
+#&gt; 5   13  63159           Addy Adesina  7.7643371 52.39683   auth
+#&gt; 6   54  43030        Ben Koppenhaver  5.2898150 57.68664   auth
+#&gt; 7   25  41755          Lucia Kmecova  5.1330752 62.81972   auth
+#&gt; 8   53  39794      Najla Masoodpanah  4.8920032 67.71172    ack
+#&gt; 9    4  34882           Corey Fisher  4.2881554 71.99988    ack
+#&gt; 10  61  33478         Benjamin Gorko  4.1155572 76.11543    ack
+#&gt; 11  17  28464              Adam John  3.4991702 79.61460    ack
+#&gt; 12  22  20945     Michael Lingelbach  2.5748356 82.18944    ack
+#&gt; 13  50  18735       Shahrozia Imtiaz  2.3031532 84.49259    ack
+#&gt; 14  29  15977         Nadiya Sharifi  1.9641035 86.45670    ack
+#&gt; 15 109  15664             Alex Bates  1.9256254 88.38232    ack
+#&gt; 16  75  14830          Philipp Ranft  1.8230991 90.20542    ack
+#&gt; 17  94  11975       Philipp Schlegel  1.4721249 91.67755    ack
+#&gt; 18  55   9727          Greg Jefferis  1.1957711 92.87332    ack
+#&gt; 19  27   7886             Sri Murthy  0.9694511 93.84277    ack
+#&gt; 20 164   4677    Mahmoud Elbahnasawi  0.5749585 94.41773    ack
+#&gt; 21  44   4617             Ala Haddad  0.5675825 94.98531    ack
+#&gt; 22 120   4613 Amelia Edmondson-Stait  0.5670908 95.55240    ack
+#&gt; 23 118   4260         Clement Hallou  0.5236954 96.07610    ack
+#&gt; 24  28   3769           Bindu Gampah  0.4633352 96.53943    ack
+#&gt; 25 123   3466             Fiona Love  0.4260864 96.96552    ack
+#&gt; 26  76   3418           Steven Calle  0.4201856 97.38570    ack
+#&gt; 27   2   3039              Davi Bock  0.3735940 97.75930    ack</div><div class='input'><span class='fu'>write_authors</span>(<span class='no'>pnsc</span>, <span class='kw'>auth</span><span class='kw'>=</span><span class='fl'>3.0</span>)</div><div class='output co'>#&gt; Jacob Ratliff, Ruairi Roberts, bailey harrison, Jawaid Ali, Addy Adesina, Ben Koppenhaver, Lucia Kmecova, Najla Masoodpanah, Corey Fisher, Benjamin Gorko, Adam John</div><div class='input'><span class='fu'>write_ack</span>(<span class='no'>pnsc</span>)</div><div class='output co'>#&gt; We thank Najla Masoodpanah, Corey Fisher, Benjamin Gorko, Adam John, Michael Lingelbach, Shahrozia Imtiaz, Nadiya Sharifi, Alex Bates, Philipp Ranft, Philipp Schlegel, Greg Jefferis, Sri Murthy, Mahmoud Elbahnasawi, Ala Haddad, Amelia Edmondson-Stait, Clement Hallou, Bindu Gampah, Fiona Love, Steven Calle, Davi Bock for contributing 34.9 % of reconstructed arbour cable.</div><div class='input'>
+<span class='no'>pnsc</span><span class='kw'>=</span><span class='fu'>summarise_contribution</span>(<span class='st'>"annotation:^PN$"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>'synapses'</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

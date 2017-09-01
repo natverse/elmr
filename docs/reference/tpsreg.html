@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -51,10 +52,37 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/articles/multiple_somata.html">Finding Neurons with Multiple Somata</a>
+    </li>
+    <li>
+      <a href="../articles/landmarks.html">Landmarks</a>
+    </li>
+    <li>
+      <a href="../articles/making_meshes.html">Making Surface Meshes</a>
+    </li>
+    <li>
+      <a href="../articles/selecting_random_synapses.html">Selecting random synapses</a>
+    </li>
+    <li>
+      <a href="../articles/xform_brain.html">Transforming between FAFB and light level template brains </a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -136,6 +164,38 @@ reference (desired target after transformation) spaces. See details.</p></td>
     <p><code><a href='http://www.rdocumentation.org/packages/nat/topics/reglist'>reglist</a></code>, <code><a href='http://www.rdocumentation.org/packages/nat/topics/read.landmarks'>read.landmarks</a></code></p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># A set of landmarks defined in FAFB CATMAID</span>
+<span class='no'>emlandmarks</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>'annotation:^GJLandmark'</span>)
+<span class='co'># Match up L and R pairs</span>
+<span class='fu'>library</span>(<span class='no'>stringr</span>)
+<span class='no'>emlandmarks</span>[,<span class='st'>'side'</span>]<span class='kw'>=</span><span class='fu'><a href='http://www.rdocumentation.org/packages/stringr/topics/str_match'>str_match</a></span>(<span class='no'>emlandmarks</span>[,<span class='st'>'name'</span>], <span class='st'>"([LR]) Landmark"</span>)[,<span class='fl'>2</span>]
+<span class='no'>emlandmarks</span>[,<span class='st'>'shortname'</span>]<span class='kw'>=</span><span class='fu'><a href='http://www.rdocumentation.org/packages/stringr/topics/str_match'>str_match</a></span>(<span class='no'>emlandmarks</span>[,<span class='st'>'name'</span>], <span class='st'>"(.*)([LR]) Landmark.*"</span>)[,<span class='fl'>2</span>]
+<span class='no'>emlandmarks</span>[,<span class='st'>'shortname'</span>]<span class='kw'>=</span><span class='fu'>sub</span>(<span class='st'>"[_ ]+$"</span>, <span class='st'>""</span>, <span class='no'>emlandmarks</span>[,<span class='st'>'shortname'</span>])
+<span class='fu'>library</span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: package ‘dplyr’ was built under R version 3.4.1</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:nat’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, union</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='no'>lmpairs</span><span class='kw'>=</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/join.html'>inner_join</a></span>(
+  <span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>emlandmarks</span>[,], <span class='no'>side</span><span class='kw'>==</span><span class='st'>"L"</span>),
+  <span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>emlandmarks</span>[,], <span class='no'>side</span><span class='kw'>==</span><span class='st'>"R"</span>),
+  <span class='kw'>by</span><span class='kw'>=</span><span class='st'>'shortname'</span>, <span class='kw'>suffix</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>".L"</span>,<span class='st'>".R"</span>))
+
+<span class='co'># find mean xyz position of each landmark (they are drawn as a little cross)</span>
+<span class='no'>lmxyz</span><span class='kw'>=</span><span class='fu'>t</span>(<span class='fu'>sapply</span>(<span class='no'>emlandmarks</span>, <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'>colMeans</span>(<span class='fu'>xyzmatrix</span>(<span class='no'>x</span>))))
+<span class='co'># construct thin plate splines registration</span>
+<span class='no'>mirror_reg</span><span class='kw'>=</span><span class='fu'>tpsreg</span>(
+  <span class='no'>lmxyz</span>[<span class='fu'>as.character</span>(<span class='no'>lmpairs</span>$<span class='no'>skid.R</span>),],
+  <span class='no'>lmxyz</span>[<span class='fu'>as.character</span>(<span class='no'>lmpairs</span>$<span class='no'>skid.L</span>),]
+)
+<span class='co'># map RHS DA2 PNs onto left and compare with LHS neurons</span>
+<span class='no'>da2pns.R</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>'name:^PN Glomerulus DA2'</span>)
+<span class='no'>da2pns.L</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>'name:Left uPN mALT DA2'</span>)
+<span class='no'>da2pns.R.L</span><span class='kw'>=</span><span class='fu'>xform</span>(<span class='no'>da2pns.R</span>, <span class='kw'>reg</span> <span class='kw'>=</span> <span class='no'>mirror_reg</span>)
+<span class='fu'>plot</span>(<span class='no'>da2pns.L</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>da2pns.R.L</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='no'>T</span>)</div><div class='img'><img src='tpsreg-1.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -145,7 +205,9 @@ reference (desired target after transformation) spaces. See details.</p></td>
       <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

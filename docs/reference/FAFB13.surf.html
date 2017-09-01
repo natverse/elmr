@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -51,10 +52,37 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/articles/multiple_somata.html">Finding Neurons with Multiple Somata</a>
+    </li>
+    <li>
+      <a href="../articles/landmarks.html">Landmarks</a>
+    </li>
+    <li>
+      <a href="../articles/making_meshes.html">Making Surface Meshes</a>
+    </li>
+    <li>
+      <a href="../articles/selecting_random_synapses.html">Selecting random synapses</a>
+    </li>
+    <li>
+      <a href="../articles/xform_brain.html">Transforming between FAFB and light level template brains </a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -102,7 +130,7 @@
   displacements in the optic lobes. Note that updated landmarks in March 2017
   significantly improved the situation.</p>
 <p>The acronyms for the neuropil regions are those used in Ito et al. 2014 and
-  can also be looked up at <a href = 'http://virtualflybrain.org'>http://virtualflybrain.org</a>.</p>
+  can also be looked up at <a href='http://virtualflybrain.org'>http://virtualflybrain.org</a>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -126,18 +154,18 @@
 #&gt; [55] "MB_VL_L"  "MB_ML_L"  "FLA_L"    "LOP_L"    "AL_L"     "ME_L"    
 #&gt; [61] "SLP_L"    "SIP_L"    "SMP_L"    "AVLP_L"   "PVLP_L"   "IVLP_L"  
 #&gt; [67] "PLP_L"    "AOTU_L"   "GOR_L"    "MB_CA_L"  "SPS_L"    "IPS_L"   
-#&gt; [73] "SCL_L"    "EPA_L"    "GA_L"    </div><div class='input'><span class='fu'>not_run</span>({
-  <span class='fu'>plot3d</span>(<span class='no'>FAFB13.surf</span>)
-  <span class='co'># a short cut which plots the surface in semi-transparent grey.</span>
-  <span class='fu'>clear3d</span>()
-  <span class='fu'>plot3d</span>(<span class='no'>FAFB13</span>)
+#&gt; [73] "SCL_L"    "EPA_L"    "GA_L"    </div><span class='co'># NOT RUN {</span>
+<span class='fu'>plot3d</span>(<span class='no'>FAFB13.surf</span>)
+<span class='co'># a short cut which plots the surface in semi-transparent grey.</span>
+<span class='fu'>clear3d</span>()
+<span class='fu'>plot3d</span>(<span class='no'>FAFB13</span>)
 
-  <span class='co'># plot right lateral horn</span>
-  <span class='fu'>plot3d</span>(<span class='no'>FAFB13NP.surf</span>, <span class='st'>"LH_R"</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.4</span>)
-  <span class='co'># plot both antennal lobe surfaces (second arg is regex if no exact match)</span>
-  <span class='co'># note use of initial anchor (^) to avoid matches to LAL</span>
-  <span class='fu'>plot3d</span>(<span class='no'>FAFB13NP.surf</span>, <span class='st'>"^AL"</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.4</span>)
-})</div></pre>
+<span class='co'># plot right lateral horn</span>
+<span class='fu'>plot3d</span>(<span class='no'>FAFB13NP.surf</span>, <span class='st'>"LH_R"</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.4</span>)
+<span class='co'># plot both antennal lobe surfaces (second arg is regex if no exact match)</span>
+<span class='co'># note use of initial anchor (^) to avoid matches to LAL</span>
+<span class='fu'>plot3d</span>(<span class='no'>FAFB13NP.surf</span>, <span class='st'>"^AL"</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.4</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

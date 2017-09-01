@@ -29,10 +29,37 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="/index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="articles/index.html">Articles</a>
+  <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/articles/multiple_somata.html">Finding Neurons with Multiple Somata</a>
+    </li>
+    <li>
+      <a href="articles/landmarks.html">Landmarks</a>
+    </li>
+    <li>
+      <a href="articles/making_meshes.html">Making Surface Meshes</a>
+    </li>
+    <li>
+      <a href="articles/selecting_random_synapses.html">Selecting random synapses</a>
+    </li>
+    <li>
+      <a href="articles/xform_brain.html">Transforming between FAFB and light level template brains </a>
+    </li>
+  </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -65,7 +92,7 @@
 <p>For the impatient …</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install</span>
 if (!<span class="kw">require</span>(<span class="st">"devtools"</span>)) <span class="kw">install.packages</span>(<span class="st">"devtools"</span>) 
-devtools::<span class="kw">install_github</span>(<span class="st">"jefferis/elmr"</span>)
+devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"jefferis/elmr"</span>)
 
 <span class="co"># use</span>
 <span class="kw">library</span>(elmr)
@@ -94,22 +121,22 @@ devtools::<span class="kw">install_github</span>(<span class="st">"jefferis/elmr
 <a href="#development-version" class="anchor"></a>Development version</h3>
 <p>You can use the <strong>devtools</strong> package to install the development version:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">"devtools"</span>)) <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
-devtools::<span class="kw">install_github</span>(<span class="st">"jefferis/elmr"</span>)
+devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"jefferis/elmr"</span>)
 
 <span class="co"># to transform skeletons to template brains other than JFRC2013, you also need</span>
 <span class="co"># a CMTK installation (see https://github.com/jefferis/nat/#external-dependencies)</span>
 <span class="co"># and to download some additional bridging registrations.</span>
 <span class="kw">library</span>(nat.flybrains)
-<span class="kw">download_jefferislab_registrations</span>()</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/nat.flybrains/topics/download_jefferislab_registrations">download_jefferislab_registrations</a></span>()</code></pre></div>
 <p>Note that this should also install the latest version of the necessary dependencies. To carry out nblast comparisons with <a href="http://flycircuit.tw">flycircuit.tw</a> neurons, you may need to install optional dependencies by installing as follows:</p>
-<pre><code>devtools::install_github("jefferis/elmr", dependencies=TRUE)</code></pre>
+<pre><code><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">devtools::install_github("jefferis/elmr", dependencies=TRUE)</a></code></pre>
 <p>Note: Windows users need <a href="http://www.murdoch-sutherland.com/Rtools/">Rtools</a> and <a href="http://CRAN.R-project.org/package=devtools">devtools</a> to install this way.</p>
 </div>
 <div id="updating" class="section level3">
 <h3 class="hasAnchor">
 <a href="#updating" class="anchor"></a>Updating</h3>
 <p><strong>elmr</strong> and its dependencies are still under fairly heavy development. You can conveniently bring the devlopment versions up to date by doing:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">update_packages</span>(<span class="st">"elmr"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/update_packages">update_packages</a></span>(<span class="st">"elmr"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 </div>
 </div>

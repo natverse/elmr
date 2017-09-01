@@ -29,10 +29,37 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/articles/multiple_somata.html">Finding Neurons with Multiple Somata</a>
+    </li>
+    <li>
+      <a href="../articles/landmarks.html">Landmarks</a>
+    </li>
+    <li>
+      <a href="../articles/making_meshes.html">Making Surface Meshes</a>
+    </li>
+    <li>
+      <a href="../articles/selecting_random_synapses.html">Selecting random synapses</a>
+    </li>
+    <li>
+      <a href="../articles/xform_brain.html">Transforming between FAFB and light level template brains </a>
+    </li>
+  </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -57,7 +84,7 @@
       <h1>Landmarks</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2017-06-08</h4>
+            <h4 class="date">2017-08-20</h4>
           </div>
 
     
@@ -99,7 +126,7 @@ xyz=<span class="kw">as.data.frame</span>(xyz)
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note that these positions are in nm units and do not need scaling</span>
 xyz.fafb=elm.landmarks[,<span class="kw">c</span>(<span class="st">"X1"</span>,<span class="st">"Y1"</span>,<span class="st">"Z1"</span>)]
 <span class="kw">rownames</span>(xyz.fafb)=<span class="kw">sub</span>(<span class="st">"Pt-"</span>,<span class="st">""</span>,elm.landmarks$Label)
-<span class="kw">kable</span>(<span class="kw">head</span>(xyz.fafb))</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw">head</span>(xyz.fafb))</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -162,7 +189,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 <span class="kw">hist</span>(deltas)</code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-4-1.png" width="480"></p>
 <p>Let’s looks at the deltas (distance between leave one out vs manually defined landmark position) for each point.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(<span class="kw">cbind</span>(elm.landmarks, <span class="dt">delta=</span>deltas))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw">cbind</span>(elm.landmarks, <span class="dt">delta=</span>deltas))</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -1825,7 +1852,7 @@ for(i in <span class="dv">1</span>:<span class="kw">nrow</span>(xyz)){
 <p><img src="landmarks_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
 <p>Now of course this is not just a measure of consistency in each landmark point, but it will also depend strongly on the extent to which the neighbouring points can define the required registration; in areas requiring substantial non-rigid deformation this may be a problem; this will be further emphasised when the neighbouring points are distant. We can check the latter point like so:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nabor)
-nearest3=<span class="kw">rowMeans</span>(nabor::<span class="kw">knn</span>(xyz, <span class="dt">k=</span><span class="dv">4</span>)$nn.dists[,-<span class="dv">1</span>])
+nearest3=<span class="kw">rowMeans</span>(nabor::<span class="kw"><a href="http://www.rdocumentation.org/packages/nabor/topics/knn">knn</a></span>(xyz, <span class="dt">k=</span><span class="dv">4</span>)$nn.dists[,-<span class="dv">1</span>])
 <span class="kw">plot</span>(deltas~nearest3)
 deltabynearest3=<span class="kw">lm</span>(deltas~nearest3)
 <span class="kw">abline</span>(deltabynearest3)</code></pre></div>
@@ -1876,7 +1903,8 @@ if(<span class="kw">isTRUE</span>(<span class="kw">nzchar</span>(<span class="kw
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
         <div id="tocnav">
-      <h2>Contents</h2>
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#intro">Intro</a></li>
       <li><a href="#landmarks">Landmarks</a></li>

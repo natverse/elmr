@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -51,10 +52,37 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/articles/multiple_somata.html">Finding Neurons with Multiple Somata</a>
+    </li>
+    <li>
+      <a href="../articles/landmarks.html">Landmarks</a>
+    </li>
+    <li>
+      <a href="../articles/making_meshes.html">Making Surface Meshes</a>
+    </li>
+    <li>
+      <a href="../articles/selecting_random_synapses.html">Selecting random synapses</a>
+    </li>
+    <li>
+      <a href="../articles/xform_brain.html">Transforming between FAFB and light level template brains </a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -83,8 +111,8 @@
     <p>Return indices of points in a neuron distal to a given node</p>
     
 
-    <pre class="usage"><span class='fu'>distal_to</span>(<span class='no'>x</span>, <span class='kw'>node.idx</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>node.pointno</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>root</span> <span class='kw'>=</span> <span class='fu'>rootpoints</span>(<span class='no'>x</span>),
-  <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>distal_to</span>(<span class='no'>x</span>, <span class='kw'>node.idx</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>node.pointno</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>root.idx</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>root.pointno</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -97,17 +125,23 @@
       <th>node.idx, node.pointno</th>
       <td><p>The id of node beyond which distal points will
 be selected. <code>node.idx</code> defines the integer index (counting from 1)
-into the neuron's point array.</p></td>
+into the neuron's point array whereas <code>node.pointno</code> matches the
+PointNo column which will be the catmaid id for a node.</p></td>
     </tr>
     <tr>
-      <th>root</th>
-      <td><p>The root node of the neuron for the purpose of selection.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional</p></td>
+      <th>root.idx, root.pointno</th>
+      <td><p>The root node of the neuron for the purpose of
+selection. You will rarely need to change this from the default value. See
+<code>node</code> argument for the difference between <code>root.idx</code> and
+<code>root.pointno</code> forms.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Integer 1-based indices into the point array of points that are
+  distal to the specified node when traversing the neuron from the root to
+  that node.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -115,11 +149,9 @@ into the neuron's point array.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'>## Fetch a finished DL1 projection neuron</span>
-<span class='no'>finished_pns</span><span class='kw'>=</span><span class='fu'>catmaid_get_neuronnames</span>(<span class='st'>'annotation:^LH_DONE'</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: 'rbind.pages' is deprecated.</span>
-#&gt; <span class='warning'>Use 'rbind_pages' instead.</span>
-#&gt; <span class='warning'>See help("Deprecated")</span></div><div class='input'><span class='co'># should only be one neuron but pick first just in case</span>
+    <pre class="examples"><div class='input'><span class='co'>## Fetch a finished DL1 projection neuron</span>
+<span class='no'>finished_pns</span><span class='kw'>=</span><span class='fu'>catmaid_get_neuronnames</span>(<span class='st'>'annotation:^LH_DONE'</span>)
+<span class='co'># should only be one neuron but pick first just in case</span>
 <span class='no'>dl1skid</span><span class='kw'>=</span><span class='fu'>names</span>(<span class='fu'>grep</span>(<span class='st'>'DL1'</span>, <span class='no'>finished_pns</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))[<span class='fl'>1</span>]
 <span class='no'>dl1</span><span class='kw'>=</span><span class='fu'>read.neuron.catmaid</span>(<span class='no'>dl1skid</span>)
 
@@ -127,14 +159,15 @@ into the neuron's point array.</p></td>
 <span class='co'># nb distal_to can accept either the PointNo vertex id or raw index as a</span>
 <span class='co'># pivot point</span>
 <span class='no'>dl1.lh</span><span class='kw'>=</span><span class='fu'>subset</span>(<span class='no'>dl1</span>, <span class='fu'>distal_to</span>(<span class='no'>dl1</span>,<span class='kw'>node.pointno</span> <span class='kw'>=</span> <span class='no'>dl1</span>$<span class='no'>tags</span>$<span class='no'>SCHLEGEL_LH</span>))
-<span class='fu'>plot</span>(<span class='no'>dl1</span>,<span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>dl1.lh</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><img src='distal_to-5.png' alt='' width='540' height='400' /><div class='input'>
-</div></pre>
+<span class='fu'>plot</span>(<span class='no'>dl1</span>,<span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>dl1.lh</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='distal_to-1.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>

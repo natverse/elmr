@@ -1,13 +1,17 @@
 #' templatebrain for assembled FAFB full adult female brain EM volume
 #'
-#' @description \bold{FAFB} \code{\link[nat.templatebrains]{templatebrain}}
-#'   objects encapsulate the physical dimensions of assembled FAFB serial
-#'   section data. There is a different \code{templatebrain} for each assembly
-#'   version.They are used to define the transformations between FAFB and other
-#'   templates like \code{\link[nat.flybrains]{JFRC2013}} (see
-#'   \code{\link{xform_brain}})
+#' @description \code{FAFB} Current default assembly of FAFB (an alias for
+#'   FAFB13 since 2016-12-07)
 #'
-#' @details \code{FAFB13} is the default FAFB assembly since 2016-12-07.
+#' @details \bold{FAFB} \code{\link[nat.templatebrains]{templatebrain}} objects
+#'   encapsulate the physical dimensions of assembled FAFB serial section data.
+#'   There is a different \code{templatebrain} for each assembly version. They
+#'   are used to define the transformations between FAFB and other templates
+#'   like \code{\link[nat.flybrains]{JFRC2013}} (see \code{\link{xform_brain}})
+#'
+#'   \code{FAFB13} is the default FAFB assembly since 2016-12-07. If you want to
+#'   use a specific assembly then refer to it with a versioned name. If you just
+#'   want to use the current working assembly, then use \code{FAFB}.
 #'
 #' @name FAFB
 #' @docType data

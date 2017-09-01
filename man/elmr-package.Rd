@@ -40,7 +40,7 @@ collaborators).
   \item \code{\link{stitch_neurons}} allows neuron fragments to be stitched
   together reasonably intelligently.
 
-  \item \code{\link{FAFB13}} a
+  \item \code{\link{FAFB}} a
   \code{\link[nat.templatebrains]{templatebrain}} object specifying the
   dimensions of the FAFB EM volume.
 
@@ -78,7 +78,7 @@ vgloms.jfrc2013=data.frame(X=c(316,229),
   Z=c(26,22),
   row.names=c("V_L", "V_R"))
 # Convert to FAFB12 coordinates
-xform_brain(vgloms.jfrc2013, sample = JFRC2013, reference = FAFB13)
+xform_brain(vgloms.jfrc2013, sample = JFRC2013, reference = FAFB)
 
 # Show state of elmr package options
 options()[grep('^elmr', names(options()))]
@@ -87,7 +87,7 @@ options()[grep('^elmr', names(options()))]
 # Conversion of neurons from FlyCircuit template
 # NB this conversion depends on a full install of nat.flybrains and CMTK
 library(nat)
-kcs13.fafb=xform_brain(kcs20[1:3], sample=FCWB, reference=FAFB13)
+kcs13.fafb=xform_brain(kcs20[1:3], sample=FCWB, reference=FAFB)
 }
 
 }

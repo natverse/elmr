@@ -7,7 +7,9 @@
 #'   templates like \code{\link[nat.flybrains]{JFRC2013}} (see
 #'   \code{\link{xform_brain}})
 #'
-#' @details \code{FAFB13} is the default FAFB assembly since 2016-12-07.
+#' @details \code{FAFB13} is the default FAFB assembly since 2016-12-07. If you
+#'   want to use a specific assembly then use refer to it with a versioned name.
+#'   If you just want to use the current working assembly, then use \code{FAFB}.
 #'
 #' @name FAFB
 #' @docType data
@@ -18,6 +20,13 @@
 #' dim(FAFB13)
 #' voxdims(FAFB13)
 #' boundingbox(FAFB13)
+NULL
+
+#' @description \code{FAFB} Current default assembly of FAFB (an alias for
+#'   FAFB13)
+#' @name FAFB
+#' @rdname FAFB
+#' @docType data
 NULL
 
 #' @description \code{FAFB13} Assembly v13 of FAFB full adult female brain EM

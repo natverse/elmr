@@ -31,3 +31,6 @@ FAFB13 <- nat.templatebrains::templatebrain(
   BoundingBox = structure(c(0, 919160, 0, 571552, 0, 247170), .Dim = 2:3, class = "boundingbox"),
   units = "nm"
 )
+
+# the current default
+FAFB <- FAFB13

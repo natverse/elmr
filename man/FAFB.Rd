@@ -3,6 +3,7 @@
 \docType{data}
 \name{FAFB}
 \alias{FAFB}
+\alias{FAFB}
 \alias{FAFB13}
 \alias{FAFB12}
 \alias{FAFB11}
@@ -15,6 +16,9 @@
   templates like \code{\link[nat.flybrains]{JFRC2013}} (see
   \code{\link{xform_brain}})
 
+\code{FAFB} Current default assembly of FAFB (an alias for
+  FAFB13)
+
 \code{FAFB13} Assembly v13 of FAFB full adult female brain EM
   volume (2016-12-07 - ).
 
@@ -25,7 +29,9 @@
   volume (2016-02-09)
 }
 \details{
-\code{FAFB13} is the default FAFB assembly since 2016-12-07.
+\code{FAFB13} is the default FAFB assembly since 2016-12-07. If you
+  want to use a specific assembly then use refer to it with a versioned name.
+  If you just want to use the current working assembly, then use \code{FAFB}.
 }
 \examples{
 FAFB13

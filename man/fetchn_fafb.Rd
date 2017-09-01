@@ -11,7 +11,8 @@ fetchn_fafb(skids, mirror = TRUE, conn = NULL,
 fetchdp_fafb(skids, mirror = TRUE, conn = NULL, ...)
 }
 \arguments{
-\item{skids}{catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})}
+\item{skids}{catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})
+or a neuronlist}
 
 \item{mirror}{whether to mirror the neuron (default \code{TRUE} since
 flycircuit neurons are on fly's left and most FAFB tracings are on fly's
@@ -30,7 +31,8 @@ naming such an object.}
 \description{
 \code{fetchn_fafb} is a thin wrapper around the
   \code{catmaid::\link[catmaid]{read.neurons.catmaid}} function with the
-  additional convenience of auromating conversion to a reference brain.
+  additional convenience of automating conversion to a reference brain.
+  Input can also be a pre-downloaded neuronlist.
 
 \code{fetchdp_fafb} extends \code{fetchn_fafb} by additionally converting
   neurons to the \code{\link[nat]{dotprops}} representation suitable for
@@ -41,5 +43,9 @@ naming such an object.}
 # fetch all neurons with an annotation exactly matching "KC" and convert
 # to JFRC2013 space
 kcs=fetchn_fafb("annotation:^KC$", reference=JFRC2013)
+
+# supplying a neuronlist, it will mirror and convert the neurons
+# to a reference brain
+dc_nl=fetchn_fafb(dense_core_neurons, reference=JFRC2013)
 }
 }

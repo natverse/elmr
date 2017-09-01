@@ -9,7 +9,8 @@ nblast_fafb(skids, db = NULL, conn = NULL, mirror = TRUE,
   .parallel = TRUE, ...)
 }
 \arguments{
-\item{skids}{catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})}
+\item{skids}{catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})
+or a neuronlist}
 
 \item{db}{A neuronlist object containing neurons to search. Defaults to the
 value of \code{options('nat.default.neuronlist')}.}
@@ -76,6 +77,10 @@ PN27884f=nblast_fafb(27884, mirror = FALSE)
 summary(PN27884f)
 # plot results, just top hit
 plot3d(PN27884f, hits=1)
+
+# alternatively, you can supply an existing neuronlist
+dc_nl = nblast_fafb(dense_core_neurons, mirror=TRUE)
+summary(dc_nl)
 }
 }
 \seealso{

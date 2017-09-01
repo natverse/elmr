@@ -2,7 +2,8 @@
 #'
 #' @description \code{fetchn_fafb} is a thin wrapper around the
 #'   \code{catmaid::\link[catmaid]{read.neurons.catmaid}} function with the
-#'   additional convenience of auromating conversion to a reference brain.
+#'   additional convenience of automating conversion to a reference brain.
+#'   Input can also be a pre-downloaded neuronlist.
 #' @export
 #' @inheritParams nblast_fafb
 #' @param reference The reference brain to which the neurons will be
@@ -14,9 +15,21 @@
 #' # fetch all neurons with an annotation exactly matching "KC" and convert
 #' # to JFRC2013 space
 #' kcs=fetchn_fafb("annotation:^KC$", reference=JFRC2013)
+#'
+#' # supplying a neuronlist, it will mirror and convert the neurons
+#' # to a reference brain
+#' dc_nl=fetchn_fafb(dense_core_neurons, reference=JFRC2013)
 #' }
 fetchn_fafb<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FCWB) {
-  x=catmaid::read.neurons.catmaid(skids, conn=conn)
+  if (is.neuronlist(skids)) {
+    x = skids
+    tb = regtemplate(x)
+    if (inherits(tb, "templatebrain") && tb$name != "FAFB13") {
+      # give a warning if the neuronlist does hhave a template brain and it is not
+      # the current FAFB brain
+      warning("Neuronlist must be from the current FAFB templatebrain!")
+    }
+  } else x=catmaid::read.neurons.catmaid(skids, conn=conn)
   xt=xform_brain(x, sample="FAFB13", reference = reference)
   if(mirror) xt=mirror_brain(xt, reference)
   xt
@@ -52,6 +65,7 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #'   \code{elmr.nblast.cores=1} or the argument \code{.parallel=TRUE}.
 #'
 #' @param skids catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})
+#'   or a neuronlist
 #' @param db A neuronlist object containing neurons to search. Defaults to the
 #'   value of \code{options('nat.default.neuronlist')}.
 #' @param conn a \code{catmaid} connection object (see
@@ -93,6 +107,10 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #' summary(PN27884f)
 #' # plot results, just top hit
 #' plot3d(PN27884f, hits=1)
+#'
+#' # alternatively, you can supply an existing neuronlist
+#' dc_nl = nblast_fafb(dense_core_neurons, mirror=TRUE)
+#' summary(dc_nl)
 #' }
 nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
                         reverse=FALSE, reference=nat.flybrains::FCWB,

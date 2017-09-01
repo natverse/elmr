@@ -165,7 +165,10 @@ reference (desired target after transformation) spaces. See details.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># A set of landmarks defined in FAFB CATMAID</span>
+    <pre class="examples"><div class='input'><span class='co'>## A full worked example of using landmarks based registration to construct</span>
+<span class='co'>## a mirroring registration from one side of the brain to the other.</span>
+
+<span class='co'># read in set of landmarks defined in FAFB CATMAID</span>
 <span class='no'>emlandmarks</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>'annotation:^GJLandmark'</span>)
 <span class='co'># Match up L and R pairs</span>
 <span class='fu'>library</span>(<span class='no'>stringr</span>)

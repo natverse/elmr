@@ -110,7 +110,8 @@
     
     <p><code>fetchn_fafb</code> is a thin wrapper around the
   <code>catmaid::<a href='http://www.rdocumentation.org/packages/catmaid/topics/read.neuron.catmaid'>read.neurons.catmaid</a></code> function with the
-  additional convenience of auromating conversion to a reference brain.
+  additional convenience of automating conversion to a reference brain.
+  Input can also be a pre-downloaded neuronlist.
 
     <code>fetchdp_fafb</code> extends <code>fetchn_fafb</code> by additionally converting
   neurons to the <code><a href='http://www.rdocumentation.org/packages/nat/topics/dotprops'>dotprops</a></code> representation suitable for
@@ -127,7 +128,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>skids</th>
-      <td><p>catmaid skeleton ids (see <code><a href='http://www.rdocumentation.org/packages/catmaid/topics/catmaid_skids'>catmaid_skids</a></code>)</p></td>
+      <td><p>catmaid skeleton ids (see <code><a href='http://www.rdocumentation.org/packages/catmaid/topics/catmaid_skids'>catmaid_skids</a></code>)
+or a neuronlist</p></td>
     </tr>
     <tr>
       <th>mirror</th>
@@ -159,6 +161,10 @@ naming such an object.</p></td>
 <span class='co'># fetch all neurons with an annotation exactly matching "KC" and convert</span>
 <span class='co'># to JFRC2013 space</span>
 <span class='no'>kcs</span><span class='kw'>=</span><span class='fu'>fetchn_fafb</span>(<span class='st'>"annotation:^KC$"</span>, <span class='kw'>reference</span><span class='kw'>=</span><span class='no'>JFRC2013</span>)
+
+<span class='co'># supplying a neuronlist, it will mirror and convert the neurons</span>
+<span class='co'># to a reference brain</span>
+<span class='no'>dc_nl</span><span class='kw'>=</span><span class='fu'>fetchn_fafb</span>(<span class='no'>dense_core_neurons</span>, <span class='kw'>reference</span><span class='kw'>=</span><span class='no'>JFRC2013</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

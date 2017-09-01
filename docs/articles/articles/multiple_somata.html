@@ -84,7 +84,7 @@
       <h1>Finding Neurons with Multiple Somata</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2017-08-20</h4>
+            <h4 class="date">2017-09-01</h4>
           </div>
 
     
@@ -232,6 +232,50 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">254408</td>
 <td align="right">168315</td>
 <td align="right">-3413.8484</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">1027307</td>
+<td align="right">16649796</td>
+<td align="right">771724</td>
+<td align="right">341029</td>
+<td align="right">209020</td>
+<td align="right">-11977.5801</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">1027307</td>
+<td align="right">16649841</td>
+<td align="right">772142</td>
+<td align="right">341240</td>
+<td align="right">208565</td>
+<td align="right">-11356.7246</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">1066332</td>
+<td align="right">15728152</td>
+<td align="right">798241</td>
+<td align="right">309665</td>
+<td align="right">209300</td>
+<td align="right">-121.1250</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">1066332</td>
+<td align="right">16632665</td>
+<td align="right">642767</td>
+<td align="right">341813</td>
+<td align="right">167265</td>
+<td align="right">4938.4688</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
@@ -1257,63 +1301,9 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">6620.0938</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
-<td align="right">This lets</td>
-<td align="left">us see that</td>
-<td align="right">in some cases</td>
-<td align="right">there are tw</td>
-<td align="right">o soma ta</td>
-<td align="right">gs outsid</td>
-<td align="right">e the neu</td>
-<td align="right">ropil</td>
-<td align="right"></td>
-</tr>
-<tr class="odd">
-<td align="right">(negative</td>
-<td align="left">d) and close</td>
-<td align="right">s together -</td>
-<td align="right">these are pro</td>
-<td align="right">bably dup</td>
-<td align="right">licates -</td>
-<td align="right">whereas</td>
-<td align="right">in</td>
-<td align="right"></td>
-</tr>
-<tr class="even">
-<td align="right">other case</td>
-<td align="left">s it is like</td>
-<td align="right">ly that point</td>
-<td align="right">s were added</td>
-<td align="right">in error.</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-</tr>
-<tr class="odd">
-<td align="right">We can als</td>
-<td align="left">o plot the p</td>
-<td align="right">oints colouri</td>
-<td align="right">ng them by th</td>
-<td align="right">eir rank</td>
-<td align="right">order (mo</td>
-<td align="right">st extern</td>
-<td align="right">al</td>
-<td align="right"></td>
-</tr>
-<tr class="even">
-<td align="right">first).</td>
-<td align="left"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-</tr>
 </tbody>
 </table>
+<p>This lets us see that in some cases there are two soma tags outside the neuropil (negative d) and close together - these are probably duplicates - whereas in other cases it is likely that points were added in error. We can also plot the points colouring them by their rank order (most external first).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a colour palette with as many entries as the maximum number of soma </span>
 <span class="co"># tags in a neuron</span>
 pal=<span class="kw">rainbow</span>(<span class="kw">max</span>(multiple_soma_info$rank))

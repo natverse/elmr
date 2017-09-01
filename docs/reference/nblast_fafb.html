@@ -120,7 +120,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>skids</th>
-      <td><p>catmaid skeleton ids (see <code><a href='http://www.rdocumentation.org/packages/catmaid/topics/catmaid_skids'>catmaid_skids</a></code>)</p></td>
+      <td><p>catmaid skeleton ids (see <code><a href='http://www.rdocumentation.org/packages/catmaid/topics/catmaid_skids'>catmaid_skids</a></code>)
+or a neuronlist</p></td>
     </tr>
     <tr>
       <th>db</th>
@@ -210,6 +211,10 @@ provided by the <code>doMC</code> package.)</p></td>
 <span class='fu'>summary</span>(<span class='no'>PN27884f</span>)
 <span class='co'># plot results, just top hit</span>
 <span class='fu'>plot3d</span>(<span class='no'>PN27884f</span>, <span class='kw'>hits</span><span class='kw'>=</span><span class='fl'>1</span>)
+
+<span class='co'># alternatively, you can supply an existing neuronlist</span>
+<span class='no'>dc_nl</span> <span class='kw'>=</span> <span class='fu'>nblast_fafb</span>(<span class='no'>dense_core_neurons</span>, <span class='kw'>mirror</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='fu'>summary</span>(<span class='no'>dc_nl</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

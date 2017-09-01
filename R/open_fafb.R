@@ -31,7 +31,7 @@
 #' # same but mirrors selected points to opposite hemisphere
 #' open_fafb(kcs20, sample=FCWB, mirror=TRUE)
 #' }
-open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB13,
+open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB,
                     zoom=1, open=interactive(),
                     active_skeleton_id=NULL, active_node_id=NULL, ...) {
   if(is.vector(x, mode='numeric') && length(x)==3 ){
@@ -48,13 +48,11 @@ open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB13,
     xyz=mirror_brain(xyz, sample)
 
   csample=as.character(sample)
-  if(substr(csample, 1, 4)=="FAFB"){
-    fafb.version=substr(csample,5,nchar(csample))
-  } else {
-    xyz=xform_brain(xyz, sample = sample, reference = elmr::FAFB13)
-    fafb.version="13"
+  if(substr(csample, 1, 4)!="FAFB"){
+    xyz=xform_brain(xyz, sample = sample, reference = elmr::FAFB)
+    csample=as.character(elmr::FAFB)
   }
-
+  fafb.version=substr(csample,5,nchar(csample))
 
   xyzi=as.integer(xyz)
   url=sprintf("https://neuropil.janelia.org/tracing/fafb/v%s/?pid=1&zp=%d&yp=%d&xp=%d&tool=tracingtool&sid0=5&s0=%f",

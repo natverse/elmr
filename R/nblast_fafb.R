@@ -24,13 +24,14 @@ fetchn_fafb<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FC
   if (is.neuronlist(skids)) {
     x = skids
     tb = regtemplate(x)
-    if (inherits(tb, "templatebrain") && tb$name != "FAFB13") {
-      # give a warning if the neuronlist does hhave a template brain and it is not
+    if (inherits(tb, "templatebrain") &&
+        as.character(tb) != as.character(elmr::FAFB)) {
+      # give a warning if the neuronlist does have a template brain and it is not
       # the current FAFB brain
       warning("Neuronlist must be from the current FAFB templatebrain!")
     }
   } else x=catmaid::read.neurons.catmaid(skids, conn=conn)
-  xt=xform_brain(x, sample="FAFB13", reference = reference)
+  xt=xform_brain(x, sample=elmr::FAFB, reference = reference)
   if(mirror) xt=mirror_brain(xt, reference)
   xt
 }

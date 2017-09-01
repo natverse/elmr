@@ -24,6 +24,13 @@
 #' boundingbox(FAFB13)
 NULL
 
+#' @description \code{FAFB14} Assembly v14 of FAFB full adult female brain EM
+#'   volume (2017-09 - ).
+#' @name FAFB14
+#' @rdname FAFB
+#' @docType data
+NULL
+
 #' @description \code{FAFB13} Assembly v13 of FAFB full adult female brain EM
 #'   volume (2016-12-07 - ).
 #' @name FAFB13

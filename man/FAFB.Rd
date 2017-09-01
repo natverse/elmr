@@ -3,6 +3,7 @@
 \docType{data}
 \name{FAFB}
 \alias{FAFB}
+\alias{FAFB14}
 \alias{FAFB13}
 \alias{FAFB12}
 \alias{FAFB11}
@@ -10,6 +11,9 @@
 \description{
 \code{FAFB} Current default assembly of FAFB (an alias for
   FAFB13 since 2016-12-07)
+
+\code{FAFB14} Assembly v14 of FAFB full adult female brain EM
+  volume (2017-09 - ).
 
 \code{FAFB13} Assembly v13 of FAFB full adult female brain EM
   volume (2016-12-07 - ).

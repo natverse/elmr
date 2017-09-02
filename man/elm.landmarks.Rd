@@ -4,6 +4,7 @@
 \name{elm.landmarks}
 \alias{elm.landmarks}
 \alias{elm.landmarks.12}
+\alias{elm.landmarks.13}
 \title{ELM Landmarks created by Bock & Saalfeld groups at Janelia}
 \description{
 These are used to map locations in EM (FAFB) space to JFRC2013 (aka DPX)
@@ -11,6 +12,9 @@ space, in conjunction with a thin plate spline library.
 
 \code{elm.landmarks.12} contains the landmark positions used for
   the FAFB12 assembly as a historical record.
+
+\code{elm.landmarks.13} contains the landmark positions used for
+  the FAFB13 assembly (from March to Sep 2017) as a historical record.
 }
 \details{
 X,Y,Z correspond to locations in JFRC2013 template brain. However,

@@ -90,6 +90,12 @@ NULL
 #' @docType data
 NULL
 
+#' @description \code{elm.landmarks.13} contains the landmark positions used for
+#'   the FAFB13 assembly (from March to Sep 2017) as a historical record.
+#' @name elm.landmarks.13
+#' @rdname elm.landmarks
+#' @docType data
+NULL
 
 #' Sample EM tracings (homologous pair of neurons wrapping around lateral horn)
 #'

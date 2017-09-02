@@ -113,7 +113,7 @@ NULL
 #' @name dense_core_neurons
 NULL
 
-#' FAFB13 brain and neuropil surface objects
+#' FAFB brain and neuropil surface objects
 #'
 #' @description \code{FAFB13.surf} describes the neuropil surface of the FAFB13
 #'   brain.
@@ -148,7 +148,8 @@ NULL
 #' plot3d(FAFB13NP.surf, "^AL", alpha=0.4)
 #' }
 #' @docType data
-#' @name FAFB13.surf
+#' @name FAFB.surf
+#' @aliases FAFB13.surf
 #' @seealso \code{\link{FAFB13}}, \code{\link{FAFB13}}
 NULL
 
@@ -157,4 +158,18 @@ NULL
 #' @docType data
 #' @name FAFB13NP.surf
 #' @rdname FAFB13.surf
+NULL
+
+#' @description \code{FAFB14NP.surf} is a surface object for the Ito et al
+#'   (2014) neuropil regions in FAFB14 space
+#' @docType data
+#' @name FAFB14NP.surf
+#' @rdname FAFB.surf
+NULL
+
+#' @description \code{FAFB14.surf} describes the neuropil surface of the FAFB14
+#'   assembly.
+#' @docType data
+#' @name FAFB14.surf
+#' @rdname FAFB.surf
 NULL

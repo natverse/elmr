@@ -18,7 +18,7 @@
                                   sample = elmr::FAFB12)
 
   # Define and register a compound registration that maps FAFB13 to JFRC2013
-  elmlm=elmr::elm.landmarks[elmr::elm.landmarks[,"Use"],]
+  elmlm=elmr::elm.landmarks.13[elmr::elm.landmarks.13[,"Use"],]
   l0=data.matrix(elmlm[,c("X","Y","Z"), drop=F])
   l1=data.matrix(elmlm[, c("X1", "Y1", "Z1"), drop = F])
   JFRC2013_FAFB13 <-
@@ -62,5 +62,17 @@
   nat.templatebrains::add_reglist(FAFB13_FAFB14,
                                   reference = elmr::FAFB13,
                                   sample = elmr::FAFB14)
+
+  # Define and register a compound registration that maps FAFB14 to JFRC2013
+  elmlm=elmr::elm.landmarks[elmr::elm.landmarks[,"Use"],]
+  l0=data.matrix(elmlm[,c("X","Y","Z"), drop=F])
+  l1=data.matrix(elmlm[, c("X1", "Y1", "Z1"), drop = F])
+  # nb scale component for JFRC2013 defined earlier
+  JFRC2013_FAFB14 <-
+    nat::reglist(tpsreg(l1, l0), m)
+  nat.templatebrains::add_reglist(JFRC2013_FAFB14,
+                                  reference = nat.flybrains::JFRC2013,
+                                  sample = elmr::FAFB14)
+
 
 }

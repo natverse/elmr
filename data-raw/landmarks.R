@@ -25,7 +25,6 @@ devtools::use_data(elm.landmarks, overwrite = T)
 devtools::use_data(elm.landmarks.12, overwrite = T)
 }
 
-
 read_elm_csv <- function(x) {
   y = read.csv(
     x,
@@ -35,8 +34,20 @@ read_elm_csv <- function(x) {
   y$Use = as.logical(y$Use)
   y
 }
-elm.landmarks.feb17=read_elm_csv('data-raw/170211_new_ELM_landmarks_v7.csv')
+# elm.landmarks.feb17=read_elm_csv('data-raw/170211_new_ELM_landmarks_v7.csv')
 elm.landmarks.mar17=read_elm_csv('data-raw/170303_ELM_landmarks_v14.csv')
-elm.landmarks.v13.2016=elm.landmarks
+elm.landmarks.13=elm.landmarks.mar17
+devtools::use_data(elm.landmarks.13, overwrite = T)
+
+# Skeleton for FAFB14 landmarks
+stopifnot(all(elm.landmarks.mar17$Use))
 elm.landmarks=elm.landmarks.mar17
+elm.landmarks[, 6:8]=
+  xform_brain(
+    elm.landmarks.FAFB14[, 6:8],
+    sample = FAFB13,
+    reference = FAFB14,
+    method ='single'
+  )
+
 devtools::use_data(elm.landmarks, overwrite = T)

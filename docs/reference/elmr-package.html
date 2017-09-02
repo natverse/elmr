@@ -137,7 +137,7 @@ collaborators).</p>
   GAL4 line.</p></li>
 <li><p><code><a href='stitch_neurons.html'>stitch_neurons</a></code> allows neuron fragments to be stitched
   together reasonably intelligently.</p></li>
-<li><p><code><a href='FAFB.html'>FAFB13</a></code> a
+<li><p><code><a href='FAFB.html'>FAFB</a></code> a
   <code><a href='http://www.rdocumentation.org/packages/nat.templatebrains/topics/templatebrain'>templatebrain</a></code> object specifying the
   dimensions of the FAFB EM volume.</p></li>
 <li><p><code><a href='elm.landmarks.html'>elm.landmarks</a></code> a set of landmarks that can define a thin
@@ -170,7 +170,7 @@ collaborators).</p>
   <span class='kw'>Z</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>26</span>,<span class='fl'>22</span>),
   <span class='kw'>row.names</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"V_L"</span>, <span class='st'>"V_R"</span>))
 <span class='co'># Convert to FAFB12 coordinates</span>
-<span class='fu'>xform_brain</span>(<span class='no'>vgloms.jfrc2013</span>, <span class='kw'>sample</span> <span class='kw'>=</span> <span class='no'>JFRC2013</span>, <span class='kw'>reference</span> <span class='kw'>=</span> <span class='no'>FAFB13</span>)</div><div class='output co'>#&gt;            X        Y        Z
+<span class='fu'>xform_brain</span>(<span class='no'>vgloms.jfrc2013</span>, <span class='kw'>sample</span> <span class='kw'>=</span> <span class='no'>JFRC2013</span>, <span class='kw'>reference</span> <span class='kw'>=</span> <span class='no'>FAFB</span>)</div><div class='output co'>#&gt;            X        Y        Z
 #&gt; V_L 653365.8 370558.5 53617.75
 #&gt; V_R 538142.7 358119.3 55979.34</div><div class='input'>
 <span class='co'># Show state of elmr package options</span>
@@ -179,7 +179,7 @@ collaborators).</p>
 <span class='co'># Conversion of neurons from FlyCircuit template</span>
 <span class='co'># NB this conversion depends on a full install of nat.flybrains and CMTK</span>
 <span class='fu'>library</span>(<span class='no'>nat</span>)
-<span class='no'>kcs13.fafb</span><span class='kw'>=</span><span class='fu'>xform_brain</span>(<span class='no'>kcs20</span>[<span class='fl'>1</span>:<span class='fl'>3</span>], <span class='kw'>sample</span><span class='kw'>=</span><span class='no'>FCWB</span>, <span class='kw'>reference</span><span class='kw'>=</span><span class='no'>FAFB13</span>)
+<span class='no'>kcs13.fafb</span><span class='kw'>=</span><span class='fu'>xform_brain</span>(<span class='no'>kcs20</span>[<span class='fl'>1</span>:<span class='fl'>3</span>], <span class='kw'>sample</span><span class='kw'>=</span><span class='no'>FCWB</span>, <span class='kw'>reference</span><span class='kw'>=</span><span class='no'>FAFB</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>

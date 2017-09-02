@@ -4,12 +4,16 @@
 \name{FAFB.surf}
 \alias{FAFB.surf}
 \alias{FAFB13.surf}
+\alias{FAFB13NP.surf}
 \alias{FAFB14NP.surf}
 \alias{FAFB14.surf}
 \title{FAFB brain and neuropil surface objects}
 \description{
 \code{FAFB13.surf} describes the neuropil surface of the FAFB13
   brain.
+
+\code{FAFB13NP.surf} is a surface object for the Ito et al
+  (2014) neuropil regions in FAFB13 space
 
 \code{FAFB14NP.surf} is a surface object for the Ito et al
   (2014) neuropil regions in FAFB14 space

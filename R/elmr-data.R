@@ -157,7 +157,7 @@ NULL
 #'   (2014) neuropil regions in FAFB13 space
 #' @docType data
 #' @name FAFB13NP.surf
-#' @rdname FAFB13.surf
+#' @rdname FAFB.surf
 NULL
 
 #' @description \code{FAFB14NP.surf} is a surface object for the Ito et al

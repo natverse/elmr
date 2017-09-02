@@ -40,7 +40,9 @@ FAFB14 <- nat.templatebrains::templatebrain(
   voxdims = c(4, 4, 40),
   origin = c(0, 0, 0),
   BoundingBox = structure(c(0, 1505104, 0, 1207688, 0, 282440), .Dim = 2:3, class = "boundingbox"),
-  units = "nm"
+  units = "nm",
+  description = paste('Please note that the bounding box on this volume is',
+                      'provisional and will be changed in the near future')
 )
 
 # the current default

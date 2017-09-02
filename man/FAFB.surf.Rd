@@ -5,30 +5,30 @@
 \alias{FAFB.surf}
 \alias{FAFB13.surf}
 \alias{FAFB13NP.surf}
-\alias{FAFB14NP.surf}
 \alias{FAFB14.surf}
+\alias{FAFB14NP.surf}
 \title{FAFB brain and neuropil surface objects}
 \description{
 \code{FAFB13.surf} describes the neuropil surface of the FAFB13
   brain.
 
 \code{FAFB13NP.surf} is a surface object for the Ito et al
-  (2014) neuropil regions in FAFB13 space
-
-\code{FAFB14NP.surf} is a surface object for the Ito et al
-  (2014) neuropil regions in FAFB14 space
+  (2014) neuropil regions in \code{\link{FAFB13}} space
 
 \code{FAFB14.surf} describes the neuropil surface of the FAFB14
   assembly.
+
+\code{FAFB14NP.surf} is a surface object for the Ito et al
+  (2014) neuropil regions in \code{\link{FAFB14}} space
 }
 \details{
 These neuropil regions are generated from the
   \code{\link[nat.flybrains]{JFRC2.surf}} and
   \code{\link[nat.flybrains]{JFRC2NP.surf}} objects, respectively. Because
-  they are not defined from FAFB13 itself but transformed using bridging
+  they are not defined from FAFB itself but transformed using bridging
   registrations, they are only as good as those bridging registrations. In
   particular although the \code{\link{elm.landmarks}} used to bridge
-  FAFB13-JFRC2013 are well defined in the fly's right brain hemisphere, they
+  FAFB-JFRC2013 are well defined in the fly's right brain hemisphere, they
   are somewhat less dense in other areas. Therefore these surfaces are clearly
   likely less accurate in the left brain hemisphere and show significanct
   displacements in the optic lobes. Note that updated landmarks in March 2017
@@ -38,21 +38,21 @@ These neuropil regions are generated from the
   can also be looked up at \url{http://virtualflybrain.org}.
 }
 \examples{
-boundingbox(FAFB13.surf)
-FAFB13NP.surf$RegionList
+boundingbox(FAFB14.surf)
+FAFB14NP.surf$RegionList
 \dontrun{
-plot3d(FAFB13.surf)
-# a short cut which plots the surface in semi-transparent grey.
+plot3d(FAFB14.surf)
 clear3d()
-plot3d(FAFB13)
+# a short cut which plots the surface in semi-transparent grey.
+plot3d(FAFB14)
 
 # plot right lateral horn
-plot3d(FAFB13NP.surf, "LH_R", alpha=0.4)
+plot3d(FAFB14NP.surf, "LH_R", alpha=0.4)
 # plot both antennal lobe surfaces (second arg is regex if no exact match)
 # note use of initial anchor (^) to avoid matches to LAL
-plot3d(FAFB13NP.surf, "^AL", alpha=0.4)
+plot3d(FAFB14NP.surf, "^AL", alpha=0.4)
 }
 }
 \seealso{
-\code{\link{FAFB13}}, \code{\link{FAFB13}}
+\code{\link{FAFB}} template brain
 }

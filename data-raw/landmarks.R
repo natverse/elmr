@@ -44,7 +44,7 @@ stopifnot(all(elm.landmarks.mar17$Use))
 elm.landmarks=elm.landmarks.mar17
 elm.landmarks[, 6:8]=
   xform_brain(
-    elm.landmarks.FAFB14[, 6:8],
+    elm.landmarks[, 6:8],
     sample = FAFB13,
     reference = FAFB14,
     method ='single'

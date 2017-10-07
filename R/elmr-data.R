@@ -164,12 +164,26 @@ NULL
 #'   assembly.
 #' @docType data
 #' @name FAFB14.surf
+#' @aliases FAFB.surf
 #' @rdname FAFB.surf
+NULL
+
+#' @description \code{FAFB.surf} describes the neuropil surface of the default
+#'   FAFB assembly (currently FAFB14).
+#' @docType data
+#' @name FAFB.surf
 NULL
 
 #' @description \code{FAFB14NP.surf} is a surface object for the Ito et al
 #'   (2014) neuropil regions in \code{\link{FAFB14}} space
 #' @docType data
 #' @name FAFB14NP.surf
+#' @rdname FAFB.surf
+NULL
+
+#' @description \code{FAFBNP.surf} is a surface object for the Ito et al (2014)
+#'   neuropil regions in the default FAFB space (currently \code{\link{FAFB14}})
+#' @docType data
+#' @name FAFBNP.surf
 #' @rdname FAFB.surf
 NULL

@@ -6,7 +6,10 @@
 \alias{FAFB13.surf}
 \alias{FAFB13NP.surf}
 \alias{FAFB14.surf}
+\alias{FAFB.surf}
+\alias{FAFB.surf}
 \alias{FAFB14NP.surf}
+\alias{FAFBNP.surf}
 \title{FAFB brain and neuropil surface objects}
 \description{
 \code{FAFB13.surf} describes the neuropil surface of the FAFB13
@@ -18,8 +21,14 @@
 \code{FAFB14.surf} describes the neuropil surface of the FAFB14
   assembly.
 
+\code{FAFB.surf} describes the neuropil surface of the default
+  FAFB assembly (currently FAFB14).
+
 \code{FAFB14NP.surf} is a surface object for the Ito et al
   (2014) neuropil regions in \code{\link{FAFB14}} space
+
+\code{FAFBNP.surf} is a surface object for the Ito et al (2014)
+  neuropil regions in the default FAFB space (currently \code{\link{FAFB14}})
 }
 \details{
 These neuropil regions are generated from the

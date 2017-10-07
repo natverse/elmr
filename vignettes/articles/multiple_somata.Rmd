@@ -69,7 +69,7 @@ Now let's calculate the distance from the neuropil surface
 
 ```{r, neuropil distance}
 multiple_soma_info$d=pointsinside(xyzmatrix(multiple_soma_info),
-                                  FAFB13.surf, rval = 'distance')
+                                  FAFB.surf, rval = 'distance')
 multiple_soma_info %>% 
   arrange(skeletonID, d) %>% 
   group_by(skeletonID) %>% 
@@ -89,7 +89,7 @@ first).
 pal=rainbow(max(multiple_soma_info$rank))
 multiple_soma_info %>% 
   with(expr = spheres3d(X,Y,Z, col=pal[rank], rad=2000))
-plot3d(FAFB13)
+plot3d(FAFB)
 par3d(zoom=.6)
 ```
 

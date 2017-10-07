@@ -60,7 +60,7 @@ that region from the surface object containing all neuropils as follows:
 
 ```{r}
 # convert subset of regions to rgl::mesh3d object
-lhr=as.mesh3d(FAFB13NP.surf, 'LH_R')
+lhr=as.mesh3d(FAFBNP.surf, 'LH_R')
 ```
 
 Now we can select just those synapses within the LH volume, by piping the

@@ -9,7 +9,7 @@
 #'   are used to define the transformations between FAFB and other templates
 #'   like \code{\link[nat.flybrains]{JFRC2013}} (see \code{\link{xform_brain}})
 #'
-#'   \code{FAFB13} is the default FAFB assembly since 2016-12-07. If you want to
+#'   \code{FAFB14} is the default FAFB assembly since 2017-10-07. If you want to
 #'   use a specific assembly then refer to it with a versioned name. If you just
 #'   want to use the current working assembly, then use \code{FAFB}.
 #'
@@ -25,14 +25,14 @@
 NULL
 
 #' @description \code{FAFB14} Assembly v14 of FAFB full adult female brain EM
-#'   volume (2017-09 - ).
+#'   volume (2017-10-07 - ).
 #' @name FAFB14
 #' @rdname FAFB
 #' @docType data
 NULL
 
 #' @description \code{FAFB13} Assembly v13 of FAFB full adult female brain EM
-#'   volume (2016-12-07 - ).
+#'   volume (2016-12-07 - 2017-10-06).
 #' @name FAFB13
 #' @rdname FAFB
 #' @docType data

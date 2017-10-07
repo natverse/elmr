@@ -13,10 +13,10 @@
   FAFB13 since 2016-12-07)
 
 \code{FAFB14} Assembly v14 of FAFB full adult female brain EM
-  volume (2017-09 - ).
+  volume (2017-10-07 - ).
 
 \code{FAFB13} Assembly v13 of FAFB full adult female brain EM
-  volume (2016-12-07 - ).
+  volume (2016-12-07 - 2017-10-06).
 
 \code{FAFB12} Assembly v12 of FAFB full adult female brain EM
   volume (2016-04-01 to 2016-12-06)
@@ -31,7 +31,7 @@
   are used to define the transformations between FAFB and other templates
   like \code{\link[nat.flybrains]{JFRC2013}} (see \code{\link{xform_brain}})
 
-  \code{FAFB13} is the default FAFB assembly since 2016-12-07. If you want to
+  \code{FAFB14} is the default FAFB assembly since 2017-10-07. If you want to
   use a specific assembly then refer to it with a versioned name. If you just
   want to use the current working assembly, then use \code{FAFB}.
 }

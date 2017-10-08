@@ -11,7 +11,8 @@ fafb_world_mapper(xyz, from, to,
 \arguments{
 \item{xyz}{xyz coordinates (in nm)}
 
-\item{from, to}{Assemblies to convert between e.g. \code{"v12"}, \code{"v13"}.}
+\item{from, to}{Assemblies to convert between e.g. \code{"v12"}, \code{"v13"},
+\code{"v14"}.}
 
 \item{baseurl}{path to janelia tem-services server (not externally visible at
 the moment)}

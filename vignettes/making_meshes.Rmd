@@ -71,11 +71,11 @@ points3d(pntokc[,c('post_node_x','post_node_y','post_node_z')], col='blue')
 ```
 
 We can also compare with the mesh supplied with elmr, which was transformed from
-JFRC2 space via JFRC2013 to FAFB13:
+JFRC2 space via JFRC2013 to FAFB:
 
 ```{r, rgl=TRUE}
 wire3d(calyx)
-plot3d(FAFB13NP.surf, "MB_CA_R", alpha=.3)
+plot3d(FAFBNP.surf, "MB_CA_R", alpha=.3)
 view3d(userMatrix=rgl::rotationMatrix(angle = pi, 1,0,0), zoom=0.8)
 ```
 
@@ -83,7 +83,7 @@ And we can also compare the dorsal view as well:
 
 ```{r, rgl=TRUE}
 wire3d(calyx)
-plot3d(FAFB13NP.surf, "MB_CA_R", alpha=.3)
+plot3d(FAFBNP.surf, "MB_CA_R", alpha=.3)
 view3d(userMatrix=rgl::rotationMatrix(angle = -pi/2, 1,0,0), zoom=0.8)
 ```
 
@@ -94,6 +94,6 @@ The quality of the JFRC2-JFRC2013 bridging registration is likely also a factor.
 Finally if one wanted to place this mesh into catmaid, one could do it as follows:
 
 ```{r, eval=FALSE}
-catmaid_add_volume(calyx, title="fafb13.MB_CA_R", comment="Constructed by GSXEJ from PN-KC synapses directly in FAFB13 space.")
+catmaid_add_volume(calyx, title="fafb14.MB_CA_R", comment="Constructed by GSXEJ from PN-KC synapses directly in FAFB14 space.")
 ```
 

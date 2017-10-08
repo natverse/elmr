@@ -53,7 +53,7 @@ fafb_world_mapper <- function(xyz, from, to, baseurl="http://tem-services.int.ja
   res
 }
 
-map_1 <- function(xyz, from, to, baseurl) {
+map_1 <- function(xyz, from, to, baseurl, ...) {
   # /v12_align_tps/z/3864/world-to-local-coordinates/95335,47208.5
   # stack, z, x, y
   subpath1=sprintf("/%s/z/%d/world-to-local-coordinates/%f,%f",

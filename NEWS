@@ -13,6 +13,7 @@ elmr 0.4.2
 * new vignette - making meshes programmatically
 * insist on nat >= 1.8.8
 * fetchn_fafb/nblast_fafb can take pre-downloaded neuronlist
+* teach unspike to keep connectors/soma (#29)
 
 elmr 0.4.1
 ==========

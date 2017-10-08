@@ -1,6 +1,9 @@
-elmr 0.4.3
-==========
-* fix bug
+elmr 0.5
+========
+* switch to FAFB14 as the default EM assembly
+* provide default objects (FAFB, FAFB.surf, FAFBNP.surf) that will always point
+  to current assembly.
+* fix bug in distal_to (#31)
 * doc improvements for distal_to
 
 elmr 0.4.2
@@ -9,6 +12,7 @@ elmr 0.4.2
 * first version of unspike function
 * new vignette - making meshes programmatically
 * insist on nat >= 1.8.8
+* fetchn_fafb/nblast_fafb can take pre-downloaded neuronlist
 
 elmr 0.4.1
 ==========

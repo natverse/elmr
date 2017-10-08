@@ -84,7 +84,7 @@
       <h1>Selecting random synapses</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2017-09-02</h4>
+            <h4 class="date">2017-10-08</h4>
           </div>
 
     
@@ -137,10 +137,10 @@ rgl::<span class="kw">setupKnitr</span>()
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cda1.in=<span class="kw"><a href="http://www.rdocumentation.org/packages/catmaid/topics/catmaid_get_connectors_between">catmaid_get_connectors_between</a></span>(<span class="dt">post_skids =</span> <span class="st">'name:PN Glomerulus DA1'</span>)</code></pre></div>
 <p>We then want to select synapses within a neuropil region, the lateral horn. The <code>elmr</code> package now has a neuropil surface object <code>FAFBNP13.surf</code> that we can use for this purpose. To look for points inside the right LH, we can extract just that region from the surface object containing all neuropils as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># convert subset of regions to rgl::mesh3d object</span>
-lhr=<span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/as.mesh3d">as.mesh3d</a></span>(FAFB13NP.surf, <span class="st">'LH_R'</span>)</code></pre></div>
+lhr=<span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/as.mesh3d">as.mesh3d</a></span>(FAFBNP.surf, <span class="st">'LH_R'</span>)</code></pre></div>
 <p>Now we can select just those synapses within the LH volume, by piping the XYZ positions of the presynaptic connector node to the <code>pointsinside</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
-<pre><code>## Warning: package 'dplyr' was built under R version 3.4.1</code></pre>
+<pre><code>## Warning: package 'dplyr' was built under R version 3.4.2</code></pre>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:nat':
@@ -172,12 +172,12 @@ random_syn</code></pre></div>
 <p>That was a little bit clunky but we basically feed the <code>open_fafb</code> function the data one row at a time centering the URL on the postsynaptic node and selecting that node in the CATMAID viewer.</p>
 <p>So here are the results</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/neuronlist-dataframe-methods">head</a></span>(synapse_urls)</code></pre></div>
-<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=129185&amp;yp=226772&amp;xp=427546&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=486779&amp;active_node_id=2572522" 
-## [2] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=135240&amp;yp=237287&amp;xp=421439&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=1897981&amp;active_node_id=6733218"
-## [3] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=139265&amp;yp=231367&amp;xp=442577&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=493580&amp;active_node_id=2590871" 
-## [4] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=135870&amp;yp=238248&amp;xp=419804&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=485657&amp;active_node_id=2570819" 
-## [5] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=129500&amp;yp=238939&amp;xp=430047&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=487711&amp;active_node_id=2574205" 
-## [6] "https://neuropil.janelia.org/tracing/fafb/v13/?pid=1&amp;zp=137305&amp;yp=242664&amp;xp=427372&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=1095414&amp;active_node_id=8612136"</code></pre>
+<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=152800&amp;yp=164233&amp;xp=360139&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=496847&amp;active_node_id=2595522"
+## [2] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=148040&amp;yp=146975&amp;xp=353635&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=486439&amp;active_node_id=2571750"
+## [3] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=147280&amp;yp=147604&amp;xp=356450&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=486909&amp;active_node_id=2572665"
+## [4] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=151560&amp;yp=155016&amp;xp=352967&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=485153&amp;active_node_id=2570486"
+## [5] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=160080&amp;yp=150835&amp;xp=369274&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=479184&amp;active_node_id=2555863"
+## [6] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=155040&amp;yp=158490&amp;xp=346518&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=485583&amp;active_node_id=2570795"</code></pre>
 </div>
 <div id="using-the-results" class="section level2">
 <h2 class="hasAnchor">

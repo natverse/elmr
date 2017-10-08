@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Remove artefactual spikes in neuron tracing due to registration errors — unspike • elmr</title>
+<title>FAFB brain and neuropil surface objects — FAFB.surf • elmr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -104,83 +104,86 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Remove artefactual spikes in neuron tracing due to registration errors</h1>
+    <h1>FAFB brain and neuropil surface objects</h1>
     </div>
 
     
-    <p>Remove artefactual spikes in neuron tracing due to registration errors</p>
+    <p><code>FAFB13.surf</code> describes the neuropil surface of the FAFB13
+  brain.
+
+    <code>FAFB13NP.surf</code> is a surface object for the Ito et al
+  (2014) neuropil regions in <code><a href='FAFB.html'>FAFB13</a></code> space
+
+    <code>FAFB14.surf</code> describes the neuropil surface of the FAFB14
+  assembly.
+
+    <code>FAFB.surf</code> describes the neuropil surface of the default
+  FAFB assembly (currently FAFB14).
+
+    <code>FAFB14NP.surf</code> is a surface object for the Ito et al
+  (2014) neuropil regions in <code><a href='FAFB.html'>FAFB14</a></code> space
+
+    <code>FAFBNP.surf</code> is a surface object for the Ito et al (2014)
+  neuropil regions in the default FAFB space (currently <code><a href='FAFB.html'>FAFB14</a></code>)</p>
     
 
-    <pre class="usage"><span class='fu'>unspike</span>(<span class='no'>x</span>, <span class='no'>threshold</span>, <span class='no'>...</span>)
-
-<span class='co'># S3 method for neuron</span>
-<span class='fu'>unspike</span>(<span class='no'>x</span>, <span class='no'>threshold</span>, <span class='no'>...</span>)
-
-<span class='co'># S3 method for neuronlist</span>
-<span class='fu'>unspike</span>(<span class='no'>x</span>, <span class='no'>threshold</span>, <span class='no'>...</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>A neuron, or neuronlist</p></td>
-    </tr>
-    <tr>
-      <th>threshold</th>
-      <td><p>A numeric threshold for an XY distance that would be
-considered suspicious.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>arguments passed to methods</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A neuron or neuronlist with artefactual spikes removed. Segments that
-  cannot currently be fixed are left untouched with a warning issued.</p>
-    
+        
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>unspike</code> currently uses a very simple algorithm to remove big
-  jumps: it just looks for XY jumps bigger than a specified distance and
-  removes the first associated node. It currently cannot deal with two
-  slightly more difficult situations:</p><ul>
-<li><p>When there are two or more points that are far out of register.</p></li>
-<li><p>When there a branch or end points that are out of register.</p></li>
-</ul>
-    <p>Handling consecutive points or end points should be a fairly
-  straightforward addition. Branch points require a litle more thought.</p>
-    
-    <h2 class="hasAnchor" id="node-ids-and-connectors"><a class="anchor" href="#node-ids-and-connectors"></a>node ids and connectors</h2>
-
-    <p>unspike has the side effect of losing the
-  catmaid node ids in the output neuron. connector/tag information is
-  retained although the node ids are translated to the new numbering system.</p>
+    <p>These neuropil regions are generated from the
+  <code><a href='http://www.rdocumentation.org/packages/nat.flybrains/topics/JFRC2'>JFRC2.surf</a></code> and
+  <code><a href='http://www.rdocumentation.org/packages/nat.flybrains/topics/JFRC2NP.surf'>JFRC2NP.surf</a></code> objects, respectively. Because
+  they are not defined from FAFB itself but transformed using bridging
+  registrations, they are only as good as those bridging registrations. In
+  particular although the <code><a href='elm.landmarks.html'>elm.landmarks</a></code> used to bridge
+  FAFB-JFRC2013 are well defined in the fly's right brain hemisphere, they
+  are somewhat less dense in other areas. Therefore these surfaces are clearly
+  likely less accurate in the left brain hemisphere and show significanct
+  displacements in the optic lobes. Note that updated landmarks in March 2017
+  significantly improved the situation.</p>
+<p>The acronyms for the neuropil regions are those used in Ito et al. 2014 and
+  can also be looked up at <a href='http://virtualflybrain.org'>http://virtualflybrain.org</a>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='http://www.rdocumentation.org/packages/nat/topics/smooth_neuron'>smooth_neuron</a></code></p>
+    <p><code><a href='FAFB.html'>FAFB</a></code> template brain</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>da1pns</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>"annotation:^glomerulus DA1$"</span>)
-<span class='co'># set threshold to 5000 nm</span>
-<span class='no'>da1pns.fix</span><span class='kw'>=</span><span class='fu'>unspike</span>(<span class='no'>da1pns</span>, <span class='kw'>threshold</span><span class='kw'>=</span><span class='fl'>5000</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: segment with one bad point</span></div><div class='input'><span class='fu'>plot</span>(<span class='no'>da1pns</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>WithNodes</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='input'><span class='co'># overplot fixed neuron leaving red spikes visible</span>
-<span class='fu'>plot</span>(<span class='no'>da1pns.fix</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'black'</span>, <span class='kw'>WithNodes</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='unspike-1.png' alt='' width='700' height='432.632880098887' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>boundingbox</span>(<span class='no'>FAFB14.surf</span>)</div><div class='output co'>#&gt;          [,1]     [,2]     [,3]
+#&gt; [1,] 213175.6  77531.3    799.2
+#&gt; [2,] 840529.0 388177.9 269583.7
+#&gt; attr(,"class")
+#&gt; [1] "boundingbox"</div><div class='input'><span class='no'>FAFB14NP.surf</span>$<span class='no'>RegionList</span></div><div class='output co'>#&gt;  [1] "AME_R"    "LO_R"     "NO"       "BU_R"     "PB"       "LH_R"    
+#&gt;  [7] "LAL_R"    "SAD"      "CAN_R"    "AMMC_R"   "ICL_R"    "VES_R"   
+#&gt; [13] "IB_R"     "ATL_R"    "CRE_R"    "MB_PED_R" "MB_VL_R"  "MB_ML_R" 
+#&gt; [19] "FLA_R"    "LOP_R"    "EB"       "AL_R"     "ME_R"     "FB"      
+#&gt; [25] "SLP_R"    "SIP_R"    "SMP_R"    "AVLP_R"   "PVLP_R"   "IVLP_R"  
+#&gt; [31] "PLP_R"    "AOTU_R"   "GOR_R"    "MB_CA_R"  "SPS_R"    "IPS_R"   
+#&gt; [37] "SCL_R"    "EPA_R"    "GNG"      "PRW"      "GA_R"     "AME_L"   
+#&gt; [43] "LO_L"     "BU_L"     "LH_L"     "LAL_L"    "CAN_L"    "AMMC_L"  
+#&gt; [49] "ICL_L"    "VES_L"    "IB_L"     "ATL_L"    "CRE_L"    "MB_PED_L"
+#&gt; [55] "MB_VL_L"  "MB_ML_L"  "FLA_L"    "LOP_L"    "AL_L"     "ME_L"    
+#&gt; [61] "SLP_L"    "SIP_L"    "SMP_L"    "AVLP_L"   "PVLP_L"   "IVLP_L"  
+#&gt; [67] "PLP_L"    "AOTU_L"   "GOR_L"    "MB_CA_L"  "SPS_L"    "IPS_L"   
+#&gt; [73] "SCL_L"    "EPA_L"    "GA_L"    </div><span class='co'># NOT RUN {</span>
+<span class='fu'>plot3d</span>(<span class='no'>FAFB14.surf</span>)
+<span class='fu'>clear3d</span>()
+<span class='co'># a short cut which plots the surface in semi-transparent grey.</span>
+<span class='fu'>plot3d</span>(<span class='no'>FAFB14</span>)
+
+<span class='co'># plot right lateral horn</span>
+<span class='fu'>plot3d</span>(<span class='no'>FAFB14NP.surf</span>, <span class='st'>"LH_R"</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.4</span>)
+<span class='co'># plot both antennal lobe surfaces (second arg is regex if no exact match)</span>
+<span class='co'># note use of initial anchor (^) to avoid matches to LAL</span>
+<span class='fu'>plot3d</span>(<span class='no'>FAFB14NP.surf</span>, <span class='st'>"^AL"</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.4</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
-      <li><a href="#node-ids-and-connectors">node ids and connectors</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

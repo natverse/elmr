@@ -112,7 +112,10 @@
 space, in conjunction with a thin plate spline library.
 
     <code>elm.landmarks.12</code> contains the landmark positions used for
-  the FAFB12 assembly as a historical record.</p>
+  the FAFB12 assembly as a historical record.
+
+    <code>elm.landmarks.13</code> contains the landmark positions used for
+  the FAFB13 assembly (from March to Sep 2017) as a historical record.</p>
     
 
         
@@ -130,13 +133,13 @@ landmarks.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>head</span>(<span class='no'>elm.landmarks</span>)</div><div class='output co'>#&gt;   Label  Use        X         Y        Z       X1       Y1        Z1
-#&gt; 1  Pt-1 TRUE 571.4001  38.85996 287.0595 525666.5 172470.4  80994.73
-#&gt; 2  Pt-2 TRUE 715.8113 213.29936 217.3935 595391.6 263523.1  84156.77
-#&gt; 3  Pt-3 TRUE 513.0022 198.00197 217.7941 501716.3 253223.7  98413.70
-#&gt; 4  Pt-6 TRUE 867.0125  31.91925 276.2234 670999.9 179097.9  67561.69
-#&gt; 5  Pt-7 TRUE 935.2109 234.22952 351.5181 702703.9 251846.4 127865.89
-#&gt; 6  Pt-8 TRUE 935.2109 232.62607 405.5008 702633.2 250322.0 162468.60</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>head</span>(<span class='no'>elm.landmarks</span>)</div><div class='output co'>#&gt;   Label  Use        X         Y        Z       X1        Y1     Z1
+#&gt; 1  Pt-1 TRUE 571.4001  38.85996 287.0595 452638.6  93129.93  92560
+#&gt; 2  Pt-2 TRUE 715.8113 213.29936 217.3935 522271.2 184057.51  96160
+#&gt; 3  Pt-3 TRUE 513.0022 198.00197 217.7941 428701.7 173888.16 112440
+#&gt; 4  Pt-6 TRUE 867.0125  31.91925 276.2234 597973.7  99741.26  77200
+#&gt; 5  Pt-7 TRUE 935.2109 234.22952 351.5181 629661.1 172401.93 146120
+#&gt; 6  Pt-8 TRUE 935.2109 232.62607 405.5008 629608.0 170950.13 185640</div><div class='input'>
 </div><span class='co'># NOT RUN {</span>
 <span class='co'># Show landmarks in the context of the JFRC2013 template brain</span>
 <span class='fu'>library</span>(<span class='no'>nat.flybrains</span>)

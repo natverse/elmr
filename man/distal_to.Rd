@@ -10,9 +10,9 @@ distal_to(x, node.idx = NULL, node.pointno = NULL, root.idx = NULL,
 \arguments{
 \item{x}{A neuron}
 
-\item{node.idx, node.pointno}{The id of node beyond which distal points will
-be selected. \code{node.idx} defines the integer index (counting from 1)
-into the neuron's point array whereas \code{node.pointno} matches the
+\item{node.idx, node.pointno}{The id(s) of node(s) beyond which distal points
+will be selected. \code{node.idx} defines the integer index (counting from
+1) into the neuron's point array whereas \code{node.pointno} matches the
 PointNo column which will be the catmaid id for a node.}
 
 \item{root.idx, root.pointno}{The root node of the neuron for the purpose of
@@ -22,8 +22,8 @@ selection. You will rarely need to change this from the default value. See
 }
 \value{
 Integer 1-based indices into the point array of points that are
-  distal to the specified node when traversing the neuron from the root to
-  that node.
+  distal to the specified node(s) when traversing the neuron from the root to
+  that node. Will be a vector one node is specified, a list otherwise
 }
 \description{
 Return indices of points in a neuron distal to a given node

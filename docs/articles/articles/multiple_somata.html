@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../..//index.html">
+  <a href="../../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -84,7 +84,7 @@
       <h1>Finding Neurons with Multiple Somata</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2017-10-08</h4>
+            <h4 class="date">2018-01-05</h4>
           </div>
 
     
@@ -104,10 +104,9 @@ catmaid_available=<span class="kw">inherits</span>(cl, <span class="st">"catmaid
 <span class="kw">library</span>(knitr)
 <span class="co"># only run if catmaid available</span>
 <span class="co"># and cache so only run once per day</span>
-opts_chunk$<span class="kw">set</span>(<span class="dt">eval=</span><span class="kw">inherits</span>(cl, <span class="st">"catmaid_connection"</span>),<span class="dt">cache.extra=</span><span class="kw">Sys.Date</span>())
-<span class="kw">library</span>(dplyr)</code></pre></div>
-<pre><code>## Warning: package 'dplyr' was built under R version 3.4.2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rgl::<span class="kw">setupKnitr</span>()</code></pre></div>
+opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">eval=</span><span class="kw">inherits</span>(cl, <span class="st">"catmaid_connection"</span>),<span class="dt">cache.extra=</span><span class="kw">Sys.Date</span>())
+<span class="kw">library</span>(dplyr)
+rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/hook_rgl">setupKnitr</a></span>()</code></pre></div>
 </div>
 </div>
 <div id="finding-neurons-with-multiple-somata" class="section level2">
@@ -117,26 +116,26 @@ opts_chunk$<span class="kw">set</span>(<span class="dt">eval=</span><span class=
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">label_stats=<span class="kw">catmaid_get_label_stats</span>()</code></pre></div>
 <p>Now let’s restrict to cases where there are multiple soma tags per skeleton</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># select soma labels</span>
-soma_labels =<span class="st"> </span>label_stats %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(labelName ==<span class="st"> 'soma'</span>) %&gt;%
+soma_labels =<span class="st"> </span>label_stats <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(labelName <span class="op">==</span><span class="st"> 'soma'</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(skeletonID)
 
 <span class="co"># select skeleton ids for neurons with multiple cell bodies</span>
-multiple_soma =<span class="st"> </span>soma_labels %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">count</a></span>(skeletonID) %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n &gt;<span class="st"> </span><span class="dv">1</span>) %&gt;%
+multiple_soma =<span class="st"> </span>soma_labels <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">count</a></span>(skeletonID) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(n))
-  multiple_soma_info =<span class="st"> </span>soma_labels %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(skeletonID %in%<span class="st"> </span>multiple_soma$skeletonID)
+  multiple_soma_info =<span class="st"> </span>soma_labels <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(skeletonID <span class="op">%in%</span><span class="st"> </span>multiple_soma<span class="op">$</span>skeletonID)
 
-multiple_soma_info =<span class="st"> </span>soma_labels %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(skeletonID%in%<span class="st"> </span>multiple_soma$skeletonID)</code></pre></div>
+multiple_soma_info =<span class="st"> </span>soma_labels <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(skeletonID<span class="op">%in%</span><span class="st"> </span>multiple_soma<span class="op">$</span>skeletonID)</code></pre></div>
 </div>
 <div id="xyz-position-of-the-nodes-we-picked" class="section level2">
 <h2 class="hasAnchor">
 <a href="#xyz-position-of-the-nodes-we-picked" class="anchor"></a>XYZ position of the nodes we picked</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># we don't have a built in function to get the xyz coords of a node yet</span>
-node_xyz &lt;-<span class="st"> </span>function(tnid) <span class="kw">catmaid_fetch</span>(
+node_xyz &lt;-<span class="st"> </span><span class="cf">function</span>(tnid) <span class="kw">catmaid_fetch</span>(
     <span class="st">"1/node/get_location"</span>,
     <span class="dt">body =</span> <span class="kw">list</span>(<span class="dt">tnid =</span> tnid),
     <span class="dt">simplifyVector =</span> T,
@@ -146,13 +145,13 @@ node_xyz &lt;-<span class="st"> </span>function(tnid) <span class="kw">catmaid_f
 <span class="co"># a vectorised one</span>
 vnode_xyz=<span class="kw">Vectorize</span>(node_xyz)
 <span class="co"># note that we need to transpose the results of vnode_xyz to get X,Y,Z columns</span>
-multiple_soma_info[,<span class="kw">c</span>(<span class="st">"X"</span>, <span class="st">"Y"</span>, <span class="st">"Z"</span>)]=<span class="kw">t</span>(<span class="kw">vnode_xyz</span>(multiple_soma_info$treenodeID))[,-<span class="dv">1</span>]</code></pre></div>
+multiple_soma_info[,<span class="kw">c</span>(<span class="st">"X"</span>, <span class="st">"Y"</span>, <span class="st">"Z"</span>)]=<span class="kw">t</span>(<span class="kw">vnode_xyz</span>(multiple_soma_info<span class="op">$</span>treenodeID))[,<span class="op">-</span><span class="dv">1</span>]</code></pre></div>
 <p>Now let’s calculate the distance from the neuropil surface</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multiple_soma_info$d=<span class="kw">pointsinside</span>(<span class="kw">xyzmatrix</span>(multiple_soma_info),
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multiple_soma_info<span class="op">$</span>d=<span class="kw">pointsinside</span>(<span class="kw">xyzmatrix</span>(multiple_soma_info),
                                   FAFB.surf, <span class="dt">rval =</span> <span class="st">'distance'</span>)
-multiple_soma_info %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(skeletonID, d) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(skeletonID) %&gt;%<span class="st"> </span>
+multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(skeletonID, d) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(skeletonID) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">rank=</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span>()) -&gt;<span class="st"> </span>multiple_soma_info
 <span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(multiple_soma_info)</code></pre></div>
 <table class="table">
@@ -193,6 +192,28 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
+<td align="right">57208</td>
+<td align="right">18595287</td>
+<td align="right">400203</td>
+<td align="right">287057.0</td>
+<td align="right">81600</td>
+<td align="right">-7190.2495</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">57208</td>
+<td align="right">18535767</td>
+<td align="right">493727</td>
+<td align="right">241481.0</td>
+<td align="right">63840</td>
+<td align="right">6171.6738</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
 <td align="right">58484</td>
 <td align="right">1507652</td>
 <td align="right">461036</td>
@@ -210,28 +231,6 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">130724.0</td>
 <td align="right">204520</td>
 <td align="right">-5383.6250</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="right">2773</td>
-<td align="left">soma</td>
-<td align="right">58686</td>
-<td align="right">2885712</td>
-<td align="right">495038</td>
-<td align="right">275753.0</td>
-<td align="right">36960</td>
-<td align="right">-659.5625</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">2773</td>
-<td align="left">soma</td>
-<td align="right">58686</td>
-<td align="right">12138894</td>
-<td align="right">348067</td>
-<td align="right">119473.0</td>
-<td align="right">166960</td>
-<td align="right">4446.7500</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
@@ -276,6 +275,28 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">175056.0</td>
 <td align="right">192360</td>
 <td align="right">-3428.5791</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">716645</td>
+<td align="right">3285344</td>
+<td align="right">371354</td>
+<td align="right">99862.2</td>
+<td align="right">167720</td>
+<td align="right">-4958.9609</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">716645</td>
+<td align="right">21264059</td>
+<td align="right">472716</td>
+<td align="right">131116.0</td>
+<td align="right">73280</td>
+<td align="right">28218.7500</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
@@ -398,6 +419,28 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">138520</td>
 <td align="right">16154.2969</td>
 <td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">1299492</td>
+<td align="right">5561118</td>
+<td align="right">444338</td>
+<td align="right">96417.5</td>
+<td align="right">177880</td>
+<td align="right">-13516.2500</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">1299492</td>
+<td align="right">13035258</td>
+<td align="right">350218</td>
+<td align="right">138783.0</td>
+<td align="right">177400</td>
+<td align="right">22035.8359</td>
+<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="right">2773</td>
@@ -600,28 +643,6 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
-<td align="right">1568214</td>
-<td align="right">13475322</td>
-<td align="right">570382</td>
-<td align="right">115559.0</td>
-<td align="right">163880</td>
-<td align="right">-17780.0625</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">2773</td>
-<td align="left">soma</td>
-<td align="right">1568214</td>
-<td align="right">3256758</td>
-<td align="right">439036</td>
-<td align="right">191709.0</td>
-<td align="right">85320</td>
-<td align="right">10319.6875</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="right">2773</td>
-<td align="left">soma</td>
 <td align="right">1605598</td>
 <td align="right">6102525</td>
 <td align="right">384290</td>
@@ -655,6 +676,39 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
+<td align="right">1803633</td>
+<td align="right">6802354</td>
+<td align="right">432245</td>
+<td align="right">105908.0</td>
+<td align="right">78720</td>
+<td align="right">-3320.8750</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">1803633</td>
+<td align="right">6802367</td>
+<td align="right">432140</td>
+<td align="right">105971.0</td>
+<td align="right">78960</td>
+<td align="right">-3156.5938</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">1803633</td>
+<td align="right">19296984</td>
+<td align="right">363402</td>
+<td align="right">144868.0</td>
+<td align="right">170120</td>
+<td align="right">29804.7969</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
 <td align="right">1852252</td>
 <td align="right">6618555</td>
 <td align="right">440338</td>
@@ -663,7 +717,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-2853.0312</td>
 <td align="right">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">1852252</td>
@@ -674,7 +728,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-1474.8457</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">1855766</td>
@@ -685,7 +739,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-8780.4160</td>
 <td align="right">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">1855766</td>
@@ -696,7 +750,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">17916.1641</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">1934952</td>
@@ -707,7 +761,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-12677.8135</td>
 <td align="right">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">1934952</td>
@@ -718,7 +772,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-11270.5156</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2046912</td>
@@ -729,7 +783,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">6998.1250</td>
 <td align="right">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2046912</td>
@@ -740,7 +794,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">9695.1250</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2051048</td>
@@ -751,7 +805,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">12017.5596</td>
 <td align="right">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2051048</td>
@@ -762,7 +816,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">18663.3438</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2062703</td>
@@ -773,7 +827,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">2127.0625</td>
 <td align="right">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2062703</td>
@@ -784,7 +838,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">12695.0469</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2062703</td>
@@ -795,7 +849,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">26619.5645</td>
 <td align="right">3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2101395</td>
@@ -806,7 +860,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-6371.2500</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2101395</td>
@@ -817,7 +871,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">5343.5625</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2160773</td>
@@ -828,7 +882,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-598.7500</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2160773</td>
@@ -839,7 +893,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">6818.6914</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2204528</td>
@@ -850,7 +904,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-7079.2310</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2204528</td>
@@ -861,7 +915,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">15790.7637</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2231264</td>
@@ -872,7 +926,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-4598.7812</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2231264</td>
@@ -883,7 +937,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">16680.8125</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2326256</td>
@@ -894,7 +948,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-21168.9746</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2326256</td>
@@ -905,7 +959,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">7834.7188</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2401906</td>
@@ -916,7 +970,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">509.3125</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2401906</td>
@@ -927,7 +981,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">26381.6152</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2779162</td>
@@ -938,7 +992,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-8669.4375</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2779162</td>
@@ -949,7 +1003,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-5991.4873</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2861335</td>
@@ -960,7 +1014,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-11330.2637</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2861335</td>
@@ -971,7 +1025,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">23401.4668</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2923716</td>
@@ -982,7 +1036,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-4091.1797</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2923716</td>
@@ -993,7 +1047,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">17201.1250</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2931963</td>
@@ -1004,7 +1058,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-7505.5625</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2931963</td>
@@ -1015,7 +1069,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">13019.6709</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">2931963</td>
@@ -1025,61 +1079,6 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">113760</td>
 <td align="right">14787.6484</td>
 <td align="right">3</td>
-</tr>
-<tr class="odd">
-<td align="right">2773</td>
-<td align="left">soma</td>
-<td align="right">2941266</td>
-<td align="right">9492212</td>
-<td align="right">374475</td>
-<td align="right">161960.0</td>
-<td align="right">214640</td>
-<td align="right">-3180.7656</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">2773</td>
-<td align="left">soma</td>
-<td align="right">2941266</td>
-<td align="right">9491823</td>
-<td align="right">395325</td>
-<td align="right">140794.0</td>
-<td align="right">186080</td>
-<td align="right">8740.7002</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="right">2773</td>
-<td align="left">soma</td>
-<td align="right">2941266</td>
-<td align="right">9494096</td>
-<td align="right">441240</td>
-<td align="right">121277.0</td>
-<td align="right">123160</td>
-<td align="right">36883.8789</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="right">2773</td>
-<td align="left">soma</td>
-<td align="right">2941497</td>
-<td align="right">9095408</td>
-<td align="right">677893</td>
-<td align="right">134302.0</td>
-<td align="right">176760</td>
-<td align="right">-7553.1328</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">2773</td>
-<td align="left">soma</td>
-<td align="right">2941497</td>
-<td align="right">9104712</td>
-<td align="right">581805</td>
-<td align="right">133663.0</td>
-<td align="right">107800</td>
-<td align="right">41767.3281</td>
-<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="right">2773</td>
@@ -1101,6 +1100,28 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">85107.6</td>
 <td align="right">108640</td>
 <td align="right">-730.8359</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">3080040</td>
+<td align="right">12908093</td>
+<td align="right">482779</td>
+<td align="right">81287.7</td>
+<td align="right">107720</td>
+<td align="right">-4230.2808</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">3080040</td>
+<td align="right">21122631</td>
+<td align="right">413512</td>
+<td align="right">147741.0</td>
+<td align="right">139120</td>
+<td align="right">36068.4961</td>
 <td align="right">2</td>
 </tr>
 <tr class="even">
@@ -1150,6 +1171,50 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
+<td align="right">3136251</td>
+<td align="right">17722484</td>
+<td align="right">415303</td>
+<td align="right">91421.5</td>
+<td align="right">176080</td>
+<td align="right">-8335.6016</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">3136251</td>
+<td align="right">15989721</td>
+<td align="right">374496</td>
+<td align="right">130355.0</td>
+<td align="right">165960</td>
+<td align="right">22403.1582</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">3189043</td>
+<td align="right">18292989</td>
+<td align="right">324384</td>
+<td align="right">188782.0</td>
+<td align="right">150840</td>
+<td align="right">-13355.9541</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">3189043</td>
+<td align="right">18288071</td>
+<td align="right">373442</td>
+<td align="right">114382.0</td>
+<td align="right">180240</td>
+<td align="right">1182.2109</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
 <td align="right">3338987</td>
 <td align="right">7997775</td>
 <td align="right">568089</td>
@@ -1173,14 +1238,25 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3345021</td>
+<td align="right">14401292</td>
+<td align="right">315170</td>
+<td align="right">151938.0</td>
+<td align="right">204600</td>
+<td align="right">-11669.8896</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">3345021</td>
 <td align="right">10972001</td>
 <td align="right">389883</td>
 <td align="right">147091.0</td>
 <td align="right">177400</td>
 <td align="right">19139.5938</td>
-<td align="right">1</td>
+<td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3345021</td>
@@ -1189,9 +1265,9 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">150641.0</td>
 <td align="right">179560</td>
 <td align="right">21001.6738</td>
-<td align="right">2</td>
+<td align="right">3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3347813</td>
@@ -1202,7 +1278,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-1677.5625</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3347813</td>
@@ -1213,7 +1289,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">10805.8828</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3629167</td>
@@ -1224,7 +1300,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-789.4375</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3629167</td>
@@ -1235,7 +1311,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">5703.6719</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3685754</td>
@@ -1246,7 +1322,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">36695.6484</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3685754</td>
@@ -1257,7 +1333,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">37377.1680</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3760679</td>
@@ -1268,7 +1344,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-1294.7812</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3760679</td>
@@ -1279,7 +1355,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">2806.6250</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3760683</td>
@@ -1290,7 +1366,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">294.8438</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3760683</td>
@@ -1301,7 +1377,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">4705.9404</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3931736</td>
@@ -1312,7 +1388,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">17680.1211</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3931736</td>
@@ -1323,7 +1399,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">17986.3809</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3932461</td>
@@ -1334,7 +1410,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">27632.4844</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">3932461</td>
@@ -1345,7 +1421,51 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">27763.4688</td>
 <td align="right">2</td>
 </tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">4174456</td>
+<td align="right">18408168</td>
+<td align="right">389721</td>
+<td align="right">108791.0</td>
+<td align="right">186280</td>
+<td align="right">-6336.6016</td>
+<td align="right">1</td>
+</tr>
 <tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">4174456</td>
+<td align="right">18186521</td>
+<td align="right">446358</td>
+<td align="right">122395.0</td>
+<td align="right">105440</td>
+<td align="right">30096.9941</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">4175034</td>
+<td align="right">18409155</td>
+<td align="right">383434</td>
+<td align="right">97566.0</td>
+<td align="right">173600</td>
+<td align="right">-8418.2812</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">4175034</td>
+<td align="right">17649108</td>
+<td align="right">467588</td>
+<td align="right">148078.0</td>
+<td align="right">79400</td>
+<td align="right">30073.8223</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">4176905</td>
@@ -1356,7 +1476,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-9116.2812</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">4176905</td>
@@ -1367,7 +1487,29 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">2899.3750</td>
 <td align="right">2</td>
 </tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">4346391</td>
+<td align="right">15072631</td>
+<td align="right">424379</td>
+<td align="right">301590.0</td>
+<td align="right">59320</td>
+<td align="right">-20638.8926</td>
+<td align="right">1</td>
+</tr>
 <tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">4346391</td>
+<td align="right">11095606</td>
+<td align="right">398876</td>
+<td align="right">139344.0</td>
+<td align="right">181040</td>
+<td align="right">12062.9736</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">4520615</td>
@@ -1378,7 +1520,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-10034.7285</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">4520615</td>
@@ -1389,29 +1531,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">-9987.5703</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
-<td align="right">2773</td>
-<td align="left">soma</td>
-<td align="right">4744251</td>
-<td align="right">12448253</td>
-<td align="right">328843</td>
-<td align="right">138852.0</td>
-<td align="right">138480</td>
-<td align="right">-14709.6250</td>
-<td align="right">1</td>
-</tr>
 <tr class="odd">
-<td align="right">2773</td>
-<td align="left">soma</td>
-<td align="right">4744251</td>
-<td align="right">17237212</td>
-<td align="right">463878</td>
-<td align="right">120647.0</td>
-<td align="right">61560</td>
-<td align="right">10621.8125</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">4954843</td>
@@ -1422,7 +1542,7 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">6382.0312</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">4954843</td>
@@ -1433,20 +1553,97 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <td align="right">6640.5625</td>
 <td align="right">2</td>
 </tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">4954843</td>
+<td align="right">10465252</td>
+<td align="right">372760</td>
+<td align="right">146655.0</td>
+<td align="right">169080</td>
+<td align="right">29559.2148</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">5219453</td>
+<td align="right">17307360</td>
+<td align="right">426221</td>
+<td align="right">261088.0</td>
+<td align="right">223920</td>
+<td align="right">-11269.5469</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">5219453</td>
+<td align="right">20797978</td>
+<td align="right">402049</td>
+<td align="right">210257.0</td>
+<td align="right">105320</td>
+<td align="right">24121.1855</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">5730797</td>
+<td align="right">19689412</td>
+<td align="right">431335</td>
+<td align="right">177193.0</td>
+<td align="right">41880</td>
+<td align="right">-10350.8125</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">5730797</td>
+<td align="right">19353457</td>
+<td align="right">479322</td>
+<td align="right">108289.0</td>
+<td align="right">73520</td>
+<td align="right">10811.3125</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">6223679</td>
+<td align="right">20902064</td>
+<td align="right">349579</td>
+<td align="right">187809.0</td>
+<td align="right">95560</td>
+<td align="right">-5763.2500</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">6223679</td>
+<td align="right">20902060</td>
+<td align="right">349555</td>
+<td align="right">187793.0</td>
+<td align="right">95640</td>
+<td align="right">-5732.2812</td>
+<td align="right">2</td>
+</tr>
 </tbody>
 </table>
 <p>This lets us see that in some cases there are two soma tags outside the neuropil (negative d) and close together - these are probably duplicates - whereas in other cases it is likely that points were added in error. We can also plot the points colouring them by their rank order (most external first).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a colour palette with as many entries as the maximum number of soma </span>
 <span class="co"># tags in a neuron</span>
-pal=<span class="kw">rainbow</span>(<span class="kw">max</span>(multiple_soma_info$rank))
-multiple_soma_info %&gt;%<span class="st"> </span>
+pal=<span class="kw">rainbow</span>(<span class="kw">max</span>(multiple_soma_info<span class="op">$</span>rank))
+multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">with</span>(<span class="dt">expr =</span> <span class="kw">spheres3d</span>(X,Y,Z, <span class="dt">col=</span>pal[rank], <span class="dt">rad=</span><span class="dv">2000</span>))
 <span class="kw">plot3d</span>(FAFB)
 <span class="kw">par3d</span>(<span class="dt">zoom=</span>.<span class="dv">6</span>)</code></pre></div>
 <p><img src="multiple_somata_files/figure-html/unnamed-chunk-4-1.png" width="768"></p>
 <p>Now we can use this information to construct an url for each node.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multiple_soma_info %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span>() %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multiple_soma_info <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">url =</span> <span class="kw"><a href="../../reference/open_fafb.html">open_fafb</a></span>(
     <span class="kw">cbind</span>(X, Y, Z),
     <span class="dt">active_skeleton_id =</span> skeletonID,
@@ -1460,9 +1657,9 @@ multiple_soma_info %&gt;%<span class="st"> </span>
 <p>Let’s make a google sheet with all those urls that we can then review manually:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(googlesheets)
 tf=<span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">'.tsv'</span>)
-multiple_soma_info %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(skeletonID, d) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(skeletonID) %&gt;%
+multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(skeletonID, d) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(skeletonID) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">write.table</span>(<span class="dt">file=</span>tf, <span class="dt">sep=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/googlesheets/topics/gs_upload">gs_upload</a></span>(tf, <span class="dt">sheet_title =</span> <span class="st">'multi_soma_neurons'</span>)
 <span class="kw">unlink</span>(tf)</code></pre></div>

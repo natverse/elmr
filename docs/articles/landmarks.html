@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -84,7 +84,7 @@
       <h1>Landmarks</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2017-10-08</h4>
+            <h4 class="date">2018-01-05</h4>
           </div>
 
     
@@ -99,11 +99,11 @@
 <a href="#setup" class="anchor"></a>Setup</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(elmr)
 <span class="kw">library</span>(knitr)
-opts_chunk$<span class="kw">set</span>(<span class="dt">fig.width=</span><span class="dv">5</span>, <span class="dt">fig.height=</span><span class="dv">5</span>)
+opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.width=</span><span class="dv">5</span>, <span class="dt">fig.height=</span><span class="dv">5</span>)
 <span class="co"># set up for 3d plots based on rgl package</span>
-rgl::<span class="kw">setupKnitr</span>()
+rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/hook_rgl">setupKnitr</a></span>()
 <span class="co"># frontal view</span>
-<span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl::<span class="kw">rotationMatrix</span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)</code></pre></div>
+<span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)</code></pre></div>
 </div>
 </div>
 <div id="landmarks" class="section level2">
@@ -112,10 +112,10 @@ rgl::<span class="kw">setupKnitr</span>()
 <p>The standard landmarks used by elmr were specified by Davi Bock on the FAFB and JFRC2013 brains. We can plot the landmarks in the context of the JFRC2013 brain as follows.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot3d</span>(JFRC2013)
 <span class="co"># note that the landmarks are in raw voxel coordinates and must be scaled</span>
-xyz=<span class="kw">scale</span>(elm.landmarks[,<span class="kw">c</span>(<span class="st">"X"</span>,<span class="st">"Y"</span>,<span class="st">"Z"</span>)], <span class="dt">scale =</span> <span class="dv">1</span>/<span class="kw">voxdims</span>(JFRC2013), <span class="dt">center =</span> <span class="ot">FALSE</span>)
+xyz=<span class="kw">scale</span>(elm.landmarks[,<span class="kw">c</span>(<span class="st">"X"</span>,<span class="st">"Y"</span>,<span class="st">"Z"</span>)], <span class="dt">scale =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">voxdims</span>(JFRC2013), <span class="dt">center =</span> <span class="ot">FALSE</span>)
 xyz=<span class="kw">as.data.frame</span>(xyz)
-<span class="kw">rownames</span>(xyz)=<span class="kw">sub</span>(<span class="st">"Pt-"</span>,<span class="st">""</span>,elm.landmarks$Label)
-<span class="kw">spheres3d</span>(xyz, <span class="dt">col =</span> <span class="kw">ifelse</span>(elm.landmarks$Use, <span class="st">"green"</span>, <span class="st">'red'</span>), <span class="dt">radius =</span> <span class="dv">4</span>)</code></pre></div>
+<span class="kw">rownames</span>(xyz)=<span class="kw">sub</span>(<span class="st">"Pt-"</span>,<span class="st">""</span>,elm.landmarks<span class="op">$</span>Label)
+<span class="kw">spheres3d</span>(xyz, <span class="dt">col =</span> <span class="kw">ifelse</span>(elm.landmarks<span class="op">$</span>Use, <span class="st">"green"</span>, <span class="st">'red'</span>), <span class="dt">radius =</span> <span class="dv">4</span>)</code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-2-1.png" width="480"></p>
 </div>
 <div id="landmamarks-based-transform" class="section level2">
@@ -125,7 +125,7 @@ xyz=<span class="kw">as.data.frame</span>(xyz)
 <p>Let’s first look at the FAFB landmarks</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note that these positions are in nm units and do not need scaling</span>
 xyz.fafb=elm.landmarks[,<span class="kw">c</span>(<span class="st">"X1"</span>,<span class="st">"Y1"</span>,<span class="st">"Z1"</span>)]
-<span class="kw">rownames</span>(xyz.fafb)=<span class="kw">sub</span>(<span class="st">"Pt-"</span>,<span class="st">""</span>,elm.landmarks$Label)
+<span class="kw">rownames</span>(xyz.fafb)=<span class="kw">sub</span>(<span class="st">"Pt-"</span>,<span class="st">""</span>,elm.landmarks<span class="op">$</span>Label)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw">head</span>(xyz.fafb))</code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -181,11 +181,11 @@ xyz.fafb=elm.landmarks[,<span class="kw">c</span>(<span class="st">"X1"</span>,<
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># record transformed position with leave one out</span>
 xyzt.loo=xyz
-for(i in <span class="dv">1</span>:<span class="kw">nrow</span>(xyz)) {
-  thisreg &lt;-<span class="st"> </span><span class="kw">reglist</span>(<span class="kw"><a href="../reference/tpsreg.html">tpsreg</a></span>(xyz.fafb[-i, ], xyz[-i, ]))
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(xyz)) {
+  thisreg &lt;-<span class="st"> </span><span class="kw">reglist</span>(<span class="kw"><a href="../reference/tpsreg.html">tpsreg</a></span>(xyz.fafb[<span class="op">-</span>i, ], xyz[<span class="op">-</span>i, ]))
   xyzt.loo[i,]=<span class="kw">xform</span>(xyz.fafb[i, , <span class="dt">drop=</span><span class="ot">FALSE</span>], thisreg)
 }
-deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xyz)^<span class="dv">2</span>))
+deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo<span class="op">-</span>xyz)<span class="op">^</span><span class="dv">2</span>))
 <span class="kw">hist</span>(deltas)</code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-4-1.png" width="480"></p>
 <p>Let’s looks at the deltas (distance between leave one out vs manually defined landmark position) for each point.</p>
@@ -1828,7 +1828,7 @@ deltas=<span class="kw">sqrt</span>(<span class="kw">rowSums</span>((xyzt.loo-xy
 </table>
 <p>And then visualise them in 3D, colouring each point by the magnitude of the delta.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">clear3d</span>()
-<span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl::<span class="kw">rotationMatrix</span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)
+<span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)
 jet.colors &lt;-
 <span class="st">  </span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">"#00007F"</span>, <span class="st">"blue"</span>, <span class="st">"#007FFF"</span>, <span class="st">"cyan"</span>,
                      <span class="st">"#7FFF7F"</span>, <span class="st">"yellow"</span>, <span class="st">"#FF7F00"</span>, <span class="st">"red"</span>, <span class="st">"#7F0000"</span>))
@@ -1842,8 +1842,8 @@ jet.colors &lt;-
 <p>75/48 43 46 68 23</p>
 <p>Compare the leave one out landmark position with manually defined position</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">clear3d</span>()
-<span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl::<span class="kw">rotationMatrix</span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)
-for(i in <span class="dv">1</span>:<span class="kw">nrow</span>(xyz)){
+<span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(xyz)){
   <span class="kw">segments3d</span>(<span class="kw">rbind</span>(xyz[i, , <span class="dt">drop=</span><span class="ot">FALSE</span>], xyzt.loo[i, , <span class="dt">drop=</span><span class="ot">FALSE</span>]), <span class="dt">col=</span><span class="kw">jet.colors</span>(<span class="dv">10</span>)[<span class="kw">cut</span>(deltas, <span class="dv">10</span>)][i], <span class="dt">lwd=</span><span class="dv">3</span>)
 }
 <span class="kw">points3d</span>(xyz)
@@ -1852,9 +1852,9 @@ for(i in <span class="dv">1</span>:<span class="kw">nrow</span>(xyz)){
 <p><img src="landmarks_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
 <p>Now of course this is not just a measure of consistency in each landmark point, but it will also depend strongly on the extent to which the neighbouring points can define the required registration; in areas requiring substantial non-rigid deformation this may be a problem; this will be further emphasised when the neighbouring points are distant. We can check the latter point like so:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nabor)
-nearest3=<span class="kw">rowMeans</span>(nabor::<span class="kw"><a href="http://www.rdocumentation.org/packages/nabor/topics/knn">knn</a></span>(xyz, <span class="dt">k=</span><span class="dv">4</span>)$nn.dists[,-<span class="dv">1</span>])
-<span class="kw">plot</span>(deltas~nearest3)
-deltabynearest3=<span class="kw">lm</span>(deltas~nearest3)
+nearest3=<span class="kw">rowMeans</span>(nabor<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/nabor/topics/knn">knn</a></span>(xyz, <span class="dt">k=</span><span class="dv">4</span>)<span class="op">$</span>nn.dists[,<span class="op">-</span><span class="dv">1</span>])
+<span class="kw">plot</span>(deltas<span class="op">~</span>nearest3)
+deltabynearest3=<span class="kw">lm</span>(deltas<span class="op">~</span>nearest3)
 <span class="kw">abline</span>(deltabynearest3)</code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(deltabynearest3)</code></pre></div>
@@ -1880,14 +1880,14 @@ deltabynearest3=<span class="kw">lm</span>(deltas~nearest3)
 <p>Perhaps the ideal thing would be to find a set of landmarks on one side of the brain and then find exactly the same landmarks on the other side of the brain. For the JFRC2013 brain we can exactly mirror points from one side to the other using an image-based registration distributed with the <code>nat.flybrains</code> package.</p>
 <p>We can find the mirror image position of all the points that we used like so:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#  nb this is conditioned on being able to find CMTK</span>
-if(<span class="kw">isTRUE</span>(<span class="kw">nzchar</span>(<span class="kw">cmtk.bindir</span>()))){
+<span class="cf">if</span>(<span class="kw">isTRUE</span>(<span class="kw">nzchar</span>(<span class="kw">cmtk.bindir</span>()))){
   xyzm=<span class="kw">mirror_brain</span>(xyz, <span class="dt">brain =</span> JFRC2013)
   
   <span class="kw">clear3d</span>()
   <span class="kw">spheres3d</span>(xyz, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">rad=</span><span class="dv">2</span>)
   <span class="kw">spheres3d</span>(xyzm, <span class="dt">col=</span><span class="st">'green'</span>, <span class="dt">rad=</span><span class="dv">2</span>)
   <span class="kw">plot3d</span>(JFRC2013)
-  <span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl::<span class="kw">rotationMatrix</span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)
+  <span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)
 
 }</code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-9-1.png" width="480"></p>

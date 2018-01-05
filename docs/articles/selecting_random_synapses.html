@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -84,7 +84,7 @@
       <h1>Selecting random synapses</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2017-10-08</h4>
+            <h4 class="date">2018-01-05</h4>
           </div>
 
     
@@ -123,9 +123,9 @@ catmaid_available=<span class="kw">inherits</span>(cl, <span class="st">"catmaid
 run_vignette=catmaid_available
 
 <span class="co"># set up for 3d plots based on rgl package</span>
-rgl::<span class="kw">setupKnitr</span>()
+rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/hook_rgl">setupKnitr</a></span>()
 <span class="co"># frontal view</span>
-<span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl::<span class="kw">rotationMatrix</span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.6</span>)</code></pre></div>
+<span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.6</span>)</code></pre></div>
 </div>
 </div>
 <div id="selecting-synapses" class="section level2">
@@ -140,7 +140,6 @@ rgl::<span class="kw">setupKnitr</span>()
 lhr=<span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/as.mesh3d">as.mesh3d</a></span>(FAFBNP.surf, <span class="st">'LH_R'</span>)</code></pre></div>
 <p>Now we can select just those synapses within the LH volume, by piping the XYZ positions of the presynaptic connector node to the <code>pointsinside</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
-<pre><code>## Warning: package 'dplyr' was built under R version 3.4.2</code></pre>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:nat':
@@ -153,31 +152,31 @@ lhr=<span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a new logical column indicating if connector is inside LH</span>
-cda1$inlh=<span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(cda1, connector_x:connector_z) %&gt;%<span class="st"> </span>
+cda1<span class="op">$</span>inlh=<span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(cda1, connector_x<span class="op">:</span>connector_z) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/pointsinside">pointsinside</a></span>(<span class="dt">surf =</span> lhr)
-cda1 %&gt;%
+cda1 <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(inlh) -&gt;
 <span class="st">  </span>cda1.lh</code></pre></div>
 <p>Now let’s take a random 10% sample of the post-synaptic connector nodes for just one PN:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cda1.lh %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(pre_skid==<span class="dv">61221</span>) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cda1.lh <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(pre_skid<span class="op">==</span><span class="dv">61221</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">size=</span><span class="fl">0.1</span>) -&gt;
 random_syn</code></pre></div>
 <p>We can then construct CATMAID URLs for all those synapses:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">synapse_urls=<span class="kw">sapply</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(random_syn), 
-       function(i) <span class="kw"><a href="../reference/open_fafb.html">open_fafb</a></span>(random_syn[i, <span class="kw">c</span>(<span class="st">"post_node_x"</span>, <span class="st">"post_node_y"</span>, <span class="st">"post_node_z"</span>)],
-            <span class="dt">active_skeleton_id =</span> random_syn$post_skid[i],
-            <span class="dt">active_node_id =</span> random_syn$post_node_id[i], <span class="dt">open =</span> F)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">synapse_urls=<span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(random_syn), 
+       <span class="cf">function</span>(i) <span class="kw"><a href="../reference/open_fafb.html">open_fafb</a></span>(random_syn[i, <span class="kw">c</span>(<span class="st">"post_node_x"</span>, <span class="st">"post_node_y"</span>, <span class="st">"post_node_z"</span>)],
+            <span class="dt">active_skeleton_id =</span> random_syn<span class="op">$</span>post_skid[i],
+            <span class="dt">active_node_id =</span> random_syn<span class="op">$</span>post_node_id[i], <span class="dt">open =</span> F)
 )</code></pre></div>
 <p>That was a little bit clunky but we basically feed the <code>open_fafb</code> function the data one row at a time centering the URL on the postsynaptic node and selecting that node in the CATMAID viewer.</p>
 <p>So here are the results</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/neuronlist-dataframe-methods">head</a></span>(synapse_urls)</code></pre></div>
-<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=152840&amp;yp=164216&amp;xp=360004&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=1811442&amp;active_node_id=2595493"
-## [2] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=154680&amp;yp=166939&amp;xp=361936&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=1812365&amp;active_node_id=2595945"
-## [3] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=147640&amp;yp=146867&amp;xp=354555&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=486809&amp;active_node_id=2572539" 
-## [4] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=156560&amp;yp=151461&amp;xp=370924&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=494070&amp;active_node_id=2591704" 
-## [5] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=157400&amp;yp=152362&amp;xp=369799&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=3147374&amp;active_node_id=2591476"
-## [6] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=156160&amp;yp=153038&amp;xp=371035&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=479777&amp;active_node_id=2556248"</code></pre>
+<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=156560&amp;yp=151761&amp;xp=370495&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=494093&amp;active_node_id=2591716"
+## [2] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=151040&amp;yp=157143&amp;xp=356871&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=480886&amp;active_node_id=2557416"
+## [3] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=159160&amp;yp=152034&amp;xp=369548&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=493580&amp;active_node_id=2590871"
+## [4] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=152400&amp;yp=163496&amp;xp=360706&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=480775&amp;active_node_id=2557244"
+## [5] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=159200&amp;yp=151555&amp;xp=368900&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=493626&amp;active_node_id=2590918"
+## [6] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=156880&amp;yp=151752&amp;xp=370203&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=479601&amp;active_node_id=2556165"</code></pre>
 </div>
 <div id="using-the-results" class="section level2">
 <h2 class="hasAnchor">
@@ -189,15 +188,15 @@ random_syn</code></pre></div>
 synapse_bounds=<span class="kw">apply</span>(random_syn[,<span class="kw">c</span>(<span class="st">"post_node_x"</span>, <span class="st">"post_node_y"</span>, <span class="st">"post_node_z"</span>)],<span class="dv">2</span>,range)
 <span class="kw">plot</span>(seedpn, <span class="dt">WithNodes=</span>F, <span class="dt">boundingbox=</span>synapse_bounds)
 <span class="co"># plot the synapses we didn't select</span>
-cda1.lh %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(!post_node_id %in%<span class="st"> </span>random_syn$post_node_id &amp;<span class="st"> </span>pre_skid %in%<span class="st"> </span>random_syn$pre_skid) %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(post_node_x:post_node_y) %&gt;%
+cda1.lh <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="op">!</span>post_node_id <span class="op">%in%</span><span class="st"> </span>random_syn<span class="op">$</span>post_node_id <span class="op">&amp;</span><span class="st"> </span>pre_skid <span class="op">%in%</span><span class="st"> </span>random_syn<span class="op">$</span>pre_skid) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(post_node_x<span class="op">:</span>post_node_y) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">points</span>(<span class="dt">col=</span><span class="st">'grey'</span>)
 <span class="co"># and then the ones we did</span>
-<span class="kw">points</span>(random_syn$post_node_x, random_syn$post_node_y, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">pch=</span><span class="dv">19</span>)</code></pre></div>
+<span class="kw">points</span>(random_syn<span class="op">$</span>post_node_x, random_syn<span class="op">$</span>post_node_y, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">pch=</span><span class="dv">19</span>)</code></pre></div>
 <p><img src="selecting_random_synapses_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
 <p>Then you can open those urls directly in CATMAID:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for (u in synapse_urls) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (u <span class="cf">in</span> synapse_urls) {
   <span class="kw">readline</span>(<span class="st">"Press a key to move to open the next synapse (or Esc to cancel)."</span>)
   <span class="kw">browseURL</span>(u)
 }</code></pre></div>
@@ -205,9 +204,9 @@ cda1.lh %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">writeLines</span>(synapse_urls, <span class="dt">con =</span> <span class="st">'PN61221_rand_synapse_urls.txt'</span>)</code></pre></div>
 <p>or upload them to a google doc</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(googlesheets)
-random_syn$url=synapse_urls
-random_syn$tracer=<span class="st">""</span>
-random_syn$date_started=<span class="st">""</span>
+random_syn<span class="op">$</span>url=synapse_urls
+random_syn<span class="op">$</span>tracer=<span class="st">""</span>
+random_syn<span class="op">$</span>date_started=<span class="st">""</span>
 tf=<span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">'.tsv'</span>)
 <span class="kw">write.table</span>(random_syn, <span class="dt">file=</span>tf, <span class="dt">sep=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/googlesheets/topics/gs_upload">gs_upload</a></span>(tf, <span class="dt">sheet_title =</span> <span class="st">'PN61221_rand_synapse_urls'</span>)

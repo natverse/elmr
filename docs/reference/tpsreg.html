@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -175,8 +175,10 @@ reference (desired target after transformation) spaces. See details.</p></td>
 <span class='no'>emlandmarks</span>[,<span class='st'>'side'</span>]<span class='kw'>=</span><span class='fu'><a href='http://www.rdocumentation.org/packages/stringr/topics/str_match'>str_match</a></span>(<span class='no'>emlandmarks</span>[,<span class='st'>'name'</span>], <span class='st'>"([LR]) Landmark"</span>)[,<span class='fl'>2</span>]
 <span class='no'>emlandmarks</span>[,<span class='st'>'shortname'</span>]<span class='kw'>=</span><span class='fu'><a href='http://www.rdocumentation.org/packages/stringr/topics/str_match'>str_match</a></span>(<span class='no'>emlandmarks</span>[,<span class='st'>'name'</span>], <span class='st'>"(.*)([LR]) Landmark.*"</span>)[,<span class='fl'>2</span>]
 <span class='no'>emlandmarks</span>[,<span class='st'>'shortname'</span>]<span class='kw'>=</span><span class='fu'>sub</span>(<span class='st'>"[_ ]+$"</span>, <span class='st'>""</span>, <span class='no'>emlandmarks</span>[,<span class='st'>'shortname'</span>])
-<span class='fu'>library</span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: package ‘dplyr’ was built under R version 3.4.2</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:nat’:</span>
+<span class='fu'>library</span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:testthat’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    matches</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:nat’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    intersect, setdiff, union</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
 #&gt; <span class='message'></span>
@@ -196,9 +198,8 @@ reference (desired target after transformation) spaces. See details.</p></td>
 )
 <span class='co'># map RHS DA2 PNs onto left and compare with LHS neurons</span>
 <span class='no'>da2pns.R</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>'name:^PN Glomerulus DA2'</span>)
-<span class='no'>da2pns.L</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>'name:Left uPN mALT DA2'</span>)
-<span class='no'>da2pns.R.L</span><span class='kw'>=</span><span class='fu'>xform</span>(<span class='no'>da2pns.R</span>, <span class='kw'>reg</span> <span class='kw'>=</span> <span class='no'>mirror_reg</span>)
-<span class='fu'>plot</span>(<span class='no'>da2pns.L</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>da2pns.R.L</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='no'>T</span>)</div><div class='img'><img src='tpsreg-1.png' alt='' width='700' height='432.632880098887' /></div></pre>
+<span class='no'>da2pns.L</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>'name:Left uPN mALT DA2'</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: No matches for query name:Left uPN mALT DA2!</span></div><div class='output co'>#&gt; <span class='error'>Error in names(res) &lt;- `*vtmp*`: attempt to set an attribute on NULL</span></div><div class='input'><span class='no'>da2pns.R.L</span><span class='kw'>=</span><span class='fu'>xform</span>(<span class='no'>da2pns.R</span>, <span class='kw'>reg</span> <span class='kw'>=</span> <span class='no'>mirror_reg</span>)
+<span class='fu'>plot</span>(<span class='no'>da2pns.L</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(da2pns.L, col = "red"): object 'da2pns.L' not found</span></div><div class='input'><span class='fu'>plot</span>(<span class='no'>da2pns.R.L</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='no'>T</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot.xy(xy.coords(x, y), type = type, ...): plot.new has not been called yet</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

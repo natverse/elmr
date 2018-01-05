@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -123,9 +123,9 @@
     </tr>
     <tr>
       <th>node.idx, node.pointno</th>
-      <td><p>The id of node beyond which distal points will
-be selected. <code>node.idx</code> defines the integer index (counting from 1)
-into the neuron's point array whereas <code>node.pointno</code> matches the
+      <td><p>The id(s) of node(s) beyond which distal points
+will be selected. <code>node.idx</code> defines the integer index (counting from
+1) into the neuron's point array whereas <code>node.pointno</code> matches the
 PointNo column which will be the catmaid id for a node.</p></td>
     </tr>
     <tr>
@@ -140,8 +140,8 @@ selection. You will rarely need to change this from the default value. See
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Integer 1-based indices into the point array of points that are
-  distal to the specified node when traversing the neuron from the root to
-  that node.</p>
+  distal to the specified node(s) when traversing the neuron from the root to
+  that node. Will be a vector one node is specified, a list otherwise</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -84,7 +84,7 @@
       <h1>Making Surface Meshes</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2017-10-08</h4>
+            <h4 class="date">2018-01-05</h4>
           </div>
 
     
@@ -102,20 +102,19 @@
 cl=<span class="kw">try</span>(<span class="kw">catmaid_login</span>())
 catmaid_available=<span class="kw">inherits</span>(cl, <span class="st">"catmaid_connection"</span>)
 <span class="kw">library</span>(knitr)
-opts_chunk$<span class="kw">set</span>(<span class="dt">eval=</span>catmaid_available)</code></pre></div>
+opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">eval=</span>catmaid_available)</code></pre></div>
 <p>In order to run some of this example we need to ensure that we:</p>
 <ul>
 <li>can login to the FAFB catmaid server</li>
 </ul>
 <p>We will most our examples run conditionally based on this.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
-<pre><code>## Warning: package 'dplyr' was built under R version 3.4.2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(alphashape3d)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(alphashape3d)
 <span class="kw">library</span>(rgl)
 <span class="co"># set up for 3d plots based on rgl package</span>
-rgl::<span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/hook_rgl">setupKnitr</a></span>()
+rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/hook_rgl">setupKnitr</a></span>()
 <span class="co"># frontal view</span>
-<span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl::<span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</code></pre></div>
 </div>
 </div>
 <div id="selecting-synapses" class="section level2">
@@ -125,9 +124,9 @@ rgl::<span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pntokc =<span class="st"> </span><span class="kw">catmaid_get_connectors_between</span>(<span class="dt">pre_skids =</span> <span class="st">'annotation:^PN$'</span>,
                                         <span class="dt">post_skids =</span> <span class="st">'annotation:^KC$'</span>)
 <span class="co"># select 3d position of presynaptic connectors</span>
-pntokc %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>(connector_id, <span class="dt">.keep_all=</span><span class="ot">TRUE</span>) %&gt;%
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(connector_x:connector_z) %&gt;%
+pntokc <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>(connector_id, <span class="dt">.keep_all=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(connector_x<span class="op">:</span>connector_z) <span class="op">%&gt;%</span>
 <span class="st">  </span>data.matrix -&gt;<span class="st"> </span>cxyz</code></pre></div>
 <p>Now we can make an alphashape based on those connector positions. We need to set the alpha value in the ashape3d function to something sensible based on the spatial scale of our data - he we use alpha=6000 nm.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">calyx.a=<span class="kw"><a href="http://www.rdocumentation.org/packages/alphashape3d/topics/ashape3d">ashape3d</a></span>(cxyz, <span class="dt">alpha =</span> <span class="dv">6000</span>)</code></pre></div>
@@ -145,12 +144,12 @@ pntokc %&gt;%<span class="st"> </span>
 <p>We can also compare with the mesh supplied with elmr, which was transformed from JFRC2 space via JFRC2013 to FAFB:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/mesh3d">wire3d</a></span>(calyx)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/plot3d">plot3d</a></span>(FAFBNP.surf, <span class="st">"MB_CA_R"</span>, <span class="dt">alpha=</span>.<span class="dv">3</span>)
-<span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl::<span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</code></pre></div>
 <p><img src="making_meshes_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
 <p>And we can also compare the dorsal view as well:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/mesh3d">wire3d</a></span>(calyx)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/plot3d">plot3d</a></span>(FAFBNP.surf, <span class="st">"MB_CA_R"</span>, <span class="dt">alpha=</span>.<span class="dv">3</span>)
-<span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl::<span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> -pi/<span class="dv">2</span>, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> <span class="op">-</span>pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</code></pre></div>
 <p><img src="making_meshes_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 <p>It’s clear that there is a mismatch here. This may originate in part from the fact that the JFRC2013 intermediate template has rather flattened MB calyces. The quality of the JFRC2-JFRC2013 bridging registration is likely also a factor.</p>
 <p>Finally if one wanted to place this mesh into catmaid, one could do it as follows:</p>

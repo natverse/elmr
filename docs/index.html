@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="/index.html">
+  <a href="index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -91,8 +91,8 @@
 <a href="#quick-start" class="anchor"></a>Quick Start</h2>
 <p>For the impatient …</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install</span>
-if (!<span class="kw">require</span>(<span class="st">"devtools"</span>)) <span class="kw">install.packages</span>(<span class="st">"devtools"</span>) 
-devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"jefferis/elmr"</span>)
+<span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) <span class="kw">install.packages</span>(<span class="st">"devtools"</span>) 
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"jefferis/elmr"</span>)
 
 <span class="co"># use</span>
 <span class="kw">library</span>(elmr)
@@ -120,8 +120,8 @@ devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devto
 <h3 class="hasAnchor">
 <a href="#development-version" class="anchor"></a>Development version</h3>
 <p>You can use the <strong>devtools</strong> package to install the development version:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">"devtools"</span>)) <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
-devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"jefferis/elmr"</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"jefferis/elmr"</span>)
 
 <span class="co"># to transform skeletons to template brains other than JFRC2013, you also need</span>
 <span class="co"># a CMTK installation (see https://github.com/jefferis/nat/#external-dependencies)</span>
@@ -136,7 +136,7 @@ devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devto
 <h3 class="hasAnchor">
 <a href="#updating" class="anchor"></a>Updating</h3>
 <p><strong>elmr</strong> and its dependencies are still under fairly heavy development. You can conveniently bring the devlopment versions up to date by doing:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/update_packages">update_packages</a></span>(<span class="st">"elmr"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/update_packages">update_packages</a></span>(<span class="st">"elmr"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 </div>
 </div>

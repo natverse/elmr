@@ -9,9 +9,10 @@ reference:
   - fetchn_fafb
   - nblast_fafb
 - title: Working with neuron structures
-  desc: Provides an overview of key functions and classes
+  desc:
   contents:
   - distal_to
+  - simplify_neuron
   - stitch_neuron
   - stitch_neurons
   - unspike

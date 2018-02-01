@@ -116,7 +116,7 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
                         reverse=FALSE, reference=nat.flybrains::FCWB,
                         .parallel=TRUE, ...) {
-  db=getdb(db)
+  db=getdb(db, cdb=deparse(substitute(db)))
   if(.parallel) {
     if(!requireNamespace("doParallel", quietly = TRUE))
       stop("Please install the doParallel package to use multiple cores with nblast!")
@@ -143,21 +143,35 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
     scr=nblast(db[names(sc)[1:nrev]], nat::neuronlist(xdp), normalised=normalised,
                .parallel=.parallel, ...)
   }
-  reslist=list(sc=sc, scr=scr, n=n)
+  reslist=list(sc=sc, scr=scr, n=n, dbname=attr(db, 'dbname'))
   class(reslist)='nblastfafb'
   reslist
 }
 
-getdb <- function(db){
+getdb <- function(db, ...) UseMethod("getdb")
+
+getdb.nblastfafb <- function(db, ...) {
+  getdb(db=NULL, cdb=db[['dbname']])
+}
+
+getdb.default <- function(db, cdb=NULL, ...){
   if(is.null(db)) {
-    defaultdb <- getOption('nat.default.neuronlist')
-    if(!is.null(defaultdb) && exists(defaultdb)) {
-      db=get(defaultdb)
-    } else {
-      stop("You must have a neuronlist containing registered neurons loaded!\n",
-           "See details of nblast_fafb documentation!")
+    if(!is.null(cdb)) db <- cdb
+    else {
+      defaultdb <- getOption('nat.default.neuronlist')
+      if(is.null(defaultdb) || !exists(defaultdb))
+        stop("You must have a neuronlist containing registered neurons loaded!\n",
+             "See details of nblast_fafb documentation!")
+      db <- defaultdb
     }
   }
+  if(is.character(db)){
+    cdb <- db
+    db <- try(get(db), silent = TRUE)
+    if(inherits(db, 'try-error'))
+      stop("Unable to find a neuronlist called ", cdb)
+  }
+  attr(db, 'dbname') <- cdb
   db
 }
 
@@ -172,7 +186,7 @@ summary.nblastfafb <- function(object, n=10, sortmu=T, db=NULL, ...) {
   df$ntype=flycircuit::fc_neuron_type(gns)
   df$glom=flycircuit::fc_glom(gns)
 
-  db=getdb(db)
+  db=getdb(object)
   dbdf=as.data.frame(db)
   available_cols=intersect(c("Driver", "Gender"), colnames(dbdf))
   df <- if(length(available_cols))
@@ -184,6 +198,12 @@ summary.nblastfafb <- function(object, n=10, sortmu=T, db=NULL, ...) {
     df=df[order(df$muscore, decreasing = T), ]
   }
  df
+}
+
+#' @export
+print.nblastfafb <- function(x, n=10, sortmu=T, db=NULL, ...) {
+  sx <- summary(x, n=n, sortmu=sortmu, db=db)
+  print(sx, ...)
 }
 
 #' @export

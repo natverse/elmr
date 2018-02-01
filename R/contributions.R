@@ -38,7 +38,7 @@ summarise_contribution <- function(skids,
   stats=catmaid_get_contributor_stats(skids, ...)
 
   df <- if(type=="synapses"){
-    bind_rows(stats[c("pre_contributors", "stats$post_contributors")]) %>%
+    bind_rows(stats[c("pre_contributors", "post_contributors")]) %>%
       group_by_(~id) %>%
       summarise_(n=~sum(n)) %>%
       as.data.frame

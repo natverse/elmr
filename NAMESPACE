@@ -2,6 +2,7 @@
 
 S3method(hist,nblastfafb)
 S3method(plot3d,nblastfafb)
+S3method(print,nblastfafb)
 S3method(summary,nblastfafb)
 S3method(unspike,catmaidneuron)
 S3method(unspike,neuron)

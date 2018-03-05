@@ -39,7 +39,7 @@ rownames(xyz)=sub("Pt-","",elm.landmarks$Label)
 spheres3d(xyz, col = ifelse(elm.landmarks$Use, "green", 'red'), radius = 4)
 ```
 
-## Landmamarks based transform
+## Landmarks based transform
 The standard `elm.landmarks` set is used within to the elmr package to register
 a transformation that can map FAFB->JFRC2013 space in conjunction with the 
 `xform_brain` functions provided by the `nat.templatebrains` packages.

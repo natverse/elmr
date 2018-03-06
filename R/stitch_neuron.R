@@ -34,13 +34,17 @@ stitch_neuron<-function(a, b){
 
   ag=as.ngraph(a)
   bg=as.ngraph(b)
-  abg=as.ngraph(ag+bg)
+  abg=as.ngraph(igraph::disjoint_union(ag, bg))
   # find closest node (or endpoint?) in each neuron and join those
   ce=closest_ends(a, b)
   a_pointno=a$d$PointNo[ce$a_idx]
   b_pointno=b$d$PointNo[ce$b_idx]
-  abg=abg+igraph::edge(which(igraph::vertex_attr(abg,'label')==a_pointno),
-                       which(igraph::vertex_attr(abg,'label')==b_pointno))
+  # older versions of nat use label for nodes, newer use name
+  node_label=intersect(c("name","label"),
+                       igraph::list.vertex.attributes(ag))[1]
+  if(all(is.na(node_label))) stop("Graph nodes are not labelled!")
+  abg=abg+igraph::edge(which(igraph::vertex_attr(abg, node_label)==a_pointno),
+                       which(igraph::vertex_attr(abg, node_label)==b_pointno))
 
   as.neuron(as.ngraph(abg))
 }

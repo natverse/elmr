@@ -84,7 +84,7 @@
       <h1>Landmarks</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2018-01-05</h4>
+            <h4 class="date">2018-03-06</h4>
           </div>
 
     
@@ -118,9 +118,9 @@ xyz=<span class="kw">as.data.frame</span>(xyz)
 <span class="kw">spheres3d</span>(xyz, <span class="dt">col =</span> <span class="kw">ifelse</span>(elm.landmarks<span class="op">$</span>Use, <span class="st">"green"</span>, <span class="st">'red'</span>), <span class="dt">radius =</span> <span class="dv">4</span>)</code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-2-1.png" width="480"></p>
 </div>
-<div id="landmamarks-based-transform" class="section level2">
+<div id="landmarks-based-transform" class="section level2">
 <h2 class="hasAnchor">
-<a href="#landmamarks-based-transform" class="anchor"></a>Landmamarks based transform</h2>
+<a href="#landmarks-based-transform" class="anchor"></a>Landmarks based transform</h2>
 <p>The standard <code>elm.landmarks</code> set is used within to the elmr package to register a transformation that can map FAFB-&gt;JFRC2013 space in conjunction with the <code>xform_brain</code> functions provided by the <code>nat.templatebrains</code> packages.</p>
 <p>Let’s first look at the FAFB landmarks</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note that these positions are in nm units and do not need scaling</span>
@@ -1908,7 +1908,7 @@ deltabynearest3=<span class="kw">lm</span>(deltas<span class="op">~</span>neares
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#intro">Intro</a></li>
       <li><a href="#landmarks">Landmarks</a></li>
-      <li><a href="#landmamarks-based-transform">Landmamarks based transform</a></li>
+      <li><a href="#landmarks-based-transform">Landmarks based transform</a></li>
       </ul>
 </div>
       </div>

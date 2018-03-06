@@ -1,3 +1,11 @@
+elmr 0.5.1
+==========
+* teach distal_to to handle multiple input nodes
+* add simplify_neuron function to make neuron with just one branchpoint
+* fix summarise_contributions for 'synapses' (#34)
+* change IVLP -> WED in FAFBNP surfaces (#35)
+* fix stitch_neurons for latest nat 1.9 prerelease (#36)
+
 elmr 0.5
 ========
 * switch to FAFB14 as the default EM assembly

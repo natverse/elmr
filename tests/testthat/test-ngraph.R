@@ -21,3 +21,5 @@ test_that("distal_to works", {
   expect_equal(distal_to(x, node.pointno = dcv, root.idx = x$StartPoint), dtdcv)
   expect_equal(distal_to(x, node.pointno = dcv, root.pointno = x$tags$soma), dtdcv)
 })
+
+c

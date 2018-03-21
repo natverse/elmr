@@ -28,6 +28,7 @@ Imports:
     dplyr
 RoxygenNote: 6.0.1
 Suggests:
+    spelling,
     flycircuit,
     foreach,
     doParallel,
@@ -43,3 +44,4 @@ Remotes: jefferis/nat,
     jefferis/rcatmaid,
     jefferis/flycircuit
 VignetteBuilder: knitr
+Language: en-GB

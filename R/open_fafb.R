@@ -19,7 +19,7 @@
 #' @param ... Additional arguments to be added to URL.
 #' @export
 #' @importFrom utils browseURL
-#' @seealso xform_brain
+#' @seealso \code{\link{xform_brain}}
 #' @examples
 #' open_fafb(c(316, 143, 26), sample=JFRC2013, open=FALSE)
 #' library(nat)

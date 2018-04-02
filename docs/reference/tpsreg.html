@@ -18,13 +18,24 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Thin plate spline registrations via nat::xform and friends — tpsreg" />
+
+<meta property="og:description" content="tpsreg creates an object encapsulating a thin plate spine
+  transform mapping a paired landmark set.
+xformpoints.tpsreg enables xform and
+  friends to transform 3d vertices (or more complex objects containing 3d
+  vertices) using a thin plate spline mapping stored in a tpsreg
+  object." />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +58,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">elmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">elmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -105,13 +120,13 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Thin plate spline registrations via nat::xform and friends</h1>
+    <small>Source: <a href='https://github.com/jefferis/elmr/blob/master/R/xform_tps.R'><code>R/xform_tps.R</code></a></small>
     </div>
 
     
     <p><code>tpsreg</code> creates an object encapsulating a thin plate spine
-  transform mapping a paired landmark set.
-
-    <code>xformpoints.tpsreg</code> enables <code><a href='http://www.rdocumentation.org/packages/nat/topics/xform'>xform</a></code> and
+  transform mapping a paired landmark set.</p>
+<p><code>xformpoints.tpsreg</code> enables <code><a href='http://www.rdocumentation.org/packages/nat/topics/xform'>xform</a></code> and
   friends to transform 3d vertices (or more complex objects containing 3d
   vertices) using a thin plate spline mapping stored in a <code>tpsreg</code>
   object.</p>
@@ -122,7 +137,7 @@
 <span class='co'># S3 method for tpsreg</span>
 <span class='fu'>xformpoints</span>(<span class='no'>reg</span>, <span class='no'>points</span>, <span class='kw'>swap</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -132,7 +147,7 @@ reference (desired target after transformation) spaces. See details.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>additional arguments passed to xformpoints.tpsreg</p></td>
+      <td><p>additional arguments passed to <code>xformpoints.tpsreg</code></p></td>
     </tr>
     <tr>
       <th>reg</th>
@@ -222,7 +237,7 @@ reference (desired target after transformation) spaces. See details.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -230,3 +245,4 @@ reference (desired target after transformation) spaces. See details.</p></td>
 
   </body>
 </html>
+

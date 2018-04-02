@@ -3,8 +3,8 @@
 #' @param xyz xyz coordinates (in nm)
 #' @param from,to Assemblies to convert between e.g. \code{"v12"}, \code{"v13"},
 #'   \code{"v14"}.
-#' @param baseurl path to janelia tem-services server (not externally visible at
-#'   the moment)
+#' @param baseurl path to Janelia \code{tem-services} server (not externally
+#'   visible at the moment)
 #' @param method Whether to try and convert multiple coordinates at once.
 #'   Defaults to 'single'. The 'many' method currently appears fragile and not
 #'   much faster.

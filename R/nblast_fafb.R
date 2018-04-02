@@ -1,4 +1,4 @@
-#' Fetch neurons from FAFB catmaid server, transforming them as appropriate
+#' Fetch neurons from FAFB CATMAID server, transforming them as appropriate
 #'
 #' @description \code{fetchn_fafb} is a thin wrapper around the
 #'   \code{catmaid::\link[catmaid]{read.neurons.catmaid}} function with the
@@ -49,14 +49,14 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 }
 
 
-#' NBLAST EM tracing against flycircuit (or other databases of) neurons
+#' NBLAST EM tracing against FlyCircuit (or other databases of) neurons
 #'
 #' @details Still depends on having a \code{\link[nat]{neuronlist}} containing
-#'   registered neurons (usually from flycircuit.tw). The example code downloads
+#'   registered neurons (usually from \code{flycircuit.tw}). The example code downloads
 #'   a set of projection neurons. The full data must be requested from Greg
 #'   Jefferis.
 #'
-#'   When \code{.parallel=TRUE}, nblast_fafb will parallelise the search across
+#'   When \code{.parallel=TRUE}, \code{nblast_fafb} will parallelise the search across
 #'   multiple cores if possible. You can set an option specifying a default
 #'   number of cores \code{elmr.nblast.cores}. See \code{\link{elmr-package}}.
 #'   Otherwise the default will either be roughly half the number of cores as
@@ -72,13 +72,13 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #' @param conn a \code{catmaid} connection object (see
 #'   \code{\link[catmaid]{catmaid_connection}})
 #' @param mirror whether to mirror the neuron (default \code{TRUE} since
-#'   flycircuit neurons are on fly's left and most FAFB tracings are on fly's
+#'   FlyCircuit neurons are on fly's left and most FAFB tracings are on fly's
 #'   right.)
 #' @param normalised Whether to return normalised NBLAST scores
 #' @param reverse Treat the FAFB skeleton as NBLAST target rather than query
 #'   (sensible if \code{db} contains partial skeletons/tracts; default
 #'   \code{FALSE}).
-#' @param .parallel Whether to parallelise the nblast search (see details and
+#' @param .parallel Whether to parallelise the NBLAST search (see details and
 #'   also \code{\link[nat.nblast]{nblast}} for how to use the parallel interface
 #'   provided by the \code{doMC} package.)
 #' @param ... Additional parameters passed to \code{\link[nat.nblast]{nblast}}
@@ -91,7 +91,7 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #' @seealso \code{\link[nat.nblast]{nblast}},
 #'   \code{\link[doParallel]{registerDoParallel}} for setting spreading load
 #'   across cores.
-#'
+#' @references \url{http://flycircuit.tw}
 #' @examples
 #' \dontrun{
 #' # first load neuronlist object containing registered neurons (see details)
@@ -99,10 +99,10 @@ fetchdp_fafb<-function(skids, mirror=TRUE, conn=NULL, ...) {
 #' # ... and set that as the default for queries and plotting
 #' options(nat.default.neuronlist='allpndps')
 #'
-#' # then make sure you are loged in to catmaid server
+#' # then make sure you are loged in to CATMAID server
 #' # catmaid::catmaid_login(<your connection args>)
 #'
-#' # nblast neuron 27884
+#' # NBLAST neuron 27884
 #' PN27884f=nblast_fafb(27884, mirror = FALSE)
 #' # summary table of results
 #' summary(PN27884f)

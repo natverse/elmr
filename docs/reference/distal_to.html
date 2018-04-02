@@ -18,13 +18,19 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Return indices of points in a neuron distal to a given node — distal_to" />
+
+<meta property="og:description" content="Return indices of points in a neuron distal to a given node" />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +53,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">elmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">elmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -105,6 +115,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Return indices of points in a neuron distal to a given node</h1>
+    <small>Source: <a href='https://github.com/jefferis/elmr/blob/master/R/ngraph.R'><code>R/ngraph.R</code></a></small>
     </div>
 
     
@@ -114,7 +125,7 @@
     <pre class="usage"><span class='fu'>distal_to</span>(<span class='no'>x</span>, <span class='kw'>node.idx</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>node.pointno</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>root.idx</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>root.pointno</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -126,7 +137,7 @@
       <td><p>The id(s) of node(s) beyond which distal points
 will be selected. <code>node.idx</code> defines the integer index (counting from
 1) into the neuron's point array whereas <code>node.pointno</code> matches the
-PointNo column which will be the catmaid id for a node.</p></td>
+PointNo column which will be the CATMAID id for a node.</p></td>
     </tr>
     <tr>
       <th>root.idx, root.pointno</th>
@@ -159,7 +170,7 @@ selection. You will rarely need to change this from the default value. See
 <span class='co'># nb distal_to can accept either the PointNo vertex id or raw index as a</span>
 <span class='co'># pivot point</span>
 <span class='no'>dl1.lh</span><span class='kw'>=</span><span class='fu'>subset</span>(<span class='no'>dl1</span>, <span class='fu'>distal_to</span>(<span class='no'>dl1</span>,<span class='kw'>node.pointno</span> <span class='kw'>=</span> <span class='no'>dl1</span>$<span class='no'>tags</span>$<span class='no'>SCHLEGEL_LH</span>))
-<span class='fu'>plot</span>(<span class='no'>dl1</span>,<span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>dl1.lh</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='distal_to-1.png' alt='' width='700' height='432.632880098887' /></div></pre>
+<span class='fu'>plot</span>(<span class='no'>dl1</span>,<span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>dl1.lh</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='distal_to-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -182,7 +193,7 @@ selection. You will rarely need to change this from the default value. See
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -190,3 +201,4 @@ selection. You will rarely need to change this from the default value. See
 
   </body>
 </html>
+

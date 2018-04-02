@@ -20,7 +20,7 @@ write_ack(x, ...)
 \item{skids}{catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})
 or a neuronlist}
 
-\item{type}{Whether to summarise contributinons towards arbour (nodes) or
+\item{type}{Whether to summarise contributions towards arbour (nodes) or
 synapses}
 
 \item{...}{Additional arguments passed by \code{summarise_contribution} to

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NBLAST EM tracing against flycircuit (or other databases of) neurons — nblast_fafb • elmr</title>
+<title>NBLAST EM tracing against FlyCircuit (or other databases of) neurons — nblast_fafb • elmr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,19 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="NBLAST EM tracing against FlyCircuit (or other databases of) neurons — nblast_fafb" />
+
+<meta property="og:description" content="NBLAST EM tracing against FlyCircuit (or other databases of) neurons" />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +53,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">elmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">elmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -104,18 +114,19 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>NBLAST EM tracing against flycircuit (or other databases of) neurons</h1>
+    <h1>NBLAST EM tracing against FlyCircuit (or other databases of) neurons</h1>
+    <small>Source: <a href='https://github.com/jefferis/elmr/blob/master/R/nblast_fafb.R'><code>R/nblast_fafb.R</code></a></small>
     </div>
 
     
-    <p>NBLAST EM tracing against flycircuit (or other databases of) neurons</p>
+    <p>NBLAST EM tracing against FlyCircuit (or other databases of) neurons</p>
     
 
     <pre class="usage"><span class='fu'>nblast_fafb</span>(<span class='no'>skids</span>, <span class='kw'>db</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>normalised</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>reverse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>reference</span> <span class='kw'>=</span> <span class='kw pkg'>nat.flybrains</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/nat.flybrains/topics/FCWB'>FCWB</a></span>,
   <span class='kw'>.parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -136,7 +147,7 @@ value of <code>options('nat.default.neuronlist')</code>.</p></td>
     <tr>
       <th>mirror</th>
       <td><p>whether to mirror the neuron (default <code>TRUE</code> since
-flycircuit neurons are on fly's left and most FAFB tracings are on fly's
+FlyCircuit neurons are on fly's left and most FAFB tracings are on fly's
 right.)</p></td>
     </tr>
     <tr>
@@ -158,7 +169,7 @@ naming such an object.</p></td>
     </tr>
     <tr>
       <th>.parallel</th>
-      <td><p>Whether to parallelise the nblast search (see details and
+      <td><p>Whether to parallelise the NBLAST search (see details and
 also <code><a href='http://www.rdocumentation.org/packages/nat.nblast/topics/nblast'>nblast</a></code> for how to use the parallel interface
 provided by the <code>doMC</code> package.)</p></td>
     </tr>
@@ -176,10 +187,10 @@ provided by the <code>doMC</code> package.)</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Still depends on having a <code><a href='http://www.rdocumentation.org/packages/nat/topics/neuronlist'>neuronlist</a></code> containing
-  registered neurons (usually from flycircuit.tw). The example code downloads
+  registered neurons (usually from <code>flycircuit.tw</code>). The example code downloads
   a set of projection neurons. The full data must be requested from Greg
   Jefferis.</p>
-<p>When <code>.parallel=TRUE</code>, nblast_fafb will parallelise the search across
+<p>When <code>.parallel=TRUE</code>, <code>nblast_fafb</code> will parallelise the search across
   multiple cores if possible. You can set an option specifying a default
   number of cores <code>elmr.nblast.cores</code>. See <code><a href='elmr-package.html'>elmr-package</a></code>.
   Otherwise the default will either be roughly half the number of cores as
@@ -187,6 +198,10 @@ provided by the <code>doMC</code> package.)</p></td>
   does not have multiple cores (or you do not want to use them), the search
   will be a bit more efficient if you set the option
   <code>elmr.nblast.cores=1</code> or the argument <code>.parallel=TRUE</code>.</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p><a href='http://flycircuit.tw'>http://flycircuit.tw</a></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -202,10 +217,10 @@ provided by the <code>doMC</code> package.)</p></td>
 <span class='co'># ... and set that as the default for queries and plotting</span>
 <span class='fu'>options</span>(<span class='kw'>nat.default.neuronlist</span><span class='kw'>=</span><span class='st'>'allpndps'</span>)
 
-<span class='co'># then make sure you are loged in to catmaid server</span>
+<span class='co'># then make sure you are loged in to CATMAID server</span>
 <span class='co'># catmaid::catmaid_login(&lt;your connection args&gt;)</span>
 
-<span class='co'># nblast neuron 27884</span>
+<span class='co'># NBLAST neuron 27884</span>
 <span class='no'>PN27884f</span><span class='kw'>=</span><span class='fu'>nblast_fafb</span>(<span class='fl'>27884</span>, <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='co'># summary table of results</span>
 <span class='fu'>summary</span>(<span class='no'>PN27884f</span>)
@@ -226,6 +241,8 @@ provided by the <code>doMC</code> package.)</p></td>
 
       <li><a href="#details">Details</a></li>
 
+      <li><a href="#references">References</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
@@ -240,7 +257,7 @@ provided by the <code>doMC</code> package.)</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -248,3 +265,4 @@ provided by the <code>doMC</code> package.)</p></td>
 
   </body>
 </html>
+

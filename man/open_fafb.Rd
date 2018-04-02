@@ -52,5 +52,5 @@ open_fafb(kcs20, sample=FCWB, mirror=TRUE)
 }
 }
 \seealso{
-xform_brain
+\code{\link{xform_brain}}
 }

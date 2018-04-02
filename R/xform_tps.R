@@ -4,7 +4,7 @@
 #'   transform mapping a paired landmark set.
 #' @param sample,reference Matrices defining the sample (or floating) and
 #'   reference (desired target after transformation) spaces. See details.
-#' @param ... additional arguments passed to xformpoints.tpsreg
+#' @param ... additional arguments passed to \code{\link{xformpoints.tpsreg}}
 #' @details  Note that we use the \bold{nat} convention for naming the
 #'   sample/reference space arguments but these actually clash with the
 #'   nomenclature in the underlying \code{Morpho::\link[Morpho]{tps3d}}

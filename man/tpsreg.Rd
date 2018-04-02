@@ -13,7 +13,7 @@ tpsreg(sample, reference, ...)
 \item{sample, reference}{Matrices defining the sample (or floating) and
 reference (desired target after transformation) spaces. See details.}
 
-\item{...}{additional arguments passed to xformpoints.tpsreg}
+\item{...}{additional arguments passed to \code{\link{xformpoints.tpsreg}}}
 
 \item{reg}{The \code{tpsreg} registration object}
 

@@ -5,7 +5,7 @@
 #'   which contributors meet defined authorship/acknowledgement criteria.
 #' @inheritParams nblast_fafb
 #' @param x A data frame containing the output of summarise_contribution
-#' @param type Whether to summarise contributinons towards arbour (nodes) or
+#' @param type Whether to summarise contributions towards arbour (nodes) or
 #'   synapses
 #' @param ... Additional arguments passed by \code{summarise_contribution} to
 #'   \code{\link[catmaid]{catmaid_get_contributor_stats}} or by

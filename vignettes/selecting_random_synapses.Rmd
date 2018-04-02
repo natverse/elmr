@@ -23,7 +23,7 @@ library(nat)
 
 In order to run some of the examples we need to ensure that we:
 
-* can login to the FAFB catmaid server
+* can login to the FAFB CATMAID server
 
 We will most our examples run conditionally based on this.
 

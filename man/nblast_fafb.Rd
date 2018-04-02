@@ -2,7 +2,7 @@
 % Please edit documentation in R/nblast_fafb.R
 \name{nblast_fafb}
 \alias{nblast_fafb}
-\title{NBLAST EM tracing against flycircuit (or other databases of) neurons}
+\title{NBLAST EM tracing against FlyCircuit (or other databases of) neurons}
 \usage{
 nblast_fafb(skids, db = NULL, conn = NULL, mirror = TRUE,
   normalised = TRUE, reverse = FALSE, reference = nat.flybrains::FCWB,
@@ -19,7 +19,7 @@ value of \code{options('nat.default.neuronlist')}.}
 \code{\link[catmaid]{catmaid_connection}})}
 
 \item{mirror}{whether to mirror the neuron (default \code{TRUE} since
-flycircuit neurons are on fly's left and most FAFB tracings are on fly's
+FlyCircuit neurons are on fly's left and most FAFB tracings are on fly's
 right.)}
 
 \item{normalised}{Whether to return normalised NBLAST scores}
@@ -33,7 +33,7 @@ transformed, either a \code{\link[nat.templatebrains]{templatebrain}}
 object such as \code{\link[nat.flybrains]{FCWB}} or a character vector
 naming such an object.}
 
-\item{.parallel}{Whether to parallelise the nblast search (see details and
+\item{.parallel}{Whether to parallelise the NBLAST search (see details and
 also \code{\link[nat.nblast]{nblast}} for how to use the parallel interface
 provided by the \code{doMC} package.)}
 
@@ -44,15 +44,15 @@ an object of class nblastfafb for which \code{plot3d}, \code{summary}
   and \code{hist} methods exist.
 }
 \description{
-NBLAST EM tracing against flycircuit (or other databases of) neurons
+NBLAST EM tracing against FlyCircuit (or other databases of) neurons
 }
 \details{
 Still depends on having a \code{\link[nat]{neuronlist}} containing
-  registered neurons (usually from flycircuit.tw). The example code downloads
+  registered neurons (usually from \code{flycircuit.tw}). The example code downloads
   a set of projection neurons. The full data must be requested from Greg
   Jefferis.
 
-  When \code{.parallel=TRUE}, nblast_fafb will parallelise the search across
+  When \code{.parallel=TRUE}, \code{nblast_fafb} will parallelise the search across
   multiple cores if possible. You can set an option specifying a default
   number of cores \code{elmr.nblast.cores}. See \code{\link{elmr-package}}.
   Otherwise the default will either be roughly half the number of cores as
@@ -68,10 +68,10 @@ allpndps=flycircuit::load_si_data('allpndps.rds')
 # ... and set that as the default for queries and plotting
 options(nat.default.neuronlist='allpndps')
 
-# then make sure you are loged in to catmaid server
+# then make sure you are loged in to CATMAID server
 # catmaid::catmaid_login(<your connection args>)
 
-# nblast neuron 27884
+# NBLAST neuron 27884
 PN27884f=nblast_fafb(27884, mirror = FALSE)
 # summary table of results
 summary(PN27884f)
@@ -82,6 +82,9 @@ plot3d(PN27884f, hits=1)
 dc_nl = nblast_fafb(dense_core_neurons, mirror=TRUE)
 summary(dc_nl)
 }
+}
+\references{
+\url{http://flycircuit.tw}
 }
 \seealso{
 \code{\link[nat.nblast]{nblast}},

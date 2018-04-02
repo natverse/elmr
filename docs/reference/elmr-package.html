@@ -18,13 +18,23 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Bridge light and EM flybrain datasets — elmr-package" />
+
+<meta property="og:description" content="elmr builds on the nat and catmaid
+packages to provide tools to read, analyse, plot, transform and convert
+neuroanatomical data, especially as it relates to whole brain EM volumes
+generated at the HHMI Janelia Research Campus (groups of Davi Bock, Stephan
+Saalfeld and many collaborators)." />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +57,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">elmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">elmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -105,14 +119,15 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Bridge light and EM flybrain datasets</h1>
+    <small>Source: <a href='https://github.com/jefferis/elmr/blob/master/R/elmr-package.R'><code>R/elmr-package.R</code></a></small>
     </div>
 
     
-    <p><b>elmr</b> builds on the <b>nat</b> and <b>catmaid</b> packages to provide
-tools to read, analyse, plot, transform and convert neuroanatomical data,
-especially as it relates to whole brain EM voumes generated at the HHMI
-Janelia Research Campus (groups of Davi Bock, Stephan Saalfeld and many
-collaborators).</p>
+    <p><b><code>elmr</code></b> builds on the <b><code>nat</code></b> and <b><code>catmaid</code></b>
+packages to provide tools to read, analyse, plot, transform and convert
+neuroanatomical data, especially as it relates to whole brain EM volumes
+generated at the HHMI Janelia Research Campus (groups of Davi Bock, Stephan
+Saalfeld and many collaborators).</p>
     
 
         
@@ -127,29 +142,28 @@ collaborators).</p>
   <code><a href='http://www.rdocumentation.org/packages/nat.flybrains/topics/JFRC2013'>JFRC2013</a></code> template brain depends on having a
   functional CMTK installation. See <code><a href='http://www.rdocumentation.org/packages/nat/topics/cmtk.bindir'>cmtk.bindir</a></code> for more
   information and advice about installation.</p></li>
-<li><p><code><a href='fetchn_fafb.html'>fetchn_fafb</a></code> allows you to fetch FAFB catmaid tracings
+<li><p><code><a href='fetchn_fafb.html'>fetchn_fafb</a></code> allows you to fetch FAFB CATMAID tracings
   and transform to a new template.</p></li>
-<li><p><code><a href='nblast_fafb.html'>nblast_fafb</a></code> allows you to nblast catmaid tracings
-  against a set of neuron skeletons e.g. from flycircuit.</p></li>
-<li><p><code><a href='open_fafb.html'>open_fafb</a></code> allows you to open a catmaid session in your
+<li><p><code><a href='nblast_fafb.html'>nblast_fafb</a></code> allows you to NBLAST CATMAID tracings
+  against a set of neuron skeletons e.g. from FlyCircuit.</p></li>
+<li><p><code><a href='open_fafb.html'>open_fafb</a></code> allows you to open a CATMAID session in your
   browser at a specific xyz location based on selecting a position in any
-  template brain space e.g. a flycircuit.tw neuron or a JFRC2010 registered
-  GAL4 line.</p></li>
+  template brain space e.g. a <code>flycircuit.tw</code> neuron or a JFRC2010
+  registered GAL4 line.</p></li>
 <li><p><code><a href='stitch_neurons.html'>stitch_neurons</a></code> allows neuron fragments to be stitched
   together reasonably intelligently.</p></li>
-<li><p><code><a href='FAFB.html'>FAFB</a></code> a
-  <code><a href='http://www.rdocumentation.org/packages/nat.templatebrains/topics/templatebrain'>templatebrain</a></code> object specifying the
-  dimensions of the FAFB EM volume.</p></li>
+<li><p><code><a href='FAFB.html'>FAFB</a></code> a <code><a href='http://www.rdocumentation.org/packages/nat.templatebrains/topics/templatebrain'>templatebrain</a></code>
+  object specifying the dimensions of the FAFB EM volume.</p></li>
 <li><p><code><a href='elm.landmarks.html'>elm.landmarks</a></code> a set of landmarks that can define a thin
   plate spline transform mapping FAFB to light level template brains.</p></li>
 </ul>
     
     <h2 class="hasAnchor" id="authentication"><a class="anchor" href="#authentication"></a>Authentication</h2>
 
-    <p>Interacting with a catmaid server will normally
+    <p>Interacting with a CATMAID server will normally
   require authentication. Please see
   <a href='https://github.com/jefferis/rcatmaid#Authentication'>https://github.com/jefferis/rcatmaid#Authentication</a> for details of
-  how to set up authentication. If you regularly use a particular catmaid
+  how to set up authentication. If you regularly use a particular CATMAID
   server it is recommended to put authentication in your
   <code>Rprofile</code> file.</p>
     
@@ -157,7 +171,7 @@ collaborators).</p>
 
     <p>There is one package option:</p><ul>
 <li><p><code>elmr.nblast.cores</code> Set the default number of cores to use for
-  parallel nblast. You will need to ensure that the doParallel package (a
+  parallel NBLAST You will need to ensure that the doParallel package (a
   suggested but not strict dependency of elmr is installed)</p></li>
 </ul>
     <p>You can set this option in your <code><a href='http://www.rdocumentation.org/packages/base/topics/Startup'>Rprofile</a></code> file.</p>
@@ -205,7 +219,7 @@ collaborators).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -213,3 +227,4 @@ collaborators).</p>
 
   </body>
 </html>
+

@@ -18,13 +18,16 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Function reference" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +50,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">elmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">elmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -104,10 +111,7 @@
       <div class="row">
   <div class="col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.5.1</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
     <div class="contents">
@@ -142,15 +146,15 @@
         <tr>
           <!--  -->
           <td>
-            <p><code><a href="fetchn_fafb.html">fetchn_fafb</a></code> <code><a href="fetchn_fafb.html">fetchdp_fafb</a></code> </p>
+            <p><code><a href="fetchn_fafb.html">fetchn_fafb()</a></code> <code><a href="fetchn_fafb.html">fetchdp_fafb()</a></code> </p>
           </td>
-          <td><p>Fetch neurons from FAFB catmaid server, transforming them as appropriate</p></td>
+          <td><p>Fetch neurons from FAFB CATMAID server, transforming them as appropriate</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="nblast_fafb.html">nblast_fafb</a></code> </p>
+            <p><code><a href="nblast_fafb.html">nblast_fafb()</a></code> </p>
           </td>
-          <td><p>NBLAST EM tracing against flycircuit (or other databases of) neurons</p></td>
+          <td><p>NBLAST EM tracing against FlyCircuit (or other databases of) neurons</p></td>
         </tr>
       </tbody><tbody>
         <tr>
@@ -162,31 +166,31 @@
         <tr>
           <!--  -->
           <td>
-            <p><code><a href="distal_to.html">distal_to</a></code> </p>
+            <p><code><a href="distal_to.html">distal_to()</a></code> </p>
           </td>
           <td><p>Return indices of points in a neuron distal to a given node</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="simplify_neuron.html">simplify_neuron</a></code> </p>
+            <p><code><a href="simplify_neuron.html">simplify_neuron()</a></code> </p>
           </td>
           <td><p>Simplify a neuron to include its root and two longest branches</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="stitch_neuron.html">stitch_neuron</a></code> </p>
+            <p><code><a href="stitch_neuron.html">stitch_neuron()</a></code> </p>
           </td>
           <td><p>Stitch two neurons together at their closest endpoints</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="stitch_neurons.html">stitch_neurons</a></code> </p>
+            <p><code><a href="stitch_neurons.html">stitch_neurons()</a></code> </p>
           </td>
           <td><p>Stitch multiple fragments into single neuron using nearest endpoints</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="unspike.html">unspike</a></code> </p>
+            <p><code><a href="unspike.html">unspike()</a></code> </p>
           </td>
           <td><p>Remove artefactual spikes in neuron tracing due to registration errors</p></td>
         </tr>
@@ -200,7 +204,7 @@
         <tr>
           <!--  -->
           <td>
-            <p><code><a href="open_fafb.html">open_fafb</a></code> </p>
+            <p><code><a href="open_fafb.html">open_fafb()</a></code> </p>
           </td>
           <td><p>Open FAFB CATMAID in browser at a given XYZ location</p></td>
         </tr>
@@ -214,7 +218,7 @@
         <tr>
           <!--  -->
           <td>
-            <p><code><a href="summarise_contribution.html">summarise_contribution</a></code> <code><a href="summarise_contribution.html">suggest_authorship</a></code> <code><a href="summarise_contribution.html">write_authors</a></code> <code><a href="summarise_contribution.html">write_ack</a></code> </p>
+            <p><code><a href="summarise_contribution.html">summarise_contribution()</a></code> <code><a href="summarise_contribution.html">suggest_authorship()</a></code> <code><a href="summarise_contribution.html">write_authors()</a></code> <code><a href="summarise_contribution.html">write_ack()</a></code> </p>
           </td>
           <td><p>Summarise tracer contributions / suggest authorship for set of neurons</p></td>
         </tr>
@@ -228,13 +232,13 @@
         <tr>
           <!--  -->
           <td>
-            <p><code><a href="tpsreg.html">tpsreg</a></code> <code><a href="tpsreg.html">xformpoints</a></code> </p>
+            <p><code><a href="tpsreg.html">tpsreg()</a></code> <code><a href="tpsreg.html">xformpoints(<i>&lt;tpsreg&gt;</i>)</a></code> </p>
           </td>
           <td><p>Thin plate spline registrations via nat::xform and friends</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="fafb_world_mapper.html">fafb_world_mapper</a></code> </p>
+            <p><code><a href="fafb_world_mapper.html">fafb_world_mapper()</a></code> </p>
           </td>
           <td><p>Convert coordinates between different FAFB assemblies</p></td>
         </tr>
@@ -295,7 +299,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -303,3 +307,4 @@
 
   </body>
 </html>
+

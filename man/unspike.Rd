@@ -40,11 +40,11 @@ Remove artefactual spikes in neuron tracing due to registration errors
   }
 
   Handling consecutive points or end points should be a fairly
-  straightforward addition. Branch points require a litle more thought.
+  straightforward addition. Branch points require a little more thought.
 }
 \section{node ids and connectors}{
  unspike has the side effect of losing the
-  catmaid node ids in the output neuron. connector/tag information is
+  CATMAID node ids in the output neuron. connector/tag information is
   retained although the node ids are translated to the new numbering system.
 }
 

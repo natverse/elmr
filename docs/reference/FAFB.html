@@ -18,13 +18,28 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="templatebrain for assembled FAFB full adult female brain EM volume — FAFB" />
+
+<meta property="og:description" content="FAFB Current default assembly of FAFB (an alias for
+  FAFB13 since 2016-12-07)
+FAFB14 Assembly v14 of FAFB full adult female brain EM
+  volume (2017-10-07 - ).
+FAFB13 Assembly v13 of FAFB full adult female brain EM
+  volume (2016-12-07 - 2017-10-06).
+FAFB12 Assembly v12 of FAFB full adult female brain EM
+  volume (2016-04-01 to 2016-12-06)
+FAFB11 Assembly v11 of FAFB full adult female brain EM
+  volume (2016-02-09)" />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +62,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">elmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">elmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -105,22 +124,19 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>templatebrain for assembled FAFB full adult female brain EM volume</h1>
+    <small>Source: <a href='https://github.com/jefferis/elmr/blob/master/R/elmr-data.R'><code>R/elmr-data.R</code></a></small>
     </div>
 
     
     <p><code>FAFB</code> Current default assembly of FAFB (an alias for
-  FAFB13 since 2016-12-07)
-
-    <code>FAFB14</code> Assembly v14 of FAFB full adult female brain EM
-  volume (2017-10-07 - ).
-
-    <code>FAFB13</code> Assembly v13 of FAFB full adult female brain EM
-  volume (2016-12-07 - 2017-10-06).
-
-    <code>FAFB12</code> Assembly v12 of FAFB full adult female brain EM
-  volume (2016-04-01 to 2016-12-06)
-
-    <code>FAFB11</code> Assembly v11 of FAFB full adult female brain EM
+  FAFB13 since 2016-12-07)</p>
+<p><code>FAFB14</code> Assembly v14 of FAFB full adult female brain EM
+  volume (2017-10-07 - ).</p>
+<p><code>FAFB13</code> Assembly v13 of FAFB full adult female brain EM
+  volume (2016-12-07 - 2017-10-06).</p>
+<p><code>FAFB12</code> Assembly v12 of FAFB full adult female brain EM
+  volume (2016-04-01 to 2016-12-06)</p>
+<p><code>FAFB11</code> Assembly v11 of FAFB full adult female brain EM
   volume (2016-02-09)</p>
     
 
@@ -183,7 +199,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -191,3 +207,4 @@
 
   </body>
 </html>
+

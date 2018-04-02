@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fetch neurons from FAFB catmaid server, transforming them as appropriate — fetchn_fafb • elmr</title>
+<title>Fetch neurons from FAFB CATMAID server, transforming them as appropriate — fetchn_fafb • elmr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,25 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Fetch neurons from FAFB CATMAID server, transforming them as appropriate — fetchn_fafb" />
+
+<meta property="og:description" content="fetchn_fafb is a thin wrapper around the
+  catmaid::read.neurons.catmaid function with the
+  additional convenience of automating conversion to a reference brain.
+  Input can also be a pre-downloaded neuronlist.
+fetchdp_fafb extends fetchn_fafb by additionally converting
+  neurons to the dotprops representation suitable for
+  nblast." />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +59,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">elmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">elmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -104,16 +120,16 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fetch neurons from FAFB catmaid server, transforming them as appropriate</h1>
+    <h1>Fetch neurons from FAFB CATMAID server, transforming them as appropriate</h1>
+    <small>Source: <a href='https://github.com/jefferis/elmr/blob/master/R/nblast_fafb.R'><code>R/nblast_fafb.R</code></a></small>
     </div>
 
     
     <p><code>fetchn_fafb</code> is a thin wrapper around the
   <code>catmaid::<a href='http://www.rdocumentation.org/packages/catmaid/topics/read.neuron.catmaid'>read.neurons.catmaid</a></code> function with the
   additional convenience of automating conversion to a reference brain.
-  Input can also be a pre-downloaded neuronlist.
-
-    <code>fetchdp_fafb</code> extends <code>fetchn_fafb</code> by additionally converting
+  Input can also be a pre-downloaded neuronlist.</p>
+<p><code>fetchdp_fafb</code> extends <code>fetchn_fafb</code> by additionally converting
   neurons to the <code><a href='http://www.rdocumentation.org/packages/nat/topics/dotprops'>dotprops</a></code> representation suitable for
   <code><a href='http://www.rdocumentation.org/packages/nat.nblast/topics/nblast'>nblast</a></code>.</p>
     
@@ -123,7 +139,7 @@
 
 <span class='fu'>fetchdp_fafb</span>(<span class='no'>skids</span>, <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -134,7 +150,7 @@ or a neuronlist</p></td>
     <tr>
       <th>mirror</th>
       <td><p>whether to mirror the neuron (default <code>TRUE</code> since
-flycircuit neurons are on fly's left and most FAFB tracings are on fly's
+FlyCircuit neurons are on fly's left and most FAFB tracings are on fly's
 right.)</p></td>
     </tr>
     <tr>
@@ -184,7 +200,7 @@ naming such an object.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -192,3 +208,4 @@ naming such an object.</p></td>
 
   </body>
 </html>
+

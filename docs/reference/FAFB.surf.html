@@ -18,13 +18,30 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="FAFB brain and neuropil surface objects — FAFB.surf" />
+
+<meta property="og:description" content="FAFB13.surf describes the neuropil surface of the FAFB13
+  brain.
+FAFB13NP.surf is a surface object for the Ito et al
+  (2014) neuropil regions in FAFB13 space
+FAFB14.surf describes the neuropil surface of the FAFB14
+  assembly.
+FAFB.surf describes the neuropil surface of the default
+  FAFB assembly (currently FAFB14).
+FAFB14NP.surf is a surface object for the Ito et al
+  (2014) neuropil regions in FAFB14 space
+FAFBNP.surf is a surface object for the Ito et al (2014)
+  neuropil regions in the default FAFB space (currently FAFB14)" />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +64,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">elmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">elmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -105,25 +126,21 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>FAFB brain and neuropil surface objects</h1>
+    <small>Source: <a href='https://github.com/jefferis/elmr/blob/master/R/elmr-data.R'><code>R/elmr-data.R</code></a></small>
     </div>
 
     
     <p><code>FAFB13.surf</code> describes the neuropil surface of the FAFB13
-  brain.
-
-    <code>FAFB13NP.surf</code> is a surface object for the Ito et al
-  (2014) neuropil regions in <code><a href='FAFB.html'>FAFB13</a></code> space
-
-    <code>FAFB14.surf</code> describes the neuropil surface of the FAFB14
-  assembly.
-
-    <code>FAFB.surf</code> describes the neuropil surface of the default
-  FAFB assembly (currently FAFB14).
-
-    <code>FAFB14NP.surf</code> is a surface object for the Ito et al
-  (2014) neuropil regions in <code><a href='FAFB.html'>FAFB14</a></code> space
-
-    <code>FAFBNP.surf</code> is a surface object for the Ito et al (2014)
+  brain.</p>
+<p><code>FAFB13NP.surf</code> is a surface object for the Ito et al
+  (2014) neuropil regions in <code><a href='FAFB.html'>FAFB13</a></code> space</p>
+<p><code>FAFB14.surf</code> describes the neuropil surface of the FAFB14
+  assembly.</p>
+<p><code>FAFB.surf</code> describes the neuropil surface of the default
+  FAFB assembly (currently FAFB14).</p>
+<p><code>FAFB14NP.surf</code> is a surface object for the Ito et al
+  (2014) neuropil regions in <code><a href='FAFB.html'>FAFB14</a></code> space</p>
+<p><code>FAFBNP.surf</code> is a surface object for the Ito et al (2014)
   neuropil regions in the default FAFB space (currently <code><a href='FAFB.html'>FAFB14</a></code>)</p>
     
 
@@ -138,7 +155,7 @@
   particular although the <code><a href='elm.landmarks.html'>elm.landmarks</a></code> used to bridge
   FAFB-JFRC2013 are well defined in the fly's right brain hemisphere, they
   are somewhat less dense in other areas. Therefore these surfaces are clearly
-  likely less accurate in the left brain hemisphere and show significanct
+  likely less accurate in the left brain hemisphere and show significant
   displacements in the optic lobes. Note that updated landmarks in March 2017
   significantly improved the situation.</p>
 <p>The acronyms for the neuropil regions are those used in Ito et al. 2014 and
@@ -199,7 +216,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -207,3 +224,4 @@
 
   </body>
 </html>
+

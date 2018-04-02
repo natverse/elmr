@@ -24,7 +24,7 @@ opts_chunk$set(eval=catmaid_available)
 
 In order to run some of this example we need to ensure that we:
 
-* can login to the FAFB catmaid server
+* can login to the FAFB CATMAID server
 
 We will most our examples run conditionally based on this.
 
@@ -91,7 +91,7 @@ It's clear that there is a mismatch here. This may originate in part from the
 fact that the JFRC2013 intermediate template has rather flattened MB calyces.
 The quality of the JFRC2-JFRC2013 bridging registration is likely also a factor.
 
-Finally if one wanted to place this mesh into catmaid, one could do it as follows:
+Finally if one wanted to place this mesh into CATMAID, one could do it as follows:
 
 ```{r, eval=FALSE}
 catmaid_add_volume(calyx, title="fafb14.MB_CA_R", comment="Constructed by GSXEJ from PN-KC synapses directly in FAFB14 space.")

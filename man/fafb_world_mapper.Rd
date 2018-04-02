@@ -14,8 +14,8 @@ fafb_world_mapper(xyz, from, to,
 \item{from, to}{Assemblies to convert between e.g. \code{"v12"}, \code{"v13"},
 \code{"v14"}.}
 
-\item{baseurl}{path to janelia tem-services server (not externally visible at
-the moment)}
+\item{baseurl}{path to Janelia \code{tem-services} server (not externally
+visible at the moment)}
 
 \item{method}{Whether to try and convert multiple coordinates at once.
 Defaults to 'single'. The 'many' method currently appears fragile and not

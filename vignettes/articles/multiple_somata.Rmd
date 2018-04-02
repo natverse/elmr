@@ -6,7 +6,7 @@ output: rmarkdown::html_vignette
 ---
 ## Intro
 Occasionally CATMAID users add the soma tag multiple times in error. We can
-find such neurons and generate catmaid URLs to inspect them.
+find such neurons and generate CATMAID URLs to inspect them.
 
 ### Setup
 First load main packages

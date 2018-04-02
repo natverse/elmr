@@ -6,11 +6,11 @@
 \alias{elmr}
 \title{Bridge light and EM flybrain datasets}
 \description{
-\bold{elmr} builds on the \bold{nat} and \bold{catmaid} packages to provide
-tools to read, analyse, plot, transform and convert neuroanatomical data,
-especially as it relates to whole brain EM voumes generated at the HHMI
-Janelia Research Campus (groups of Davi Bock, Stephan Saalfeld and many
-collaborators).
+\bold{\code{elmr}} builds on the \bold{\code{nat}} and \bold{\code{catmaid}}
+packages to provide tools to read, analyse, plot, transform and convert
+neuroanatomical data, especially as it relates to whole brain EM volumes
+generated at the HHMI Janelia Research Campus (groups of Davi Bock, Stephan
+Saalfeld and many collaborators).
 }
 \section{Interesting functions/data}{
 
@@ -26,23 +26,22 @@ collaborators).
   functional CMTK installation. See \code{\link[nat]{cmtk.bindir}} for more
   information and advice about installation.
 
-  \item \code{\link{fetchn_fafb}} allows you to fetch FAFB catmaid tracings
+  \item \code{\link{fetchn_fafb}} allows you to fetch FAFB CATMAID tracings
   and transform to a new template.
 
-  \item \code{\link{nblast_fafb}} allows you to nblast catmaid tracings
-  against a set of neuron skeletons e.g. from flycircuit.
+  \item \code{\link{nblast_fafb}} allows you to NBLAST CATMAID tracings
+  against a set of neuron skeletons e.g. from FlyCircuit.
 
-  \item \code{\link{open_fafb}} allows you to open a catmaid session in your
+  \item \code{\link{open_fafb}} allows you to open a CATMAID session in your
   browser at a specific xyz location based on selecting a position in any
-  template brain space e.g. a flycircuit.tw neuron or a JFRC2010 registered
-  GAL4 line.
+  template brain space e.g. a \code{flycircuit.tw} neuron or a JFRC2010
+  registered GAL4 line.
 
   \item \code{\link{stitch_neurons}} allows neuron fragments to be stitched
   together reasonably intelligently.
 
-  \item \code{\link{FAFB}} a
-  \code{\link[nat.templatebrains]{templatebrain}} object specifying the
-  dimensions of the FAFB EM volume.
+  \item \code{\link{FAFB}} a \code{\link[nat.templatebrains]{templatebrain}}
+  object specifying the dimensions of the FAFB EM volume.
 
   \item \code{\link{elm.landmarks}} a set of landmarks that can define a thin
   plate spline transform mapping FAFB to light level template brains.
@@ -51,10 +50,10 @@ collaborators).
 }
 
 \section{Authentication}{
- Interacting with a catmaid server will normally
+ Interacting with a CATMAID server will normally
   require authentication. Please see
   \url{https://github.com/jefferis/rcatmaid#Authentication} for details of
-  how to set up authentication. If you regularly use a particular catmaid
+  how to set up authentication. If you regularly use a particular CATMAID
   server it is recommended to put authentication in your
   \code{\link{Rprofile}} file.
 }
@@ -63,7 +62,7 @@ collaborators).
  There is one package option: \itemize{
 
   \item \code{elmr.nblast.cores} Set the default number of cores to use for
-  parallel nblast. You will need to ensure that the doParallel package (a
+  parallel NBLAST You will need to ensure that the doParallel package (a
   suggested but not strict dependency of elmr is installed)
 
   }

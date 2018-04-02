@@ -39,7 +39,7 @@ These neuropil regions are generated from the
   particular although the \code{\link{elm.landmarks}} used to bridge
   FAFB-JFRC2013 are well defined in the fly's right brain hemisphere, they
   are somewhat less dense in other areas. Therefore these surfaces are clearly
-  likely less accurate in the left brain hemisphere and show significanct
+  likely less accurate in the left brain hemisphere and show significant
   displacements in the optic lobes. Note that updated landmarks in March 2017
   significantly improved the situation.
 

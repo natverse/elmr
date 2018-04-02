@@ -18,13 +18,19 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Remove artefactual spikes in neuron tracing due to registration errors — unspike" />
+
+<meta property="og:description" content="Remove artefactual spikes in neuron tracing due to registration errors" />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +53,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">elmr</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">elmr</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -105,6 +115,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Remove artefactual spikes in neuron tracing due to registration errors</h1>
+    <small>Source: <a href='https://github.com/jefferis/elmr/blob/master/R/unspike.R'><code>R/unspike.R</code></a></small>
     </div>
 
     
@@ -119,7 +130,7 @@
 <span class='co'># S3 method for neuronlist</span>
 <span class='fu'>unspike</span>(<span class='no'>x</span>, <span class='no'>threshold</span>, <span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -152,12 +163,12 @@ considered suspicious.</p></td>
 <li><p>When there a branch or end points that are out of register.</p></li>
 </ul>
     <p>Handling consecutive points or end points should be a fairly
-  straightforward addition. Branch points require a litle more thought.</p>
+  straightforward addition. Branch points require a little more thought.</p>
     
     <h2 class="hasAnchor" id="node-ids-and-connectors"><a class="anchor" href="#node-ids-and-connectors"></a>node ids and connectors</h2>
 
     <p>unspike has the side effect of losing the
-  catmaid node ids in the output neuron. connector/tag information is
+  CATMAID node ids in the output neuron. connector/tag information is
   retained although the node ids are translated to the new numbering system.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -169,7 +180,7 @@ considered suspicious.</p></td>
     <pre class="examples"><div class='input'><span class='no'>da1pns</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>"annotation:^glomerulus DA1$"</span>)
 <span class='co'># set threshold to 5000 nm</span>
 <span class='no'>da1pns.fix</span><span class='kw'>=</span><span class='fu'>unspike</span>(<span class='no'>da1pns</span>, <span class='kw'>threshold</span><span class='kw'>=</span><span class='fl'>5000</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: segment with one bad point</span></div><div class='output co'>#&gt; <span class='warning'>Warning: segment with one bad point</span></div><div class='output co'>#&gt; <span class='warning'>Warning: segment with one bad point</span></div><div class='output co'>#&gt; <span class='warning'>Warning: segment with one bad point</span></div><div class='output co'>#&gt; <span class='warning'>Warning: segment with one bad point</span></div><div class='output co'>#&gt; <span class='warning'>Warning: segment with one bad point</span></div><div class='output co'>#&gt; <span class='warning'>Warning: segment with one bad point</span></div><div class='input'><span class='fu'>plot</span>(<span class='no'>da1pns</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>WithNodes</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='input'><span class='co'># overplot fixed neuron leaving red spikes visible</span>
-<span class='fu'>plot</span>(<span class='no'>da1pns.fix</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'black'</span>, <span class='kw'>WithNodes</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='unspike-1.png' alt='' width='700' height='432.632880098887' /></div></pre>
+<span class='fu'>plot</span>(<span class='no'>da1pns.fix</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'black'</span>, <span class='kw'>WithNodes</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='unspike-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -196,7 +207,7 @@ considered suspicious.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -204,3 +215,4 @@ considered suspicious.</p></td>
 
   </body>
 </html>
+

@@ -3,7 +3,7 @@
 \name{fetchn_fafb}
 \alias{fetchn_fafb}
 \alias{fetchdp_fafb}
-\title{Fetch neurons from FAFB catmaid server, transforming them as appropriate}
+\title{Fetch neurons from FAFB CATMAID server, transforming them as appropriate}
 \usage{
 fetchn_fafb(skids, mirror = TRUE, conn = NULL,
   reference = nat.flybrains::FCWB)
@@ -15,7 +15,7 @@ fetchdp_fafb(skids, mirror = TRUE, conn = NULL, ...)
 or a neuronlist}
 
 \item{mirror}{whether to mirror the neuron (default \code{TRUE} since
-flycircuit neurons are on fly's left and most FAFB tracings are on fly's
+FlyCircuit neurons are on fly's left and most FAFB tracings are on fly's
 right.)}
 
 \item{conn}{a \code{catmaid} connection object (see

@@ -4,7 +4,7 @@
 #' @param node.idx,node.pointno The id(s) of node(s) beyond which distal points
 #'   will be selected. \code{node.idx} defines the integer index (counting from
 #'   1) into the neuron's point array whereas \code{node.pointno} matches the
-#'   PointNo column which will be the catmaid id for a node.
+#'   PointNo column which will be the CATMAID id for a node.
 #' @param root.idx,root.pointno The root node of the neuron for the purpose of
 #'   selection. You will rarely need to change this from the default value. See
 #'   \code{node} argument for the difference between \code{root.idx} and

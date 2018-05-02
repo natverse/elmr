@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.2</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@
       <h1>Transforming between FAFB and light level template brains</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2018-04-02</h4>
+            <h4 class="date">2018-05-02</h4>
       
       <small>Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/xform_brain.Rmd"><code>vignettes/xform_brain.Rmd</code></a></small>
 
@@ -109,8 +109,9 @@
 <a href="#setup" class="anchor"></a>Setup</h3>
 <p>In order to run some of the examples we need to ensure that we have CMTK available and the <a href="https://github.com/jefferislab/nat.flybrains">nat.flybrains</a> package fully installed to provide bridging registrations. We will make some of our examples run conditionally based on this.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">full.bridging=<span class="ot">FALSE</span>
-<span class="kw">library</span>(nat)
-<span class="cf">if</span>(<span class="op">!</span><span class="kw">nzchar</span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/cmtk.bindir">cmtk.bindir</a></span>())){
+<span class="kw">library</span>(nat)</code></pre></div>
+<pre><code>## Warning: package 'rgl' was built under R version 3.4.4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">!</span><span class="kw">nzchar</span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/cmtk.bindir">cmtk.bindir</a></span>())){
   <span class="kw">cat</span>(<span class="st">"CMTK not available! Some examples will not run."</span>)
 } <span class="cf">else</span> {
   djrok=<span class="kw">try</span>(nat.flybrains<span class="op">::</span><span class="kw">download_jefferislab_registrations</span>())

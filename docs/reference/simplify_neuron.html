@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simplify a neuron to include its root and two longest branches — simplify_neuron • elmr</title>
+<title>Simplify a neuron to include its root and specified number of branch points — simplify_neuron • elmr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Simplify a neuron to include its root and two longest branches — simplify_neuron" />
+<meta property="og:title" content="Simplify a neuron to include its root and specified number of branch points — simplify_neuron" />
 
-<meta property="og:description" content="Simplify a neuron to include its root and two longest branches" />
+<meta property="og:description" content="Simplify a neuron to include its root and specified number of branch points" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -55,7 +55,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.2</span>
       </span>
     </div>
 
@@ -114,15 +114,15 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simplify a neuron to include its root and two longest branches</h1>
+    <h1>Simplify a neuron to include its root and specified number of branch points</h1>
     <small>Source: <a href='https://github.com/jefferis/elmr/blob/master/R/simplify_neuron.R'><code>R/simplify_neuron.R</code></a></small>
     </div>
 
     
-    <p>Simplify a neuron to include its root and two longest branches</p>
+    <p>Simplify a neuron to include its root and specified number of branch points</p>
     
 
-    <pre class="usage"><span class='fu'>simplify_neuron</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>simplify_neuron</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -130,6 +130,10 @@
     <tr>
       <th>x</th>
       <td><p>A <code><a href='http://www.rdocumentation.org/packages/nat/topics/neuron'>neuron</a></code> to simplify</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>Required number of branch points (default=1, minimum 0)</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -140,13 +144,21 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The simplified <code>neuron</code> or the untouched original neuron for
-  neurons that have &lt;=1 branch point.</p>
+  neurons that have &lt;=n branch points.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This is still a somewhat experimental function (hence its location
-  in elmr rather than nat). It would be nice to add the option to retain the
-  most important N branches, rather than the first 1 as here.</p>
+    <p>If the neuron already contains fewer than or exactly the requested
+  number of branches, then the original neuron is returned. The approach is
+  to build up the new neuron starting from the longest tree including no
+  branches all the way up to the longest tree containing n branches. The
+  distance calculations are only carried out once so it should be reasonably
+  efficient. Nevertheless at each iteration, the longest path from the tree
+  so far to the newly selected leaf is calculated and it is likely that this
+  step could be avoided. Furthermore for large values of n, pruning excess
+  branches rather than building would presumably be more efficient.</p>
+<p>This is still a somewhat experimental function (hence its location in elmr
+  rather than nat).</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -156,7 +168,8 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>dl1</span><span class='kw'>=</span><span class='fu'>read.neuron.catmaid</span>(<span class='fu'>catmaid_skids</span>(<span class='st'>'name:DL1'</span>)[<span class='fl'>1</span>])
 <span class='no'>dl1.simp</span><span class='kw'>=</span><span class='fu'>simplify_neuron</span>(<span class='no'>dl1</span>)
-<span class='fu'>plot</span>(<span class='no'>dl1</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'green'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='no'>F</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>dl1.simp</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='no'>T</span>)</div><div class='img'><img src='simplify_neuron-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='no'>dl1.simp4</span><span class='kw'>=</span><span class='fu'>simplify_neuron</span>(<span class='no'>dl1</span>, <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>4</span>)
+<span class='fu'>plot</span>(<span class='no'>dl1</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'green'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='no'>F</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>dl1.simp</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='no'>T</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>dl1.simp4</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='no'>T</span>)</div><div class='img'><img src='simplify_neuron-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

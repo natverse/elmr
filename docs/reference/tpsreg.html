@@ -60,7 +60,7 @@ xformpoints.tpsreg enables xform and
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.2</span>
       </span>
     </div>
 
@@ -212,9 +212,10 @@ reference (desired target after transformation) spaces. See details.</p></td>
   <span class='no'>lmxyz</span>[<span class='fu'>as.character</span>(<span class='no'>lmpairs</span>$<span class='no'>skid.L</span>),]
 )
 <span class='co'># map RHS DA2 PNs onto left and compare with LHS neurons</span>
-<span class='no'>da2pns.R</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>'name:^PN Glomerulus DA2'</span>)
-<span class='no'>da2pns.L</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>'name:Left uPN mALT DA2'</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: No matches for query "name:Left uPN mALT DA2"!</span></div><div class='output co'>#&gt; <span class='error'>Error in names(res) &lt;- `*vtmp*`: attempt to set an attribute on NULL</span></div><div class='input'><span class='no'>da2pns.R.L</span><span class='kw'>=</span><span class='fu'>xform</span>(<span class='no'>da2pns.R</span>, <span class='kw'>reg</span> <span class='kw'>=</span> <span class='no'>mirror_reg</span>)
-<span class='fu'>plot</span>(<span class='no'>da2pns.L</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(da2pns.L, col = "red"): object 'da2pns.L' not found</span></div><div class='input'><span class='fu'>plot</span>(<span class='no'>da2pns.R.L</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='no'>T</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot.xy(xy.coords(x, y), type = type, ...): plot.new has not been called yet</span></div></pre>
+<span class='no'>da2pns.R</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>'glomerulus DA2 right'</span>)
+<span class='no'>da2pns.L</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>'glomerulus DA2 left'</span>)
+<span class='no'>da2pns.R.L</span><span class='kw'>=</span><span class='fu'>xform</span>(<span class='no'>da2pns.R</span>, <span class='kw'>reg</span> <span class='kw'>=</span> <span class='no'>mirror_reg</span>)
+<span class='fu'>plot</span>(<span class='no'>da2pns.L</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>da2pns.R.L</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='no'>T</span>)</div><div class='img'><img src='tpsreg-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

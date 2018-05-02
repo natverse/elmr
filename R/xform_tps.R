@@ -43,8 +43,8 @@
 #'   lmxyz[as.character(lmpairs$skid.L),]
 #' )
 #' # map RHS DA2 PNs onto left and compare with LHS neurons
-#' da2pns.R=read.neurons.catmaid('name:^PN Glomerulus DA2')
-#' da2pns.L=read.neurons.catmaid('name:Left uPN mALT DA2')
+#' da2pns.R=read.neurons.catmaid('glomerulus DA2 right')
+#' da2pns.L=read.neurons.catmaid('glomerulus DA2 left')
 #' da2pns.R.L=xform(da2pns.R, reg = mirror_reg)
 #' plot(da2pns.L, col='red')
 #' plot(da2pns.R.L, col='blue', add=T)

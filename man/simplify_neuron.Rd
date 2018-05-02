@@ -2,7 +2,7 @@
 % Please edit documentation in R/simplify_neuron.R
 \name{simplify_neuron}
 \alias{simplify_neuron}
-\title{Simplify a neuron to include its root and specified number of branch points}
+\title{Simplify a neuron to the longest tree with n branch points}
 \usage{
 simplify_neuron(x, n = 1, ...)
 }
@@ -18,7 +18,7 @@ The simplified \code{neuron} or the untouched original neuron for
   neurons that have <=n branch points.
 }
 \description{
-Simplify a neuron to include its root and specified number of branch points
+Simplify a neuron to the longest tree with n branch points
 }
 \details{
 If the neuron already contains fewer than or exactly the requested
@@ -40,8 +40,8 @@ dl1=read.neuron.catmaid(catmaid_skids('name:DL1')[1])
 dl1.simp=simplify_neuron(dl1)
 dl1.simp4=simplify_neuron(dl1, n=4)
 plot(dl1, col='green', WithNodes = F)
-plot(dl1.simp, col='red', add = T)
 plot(dl1.simp4, col='blue', add = T)
+plot(dl1.simp, col='red', add = T)
 }
 }
 \seealso{

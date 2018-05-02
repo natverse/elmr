@@ -1,4 +1,5 @@
-#' Simplify a neuron to include its root and specified number of branch points
+#' Simplify a neuron to the longest tree with n branch points
+#'
 #' @details If the neuron already contains fewer than or exactly the requested
 #'   number of branches, then the original neuron is returned. The approach is
 #'   to build up the new neuron starting from the longest tree including no
@@ -26,8 +27,8 @@
 #' dl1.simp=simplify_neuron(dl1)
 #' dl1.simp4=simplify_neuron(dl1, n=4)
 #' plot(dl1, col='green', WithNodes = F)
-#' plot(dl1.simp, col='red', add = T)
 #' plot(dl1.simp4, col='blue', add = T)
+#' plot(dl1.simp, col='red', add = T)
 #' }
 simplify_neuron <- function(x, n=1, ...) {
   nbps=length(branchpoints(x))

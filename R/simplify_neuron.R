@@ -1,54 +1,41 @@
-#' Simplify a neuron to include its root and two longest branches
-#' @details This is still a somewhat experimental function (hence its location
-#'   in elmr rather than nat). It would be nice to add the option to retain the
-#'   most important N branches, rather than the first 1 as here.
+#' Simplify a neuron to include its root and specified number of branch points
+#' @details If the neuron already contains fewer than or exactly the requested
+#'   number of branches, then the original neuron is returned. The approach is
+#'   to build up the new neuron starting from the longest tree including no
+#'   branches all the way up to the longest tree containing n branches. The
+#'   distance calculations are only carried out once so it should be reasonably
+#'   efficient. Nevertheless at each iteration, the longest path from the tree
+#'   so far to the newly selected leaf is calculated and it is likely that this
+#'   step could be avoided. Furthermore for large values of n, pruning excess
+#'   branches rather than building would presumably be more efficient.
+#'
+#'   This is still a somewhat experimental function (hence its location in elmr
+#'   rather than nat).
 #' @param x A \code{\link[nat]{neuron}} to simplify
+#' @param n Required number of branch points (default=1, minimum 0)
 #' @param ... Additional arguments (currently ignored)
 #'
 #' @return The simplified \code{neuron} or the untouched original neuron for
-#'   neurons that have <=1 branch point.
+#'   neurons that have <=n branch points.
+#' @importFrom nat prune_vertices endpoints rootpoints branchpoints
 #' @export
 #' @seealso \code{\link[nat]{spine}}
 #' @examples
 #' \donttest{
 #' dl1=read.neuron.catmaid(catmaid_skids('name:DL1')[1])
 #' dl1.simp=simplify_neuron(dl1)
+#' dl1.simp4=simplify_neuron(dl1, n=4)
 #' plot(dl1, col='green', WithNodes = F)
 #' plot(dl1.simp, col='red', add = T)
+#' plot(dl1.simp4, col='blue', add = T)
 #' }
-simplify_neuron <- function(x, ...) {
-  if(length(nat::branchpoints(x))<2)
+simplify_neuron <- function(x, n=1, ...) {
+  nbps=length(branchpoints(x))
+  if (nbps <= n)
     return(x)
-  ng=as.ngraph(x, weights=T)
-  if(!igraph::is_dag(ng)) {
-    stop("I can't simplify neurons with cycles!")
-  }
-  # find spine of original neuron
-  lps = igraph::shortest.paths(graph = ng, x$StartPoint, to = x$EndPoints, mode = "out")
-  end=x$EndPoints[which.max(lps)]
-  longestpath = igraph::get.shortest.paths(
-    ng,
-    from = x$StartPoint,
-    to = end,
-    mode = "out",
-    output = 'both'
-    )
-  # delete spine nodes
-  ng2=igraph::delete_edges(ng, edges = longestpath$epath[[1]])
-  # get longest path in what's left
-  d=igraph::get_diameter(ng2, directed = T)
-  # nb we have to convert to integer because otherwise igraph complains that
-  # they come from separate graphs
-  nodes_to_keep=unique(c(as.integer(longestpath$vpath[[1]]), as.integer(d)))
-  # make a neuron from the graph made from those two longet paths
-  as.neuron(igraph::induced_subgraph(ng, nodes_to_keep))
-}
+  if (n < 0)
+    stop("Must request >=0 branch points!")
 
-#' Simplify neuron to given number of branchpoints
-#' @importFrom nat prune_vertices endpoints rootpoints branchpoints
-simplify_neuron_multi <- function(x, n, ...) {
-  if (length(nat::branchpoints(x)) < n)
-    return(x)
   ng = as.ngraph(x, weights = T)
   if (!igraph::is_dag(ng)) {
     stop("I can't simplify neurons with cycles!")
@@ -58,8 +45,8 @@ simplify_neuron_multi <- function(x, n, ...) {
   # to branchpoints
   # rows are source i.e. branchpoints
   # cols are leaves
-  leaves=setdiff(endpoints(ng), rootpoints(ng))
-  bps=branchpoints(ng)
+  leaves=setdiff(endpoints(ng, original.ids=FALSE), rootpoints(ng, original.ids=FALSE))
+  bps=branchpoints(ng, original.ids=FALSE)
   dd=igraph::distances(ng, v=bps, to=leaves, mode = 'out')
 
   # so we know how many descendant paths we can consider for each node
@@ -79,7 +66,7 @@ simplify_neuron_multi <- function(x, n, ...) {
   for (i in 0:n) {
     if (i == 0) {
       # initialisation
-      start = rootpoints(ng)
+      start = rootpoints(ng, original.ids=FALSE)
       furthest_leaf_idx = which.max(apply(dd, 2,  function(x) max(x[is.finite(x)])))
     } else {
       # select the bps that we can consider
@@ -95,8 +82,8 @@ simplify_neuron_multi <- function(x, n, ...) {
       # the next leaf to add is the one with max length
       furthest_leaf_idx = which.max(additional_length)
       start = which.min(dd[bps_available, furthest_leaf_idx])
-      # nb we need the actual vertex number in the original graph
-      start = as.integer(names(start))
+      # nb we need the vertex index in the original graph
+      start = match(names(start), names(igraph::V(ng)))
     }
     furthest_leaf = leaves[furthest_leaf_idx]
     # strike off selected leaf
@@ -111,16 +98,3 @@ simplify_neuron_multi <- function(x, n, ...) {
   # subset(x, unique(unlist(lp_verts)))
   prune_vertices(ng, unique(unlist(lp_verts)), invert = T)
 }
-
-
-# reverse graph - didn't need this in the end
-  # # and the id of that target endpoint
-  # # start by reversing all edges of original graph
-  # el=igraph::as_edgelist(ng)
-  # ngr = ngraph(
-  #   el[, 2:1],
-  #   directed = T,
-  #   weights = igraph::edge_attr(ng, 'weight'),
-  #   vertexnames = 1:igraph::gorder(ng)
-  # )
-  # dd=igraph::distances(ngr, to=branchpoints(ngr), v=rootpoints(ngr), mode = 'out')

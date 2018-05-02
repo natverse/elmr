@@ -2,33 +2,46 @@
 % Please edit documentation in R/simplify_neuron.R
 \name{simplify_neuron}
 \alias{simplify_neuron}
-\title{Simplify a neuron to include its root and two longest branches}
+\title{Simplify a neuron to include its root and specified number of branch points}
 \usage{
-simplify_neuron(x, ...)
+simplify_neuron(x, n = 1, ...)
 }
 \arguments{
 \item{x}{A \code{\link[nat]{neuron}} to simplify}
+
+\item{n}{Required number of branch points (default=1, minimum 0)}
 
 \item{...}{Additional arguments (currently ignored)}
 }
 \value{
 The simplified \code{neuron} or the untouched original neuron for
-  neurons that have <=1 branch point.
+  neurons that have <=n branch points.
 }
 \description{
-Simplify a neuron to include its root and two longest branches
+Simplify a neuron to include its root and specified number of branch points
 }
 \details{
-This is still a somewhat experimental function (hence its location
-  in elmr rather than nat). It would be nice to add the option to retain the
-  most important N branches, rather than the first 1 as here.
+If the neuron already contains fewer than or exactly the requested
+  number of branches, then the original neuron is returned. The approach is
+  to build up the new neuron starting from the longest tree including no
+  branches all the way up to the longest tree containing n branches. The
+  distance calculations are only carried out once so it should be reasonably
+  efficient. Nevertheless at each iteration, the longest path from the tree
+  so far to the newly selected leaf is calculated and it is likely that this
+  step could be avoided. Furthermore for large values of n, pruning excess
+  branches rather than building would presumably be more efficient.
+
+  This is still a somewhat experimental function (hence its location in elmr
+  rather than nat).
 }
 \examples{
 \donttest{
 dl1=read.neuron.catmaid(catmaid_skids('name:DL1')[1])
 dl1.simp=simplify_neuron(dl1)
+dl1.simp4=simplify_neuron(dl1, n=4)
 plot(dl1, col='green', WithNodes = F)
 plot(dl1.simp, col='red', add = T)
+plot(dl1.simp4, col='blue', add = T)
 }
 }
 \seealso{

@@ -1,3 +1,8 @@
+elmr 0.5.2
+==========
+* teach simplify_neuron to handle arbitrary number of branch points (#37)
+* minor doc fixes
+
 elmr 0.5.1
 ==========
 * teach distal_to to handle multiple input nodes

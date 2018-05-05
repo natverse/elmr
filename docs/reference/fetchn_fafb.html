@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Fetch neurons from FAFB CATMAID server, transforming them as appropriate — fetchn_fafb" />
 
 <meta property="og:description" content="fetchn_fafb is a thin wrapper around the
@@ -110,6 +113,7 @@ fetchdp_fafb extends fetchn_fafb by additionally converting
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -117,13 +121,15 @@ fetchdp_fafb extends fetchn_fafb by additionally converting
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Fetch neurons from FAFB CATMAID server, transforming them as appropriate</h1>
-    <small>Source: <a href='https://github.com/jefferis/elmr/blob/master/R/nblast_fafb.R'><code>R/nblast_fafb.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/jefferis/elmr/blob/master/R/nblast_fafb.R'><code>R/nblast_fafb.R</code></a></small>
+    <div class="hidden name"><code>fetchn_fafb.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p><code>fetchn_fafb</code> is a thin wrapper around the
   <code>catmaid::<a href='http://www.rdocumentation.org/packages/catmaid/topics/read.neuron.catmaid'>read.neurons.catmaid</a></code> function with the
@@ -133,6 +139,7 @@ fetchdp_fafb extends fetchn_fafb by additionally converting
   neurons to the <code><a href='http://www.rdocumentation.org/packages/nat/topics/dotprops'>dotprops</a></code> representation suitable for
   <code><a href='http://www.rdocumentation.org/packages/nat.nblast/topics/nblast'>nblast</a></code>.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>fetchn_fafb</span>(<span class='no'>skids</span>, <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>reference</span> <span class='kw'>=</span> <span class='kw pkg'>nat.flybrains</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/nat.flybrains/topics/FCWB'>FCWB</a></span>)
@@ -205,6 +212,8 @@ naming such an object.</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Convert coordinates between different FAFB assemblies — fafb_world_mapper" />
 
 <meta property="og:description" content="fafb_world_mapper provides a low-level interface to map
@@ -109,6 +112,7 @@ End users are not presently expected to use this directly. Instead they
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -116,13 +120,15 @@ End users are not presently expected to use this directly. Instead they
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Convert coordinates between different FAFB assemblies</h1>
-    <small>Source: <a href='https://github.com/jefferis/elmr/blob/master/R/fafb_mapper.R'><code>R/fafb_mapper.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/jefferis/elmr/blob/master/R/fafb_mapper.R'><code>R/fafb_mapper.R</code></a></small>
+    <div class="hidden name"><code>fafb_world_mapper.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p><code>fafb_world_mapper</code> provides a low-level interface to map
   coordinates based on the <code>tem-services</code> API available from inside the
@@ -131,6 +137,7 @@ End users are not presently expected to use this directly. Instead they
 <p>End users are not presently expected to use this directly. Instead they
   should use <code>xform_brain</code> to transform data. See examples.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>fafb_world_mapper</span>(<span class='no'>xyz</span>, <span class='no'>from</span>, <span class='no'>to</span>,
   <span class='kw'>baseurl</span> <span class='kw'>=</span> <span class='st'>"http://tem-services.int.janelia.org:8080/render-ws/v1/owner/flyTEM/project/FAFB00/stack"</span>,
@@ -196,6 +203,8 @@ much faster.</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

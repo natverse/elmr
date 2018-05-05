@@ -18,7 +18,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -86,20 +86,20 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Selecting random synapses</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2018-05-02</h4>
+            <h4 class="date">2018-05-05</h4>
       
-      <small>Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/selecting_random_synapses.Rmd"><code>vignettes/selecting_random_synapses.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/selecting_random_synapses.Rmd"><code>vignettes/selecting_random_synapses.Rmd</code></a></small>
+      <div class="hidden name"><code>selecting_random_synapses.Rmd</code></div>
 
     </div>
 
     
     
-<div class="contents">
 <div id="intro" class="section level2">
 <h2 class="hasAnchor">
 <a href="#intro" class="anchor"></a>Intro</h2>
@@ -182,12 +182,12 @@ random_syn</code></pre></div>
 <p>That was a little bit clunky but we basically feed the <code>open_fafb</code> function the data one row at a time centering the URL on the postsynaptic node and selecting that node in the CATMAID viewer.</p>
 <p>So here are the results</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/neuronlist-dataframe-methods">head</a></span>(synapse_urls)</code></pre></div>
-<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=147840&amp;yp=157639&amp;xp=357688&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=493170&amp;active_node_id=2590188" 
-## [2] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=148160&amp;yp=160572&amp;xp=357893&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=487673&amp;active_node_id=2574169" 
-## [3] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=148120&amp;yp=160585&amp;xp=358070&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=487663&amp;active_node_id=2574164" 
-## [4] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=146560&amp;yp=156243&amp;xp=356498&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=590683&amp;active_node_id=2864653" 
-## [5] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=157440&amp;yp=151367&amp;xp=370270&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=1911124&amp;active_node_id=2591427"
-## [6] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=159280&amp;yp=152447&amp;xp=368799&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=479389&amp;active_node_id=2555990"</code></pre>
+<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=158600&amp;yp=152298&amp;xp=369266&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=493834&amp;active_node_id=2591273"
+## [2] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=149080&amp;yp=149816&amp;xp=357044&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=485999&amp;active_node_id=2571178"
+## [3] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=146600&amp;yp=146171&amp;xp=356114&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=487093&amp;active_node_id=2572894"
+## [4] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=156440&amp;yp=152450&amp;xp=370511&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=494144&amp;active_node_id=2591773"
+## [5] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=159880&amp;yp=150987&amp;xp=369202&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=479254&amp;active_node_id=2555905"
+## [6] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=159160&amp;yp=152131&amp;xp=369553&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=493585&amp;active_node_id=2590874"</code></pre>
 </div>
 <div id="using-the-results" class="section level2">
 <h2 class="hasAnchor">
@@ -205,7 +205,7 @@ cda1.lh <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">points</span>(<span class="dt">col=</span><span class="st">'grey'</span>)
 <span class="co"># and then the ones we did</span>
 <span class="kw">points</span>(random_syn<span class="op">$</span>post_node_x, random_syn<span class="op">$</span>post_node_y, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">pch=</span><span class="dv">19</span>)</code></pre></div>
-<p><img src="selecting_random_synapses_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
+<p><img src="selecting_random_synapses_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <p>Then you can open those urls directly in CATMAID:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (u <span class="cf">in</span> synapse_urls) {
   <span class="kw">readline</span>(<span class="st">"Press a key to move to open the next synapse (or Esc to cancel)."</span>)
@@ -222,7 +222,6 @@ tf=<span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span clas
 <span class="kw">write.table</span>(random_syn, <span class="dt">file=</span>tf, <span class="dt">sep=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/googlesheets/topics/gs_upload">gs_upload</a></span>(tf, <span class="dt">sheet_title =</span> <span class="st">'PN61221_rand_synapse_urls'</span>)
 <span class="kw">unlink</span>(tf)</code></pre></div>
-</div>
 </div>
   </div>
 
@@ -251,6 +250,8 @@ tf=<span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span clas
 
       </footer>
 </div>
+
+  
 
   </body>
 </html>

@@ -18,7 +18,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -86,20 +86,20 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Making Surface Meshes</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2018-05-02</h4>
+            <h4 class="date">2018-05-05</h4>
       
-      <small>Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/making_meshes.Rmd"><code>vignettes/making_meshes.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/making_meshes.Rmd"><code>vignettes/making_meshes.Rmd</code></a></small>
+      <div class="hidden name"><code>making_meshes.Rmd</code></div>
 
     </div>
 
     
     
-<div class="contents">
 <div id="intro" class="section level2">
 <h2 class="hasAnchor">
 <a href="#intro" class="anchor"></a>Intro</h2>
@@ -151,21 +151,20 @@ pntokc <span class="op">%&gt;%</span><span class="st"> </span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/mesh3d">wire3d</a></span>(calyx)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/3dobjects">points3d</a></span>(cxyz, <span class="dt">col=</span><span class="st">'red'</span>)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/3dobjects">points3d</a></span>(pntokc[,<span class="kw">c</span>(<span class="st">'post_node_x'</span>,<span class="st">'post_node_y'</span>,<span class="st">'post_node_z'</span>)], <span class="dt">col=</span><span class="st">'blue'</span>)</code></pre></div>
-<p><img src="making_meshes_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
+<p><img src="making_meshes_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>We can also compare with the mesh supplied with elmr, which was transformed from JFRC2 space via JFRC2013 to FAFB:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/mesh3d">wire3d</a></span>(calyx)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/plot3d">plot3d</a></span>(FAFBNP.surf, <span class="st">"MB_CA_R"</span>, <span class="dt">alpha=</span>.<span class="dv">3</span>)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</code></pre></div>
-<p><img src="making_meshes_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
+<p><img src="making_meshes_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <p>And we can also compare the dorsal view as well:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/mesh3d">wire3d</a></span>(calyx)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/plot3d">plot3d</a></span>(FAFBNP.surf, <span class="st">"MB_CA_R"</span>, <span class="dt">alpha=</span>.<span class="dv">3</span>)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> <span class="op">-</span>pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</code></pre></div>
-<p><img src="making_meshes_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
+<p><img src="making_meshes_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <p>It’s clear that there is a mismatch here. This may originate in part from the fact that the JFRC2013 intermediate template has rather flattened MB calyces. The quality of the JFRC2-JFRC2013 bridging registration is likely also a factor.</p>
 <p>Finally if one wanted to place this mesh into CATMAID, one could do it as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">catmaid_add_volume</span>(calyx, <span class="dt">title=</span><span class="st">"fafb14.MB_CA_R"</span>, <span class="dt">comment=</span><span class="st">"Constructed by GSXEJ from PN-KC synapses directly in FAFB14 space."</span>)</code></pre></div>
-</div>
 </div>
   </div>
 
@@ -193,6 +192,8 @@ pntokc <span class="op">%&gt;%</span><span class="st"> </span>
 
       </footer>
 </div>
+
+  
 
   </body>
 </html>

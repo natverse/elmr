@@ -18,7 +18,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -86,20 +86,20 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Finding Neurons with Multiple Somata</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2018-05-02</h4>
+            <h4 class="date">2018-05-05</h4>
       
-      <small>Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/articles/multiple_somata.Rmd"><code>vignettes/articles/multiple_somata.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/articles/multiple_somata.Rmd"><code>vignettes/articles/multiple_somata.Rmd</code></a></small>
+      <div class="hidden name"><code>multiple_somata.Rmd</code></div>
 
     </div>
 
     
     
-<div class="contents">
 <div id="intro" class="section level2">
 <h2 class="hasAnchor">
 <a href="#intro" class="anchor"></a>Intro</h2>
@@ -220,6 +220,28 @@ multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span>
 <td align="right">130282.0</td>
 <td align="right">205040</td>
 <td align="right">-10321.3535</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">32793</td>
+<td align="right">11614584</td>
+<td align="right">409165</td>
+<td align="right">248515.0</td>
+<td align="right">47320</td>
+<td align="right">-10102.8955</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">32793</td>
+<td align="right">11614561</td>
+<td align="right">409733</td>
+<td align="right">247733.0</td>
+<td align="right">49720</td>
+<td align="right">-9630.9375</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
@@ -2335,7 +2357,6 @@ multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="kw"><a href="http://www.rdocumentation.org/packages/googlesheets/topics/gs_upload">gs_upload</a></span>(tf, <span class="dt">sheet_title =</span> <span class="st">'multi_soma_neurons'</span>)
 <span class="kw">unlink</span>(tf)</code></pre></div>
 </div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -2364,6 +2385,8 @@ multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span>
 
       </footer>
 </div>
+
+  
 
   </body>
 </html>

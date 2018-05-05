@@ -18,7 +18,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -86,20 +86,20 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Landmarks</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2018-05-02</h4>
+            <h4 class="date">2018-05-05</h4>
       
-      <small>Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/landmarks.Rmd"><code>vignettes/landmarks.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/landmarks.Rmd"><code>vignettes/landmarks.Rmd</code></a></small>
+      <div class="hidden name"><code>landmarks.Rmd</code></div>
 
     </div>
 
     
     
-<div class="contents">
 <div id="intro" class="section level2">
 <h2 class="hasAnchor">
 <a href="#intro" class="anchor"></a>Intro</h2>
@@ -1909,7 +1909,6 @@ deltabynearest3=<span class="kw">lm</span>(deltas<span class="op">~</span>neares
             <span class="dt">col.names =</span> T, <span class="dt">sep=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, <span class="dt">row.names =</span> F)</code></pre></div>
 <p>If one were then to take the mirror image landmarks in JFRC2013 space and manually pick the corresponding locations in EM space, one should be able to compare two different paths to the same point (one mirroring in FAFB, the other mirroring in JFRC2013) and see whether there is a difference in the calculated position. Differences would presumably reflect the uncertainty in picking positions in the EM volume (and a small contribution from the mirroring uncertainty in JFRC2013, which nevertheless expect to be &lt;1 µm based on analysis in <a href="https://doi.org/10.1101/006353">Manton et al 2014</a>).</p>
 </div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -1937,6 +1936,8 @@ deltabynearest3=<span class="kw">lm</span>(deltas<span class="op">~</span>neares
 
       </footer>
 </div>
+
+  
 
   </body>
 </html>

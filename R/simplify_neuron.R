@@ -14,11 +14,13 @@
 #'   rather than nat).
 #' @param x A \code{\link[nat]{neuron}} to simplify
 #' @param n Required number of branch points (default=1, minimum 0)
+#' @param invert Whether to keep the simplified backbone (when
+#'   \code{invert=FALSE}, the default) or its inverse.
 #' @param ... Additional arguments (currently ignored)
 #'
 #' @return The simplified \code{neuron} or the untouched original neuron for
 #'   neurons that have <=n branch points.
-#' @importFrom nat prune_vertices endpoints rootpoints branchpoints
+#' @importFrom nat prune_edges endpoints rootpoints branchpoints
 #' @export
 #' @seealso \code{\link[nat]{spine}}
 #' @examples
@@ -29,8 +31,13 @@
 #' plot(dl1, col='green', WithNodes = F)
 #' plot(dl1.simp4, col='blue', add = T)
 #' plot(dl1.simp, col='red', add = T)
+#'
+#' # calculate the inverse as well
+#' dl1.simp4.inv=simplify_neuron(dl1, n=4, invert=TRUE)
+#' plot(dl1.simp4, col='blue')
+#' plot(dl1.simp4.inv, col='red', add = T)
 #' }
-simplify_neuron <- function(x, n=1, ...) {
+simplify_neuron <- function(x, n=1, invert=FALSE, ...) {
   nbps=length(branchpoints(x))
   if (nbps <= n)
     return(x)
@@ -95,7 +102,18 @@ simplify_neuron <- function(x, n=1, ...) {
     bpsused[bps %in% lp_verts[[i+1]]] = bpsused[bps %in% lp_verts[[i+1]]] + 1
   }
   # ok now we have as output a list of vertices defining selected paths
+  el=EdgeListFromSegList(lp_verts)
   # subset original neuron keeping vertices in that list
   # subset(x, unique(unlist(lp_verts)))
-  prune_vertices(ng, unique(unlist(lp_verts)), invert = T)
+  prune_edges(ng, el, invert = !invert)
+}
+
+# copied from nat (remove when simplify_neuron gets integrated)
+EdgeListFromSegList<-function(SegList){
+  lsl=sapply(SegList,length)
+  sl=SegList[lsl>1]
+  lsl=lsl[lsl>1]
+  ends=unlist(lapply(sl,function(x) x[-1]))
+  starts=unlist(lapply(sl,function(x) x[-length(x)]))
+  cbind(starts,ends)
 }

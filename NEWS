@@ -1,3 +1,7 @@
+elmr 0.5.2.9000
+==========
+* teach simplify_neuron to handle the inverse as well (#38)
+
 elmr 0.5.2
 ==========
 * teach simplify_neuron to handle arbitrary number of branch points (#37)

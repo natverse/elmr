@@ -4,12 +4,15 @@
 \alias{simplify_neuron}
 \title{Simplify a neuron to the longest tree with n branch points}
 \usage{
-simplify_neuron(x, n = 1, ...)
+simplify_neuron(x, n = 1, invert = FALSE, ...)
 }
 \arguments{
 \item{x}{A \code{\link[nat]{neuron}} to simplify}
 
 \item{n}{Required number of branch points (default=1, minimum 0)}
+
+\item{invert}{Whether to keep the simplified backbone (when
+\code{invert=FALSE}, the default) or its inverse.}
 
 \item{...}{Additional arguments (currently ignored)}
 }
@@ -42,6 +45,11 @@ dl1.simp4=simplify_neuron(dl1, n=4)
 plot(dl1, col='green', WithNodes = F)
 plot(dl1.simp4, col='blue', add = T)
 plot(dl1.simp, col='red', add = T)
+
+# calculate the inverse as well
+dl1.simp4.inv=simplify_neuron(dl1, n=4, invert=TRUE)
+plot(dl1.simp4, col='blue')
+plot(dl1.simp4.inv, col='red', add = T)
 }
 }
 \seealso{

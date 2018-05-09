@@ -1,6 +1,8 @@
 elmr 0.5.2.9000
 ==========
 * teach simplify_neuron to handle the inverse as well (#38)
+* change IVLP -> WED in FAFBNP surfaces as well as FAFB14NP (#35)
+* teach fetchn_fafb to work even if FAFB is given as the reference brain (#39)
 
 elmr 0.5.2
 ==========

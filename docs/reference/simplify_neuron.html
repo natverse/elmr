@@ -58,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3</span>
       </span>
     </div>
 
@@ -97,6 +97,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -129,7 +132,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>simplify_neuron</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>simplify_neuron</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,6 +144,11 @@
     <tr>
       <th>n</th>
       <td><p>Required number of branch points (default=1, minimum 0)</p></td>
+    </tr>
+    <tr>
+      <th>invert</th>
+      <td><p>Whether to keep the simplified backbone (when
+<code>invert=FALSE</code>, the default) or its inverse.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -176,7 +184,10 @@
     <pre class="examples"><div class='input'><span class='no'>dl1</span><span class='kw'>=</span><span class='fu'>read.neuron.catmaid</span>(<span class='fu'>catmaid_skids</span>(<span class='st'>'name:DL1'</span>)[<span class='fl'>1</span>])
 <span class='no'>dl1.simp</span><span class='kw'>=</span><span class='fu'>simplify_neuron</span>(<span class='no'>dl1</span>)
 <span class='no'>dl1.simp4</span><span class='kw'>=</span><span class='fu'>simplify_neuron</span>(<span class='no'>dl1</span>, <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>4</span>)
-<span class='fu'>plot</span>(<span class='no'>dl1</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'green'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='no'>F</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>dl1.simp4</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='no'>T</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>dl1.simp</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='no'>T</span>)</div><div class='img'><img src='simplify_neuron-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>plot</span>(<span class='no'>dl1</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'green'</span>, <span class='kw'>WithNodes</span> <span class='kw'>=</span> <span class='no'>F</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>dl1.simp4</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='no'>T</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>dl1.simp</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='no'>T</span>)</div><div class='img'><img src='simplify_neuron-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># calculate the inverse as well</span>
+<span class='no'>dl1.simp4.inv</span><span class='kw'>=</span><span class='fu'>simplify_neuron</span>(<span class='no'>dl1</span>, <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>4</span>, <span class='kw'>invert</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='fu'>plot</span>(<span class='no'>dl1.simp4</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>)</div><div class='input'><span class='fu'>plot</span>(<span class='no'>dl1.simp4.inv</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='no'>T</span>)</div><div class='img'><img src='simplify_neuron-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -31,7 +31,8 @@ fetchn_fafb<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FC
       warning("Neuronlist must be from the current FAFB templatebrain!")
     }
   } else x=catmaid::read.neurons.catmaid(skids, conn=conn)
-  xt=xform_brain(x, sample=elmr::FAFB, reference = reference)
+  xt <- if(isTRUE(all.equal(elmr::FAFB, reference))) x
+    else xform_brain(x, sample=elmr::FAFB, reference = reference)
   if(mirror) xt=mirror_brain(xt, reference)
   xt
 }

@@ -1,3 +1,5 @@
+# elmr 0.5.3.9000
+
 # elmr 0.5.3
 
 * teach simplify_neuron to handle the inverse as well (#38)

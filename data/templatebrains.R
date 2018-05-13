@@ -29,7 +29,8 @@ FAFB13 <- nat.templatebrains::templatebrain(
   voxdims = c(4, 4, 35),
   origin = c(0, 0, 0),
   BoundingBox = structure(c(0, 919160, 0, 571552, 0, 247170), .Dim = 2:3, class = "boundingbox"),
-  units = "nm"
+  units = "nm",
+  doi="https://doi.org/10.1101/140905"
 )
 
 FAFB14 <- nat.templatebrains::templatebrain(

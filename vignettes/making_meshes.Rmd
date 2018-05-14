@@ -44,8 +44,8 @@ view3d(userMatrix=rgl::rotationMatrix(angle = pi, 1,0,0), zoom=0.8)
 We're going to use synapses between PNs and KCs to define a mesh
 
 ```{r, message=FALSE}
-pntokc = catmaid_get_connectors_between(pre_skids = 'annotation:^PN$',
-                                        post_skids = 'annotation:^KC$')
+pntokc = catmaid_get_connectors_between(pre_skids = 'PN',
+                                        post_skids = 'KC')
 # select 3d position of presynaptic connectors
 pntokc %>% 
   distinct(connector_id, .keep_all=TRUE) %>%

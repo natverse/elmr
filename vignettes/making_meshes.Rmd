@@ -94,6 +94,7 @@ The quality of the JFRC2-JFRC2013 bridging registration is likely also a factor.
 Finally if one wanted to place this mesh into CATMAID, one could do it as follows:
 
 ```{r, eval=FALSE}
-catmaid_add_volume(calyx, title="fafb14.MB_CA_R", comment="Constructed by GSXEJ from PN-KC synapses directly in FAFB14 space.")
+catmaid_add_volume(calyx, title="fafb14.pn-kc.MB_CA_R", 
+                   comment="Constructed by GSXEJ from PN-KC synapses directly in FAFB14 space.")
 ```
 

@@ -75,7 +75,14 @@ simplify_neuron <- function(x, n=1, invert=FALSE, ...) {
     if (i == 0) {
       # initialisation
       start = rootpoints(ng, original.ids=FALSE)
-      furthest_leaf_idx = which.max(apply(dd, 2,  function(x) max(x[is.finite(x)])))
+      robust_max=function(x) {
+        x=x[is.finite(x)]
+        if(length(x)) max(x) else {
+          warning("Some points in neuron cannot be reached! Multiple trees?")
+          -Inf
+        }
+      }
+      furthest_leaf_idx = which.max(apply(dd, 2, robust_max))
     } else {
       # select the bps that we can consider
       # must be currently in use but not all used up

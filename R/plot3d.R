@@ -44,6 +44,6 @@ plot3d.ngraph <- function(x, type='lines', soma=1, labels=c('none', "nodes","all
     } else {
       unique(c(branchpoints(x), rootpoints(x), endpoints(x)))
     }
-    text3d(xyz[pointsel,],texts = all_points)
+    text3d(xyz[pointsel,],texts = pointsel)
   }
 }

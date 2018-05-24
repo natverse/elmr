@@ -19,3 +19,8 @@ test_that("simplify_neuron works", {
   expect_equal(as.seglist(simplify_neuron(n1, n=10)),
                as.seglist(simplify_neuron(n1.scrambledids, n=10)))
 })
+
+test_that("simplify_neuron when spine contains 1 branch", {
+  x=readRDS('testdata/simplify_neuron_1branch_spine.rds')
+  expect_equal(branchpoints(simplify_neuron(x, 2)), 8:9)
+})

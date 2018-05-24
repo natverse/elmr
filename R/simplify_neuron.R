@@ -84,22 +84,23 @@ simplify_neuron <- function(x, n=1, invert=FALSE, ...) {
       # find the length we could add for each leaf
       # nb this will be the smallest value that can be added to
       # currently selected nodes
-      additional_length = apply(dd[bps_available,], 2, min, na.rm = T)
+      additional_length = apply(dd[bps_available, , drop=FALSE], 2, min, na.rm = T)
       # remove any infinite values
       additional_length[!is.finite(additional_length)] = 0
       # the next leaf to add is the one with max length
       furthest_leaf_idx = which.max(additional_length)
-      start = which.min(dd[bps_available, furthest_leaf_idx])
+      start_idx = which.min(dd[bps_available, furthest_leaf_idx])
       # nb we need the vertex index in the original graph
-      start = match(names(start), names(igraph::V(ng)))
+      start = bps[which(bps_available)[start_idx]]
     }
     furthest_leaf = leaves[furthest_leaf_idx]
     # strike off selected leaf
     dd[, furthest_leaf_idx] = Inf
     # find path to that leaf
-    lp_verts[[i+1]] = lp(start, furthest_leaf)
+    path = lp(start, furthest_leaf)
+    lp_verts[[i+1]]=path
     # add one to count of any bps used
-    bpsused[bps %in% lp_verts[[i+1]]] = bpsused[bps %in% lp_verts[[i+1]]] + 1
+    bpsused[bps %in% path] = bpsused[bps %in% path] + 1
   }
   # ok now we have as output a list of vertices defining selected paths
   el=EdgeListFromSegList(lp_verts)

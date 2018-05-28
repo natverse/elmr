@@ -51,18 +51,21 @@ multiple_soma_info = soma_labels %>%
 ## XYZ position of the nodes we picked
 
 ```{r, cache=FALSE}
-# we don't have a built in function to get the xyz coords of a node yet
-node_xyz <- function(tnid) catmaid_fetch(
-    "1/node/get_location",
-    body = list(tnid = tnid),
-    simplifyVector = T,
-    include_headers = F
-)
-# Vectorize automatically converts a scalar function (taking one input) to 
-# a vectorised one
-vnode_xyz=Vectorize(node_xyz)
+# wrapper for tree node details
+node_details <- function(tnid) {
+  res=catmaid_get_treenodes_detail(tnid)
+  ul=catmaid_get_user_list()
+  res$login=ul$login[match(res$user_id, ul$id)]
+  # we expect these to be capitalised elsewhere
+  cn=colnames(res)
+  cn[cn%in%c("x","y","z")]=toupper(cn[cn%in%c("x","y","z")])
+  colnames(res) <- cn
+  res[c("X","Y","Z","radius","login")]
+}
+
 # note that we need to transpose the results of vnode_xyz to get X,Y,Z columns
-multiple_soma_info[,c("X", "Y", "Z")]=t(vnode_xyz(multiple_soma_info$treenodeID))[,-1]
+multiple_soma_info <- cbind(as.data.frame(multiple_soma_info),
+                            node_details(multiple_soma_info$treenodeID))
 ```
 
 Now let's calculate the distance from the neuropil surface
@@ -93,7 +96,7 @@ plot3d(FAFB)
 par3d(zoom=.6)
 ```
 
-Now we can use this information to construct an url for each node.  
+Now we can use this information to construct an url for each node.
 
 ```{r, make urls}
 multiple_soma_info %>%
@@ -107,16 +110,63 @@ multiple_soma_info %>%
 
 ```
 
+It might be useful to know who 'owns' each neuron. I think the
+simplest way to assign this is by the user who has traced most nodes for each
+skeleton (since there may be different users responsible for each soma).
+
+```{r}
+get_top_user <- function(x, ...) {
+  ul=catmaid_get_user_list(...)
+  # save time by checking unique skids only
+  ddx=unique(x)
+  gtu_one <- function(x, ...) {
+    t <- try({
+      res=catmaid_get_contributor_stats(x, ...)
+      w=which.max(res$node_contributors$n)
+      ul$login[match(res$node_contributors$id[w], ul$id)]
+    })
+    if(inherits(t, 'try-error')) NA_character_ else t
+  }
+  topus <- sapply(ddx, gtu_one)
+  topus[match(x, ddx)]
+}
+```
+
 ## Google sheet
 Let's make a google sheet with all those urls that we can then review manually:
 
 ```{r, googlesheet, eval=FALSE}
 library(googlesheets)
-tf=tempfile(fileext = '.tsv')
+# helper function to upload via temp file
+# since writing cells via API is very slow
+gs_upload_tf <- function(x, ...) {
+  tf=tempfile(fileext = '.tsv')
+  on.exit(unlink(tf))
+  write.table(x, file=tf, sep="\t", row.names = FALSE)
+  gs_upload(tf, ...)
+}
+
 multiple_soma_info %>% 
   arrange(skeletonID, d) %>% 
   group_by(skeletonID) %>%
-  write.table(file=tf, sep="\t", row.names = FALSE)
-gs_upload(tf, sheet_title = 'multi_soma_neurons')
-unlink(tf)
+  mutate(user=get_top_user(skeletonID)) %>%
+  gs_upload_tf(sheet_title = 'multi_soma_neurons')
+```
+
+As an alternative we can divide that up with one worksheet per user. 
+
+```{r, googlesheet-by-user, eval=FALSE}
+library(googlesheets)
+gs <- googlesheets::gs_new("multi_soma_neurons_by_user")
+gs_add_sheet <- function(x, gs, ...) {
+  gs_ws_new(row_extent = nrow(x)+1, col_extent = ncol(x), ss = gs, ..., input=x, col_names=T)
+}
+multiple_soma_info %>% 
+  arrange(skeletonID, d) %>% 
+  mutate(user=factor(get_top_user(skeletonID))) -> msi2
+
+for(u in levels(msi2$user)) {
+  gs_add_sheet(subset(msi2, user==u), gs, ws_title=u)
+  cat(".")
+}
 ```

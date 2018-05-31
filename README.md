@@ -8,7 +8,8 @@
 Provides tools to move between adult brain EM and light level data, emphasising
 the interaction between the CATMAID web application and the R [Neuroanatomy
 Toolbox package](https://github.com/jefferis/nat). See also https://github.com/saalfeldlab/elm, from which this 
-package borrows both a name and uses data.
+package borrows a name and which was used to define the landmark data sets that
+provide a bridge between the FAFB EM brain and light level template.
 
 ## Quick Start
 
@@ -74,3 +75,30 @@ conveniently bring the devlopment versions up to date by doing:
 ```r
 devtools::update_packages("elmr", dependencies = TRUE)
 ```
+
+## Acknowledgements
+
+* elmr is built on top of a suite of packages based on the [NeuroAnatomy Toolbox](http://jefferislab.github.io/)
+* The approach to transforming data between template brains is descibed in 
+  
+  Combining genome-scale Drosophila 3D neuroanatomical data by bridging template brains
+  James D. Manton, Aaron D. Ostrovsky, Lea Goetz, Marta Costa, Torsten Rohlfing,
+  Gregory S. X. E. Jefferis. bioRxiv 006353; doi:
+  [10.1101/006353](https://doi.org/10.1101/006353)
+  
+* The elm tool originally used to define landmarks is in turn based on [BigWarp](http://fiji.sc/BigWarp):
+
+  JA Bogovic, P Hanslovsky, A Wong, S Saalfeld, "Robust registration of calcium
+  images by learned contrast synthesis", In *Biomedical Imaging (ISBI)*, 2016
+  IEEE 13th International Symposium on, 1123-1126,  DOI:
+  [10.1109/ISBI.2016.7493463](https://doi.org/10.1109/ISBI.2016.7493463).
+
+* Finally, the FAFB EM dataset is described in:
+  
+  A Complete Electron Microscopy Volume Of The Brain Of Adult Drosophila
+  melanogaster Zhihao Zheng, J. Scott Lauritzen, Eric Perlman, Camenzind G.
+  Robinson, Matthew Nichols, Daniel Milkie, Omar Torrens, John Price, Corey B.
+  Fisher, Nadiya Sharifi, Steven A. Calle-Schuler, Lucia Kmecova, Iqbal J. Ali,
+  Bill Karsh, Eric T. Trautman, John Bogovic, Philipp Hanslovsky, Gregory S. X. E.
+  Jefferis, Michael Kazhdan, Khaled Khairy, Stephan Saalfeld, Richard D. Fetter,
+  Davi D. Bock bioRxiv 140905; doi: [10.1101/140905](https://doi.org/10.1101/140905)

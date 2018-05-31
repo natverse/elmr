@@ -1,5 +1,9 @@
 # elmr 0.5.3.9000
 
+* add plot3d.ngraph (shows directed graph in 3d)
+* fix simplify_neuron when spine has 1 branch only (#40)
+* vignette tweaks
+
 # elmr 0.5.3
 
 * teach simplify_neuron to handle the inverse as well (#38)

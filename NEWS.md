@@ -1,4 +1,4 @@
-# elmr 0.5.3.9000
+# elmr 0.5.4
 
 * add plot3d.ngraph (shows directed graph in 3d)
 * fix simplify_neuron when spine has 1 branch only (#40)

@@ -12,7 +12,7 @@ vignette: >
 One of the core features of elmr is to enable data in the FAFB EM space to be
 transformed into one of a number of standard light level template brains. This
 transformation depends on manually selected landmarks. We can inspect these
-landmarks and to try to  
+landmarks and to try to measure their consistency.
 
 ### Setup
 ```{r, message=FALSE}
@@ -27,8 +27,9 @@ view3d(userMatrix=rgl::rotationMatrix(angle = pi, 1,0,0), zoom=0.7)
 
 ## Landmarks
 The standard landmarks used by elmr were specified by Davi Bock on the FAFB and
-JFRC2013 brains. We can plot the landmarks in the context of the JFRC2013 brain
-as follows.
+JFRC2013 brains using the [elm](https://github.com/saalfeldlab/elm) tool
+developed by Stefan Saalfeld and John Bogovic. We can plot the landmarks in the
+context of the JFRC2013 brain as follows.
 
 ```{r, rgl=TRUE}
 plot3d(JFRC2013)

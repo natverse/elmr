@@ -78,7 +78,9 @@ devtools::update_packages("elmr", dependencies = TRUE)
 
 ## Acknowledgements
 
-* elmr is built on top of a suite of packages based on the [NeuroAnatomy Toolbox](http://jefferislab.github.io/)
+* elmr is part of a suite of R packages based on the [NeuroAnatomy
+Toolbox](http://jefferislab.github.io/)
+
 * The approach to transforming data between template brains is descibed in 
   
   Combining genome-scale Drosophila 3D neuroanatomical data by bridging template brains
@@ -86,7 +88,8 @@ devtools::update_packages("elmr", dependencies = TRUE)
   Gregory S. X. E. Jefferis. bioRxiv 006353; doi:
   [10.1101/006353](https://doi.org/10.1101/006353)
   
-* The elm tool originally used to define landmarks is in turn based on [BigWarp](http://fiji.sc/BigWarp):
+* The [elm](https://github.com/saalfeldlab/elm) tool originally used to define
+landmarks is in turn based on [BigWarp](http://fiji.sc/BigWarp):
 
   JA Bogovic, P Hanslovsky, A Wong, S Saalfeld, "Robust registration of calcium
   images by learned contrast synthesis", In *Biomedical Imaging (ISBI)*, 2016

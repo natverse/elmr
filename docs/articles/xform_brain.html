@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.4</span>
       </span>
     </div>
 
@@ -94,7 +94,7 @@
       <h1>Transforming between FAFB and light level template brains</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2018-05-09</h4>
+            <h4 class="date">2018-05-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/xform_brain.Rmd"><code>vignettes/xform_brain.Rmd</code></a></small>
       <div class="hidden name"><code>xform_brain.Rmd</code></div>
@@ -112,9 +112,8 @@
 <a href="#setup" class="anchor"></a>Setup</h3>
 <p>In order to run some of the examples we need to ensure that we have CMTK available and the <a href="https://github.com/jefferislab/nat.flybrains">nat.flybrains</a> package fully installed to provide bridging registrations. We will make some of our examples run conditionally based on this.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">full.bridging=<span class="ot">FALSE</span>
-<span class="kw">library</span>(nat)</code></pre></div>
-<pre><code>## Warning: package 'rgl' was built under R version 3.4.4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">!</span><span class="kw">nzchar</span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/cmtk.bindir">cmtk.bindir</a></span>())){
+<span class="kw">library</span>(nat)
+<span class="cf">if</span>(<span class="op">!</span><span class="kw">nzchar</span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/cmtk.bindir">cmtk.bindir</a></span>())){
   <span class="kw">cat</span>(<span class="st">"CMTK not available! Some examples will not run."</span>)
 } <span class="cf">else</span> {
   djrok=<span class="kw">try</span>(nat.flybrains<span class="op">::</span><span class="kw">download_jefferislab_registrations</span>())
@@ -128,17 +127,26 @@ rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation
 <span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.6</span>)</code></pre></div>
 </div>
 </div>
+<div id="available-template-brains" class="section level2">
+<h2 class="hasAnchor">
+<a href="#available-template-brains" class="anchor"></a>Available Template Brains</h2>
+<p>We have support for a significant number of template brains at this point. <strong>elmr</strong> itself adds support for transforms between different assemblies of the <code>FAFB</code> EM dataset and a single light level dataset (<code>JFRC2013</code>) - see the <a href="landmarks.html">Landmarks vignette</a> for details about the origin of this. You can plot a full set of the known connections using the <code><a href="http://www.rdocumentation.org/packages/nat.templatebrains/topics/shortest_bridging_seq">nat.templatebrains::bridging_graph</a></code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nat.templatebrains)
+<span class="kw">plot</span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/nat.templatebrains/topics/shortest_bridging_seq">bridging_graph</a></span>(), <span class="dt">vertex.size=</span><span class="dv">15</span>)</code></pre></div>
+<p><img src="xform_brain_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
+<p>Note that there are multiple <code>FAFB</code> spaces based on different assemblies of the EM image data. The <code>FAFB</code> space always refers to the most recent assembly.</p>
+</div>
 <div id="example---3d-locations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example---3d-locations" class="anchor"></a>Example - 3D locations</h2>
-<p>As our first example, we take the position of the centre of the left and right olfactory V glomeruli (CO2 responsive). We transform these from JFRC2013 to FAFB space.</p>
+<p>As our first example, we take the position of the centre of the left and right olfactory V glomeruli (CO2 responsive). We transform these from <code>JFRC2013</code> to <code>FAFB</code> space.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(elmr)
 vgloms.jfrc2013=<span class="kw">data.frame</span>(<span class="dt">X=</span><span class="kw">c</span>(<span class="dv">316</span>,<span class="dv">229</span>),
   <span class="dt">Y=</span><span class="kw">c</span>(<span class="dv">143</span>, <span class="dv">139</span>),
   <span class="dt">Z=</span><span class="kw">c</span>(<span class="dv">26</span>,<span class="dv">22</span>),
   <span class="dt">row.names=</span><span class="kw">c</span>(<span class="st">"V_L"</span>, <span class="st">"V_R"</span>))
 <span class="co"># Convert to FAFB13 coordinates</span>
-<span class="kw">xform_brain</span>(vgloms.jfrc2013, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/nat.templatebrains/topics/xform_brain">xform_brain</a></span>(vgloms.jfrc2013, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB)</code></pre></div>
 <pre><code>##            X        Y        Z
 ## V_L 580356.0 291205.7 61258.68
 ## V_R 465140.9 278772.5 63947.43</code></pre>
@@ -150,39 +158,39 @@ vgloms.jfrc2013=<span class="kw">data.frame</span>(<span class="dt">X=</span><sp
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Conversion of neurons from the IS2 light level template brain</span>
 <span class="co"># NB this conversion depends on a full install of nat.flybrains and CMTK</span>
 <span class="co"># ensure that we have all the relevant bridging registrations downloaded</span>
-Cell07PNs13.fafb=<span class="kw">xform_brain</span>(Cell07PNs[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">sample=</span>IS2, <span class="dt">reference=</span>FAFB)
+Cell07PNs13.fafb=<span class="kw"><a href="http://www.rdocumentation.org/packages/nat.templatebrains/topics/xform_brain">xform_brain</a></span>(Cell07PNs[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">sample=</span>IS2, <span class="dt">reference=</span>FAFB)
 <span class="kw">plot</span>(Cell07PNs13.fafb)</code></pre></div>
-<p><img src="xform_brain_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+<p><img src="xform_brain_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
 <div id="neurons-surface" class="section level2">
 <h2 class="hasAnchor">
 <a href="#neurons-surface" class="anchor"></a>Neurons + Surface</h2>
 <p>We can transform neurons and surfaces in order to compare EM tracings with light derived meshes describing the whole brain or neuropil subdomains.</p>
 <p>We’ll start with an example where we convert a brain surface mesh to FAFB space and then plot a pair of sample neurons distributed with <strong>elmr</strong>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAFBJFRC2013.surf=<span class="kw">xform_brain</span>(JFRC2013.surf, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAFBJFRC2013.surf=<span class="kw"><a href="http://www.rdocumentation.org/packages/nat.templatebrains/topics/xform_brain">xform_brain</a></span>(JFRC2013.surf, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB)
 <span class="co"># NB plot3d.templaterain gives nice defaults for brain surface plot but assumes</span>
 <span class="co"># that the surface object is called XXXX.surf</span>
 <span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/plot3d">plot3d</a></span>(FAFBJFRC2013.surf, <span class="dt">alpha=</span>.<span class="dv">3</span>, <span class="dt">col=</span><span class="st">'grey'</span>)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/plot3d">plot3d</a></span>(dense_core_neurons, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">soma=</span><span class="dv">3000</span>)</code></pre></div>
-<p><img src="xform_brain_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p><img src="xform_brain_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>There are also surface objects available for individual neuropil domains that have been pre-transformed using this approach:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAFBNP.surf=<span class="kw">xform_brain</span>(JFRC2NP.surf, <span class="dt">sample =</span> JFRC2, <span class="dt">reference =</span> FAFB)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FAFBNP.surf=<span class="kw"><a href="http://www.rdocumentation.org/packages/nat.templatebrains/topics/xform_brain">xform_brain</a></span>(JFRC2NP.surf, <span class="dt">sample =</span> JFRC2, <span class="dt">reference =</span> FAFB)</code></pre></div>
 <p>and bundled with the <code>elmr</code> package.</p>
 <p>We can plot neuropil subsets as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/plot3d">plot3d</a></span>(FAFBNP.surf, <span class="st">"LH"</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/plot3d">plot3d</a></span>(dense_core_neurons, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">soma=</span><span class="dv">3000</span>)</code></pre></div>
-<p><img src="xform_brain_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="xform_brain_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 </div>
 <div id="default-sample-space" class="section level2">
 <h2 class="hasAnchor">
 <a href="#default-sample-space" class="anchor"></a>Default sample space</h2>
 <p>nat.templatebrains and elmr now provide support for tagging objects e.g. neurons/surfaces with a template space. You can get / set this using the <code>regtemplate</code> function. We can repeat the earlier example, this time</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set the template space for the input coordinates</span>
-<span class="kw">regtemplate</span>(vgloms.jfrc2013)=JFRC2013
+<span class="kw"><a href="http://www.rdocumentation.org/packages/nat.templatebrains/topics/regtemplate">regtemplate</a></span>(vgloms.jfrc2013)=JFRC2013
 <span class="co"># now we do not need to specify it in the xform_brain call</span>
-vgloms.fafb=<span class="kw">xform_brain</span>(vgloms.jfrc2013, <span class="dt">reference =</span> FAFB)
+vgloms.fafb=<span class="kw"><a href="http://www.rdocumentation.org/packages/nat.templatebrains/topics/xform_brain">xform_brain</a></span>(vgloms.jfrc2013, <span class="dt">reference =</span> FAFB)
 <span class="co"># check ouput space</span>
-<span class="kw">regtemplate</span>(vgloms.fafb)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/nat.templatebrains/topics/regtemplate">regtemplate</a></span>(vgloms.fafb)</code></pre></div>
 <pre><code>## === Template Brain === 
 ## Name: FAFB14 
 ## Short Name: FAFB14 
@@ -208,6 +216,7 @@ vgloms.fafb=<span class="kw">xform_brain</span>(vgloms.jfrc2013, <span class="dt
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#intro">Intro</a></li>
+      <li><a href="#available-template-brains">Available Template Brains</a></li>
       <li><a href="#example---3d-locations">Example - 3D locations</a></li>
       <li><a href="#neurons">Neurons</a></li>
       <li><a href="#neurons-surface">Neurons + Surface</a></li>

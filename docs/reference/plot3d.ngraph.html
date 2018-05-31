@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Stitch multiple fragments into single neuron using nearest endpoints — stitch_neurons • elmr</title>
+<title>Title — plot3d.ngraph • elmr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,9 +28,9 @@
 
 
 
-<meta property="og:title" content="Stitch multiple fragments into single neuron using nearest endpoints — stitch_neurons" />
+<meta property="og:title" content="Title — plot3d.ngraph" />
 
-<meta property="og:description" content="Stitch multiple fragments into single neuron using nearest endpoints" />
+<meta property="og:description" content="Title" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -121,83 +121,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Stitch multiple fragments into single neuron using nearest endpoints</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jefferis/elmr/blob/master/R/stitch_neuron.R'><code>R/stitch_neuron.R</code></a></small>
-    <div class="hidden name"><code>stitch_neurons.Rd</code></div>
+    <h1>Title</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jefferis/elmr/blob/master/R/plot3d.R'><code>R/plot3d.R</code></a></small>
+    <div class="hidden name"><code>plot3d.ngraph.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Stitch multiple fragments into single neuron using nearest endpoints</p>
+    <p>Title</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>stitch_neurons</span>(<span class='no'>x</span>, <span class='kw'>prefer_soma</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sort</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>warndist</span> <span class='kw'>=</span> <span class='fl'>1000</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for ngraph</span>
+<span class='fu'>plot3d</span>(<span class='no'>x</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"lines"</span>, <span class='kw'>soma</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"none"</span>,
+  <span class='st'>"nodes"</span>, <span class='st'>"all"</span>), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A neuronlist containing fragments of a single neuron</p></td>
+      <td><p>A <code>ngraph</code> object</p></td>
     </tr>
     <tr>
-      <th>prefer_soma</th>
-      <td><p>When TRUE (the default) the fragment tagged as the soma
-will be used as the master neuron.</p></td>
+      <th>type</th>
+      <td><p>They type of arrows (lines by default)</p></td>
     </tr>
     <tr>
-      <th>sort</th>
-      <td><p>When TRUE (the default) the fragments will be sorted by the
-number of nodes they contain before stitching.</p></td>
+      <th>soma</th>
+      <td><p>radius of soma (or <code>FALSE</code> to supress plotting)</p></td>
     </tr>
     <tr>
-      <th>warndist</th>
-      <td><p>If distance is greater than this value, create a warning.</p></td>
+      <th>labels</th>
+      <td><p>Whether to label nodes/alll points with their raw index (not id)</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments passed to <code>arrow3d</code></p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A single <code>neuron</code> object containing all input fragments.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Neurons will be ordered by default such the largest (by node count)
-  neuron with a soma tag is the <code>master</code> neuron - i.e. the one
-  containing the root node. Fragments are joined recursively in this sort
-  order each time simply picking the closest fragment to the current
-  <em>master</em>. Closest is here defined by the distance between nearest
-  endpoints.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='stitch_neuron.html'>stitch_neuron</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>pn57334</span><span class='kw'>=</span><span class='fu'>read.neurons.catmaid</span>(<span class='st'>"name:PN 57334"</span>)
-<span class='co'># there were 3 fragments when I wrote this that all contained PN 57334 in</span>
-<span class='co'># their name</span>
-<span class='fu'>length</span>(<span class='no'>pn57334</span>)
-<span class='fu'>summary</span>(<span class='no'>pn57334</span>)
-<span class='no'>pn57334.whole</span><span class='kw'>=</span><span class='fu'>stitch_neurons</span>(<span class='no'>pn57334</span>)
-<span class='fu'>summary</span>(<span class='no'>pn57334.whole</span>)
-<span class='fu'>plot3d</span>(<span class='no'>pn57334.whole</span>)
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>plot3d</span>(<span class='fu'>as.ngraph</span>(<span class='no'>Cell07PNs</span><span class='kw'>[[</span><span class='fl'>1</span>]]))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

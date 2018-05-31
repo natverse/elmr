@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.4</span>
       </span>
     </div>
 
@@ -94,7 +94,7 @@
       <h1>Landmarks</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2018-05-09</h4>
+            <h4 class="date">2018-05-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/landmarks.Rmd"><code>vignettes/landmarks.Rmd</code></a></small>
       <div class="hidden name"><code>landmarks.Rmd</code></div>
@@ -106,13 +106,12 @@
 <div id="intro" class="section level2">
 <h2 class="hasAnchor">
 <a href="#intro" class="anchor"></a>Intro</h2>
-<p>One of the core features of elmr is to enable data in the FAFB EM space to be transformed into one of a number of standard light level template brains. This transformation depends on manually selected landmarks. We can inspect these landmarks and to try to</p>
+<p>One of the core features of elmr is to enable data in the FAFB EM space to be transformed into one of a number of standard light level template brains. This transformation depends on manually selected landmarks. We can inspect these landmarks and to try to measure their consistency.</p>
 <div id="setup" class="section level3">
 <h3 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(elmr)</code></pre></div>
-<pre><code>## Warning: package 'rgl' was built under R version 3.4.4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(elmr)
+<span class="kw">library</span>(knitr)
 opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.width=</span><span class="dv">5</span>, <span class="dt">fig.height=</span><span class="dv">5</span>)
 <span class="co"># set up for 3d plots based on rgl package</span>
 rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rgl/topics/hook_rgl">setupKnitr</a></span>()
@@ -123,7 +122,7 @@ rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation
 <div id="landmarks" class="section level2">
 <h2 class="hasAnchor">
 <a href="#landmarks" class="anchor"></a>Landmarks</h2>
-<p>The standard landmarks used by elmr were specified by Davi Bock on the FAFB and JFRC2013 brains. We can plot the landmarks in the context of the JFRC2013 brain as follows.</p>
+<p>The standard landmarks used by elmr were specified by Davi Bock on the FAFB and JFRC2013 brains using the <a href="https://github.com/saalfeldlab/elm">elm</a> tool developed by Stefan Saalfeld and John Bogovic. We can plot the landmarks in the context of the JFRC2013 brain as follows.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot3d</span>(JFRC2013)
 <span class="co"># note that the landmarks are in raw voxel coordinates and must be scaled</span>
 xyz=<span class="kw">scale</span>(elm.landmarks[,<span class="kw">c</span>(<span class="st">"X"</span>,<span class="st">"Y"</span>,<span class="st">"Z"</span>)], <span class="dt">scale =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">voxdims</span>(JFRC2013), <span class="dt">center =</span> <span class="ot">FALSE</span>)

@@ -16,6 +16,7 @@ reference:
   - stitch_neuron
   - stitch_neurons
   - unspike
+  - plot3d.ngraph
 - title: Interacting with CATMAID server
   contents:
   - open_fafb

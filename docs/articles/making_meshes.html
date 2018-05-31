@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.4</span>
       </span>
     </div>
 
@@ -94,7 +94,7 @@
       <h1>Making Surface Meshes</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2018-05-09</h4>
+            <h4 class="date">2018-05-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/making_meshes.Rmd"><code>vignettes/making_meshes.Rmd</code></a></small>
       <div class="hidden name"><code>making_meshes.Rmd</code></div>
@@ -111,9 +111,8 @@
 <h3 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h3>
 <p>First load main packages</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(elmr)</code></pre></div>
-<pre><code>## Warning: package 'rgl' was built under R version 3.4.4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cl=<span class="kw">try</span>(<span class="kw">catmaid_login</span>())
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(elmr)
+cl=<span class="kw">try</span>(<span class="kw">catmaid_login</span>())
 catmaid_available=<span class="kw">inherits</span>(cl, <span class="st">"catmaid_connection"</span>)
 <span class="kw">library</span>(knitr)
 opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">eval=</span>catmaid_available)</code></pre></div>
@@ -135,8 +134,8 @@ rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation
 <h2 class="hasAnchor">
 <a href="#selecting-synapses" class="anchor"></a>Selecting synapses</h2>
 <p>We’re going to use synapses between PNs and KCs to define a mesh</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pntokc =<span class="st"> </span><span class="kw">catmaid_get_connectors_between</span>(<span class="dt">pre_skids =</span> <span class="st">'annotation:^PN$'</span>,
-                                        <span class="dt">post_skids =</span> <span class="st">'annotation:^KC$'</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pntokc =<span class="st"> </span><span class="kw">catmaid_get_connectors_between</span>(<span class="dt">pre_skids =</span> <span class="st">'PN'</span>,
+                                        <span class="dt">post_skids =</span> <span class="st">'KC'</span>)
 <span class="co"># select 3d position of presynaptic connectors</span>
 pntokc <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>(connector_id, <span class="dt">.keep_all=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
@@ -167,7 +166,8 @@ pntokc <span class="op">%&gt;%</span><span class="st"> </span>
 <p><img src="making_meshes_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <p>It’s clear that there is a mismatch here. This may originate in part from the fact that the JFRC2013 intermediate template has rather flattened MB calyces. The quality of the JFRC2-JFRC2013 bridging registration is likely also a factor.</p>
 <p>Finally if one wanted to place this mesh into CATMAID, one could do it as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">catmaid_add_volume</span>(calyx, <span class="dt">title=</span><span class="st">"fafb14.MB_CA_R"</span>, <span class="dt">comment=</span><span class="st">"Constructed by GSXEJ from PN-KC synapses directly in FAFB14 space."</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">catmaid_add_volume</span>(calyx, <span class="dt">title=</span><span class="st">"fafb14.pn-kc.MB_CA_R"</span>, 
+                   <span class="dt">comment=</span><span class="st">"Constructed by GSXEJ from PN-KC synapses directly in FAFB14 space."</span>)</code></pre></div>
 </div>
   </div>
 

@@ -37,12 +37,28 @@ rgl::setupKnitr()
 view3d(userMatrix=rgl::rotationMatrix(angle = pi, 1,0,0), zoom=0.6)
 ```
 
+## Available Template Brains
+
+We have support for a significant number of template brains at this point.
+**elmr** itself adds support for transforms between different assemblies of the
+`FAFB` EM dataset and a single light level dataset (`JFRC2013`) - see the
+[Landmarks vignette](landmarks.html) for details about the origin of this. You
+can plot a full set of the known connections using the
+`nat.templatebrains::bridging_graph` function.
+
+```{r, fig.width=7, fig.height=7}
+library(nat.templatebrains)
+plot(bridging_graph(), vertex.size=15)
+```
+
+Note that there are multiple `FAFB` spaces based on different assemblies of the
+EM image data. The `FAFB` space always refers to the most recent assembly.
 
 ## Example - 3D locations
 
 As our first example, we take the position of the centre of the left and right
-olfactory V glomeruli (CO2 responsive). We transform these from JFRC2013 to 
-FAFB space.
+olfactory V glomeruli (CO2 responsive). We transform these from `JFRC2013` to 
+`FAFB` space.
 
 ```{r, message=FALSE}
 library(elmr)

@@ -14,7 +14,7 @@
 #' plot3d(as.ngraph(Cell07PNs[[1]]))
 plot3d.ngraph <- function(x, type='lines', soma=1, labels=c('none', "nodes","all"), ...) {
   labels=match.arg(labels)
-  el=igraph::as_edgelist(x)
+  el=igraph::as_edgelist(x, names=F)
   xyz=xyzmatrix(x)
 
   draw_edge <- function(edge, ...) {

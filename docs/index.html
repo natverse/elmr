@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">elmr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.4.9000</span>
       </span>
     </div>
 
@@ -97,7 +97,7 @@
 <div id="elmr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#elmr" class="anchor"></a>elmr</h1></div>
-<p>Provides tools to move between adult brain EM and light level data, emphasising the interaction between the CATMAID web application and the R <a href="https://github.com/jefferis/nat">Neuroanatomy Toolbox package</a>. See also <a href="https://github.com/saalfeldlab/elm" class="uri">https://github.com/saalfeldlab/elm</a>, from which this package borrows both a name and uses data.</p>
+<p>Provides tools to move between adult brain EM and light level data, emphasising the interaction between the CATMAID web application and the R <a href="https://github.com/jefferis/nat">Neuroanatomy Toolbox package</a>. See also <a href="https://github.com/saalfeldlab/elm" class="uri">https://github.com/saalfeldlab/elm</a>, from which this package borrows a name and which was used to define the landmark data sets that provide a bridge between the FAFB EM brain and light level template.</p>
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick Start</h2>
@@ -150,6 +150,23 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <p><strong>elmr</strong> and its dependencies are still under fairly heavy development. You can conveniently bring the devlopment versions up to date by doing:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/update_packages">update_packages</a></span>(<span class="st">"elmr"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
+</div>
+<div id="acknowledgements" class="section level2">
+<h2 class="hasAnchor">
+<a href="#acknowledgements" class="anchor"></a>Acknowledgements</h2>
+<ul>
+<li><p>elmr is part of a suite of R packages based on the <a href="http://jefferislab.github.io/">NeuroAnatomy Toolbox</a></p></li>
+<li><p>The approach to transforming data between template brains is descibed in</p></li>
+</ul>
+<p>Combining genome-scale Drosophila 3D neuroanatomical data by bridging template brains James D. Manton, Aaron D. Ostrovsky, Lea Goetz, Marta Costa, Torsten Rohlfing, Gregory S. X. E. Jefferis. bioRxiv 006353; doi: <a href="https://doi.org/10.1101/006353">10.1101/006353</a></p>
+<ul>
+<li>The <a href="https://github.com/saalfeldlab/elm">elm</a> tool originally used to define landmarks is in turn based on <a href="http://fiji.sc/BigWarp">BigWarp</a>:</li>
+</ul>
+<p>JA Bogovic, P Hanslovsky, A Wong, S Saalfeld, “Robust registration of calcium images by learned contrast synthesis”, In <em>Biomedical Imaging (ISBI)</em>, 2016 IEEE 13th International Symposium on, 1123-1126, DOI: <a href="https://doi.org/10.1109/ISBI.2016.7493463">10.1109/ISBI.2016.7493463</a>.</p>
+<ul>
+<li>Finally, the FAFB EM dataset is described in:</li>
+</ul>
+<p>A Complete Electron Microscopy Volume Of The Brain Of Adult Drosophila melanogaster Zhihao Zheng, J. Scott Lauritzen, Eric Perlman, Camenzind G. Robinson, Matthew Nichols, Daniel Milkie, Omar Torrens, John Price, Corey B. Fisher, Nadiya Sharifi, Steven A. Calle-Schuler, Lucia Kmecova, Iqbal J. Ali, Bill Karsh, Eric T. Trautman, John Bogovic, Philipp Hanslovsky, Gregory S. X. E. Jefferis, Michael Kazhdan, Khaled Khairy, Stephan Saalfeld, Richard D. Fetter, Davi D. Bock bioRxiv 140905; doi: <a href="https://doi.org/10.1101/140905">10.1101/140905</a></p>
 </div>
 </div>
 

@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.4.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.5</span>
       </span>
     </div>
 
@@ -165,15 +165,15 @@ lhr=<span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a new logical column indicating if connector is inside LH</span>
-cda1<span class="op">$</span>inlh=<span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(cda1, connector_x<span class="op">:</span>connector_z) <span class="op">%&gt;%</span><span class="st"> </span>
+cda1<span class="op">$</span>inlh=<span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/select">select</a></span>(cda1, connector_x<span class="op">:</span>connector_z) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/pointsinside">pointsinside</a></span>(<span class="dt">surf =</span> lhr)
 cda1 <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(inlh) -&gt;
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(inlh) -&gt;
 <span class="st">  </span>cda1.lh</code></pre></div>
 <p>Now let’s take a random 10% sample of the post-synaptic connector nodes for just one PN:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cda1.lh <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(pre_skid<span class="op">==</span><span class="dv">61221</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">size=</span><span class="fl">0.1</span>) -&gt;
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(pre_skid<span class="op">==</span><span class="dv">61221</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/sample">sample_frac</a></span>(<span class="dt">size=</span><span class="fl">0.1</span>) -&gt;
 random_syn</code></pre></div>
 <p>We can then construct CATMAID URLs for all those synapses:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">synapse_urls=<span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(random_syn), 
@@ -184,12 +184,12 @@ random_syn</code></pre></div>
 <p>That was a little bit clunky but we basically feed the <code>open_fafb</code> function the data one row at a time centering the URL on the postsynaptic node and selecting that node in the CATMAID viewer.</p>
 <p>So here are the results</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/nat/topics/neuronlist-dataframe-methods">head</a></span>(synapse_urls)</code></pre></div>
-<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=146600&amp;yp=145940&amp;xp=356227&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=487083&amp;active_node_id=2572891" 
-## [2] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=154480&amp;yp=158437&amp;xp=348125&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=1897992&amp;active_node_id=6733223"
-## [3] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=152640&amp;yp=154466&amp;xp=353641&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=485263&amp;active_node_id=2570597" 
-## [4] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=146960&amp;yp=156470&amp;xp=357820&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=487943&amp;active_node_id=2574534" 
-## [5] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=154800&amp;yp=166129&amp;xp=362696&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=497241&amp;active_node_id=2595985" 
-## [6] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=154480&amp;yp=158202&amp;xp=348318&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=1898003&amp;active_node_id=6733225"</code></pre>
+<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=157040&amp;yp=151471&amp;xp=370944&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=479585&amp;active_node_id=2556139" 
+## [2] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=152360&amp;yp=163640&amp;xp=360490&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=1812610&amp;active_node_id=2595311"
+## [3] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=155880&amp;yp=166582&amp;xp=361699&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=497379&amp;active_node_id=2596114" 
+## [4] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=147640&amp;yp=147441&amp;xp=354519&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=486779&amp;active_node_id=2572522" 
+## [5] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=146920&amp;yp=158111&amp;xp=357068&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=488174&amp;active_node_id=2574775" 
+## [6] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=156160&amp;yp=153140&amp;xp=370674&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=479767&amp;active_node_id=2556246"</code></pre>
 </div>
 <div id="using-the-results" class="section level2">
 <h2 class="hasAnchor">
@@ -202,8 +202,8 @@ synapse_bounds=<span class="kw">apply</span>(random_syn[,<span class="kw">c</spa
 <span class="kw">plot</span>(seedpn, <span class="dt">WithNodes=</span>F, <span class="dt">boundingbox=</span>synapse_bounds)
 <span class="co"># plot the synapses we didn't select</span>
 cda1.lh <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="op">!</span>post_node_id <span class="op">%in%</span><span class="st"> </span>random_syn<span class="op">$</span>post_node_id <span class="op">&amp;</span><span class="st"> </span>pre_skid <span class="op">%in%</span><span class="st"> </span>random_syn<span class="op">$</span>pre_skid) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(post_node_x<span class="op">:</span>post_node_y) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="op">!</span>post_node_id <span class="op">%in%</span><span class="st"> </span>random_syn<span class="op">$</span>post_node_id <span class="op">&amp;</span><span class="st"> </span>pre_skid <span class="op">%in%</span><span class="st"> </span>random_syn<span class="op">$</span>pre_skid) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/select">select</a></span>(post_node_x<span class="op">:</span>post_node_y) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">points</span>(<span class="dt">col=</span><span class="st">'grey'</span>)
 <span class="co"># and then the ones we did</span>
 <span class="kw">points</span>(random_syn<span class="op">$</span>post_node_x, random_syn<span class="op">$</span>post_node_y, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">pch=</span><span class="dv">19</span>)</code></pre></div>

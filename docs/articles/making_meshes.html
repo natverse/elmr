@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.4.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.5</span>
       </span>
     </div>
 
@@ -138,8 +138,8 @@ rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation
                                         <span class="dt">post_skids =</span> <span class="st">'KC'</span>)
 <span class="co"># select 3d position of presynaptic connectors</span>
 pntokc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>(connector_id, <span class="dt">.keep_all=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(connector_x<span class="op">:</span>connector_z) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/distinct">distinct</a></span>(connector_id, <span class="dt">.keep_all=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/select">select</a></span>(connector_x<span class="op">:</span>connector_z) <span class="op">%&gt;%</span>
 <span class="st">  </span>data.matrix -&gt;<span class="st"> </span>cxyz</code></pre></div>
 <p>Now we can make an alphashape based on those connector positions. We need to set the alpha value in the ashape3d function to something sensible based on the spatial scale of our data - he we use alpha=6000 nm.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">calyx.a=<span class="kw"><a href="http://www.rdocumentation.org/packages/alphashape3d/topics/ashape3d">ashape3d</a></span>(cxyz, <span class="dt">alpha =</span> <span class="dv">6000</span>)</code></pre></div>

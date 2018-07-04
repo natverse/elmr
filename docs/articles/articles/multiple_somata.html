@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">elmr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.4.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.5</span>
       </span>
     </div>
 
@@ -130,19 +130,19 @@ rgl<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation
 <p>Now let’s restrict to cases where there are multiple soma tags per skeleton</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># select soma labels</span>
 soma_labels =<span class="st"> </span>label_stats <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(labelName <span class="op">==</span><span class="st"> 'soma'</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(skeletonID)
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(labelName <span class="op">==</span><span class="st"> 'soma'</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/group_by">group_by</a></span>(skeletonID)
 
 <span class="co"># select skeleton ids for neurons with multiple cell bodies</span>
 multiple_soma =<span class="st"> </span>soma_labels <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tally.html">count</a></span>(skeletonID) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(n))
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/tally">count</a></span>(skeletonID) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/arrange">arrange</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/desc">desc</a></span>(n))
   multiple_soma_info =<span class="st"> </span>soma_labels <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(skeletonID <span class="op">%in%</span><span class="st"> </span>multiple_soma<span class="op">$</span>skeletonID)
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(skeletonID <span class="op">%in%</span><span class="st"> </span>multiple_soma<span class="op">$</span>skeletonID)
 
 multiple_soma_info =<span class="st"> </span>soma_labels <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(skeletonID<span class="op">%in%</span><span class="st"> </span>multiple_soma<span class="op">$</span>skeletonID)</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(skeletonID<span class="op">%in%</span><span class="st"> </span>multiple_soma<span class="op">$</span>skeletonID)</code></pre></div>
 </div>
 <div id="xyz-position-of-the-nodes-we-picked" class="section level2">
 <h2 class="hasAnchor">
@@ -166,9 +166,9 @@ multiple_soma_info &lt;-<span class="st"> </span><span class="kw">cbind</span>(<
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multiple_soma_info<span class="op">$</span>d=<span class="kw">pointsinside</span>(<span class="kw">xyzmatrix</span>(multiple_soma_info),
                                   FAFB.surf, <span class="dt">rval =</span> <span class="st">'distance'</span>)
 multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(skeletonID, d) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(skeletonID) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">rank=</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span>()) -&gt;<span class="st"> </span>multiple_soma_info
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/arrange">arrange</a></span>(skeletonID, d) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/group_by">group_by</a></span>(skeletonID) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/mutate">mutate</a></span>(<span class="dt">rank=</span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/ranking">row_number</a></span>()) -&gt;<span class="st"> </span>multiple_soma_info
 <span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(multiple_soma_info)</code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -1615,8 +1615,8 @@ multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span>
 <p><img src="multiple_somata_files/figure-html/unnamed-chunk-4-1.png" width="768"></p>
 <p>Now we can use this information to construct an url for each node.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">multiple_soma_info <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">url =</span> <span class="kw"><a href="../../reference/open_fafb.html">open_fafb</a></span>(
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/rowwise">rowwise</a></span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/mutate">mutate</a></span>(<span class="dt">url =</span> <span class="kw"><a href="../../reference/open_fafb.html">open_fafb</a></span>(
     <span class="kw">cbind</span>(X, Y, Z),
     <span class="dt">active_skeleton_id =</span> skeletonID,
     <span class="dt">active_node_id =</span> treenodeID,
@@ -1654,9 +1654,9 @@ gs_upload_tf &lt;-<span class="st"> </span><span class="cf">function</span>(x, .
 }
 
 multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(skeletonID, d) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(skeletonID) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">user=</span><span class="kw">get_top_user</span>(skeletonID)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/arrange">arrange</a></span>(skeletonID, d) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/group_by">group_by</a></span>(skeletonID) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/mutate">mutate</a></span>(<span class="dt">user=</span><span class="kw">get_top_user</span>(skeletonID)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">gs_upload_tf</span>(<span class="dt">sheet_title =</span> <span class="st">'multi_soma_neurons'</span>)</code></pre></div>
 <p>As an alternative we can divide that up with one worksheet per user.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(googlesheets)
@@ -1665,8 +1665,8 @@ gs_add_sheet &lt;-<span class="st"> </span><span class="cf">function</span>(x, g
   <span class="kw"><a href="http://www.rdocumentation.org/packages/googlesheets/topics/gs_ws_new">gs_ws_new</a></span>(<span class="dt">row_extent =</span> <span class="kw">nrow</span>(x)<span class="op">+</span><span class="dv">1</span>, <span class="dt">col_extent =</span> <span class="kw">ncol</span>(x), <span class="dt">ss =</span> gs, ..., <span class="dt">input=</span>x, <span class="dt">col_names=</span>T)
 }
 multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(skeletonID, d) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">user=</span><span class="kw">factor</span>(<span class="kw">get_top_user</span>(skeletonID))) -&gt;<span class="st"> </span>msi2
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/arrange">arrange</a></span>(skeletonID, d) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/mutate">mutate</a></span>(<span class="dt">user=</span><span class="kw">factor</span>(<span class="kw">get_top_user</span>(skeletonID))) -&gt;<span class="st"> </span>msi2
 
 <span class="cf">for</span>(u <span class="cf">in</span> <span class="kw">levels</span>(msi2<span class="op">$</span>user)) {
   <span class="kw">gs_add_sheet</span>(<span class="kw">subset</span>(msi2, user<span class="op">==</span>u), gs, <span class="dt">ws_title=</span>u)

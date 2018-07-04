@@ -66,7 +66,7 @@ xformpoints.tpsreg enables xform and
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.4.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.5</span>
       </span>
     </div>
 
@@ -210,9 +210,9 @@ reference (desired target after transformation) spaces. See details.</p></td>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='no'>lmpairs</span><span class='kw'>=</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/join.html'>inner_join</a></span>(
-  <span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>emlandmarks</span>[,], <span class='no'>side</span><span class='kw'>==</span><span class='st'>"L"</span>),
-  <span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>emlandmarks</span>[,], <span class='no'>side</span><span class='kw'>==</span><span class='st'>"R"</span>),
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='no'>lmpairs</span><span class='kw'>=</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/join'>inner_join</a></span>(
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/filter'>filter</a></span>(<span class='no'>emlandmarks</span>[,], <span class='no'>side</span><span class='kw'>==</span><span class='st'>"L"</span>),
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/filter'>filter</a></span>(<span class='no'>emlandmarks</span>[,], <span class='no'>side</span><span class='kw'>==</span><span class='st'>"R"</span>),
   <span class='kw'>by</span><span class='kw'>=</span><span class='st'>'shortname'</span>, <span class='kw'>suffix</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>".L"</span>,<span class='st'>".R"</span>))
 
 <span class='co'># find mean xyz position of each landmark (they are drawn as a little cross)</span>

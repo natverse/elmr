@@ -4,5 +4,5 @@
 ^data-raw$
 ^_pkgdown\.yml$
 ^docs$
-^\.httr-oauth$
+\.httr-oauth
 ^build-cmtk.sh$

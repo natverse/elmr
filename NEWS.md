@@ -1,4 +1,5 @@
 # elmr 0.5.4.9000
+* teach open_fafb to make many URLs at once for results of tagged_details (see #41)
 
 # elmr 0.5.4
 

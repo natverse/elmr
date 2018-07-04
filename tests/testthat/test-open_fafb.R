@@ -24,7 +24,15 @@ test_that("open_fafb works", {
   testdf <- baseline[,-ncol(baseline)]
   expect_equal(open_fafb(testdf), baseline$url)
   expect_equal(open_fafb(testdf[1,]), baseline$url[1])
-  expect_equal(open_fafb(testdf[1,], active_node_id = testdf$treenode_id,
-                         active_skeleton_id = testdf$skid, open=FALSE),
+  expect_error(open_fafb(testdf[1,], active_node_id = testdf$treenode_id,
+                       active_skeleton_id = testdf$skid, open=FALSE))
+  expect_equal(open_fafb(testdf[1,], active_node_id = testdf$treenode_id[1],
+                         active_skeleton_id = testdf$skid[1], open=FALSE),
                baseline$url[1])
+  expect_equal(open_fafb(xyzmatrix(testdf), active_node_id = testdf$treenode_id,
+                         active_skeleton_id = testdf$skid, rowwise = TRUE),
+               baseline$url)
+  expect_length(open_fafb(xyzmatrix(testdf), rowwise = TRUE), 3)
+  expect_length(open_fafb(testdf[,c("x","y","z")], rowwise = TRUE), 3)
 })
+

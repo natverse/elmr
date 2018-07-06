@@ -1,4 +1,4 @@
-#' Open FAFB CATMAID in browser at a given XYZ location
+#' Generate URLs to open FAFB CATMAID in browser at a given XYZ location
 #'
 #' @details Note that the default behaviour is that if object \code{x} contains
 #'   exactly one point then a single URL will be generated and by default

@@ -2,7 +2,7 @@
 % Please edit documentation in R/open_fafb.R
 \name{open_fafb}
 \alias{open_fafb}
-\title{Open FAFB CATMAID in browser at a given XYZ location}
+\title{Generate URLs to open FAFB CATMAID in browser at a given XYZ location}
 \usage{
 open_fafb(x, s = rgl::select3d(), mirror = FALSE, sample = elmr::FAFB,
   rowwise = NA, open = interactive() & !rowwise, zoom = 1,
@@ -34,7 +34,7 @@ CATMAID.}
 \item{...}{Additional arguments to be added to URL.}
 }
 \description{
-Open FAFB CATMAID in browser at a given XYZ location
+Generate URLs to open FAFB CATMAID in browser at a given XYZ location
 }
 \details{
 Note that the default behaviour is that if object \code{x} contains

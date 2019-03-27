@@ -45,3 +45,4 @@ Remotes: jefferis/nat,
     jefferis/flycircuit
 VignetteBuilder: knitr
 Language: en-GB
+Encoding: UTF-8

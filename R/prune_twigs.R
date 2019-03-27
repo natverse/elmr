@@ -11,7 +11,7 @@
 #' pt5=prune_twigs(Cell07PNs[1:3], twig_length = 5)
 #' # compare original (coloured) and pruned (black) neurons
 #' plot(Cell07PNs[1:3], WithNodes=FALSE, lwd=2, xlim=c(240,300), ylim=c(120, 90))
-#' plot(cp.pt, WithNodes=FALSE, add=TRUE, lwd=2, col='black')
+#' plot(pt5, WithNodes=FALSE, add=TRUE, lwd=2, col='black')
 prune_twigs <- function (x, ...) UseMethod('prune_twigs')
 
 #' @export

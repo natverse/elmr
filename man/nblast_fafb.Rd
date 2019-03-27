@@ -5,8 +5,8 @@
 \title{NBLAST EM tracing against FlyCircuit (or other databases of) neurons}
 \usage{
 nblast_fafb(skids, db = NULL, conn = NULL, mirror = TRUE,
-  normalised = TRUE, reverse = FALSE, reference = nat.flybrains::FCWB,
-  .parallel = TRUE, ...)
+  normalised = TRUE, reverse = FALSE,
+  reference = nat.flybrains::FCWB, .parallel = TRUE, ...)
 }
 \arguments{
 \item{skids}{catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})

@@ -7,8 +7,8 @@
 \alias{write_ack}
 \title{Summarise tracer contributions / suggest authorship for set of neurons}
 \usage{
-summarise_contribution(skids, type = c("nodes", "synapses", "pre", "post"),
-  ...)
+summarise_contribution(skids, type = c("nodes", "synapses", "pre",
+  "post"), ...)
 
 suggest_authorship(x, auth = 5, ackn = c(3000, 100))
 

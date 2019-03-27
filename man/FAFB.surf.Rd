@@ -6,8 +6,6 @@
 \alias{FAFB13.surf}
 \alias{FAFB13NP.surf}
 \alias{FAFB14.surf}
-\alias{FAFB.surf}
-\alias{FAFB.surf}
 \alias{FAFB14NP.surf}
 \alias{FAFBNP.surf}
 \title{FAFB brain and neuropil surface objects}

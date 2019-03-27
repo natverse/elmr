@@ -4,8 +4,8 @@
 \alias{plot3d.ngraph}
 \title{Title}
 \usage{
-\method{plot3d}{ngraph}(x, type = "lines", soma = 1, labels = c("none",
-  "nodes", "all"), ...)
+\method{plot3d}{ngraph}(x, type = "lines", soma = 1,
+  labels = c("none", "nodes", "all"), ...)
 }
 \arguments{
 \item{x}{A \code{\link{ngraph}} object}

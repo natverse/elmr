@@ -11,11 +11,12 @@ reference:
 - title: Working with neuron structures
   desc:
   contents:
-  - distal_to
   - simplify_neuron
+  - prune_twigs
+  - unspike
+  - distal_to
   - stitch_neuron
   - stitch_neurons
-  - unspike
   - plot3d.ngraph
 - title: Interacting with CATMAID server
   contents:

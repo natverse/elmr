@@ -130,20 +130,23 @@
     <div id="elmr-0-5-5-9000" class="section level1">
 <h1 class="page-header">
 <a href="#elmr-0-5-5-9000" class="anchor"></a>elmr 0.5.5.9000</h1>
+<ul>
+<li>new <code><a href="../reference/prune_twigs.html">prune_twigs()</a></code> function that removes twigs less than a threshold length. Useful thing to as part of preparing <code>dotprops()</code> objects for <code>nblast()</code>.</li>
+</ul>
 </div>
     <div id="elmr-0-5-5" class="section level1">
 <h1 class="page-header">
 <a href="#elmr-0-5-5" class="anchor"></a>elmr 0.5.5</h1>
 <ul>
-<li>teach open_fafb to make many URLs at once e.g. for results of tagged_details (<a href='https://github.com/jefferis/elmr/issues/41'>#41</a>)</li>
+<li>teach <code><a href="../reference/open_fafb.html">open_fafb()</a></code> to make many URLs at once e.g. for results of tagged_details (<a href='https://github.com/jefferis/elmr/issues/41'>#41</a>)</li>
 </ul>
 </div>
     <div id="elmr-0-5-4" class="section level1">
 <h1 class="page-header">
 <a href="#elmr-0-5-4" class="anchor"></a>elmr 0.5.4</h1>
 <ul>
-<li>add plot3d.ngraph (shows directed graph in 3d)</li>
-<li>fix simplify_neuron when spine has 1 branch only (<a href='https://github.com/jefferis/elmr/issues/40'>#40</a>)</li>
+<li>add <code><a href="../reference/plot3d.ngraph.html">plot3d.ngraph()</a></code> (shows directed graph in 3d)</li>
+<li>fix <code><a href="../reference/simplify_neuron.html">simplify_neuron()</a></code> when spine has 1 branch only (<a href='https://github.com/jefferis/elmr/issues/40'>#40</a>)</li>
 <li>vignette tweaks</li>
 </ul>
 </div>
@@ -151,7 +154,7 @@
 <h1 class="page-header">
 <a href="#elmr-0-5-3" class="anchor"></a>elmr 0.5.3</h1>
 <ul>
-<li>teach simplify_neuron to handle the inverse as well (<a href='https://github.com/jefferis/elmr/issues/38'>#38</a>)</li>
+<li>teach <code><a href="../reference/simplify_neuron.html">simplify_neuron()</a></code> to handle the inverse as well (<a href='https://github.com/jefferis/elmr/issues/38'>#38</a>)</li>
 <li>change IVLP -&gt; WED in FAFBNP surfaces as well as FAFB14NP (<a href='https://github.com/jefferis/elmr/issues/35'>#35</a>)</li>
 <li>teach fetchn_fafb to work even if FAFB is given as the reference brain (<a href='https://github.com/jefferis/elmr/issues/39'>#39</a>)</li>
 </ul>
@@ -160,7 +163,7 @@
 <h1 class="page-header">
 <a href="#elmr-0-5-2" class="anchor"></a>elmr 0.5.2</h1>
 <ul>
-<li>teach simplify_neuron to handle arbitrary number of branch points (<a href='https://github.com/jefferis/elmr/issues/37'>#37</a>)</li>
+<li>teach <code><a href="../reference/simplify_neuron.html">simplify_neuron()</a></code> to handle arbitrary number of branch points (<a href='https://github.com/jefferis/elmr/issues/37'>#37</a>)</li>
 <li>minor doc fixes</li>
 </ul>
 </div>
@@ -168,11 +171,11 @@
 <h1 class="page-header">
 <a href="#elmr-0-5-1" class="anchor"></a>elmr 0.5.1</h1>
 <ul>
-<li>teach distal_to to handle multiple input nodes</li>
-<li>add simplify_neuron function to make neuron with just one branchpoint</li>
-<li>fix summarise_contributions for ‘synapses’ (<a href='https://github.com/jefferis/elmr/issues/34'>#34</a>)</li>
+<li>teach <code><a href="../reference/distal_to.html">distal_to()</a></code> to handle multiple input nodes</li>
+<li>add <code>simplify_neuron function()</code> to make neuron with just one branchpoint</li>
+<li>fix <code>summarise_contributions()</code> for ‘synapses’ (<a href='https://github.com/jefferis/elmr/issues/34'>#34</a>)</li>
 <li>change IVLP -&gt; WED in FAFBNP surfaces (<a href='https://github.com/jefferis/elmr/issues/35'>#35</a>)</li>
-<li>fix stitch_neurons for latest nat 1.9 prerelease (<a href='https://github.com/jefferis/elmr/issues/36'>#36</a>)</li>
+<li>fix <code><a href="../reference/stitch_neurons.html">stitch_neurons()</a></code> for latest nat 1.9 prerelease (<a href='https://github.com/jefferis/elmr/issues/36'>#36</a>)</li>
 </ul>
 </div>
     <div id="elmr-0-5" class="section level1">
@@ -181,8 +184,9 @@
 <ul>
 <li>switch to FAFB14 as the default EM assembly</li>
 <li>provide default objects (FAFB, FAFB.surf, FAFBNP.surf) that will always point to current assembly.</li>
-<li>fix bug in distal_to (<a href='https://github.com/jefferis/elmr/issues/31'>#31</a>)</li>
-<li>doc improvements for distal_to</li>
+<li>fix bug in <code><a href="../reference/distal_to.html">distal_to()</a></code> (<a href='https://github.com/jefferis/elmr/issues/31'>#31</a>)</li>
+<li>doc improvements for <code><a href="../reference/distal_to.html">distal_to()</a></code>
+</li>
 </ul>
 </div>
     <div id="elmr-0-4-2" class="section level1">
@@ -190,11 +194,12 @@
 <a href="#elmr-0-4-2" class="anchor"></a>elmr 0.4.2</h1>
 <ul>
 <li>update to 170303_ELM_landmarks_v14 landmarks (including transforming surfaces)</li>
-<li>first version of unspike function</li>
+<li>first version of <code><a href="../reference/unspike.html">unspike()</a></code> function</li>
 <li>new vignette - making meshes programmatically</li>
 <li>insist on nat &gt;= 1.8.8</li>
-<li>fetchn_fafb/nblast_fafb can take pre-downloaded neuronlist</li>
-<li>teach unspike to keep connectors/soma (<a href='https://github.com/jefferis/elmr/issues/29'>#29</a>)</li>
+<li>
+<code><a href="../reference/fetchn_fafb.html">fetchn_fafb()</a></code>/<code><a href="../reference/nblast_fafb.html">nblast_fafb()</a></code> can take pre-downloaded neuronlist</li>
+<li>teach <code><a href="../reference/unspike.html">unspike()</a></code> to keep connectors/soma (<a href='https://github.com/jefferis/elmr/issues/29'>#29</a>)</li>
 </ul>
 </div>
     <div id="elmr-0-4-1" class="section level1">
@@ -210,7 +215,7 @@
 <ul>
 <li>switch FAFB13-JFRC2013 transform to 170211_new_ELM_landmarks_v7.csv (71 landmarks more evenly spaced on both sides of the brain)</li>
 <li>update FAFB13 and FAFB13NP surface objects accordingly</li>
-<li>fix open_fafb after change in stack id handling</li>
+<li>fix <code><a href="../reference/open_fafb.html">open_fafb()</a></code> after change in stack id handling</li>
 <li>add landmarks vignette</li>
 </ul>
 </div>
@@ -218,18 +223,18 @@
 <h1 class="page-header">
 <a href="#elmr-0-3" class="anchor"></a>elmr 0.3</h1>
 <ul>
-<li>make nblast_fafb parallelised by default</li>
-<li>give open_fafb arguments for selecting neuron/nodes (<a href='https://github.com/jefferis/elmr/issues/24'>#24</a>)</li>
+<li>make <code><a href="../reference/nblast_fafb.html">nblast_fafb()</a></code> parallelised by default</li>
+<li>give <code><a href="../reference/open_fafb.html">open_fafb()</a></code> arguments for selecting neuron/nodes (<a href='https://github.com/jefferis/elmr/issues/24'>#24</a>)</li>
 <li>add FAFB13 brain and neuropil surface objects</li>
 <li>complete switch to FAFB13 assembly (vignettes etc)</li>
-<li>fix open_fafb for v13 (<a href='https://github.com/jefferis/elmr/issues/23'>#23</a>)</li>
+<li>fix <code><a href="../reference/open_fafb.html">open_fafb()</a></code> for v13 (<a href='https://github.com/jefferis/elmr/issues/23'>#23</a>)</li>
 </ul>
 </div>
     <div id="elmr-0-2-1" class="section level1">
 <h1 class="page-header">
 <a href="#elmr-0-2-1" class="anchor"></a>elmr 0.2.1</h1>
 <ul>
-<li>teach nblast_fafb to cope with db length &lt;100 (<a href='https://github.com/jefferis/elmr/issues/22'>#22</a>)</li>
+<li>teach <code><a href="../reference/nblast_fafb.html">nblast_fafb()</a></code> to cope with db length &lt;100 (<a href='https://github.com/jefferis/elmr/issues/22'>#22</a>)</li>
 </ul>
 </div>
     <div id="elmr-0-2" class="section level1">
@@ -237,8 +242,10 @@
 <a href="#elmr-0-2" class="anchor"></a>elmr 0.2</h1>
 <ul>
 <li>switch to FAFB13 as default template brain</li>
-<li>much new functionality including transforming between template brains via xform_brain</li>
-<li>nblast_fafb for searches</li>
+<li>much new functionality including transforming between template brains via <code>xform_brain()</code>
+</li>
+<li>
+<code><a href="../reference/nblast_fafb.html">nblast_fafb()</a></code> for searches</li>
 </ul>
 </div>
     <div id="elmr-0-1" class="section level1">

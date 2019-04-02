@@ -95,7 +95,7 @@
       <h1>Selecting random synapses</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2019-03-29</h4>
+            <h4 class="date">2019-04-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/selecting_random_synapses.Rmd"><code>vignettes/selecting_random_synapses.Rmd</code></a></small>
       <div class="hidden name"><code>selecting_random_synapses.Rmd</code></div>
@@ -185,12 +185,12 @@ random_syn</code></pre></div>
 <p>That was a little bit clunky but we basically feed the <code>open_fafb</code> function the data one row at a time centering the URL on the postsynaptic node and selecting that node in the CATMAID viewer.</p>
 <p>So here are the results</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/nat/topics/neuronlist-dataframe-methods">head</a></span>(synapse_urls)</code></pre></div>
-<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=147640&amp;yp=146490&amp;xp=354896&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=486789&amp;active_node_id=2572533" 
-## [2] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=159360&amp;yp=151679&amp;xp=370005&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=3147374&amp;active_node_id=2555975"
-## [3] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=153000&amp;yp=155257&amp;xp=353503&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=485338&amp;active_node_id=2570628" 
-## [4] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=148120&amp;yp=147390&amp;xp=352957&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=486606&amp;active_node_id=2572011" 
-## [5] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=147240&amp;yp=157885&amp;xp=358270&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=487919&amp;active_node_id=2574501" 
-## [6] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=147080&amp;yp=146661&amp;xp=355852&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=486937&amp;active_node_id=2572739"</code></pre>
+<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=159040&amp;yp=152287&amp;xp=369300&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=479418&amp;active_node_id=2556010"  
+## [2] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=159040&amp;yp=152170&amp;xp=369381&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=1911124&amp;active_node_id=2556011" 
+## [3] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=154880&amp;yp=157350&amp;xp=347682&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=485518&amp;active_node_id=2570774"  
+## [4] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=153000&amp;yp=159719&amp;xp=362117&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=480609&amp;active_node_id=2557077"  
+## [5] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=154080&amp;yp=157670&amp;xp=348664&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=11523900&amp;active_node_id=2570733"
+## [6] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=157440&amp;yp=161745&amp;xp=356260&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=1885365&amp;active_node_id=6708936"</code></pre>
 </div>
 <div id="using-the-results" class="section level2">
 <h2 class="hasAnchor">

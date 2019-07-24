@@ -29,8 +29,8 @@
 #' @param zoom The CATMAID zoom factor (defaults to 1)
 #' @param active_skeleton_id,active_node_id Set highlighted skeleton and node in
 #'   CATMAID.
-#' @param conn An optional CATMAID connection that specifies the server URL
-#'   (otherwise a harcoded URL will be used).
+#' @param server Optional string or \code{\link{catmaid_connection}} that
+#'   specifies the server URL (otherwise a harcoded URL will be used).
 #' @param ... Additional arguments to be added to URL.
 #' @export
 #' @importFrom utils browseURL
@@ -47,8 +47,9 @@
 #' # same but mirrors selected points to opposite hemisphere
 #' open_fafb(kcs20, sample=FCWB, mirror=TRUE)
 #'
+#' open_fafb(kcs20, sample=FCWB, server="https://bigbrain.org/tracing")
 #' # Uses last CATMAID connection to specify URL to open
-#' open_fafb(kcs20, sample=FCWB, conn=catmaid_login())
+#' open_fafb(kcs20, sample=FCWB, server=catmaid_login())
 #' }
 #'
 #' \donttest{
@@ -75,10 +76,10 @@
 #' }
 open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB,
                     rowwise=NA, open=interactive() & !rowwise, zoom=1,
-                    active_skeleton_id=NULL, active_node_id=NULL, conn=NULL,
+                    active_skeleton_id=NULL, active_node_id=NULL, server=NULL,
                     ...) {
   # special case, looks like results of catmaid_get_treenodes_detail
-  if(is.data.frame(x) && c("treenode_id","skid", "x", "y", "z") %in% names(x)) {
+  if(is.data.frame(x) && all(c("treenode_id","skid", "x", "y", "z") %in% names(x))) {
     # looks like a data frame from catmaid_get_treenodes_detail
     if(is.na(rowwise)) rowwise=TRUE
     xyz=xyzmatrix(x)
@@ -110,11 +111,13 @@ open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB,
     csample=as.character(elmr::FAFB)
   }
 
-  server_url <- if (isTRUE(is.null(conn))) {
+  server_url <- if (isTRUE(is.null(server))) {
     fafb.version=substr(csample,5,nchar(csample))
     paste0("https://neuropil.janelia.org/tracing/fafb/v", fafb.version)
   } else {
-    conn$server
+    if(!inherits(server, "catmaid_connection") && !is.character(server))
+      stop("server must be a string or a catmaid_connection object")
+    if(inherits(server, "catmaid_connection")) server[['server']] else server
   }
   last_char <- function(s) substr(s, nchar(s), nchar(s))
   if(!isTRUE(last_char(server_url)=="/"))

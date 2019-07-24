@@ -7,7 +7,7 @@
 open_fafb(x, s = rgl::select3d(), mirror = FALSE,
   sample = elmr::FAFB, rowwise = NA, open = interactive() & !rowwise,
   zoom = 1, active_skeleton_id = NULL, active_node_id = NULL,
-  conn = NULL, ...)
+  server = NULL, ...)
 }
 \arguments{
 \item{x}{A numeric vector or any object compatible with
@@ -32,8 +32,8 @@ Defaults to \code{TRUE} when R is running in interactive mode.}
 \item{active_skeleton_id, active_node_id}{Set highlighted skeleton and node in
 CATMAID.}
 
-\item{conn}{An optional CATMAID connection that specifies the server URL
-(otherwise a harcoded URL will be used).}
+\item{server}{Optional string or \code{\link{catmaid_connection}} that
+specifies the server URL (otherwise a harcoded URL will be used).}
 
 \item{...}{Additional arguments to be added to URL.}
 }
@@ -68,8 +68,9 @@ open_fafb(kcs20, sample=FCWB)
 # same but mirrors selected points to opposite hemisphere
 open_fafb(kcs20, sample=FCWB, mirror=TRUE)
 
+open_fafb(kcs20, sample=FCWB, server="https://bigbrain.org/tracing")
 # Uses last CATMAID connection to specify URL to open
-open_fafb(kcs20, sample=FCWB, conn=catmaid_login())
+open_fafb(kcs20, sample=FCWB, server=catmaid_login())
 }
 
 \donttest{

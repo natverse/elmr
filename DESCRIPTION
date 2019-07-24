@@ -1,7 +1,7 @@
 Package: elmr
 Type: Package
 Title: Support for working with light and electron microscopy fly brain data
-Version: 0.5.5.9000
+Version: 0.5.6
 Authors@R: person("Gregory","Jefferis", email="jefferis@gmail.com", 
     role = c("aut", "cre"), comment = c(ORCID = "0000-0002-0587-9355"))
 Description: Provides tools to move between adult brain EM and light level

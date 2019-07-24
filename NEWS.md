@@ -1,7 +1,12 @@
-# elmr 0.5.5.9000
+# elmr 0.5.6
 
 * new `prune_twigs()` function that removes twigs less than a threshold length.
-  Useful thing to as part of preparing `dotprops()` objects for `nblast()`.
+  Useful thing to do as part of preparing `dotprops()` objects for `nblast()`.
+* Fix strange arrows in `plot3d.ngraph()` (#45)
+* Allow `open_fafb()` to specify a different CATMAID server (including via a
+  `catmaid_connection()` object) (#44)
+* Teach `nblast_fafb()` to prune twigs by default
+* fix hitherto silent bugs revealed by R 3.6
 
 # elmr 0.5.5
 

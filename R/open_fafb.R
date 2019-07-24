@@ -67,18 +67,12 @@
 #' # take a look at results
 #' head(tagged_details)
 #' }
+#'
 #' \dontrun{
 #' # copy results to clipboard e.g. to paste into a spreadsheet
 #' library(clipr)
 #' write_clip(tagged_details)
 #' }
-#'
-#' #' \dontrun{
-#' # copy results to clipboard e.g. to paste into a spreadsheet
-#' library(clipr)
-#' write_clip(tagged_details)
-#' }
-
 open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB,
                     rowwise=NA, open=interactive() & !rowwise, zoom=1,
                     active_skeleton_id=NULL, active_node_id=NULL, conn=NULL,

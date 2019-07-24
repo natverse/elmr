@@ -88,13 +88,8 @@ tagged_details$url <- open_fafb(tagged_details)
 # take a look at results
 head(tagged_details)
 }
-\dontrun{
-# copy results to clipboard e.g. to paste into a spreadsheet
-library(clipr)
-write_clip(tagged_details)
-}
 
-#' \dontrun{
+\dontrun{
 # copy results to clipboard e.g. to paste into a spreadsheet
 library(clipr)
 write_clip(tagged_details)

@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Landmarks • elmr</title>
+<title>Landmarks defining transforms • elmr</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Landmarks">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Landmarks defining transforms">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.5.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
       </span>
     </div>
 
@@ -56,7 +56,7 @@
       <a href="../articles/articles/multiple_somata.html">Finding Neurons with Multiple Somata</a>
     </li>
     <li>
-      <a href="../articles/landmarks.html">Landmarks</a>
+      <a href="../articles/landmarks.html">Landmarks defining transforms</a>
     </li>
     <li>
       <a href="../articles/making_meshes.html">Making Surface Meshes</a>
@@ -65,7 +65,7 @@
       <a href="../articles/selecting_random_synapses.html">Selecting random synapses</a>
     </li>
     <li>
-      <a href="../articles/xform_brain.html">Transforming between FAFB and light level template brains </a>
+      <a href="../articles/xform_brain.html">Transforming from FAFB to other templates</a>
     </li>
   </ul>
 </li>
@@ -92,10 +92,10 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Landmarks</h1>
+      <h1>Landmarks defining transforms</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2019-04-02</h4>
+            <h4 class="date">2019-07-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/landmarks.Rmd"><code>vignettes/landmarks.Rmd</code></a></small>
       <div class="hidden name"><code>landmarks.Rmd</code></div>
@@ -111,25 +111,25 @@
 <div id="setup" class="section level3">
 <h3 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(elmr)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(knitr)
-opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.width=</span><span class="dv">5</span>, <span class="dt">fig.height=</span><span class="dv">5</span>)
-<span class="co"># set up for 3d plots based on rgl package</span>
-rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/hook_rgl">setupKnitr</a></span>()
-<span class="co"># frontal view</span>
-<span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(elmr)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(knitr)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.width=</span><span class="dv">5</span>, <span class="dt">fig.height=</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># set up for 3d plots based on rgl package</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/hook_rgl">setupKnitr</a></span>()</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># frontal view</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="landmarks" class="section level2">
 <h2 class="hasAnchor">
 <a href="#landmarks" class="anchor"></a>Landmarks</h2>
 <p>The standard landmarks used by elmr were specified by Davi Bock on the FAFB and JFRC2013 brains using the <a href="https://github.com/saalfeldlab/elm">elm</a> tool developed by Stefan Saalfeld and John Bogovic. We can plot the landmarks in the context of the JFRC2013 brain as follows.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot3d</span>(JFRC2013)
-<span class="co"># note that the landmarks are in raw voxel coordinates and must be scaled</span>
-xyz=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(elm.landmarks[,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"X"</span>,<span class="st">"Y"</span>,<span class="st">"Z"</span>)], <span class="dt">scale =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">voxdims</span>(JFRC2013), <span class="dt">center =</span> <span class="ot">FALSE</span>)
-xyz=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.data.frame">as.data.frame</a></span>(xyz)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">rownames</a></span>(xyz)=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">sub</a></span>(<span class="st">"Pt-"</span>,<span class="st">""</span>,elm.landmarks<span class="op">$</span>Label)
-<span class="kw">spheres3d</span>(xyz, <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(elm.landmarks<span class="op">$</span>Use, <span class="st">"green"</span>, <span class="st">'red'</span>), <span class="dt">radius =</span> <span class="dv">4</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">plot3d</span>(JFRC2013)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co"># note that the landmarks are in raw voxel coordinates and must be scaled</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">xyz=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(elm.landmarks[,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"X"</span>,<span class="st">"Y"</span>,<span class="st">"Z"</span>)], <span class="dt">scale =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">voxdims</span>(JFRC2013), <span class="dt">center =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">xyz=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.data.frame">as.data.frame</a></span>(xyz)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">rownames</a></span>(xyz)=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">sub</a></span>(<span class="st">"Pt-"</span>,<span class="st">""</span>,elm.landmarks<span class="op">$</span>Label)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">spheres3d</span>(xyz, <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(elm.landmarks<span class="op">$</span>Use, <span class="st">"green"</span>, <span class="st">'red'</span>), <span class="dt">radius =</span> <span class="dv">4</span>)</a></code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-2-1.png" width="480"></p>
 </div>
 <div id="landmarks-based-transform" class="section level2">
@@ -137,10 +137,10 @@ xyz=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topic
 <a href="#landmarks-based-transform" class="anchor"></a>Landmarks based transform</h2>
 <p>The standard <code>elm.landmarks</code> set is used within to the elmr package to register a transformation that can map FAFB-&gt;JFRC2013 space in conjunction with the <code>xform_brain</code> functions provided by the <code>nat.templatebrains</code> packages.</p>
 <p>Let’s first look at the FAFB landmarks</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note that these positions are in nm units and do not need scaling</span>
-xyz.fafb=elm.landmarks[,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"X1"</span>,<span class="st">"Y1"</span>,<span class="st">"Z1"</span>)]
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">rownames</a></span>(xyz.fafb)=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">sub</a></span>(<span class="st">"Pt-"</span>,<span class="st">""</span>,elm.landmarks<span class="op">$</span>Label)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(xyz.fafb))</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># note that these positions are in nm units and do not need scaling</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">xyz.fafb=elm.landmarks[,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"X1"</span>,<span class="st">"Y1"</span>,<span class="st">"Z1"</span>)]</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">rownames</a></span>(xyz.fafb)=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">sub</a></span>(<span class="st">"Pt-"</span>,<span class="st">""</span>,elm.landmarks<span class="op">$</span>Label)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(xyz.fafb))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -193,17 +193,17 @@ xyz.fafb=elm.landmarks[,<span class="kw"><a href="https://www.rdocumentation.org
 <li>Calculate position of that landmark in target space using remaining landmark pairs</li>
 <li>Measure difference between calculated position and manually defined position</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># record transformed position with leave one out</span>
-xyzt.loo=xyz
-<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(xyz)) {
-  thisreg &lt;-<span class="st"> </span><span class="kw">reglist</span>(<span class="kw"><a href="../reference/tpsreg.html">tpsreg</a></span>(xyz.fafb[<span class="op">-</span>i, ], xyz[<span class="op">-</span>i, ]))
-  xyzt.loo[i,]=<span class="kw">xform</span>(xyz.fafb[i, , <span class="dt">drop=</span><span class="ot">FALSE</span>], thisreg)
-}
-deltas=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/MathFun">sqrt</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">rowSums</a></span>((xyzt.loo<span class="op">-</span>xyz)<span class="op">^</span><span class="dv">2</span>))
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/hist">hist</a></span>(deltas)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># record transformed position with leave one out</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">xyzt.loo=xyz</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(xyz)) {</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  thisreg &lt;-<span class="st"> </span><span class="kw">reglist</span>(<span class="kw"><a href="../reference/tpsreg.html">tpsreg</a></span>(xyz.fafb[<span class="op">-</span>i, ], xyz[<span class="op">-</span>i, ]))</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  xyzt.loo[i,]=<span class="kw">xform</span>(xyz.fafb[i, , <span class="dt">drop=</span><span class="ot">FALSE</span>], thisreg)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">deltas=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/MathFun">sqrt</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">rowSums</a></span>((xyzt.loo<span class="op">-</span>xyz)<span class="op">^</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/hist">hist</a></span>(deltas)</a></code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-4-1.png" width="480"></p>
 <p>Let’s looks at the deltas (distance between leave one out vs manually defined landmark position) for each point.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">cbind</a></span>(elm.landmarks, <span class="dt">delta=</span>deltas))</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">cbind</a></span>(elm.landmarks, <span class="dt">delta=</span>deltas))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -1841,37 +1841,37 @@ deltas=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/to
 </tbody>
 </table>
 <p>And then visualise them in 3D, colouring each point by the magnitude of the delta.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">clear3d</span>()
-<span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)
-jet.colors &lt;-
-<span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/colorRamp">colorRampPalette</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"#00007F"</span>, <span class="st">"blue"</span>, <span class="st">"#007FFF"</span>, <span class="st">"cyan"</span>,
-                     <span class="st">"#7FFF7F"</span>, <span class="st">"yellow"</span>, <span class="st">"#FF7F00"</span>, <span class="st">"red"</span>, <span class="st">"#7F0000"</span>))
-
-<span class="kw">plot3d</span>(JFRC2013)
-<span class="kw">spheres3d</span>(xyz, <span class="dt">col =</span> <span class="kw">jet.colors</span>(<span class="dv">10</span>)[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cut">cut</a></span>(deltas, <span class="dv">10</span>)], <span class="dt">radius =</span> <span class="dv">4</span>)
-<span class="co"># nb these are numbered from 0 like the elm landmarks</span>
-<span class="kw">texts3d</span>(xyz, <span class="dt">texts =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">rownames</a></span>(xyz), <span class="dt">adj =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">clear3d</span>()</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">jet.colors &lt;-</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/colorRamp">colorRampPalette</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"#00007F"</span>, <span class="st">"blue"</span>, <span class="st">"#007FFF"</span>, <span class="st">"cyan"</span>,</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">                     <span class="st">"#7FFF7F"</span>, <span class="st">"yellow"</span>, <span class="st">"#FF7F00"</span>, <span class="st">"red"</span>, <span class="st">"#7F0000"</span>))</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="kw">plot3d</span>(JFRC2013)</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="kw">spheres3d</span>(xyz, <span class="dt">col =</span> <span class="kw">jet.colors</span>(<span class="dv">10</span>)[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cut">cut</a></span>(deltas, <span class="dv">10</span>)], <span class="dt">radius =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co"># nb these are numbered from 0 like the elm landmarks</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="kw">texts3d</span>(xyz, <span class="dt">texts =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">rownames</a></span>(xyz), <span class="dt">adj =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">1</span>))</a></code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-6-1.png" width="768"></p>
 <p>Based on this, I would definitely suggest checking the following landmarks</p>
 <p>75/48 43 46 68 23</p>
 <p>Compare the leave one out landmark position with manually defined position</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">clear3d</span>()
-<span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)
-<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(xyz)){
-  <span class="kw">segments3d</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(xyz[i, , <span class="dt">drop=</span><span class="ot">FALSE</span>], xyzt.loo[i, , <span class="dt">drop=</span><span class="ot">FALSE</span>]), <span class="dt">col=</span><span class="kw">jet.colors</span>(<span class="dv">10</span>)[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cut">cut</a></span>(deltas, <span class="dv">10</span>)][i], <span class="dt">lwd=</span><span class="dv">3</span>)
-}
-<span class="kw">points3d</span>(xyz)
-<span class="kw">texts3d</span>(xyz, <span class="dt">texts =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">rownames</a></span>(xyz), <span class="dt">adj =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">1</span>))
-<span class="kw">plot3d</span>(JFRC2013)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">clear3d</span>()</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(xyz)){</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="kw">segments3d</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(xyz[i, , <span class="dt">drop=</span><span class="ot">FALSE</span>], xyzt.loo[i, , <span class="dt">drop=</span><span class="ot">FALSE</span>]), <span class="dt">col=</span><span class="kw">jet.colors</span>(<span class="dv">10</span>)[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cut">cut</a></span>(deltas, <span class="dv">10</span>)][i], <span class="dt">lwd=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw">points3d</span>(xyz)</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="kw">texts3d</span>(xyz, <span class="dt">texts =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">rownames</a></span>(xyz), <span class="dt">adj =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="kw">plot3d</span>(JFRC2013)</a></code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
 <p>Now of course this is not just a measure of consistency in each landmark point, but it will also depend strongly on the extent to which the neighbouring points can define the required registration; in areas requiring substantial non-rigid deformation this may be a problem; this will be further emphasised when the neighbouring points are distant. We can check the latter point like so:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(nabor)
-nearest3=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">rowMeans</a></span>(nabor<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/nabor/topics/knn">knn</a></span>(xyz, <span class="dt">k=</span><span class="dv">4</span>)<span class="op">$</span>nn.dists[,<span class="op">-</span><span class="dv">1</span>])
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(deltas<span class="op">~</span>nearest3)
-deltabynearest3=<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(deltas<span class="op">~</span>nearest3)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/abline">abline</a></span>(deltabynearest3)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(nabor)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">nearest3=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">rowMeans</a></span>(nabor<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/nabor/topics/knn">knn</a></span>(xyz, <span class="dt">k=</span><span class="dv">4</span>)<span class="op">$</span>nn.dists[,<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(deltas<span class="op">~</span>nearest3)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">deltabynearest3=<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(deltas<span class="op">~</span>nearest3)</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/abline">abline</a></span>(deltabynearest3)</a></code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-8-1.png" width="480"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(deltabynearest3)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(deltabynearest3)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = deltas ~ nearest3)
@@ -1893,23 +1893,23 @@ deltabynearest3=<span class="kw"><a href="https://www.rdocumentation.org/package
 <p>So there is a correlation between neighbour distance and our calculated delta; with an R^2 of about 0.4 it’s reasonably strong. This may be explained by Davi placing more landmarks in areas where he is more certain.</p>
 <p>Perhaps the ideal thing would be to find a set of landmarks on one side of the brain and then find exactly the same landmarks on the other side of the brain. For the JFRC2013 brain we can exactly mirror points from one side to the other using an image-based registration distributed with the <code>nat.flybrains</code> package.</p>
 <p>We can find the mirror image position of all the points that we used like so:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#  nb this is conditioned on being able to find CMTK</span>
-<span class="cf">if</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Logic">isTRUE</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nchar">nzchar</a></span>(<span class="kw">cmtk.bindir</span>()))){
-  xyzm=<span class="kw">mirror_brain</span>(xyz, <span class="dt">brain =</span> JFRC2013)
-  
-  <span class="kw">clear3d</span>()
-  <span class="kw">spheres3d</span>(xyz, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">rad=</span><span class="dv">2</span>)
-  <span class="kw">spheres3d</span>(xyzm, <span class="dt">col=</span><span class="st">'green'</span>, <span class="dt">rad=</span><span class="dv">2</span>)
-  <span class="kw">plot3d</span>(JFRC2013)
-  <span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)
-
-}</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co">#  nb this is conditioned on being able to find CMTK</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="cf">if</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Logic">isTRUE</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nchar">nzchar</a></span>(<span class="kw">cmtk.bindir</span>()))){</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">  xyzm=<span class="kw">mirror_brain</span>(xyz, <span class="dt">brain =</span> JFRC2013)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">  </a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">  <span class="kw">clear3d</span>()</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">  <span class="kw">spheres3d</span>(xyz, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">rad=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">  <span class="kw">spheres3d</span>(xyzm, <span class="dt">col=</span><span class="st">'green'</span>, <span class="dt">rad=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">  <span class="kw">plot3d</span>(JFRC2013)</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">  <span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.7</span>)</a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11">}</a></code></pre></div>
 <p><img src="landmarks_files/figure-html/unnamed-chunk-9-1.png" width="480"></p>
 <p>One could then write out a table of landmarks including these mirrored positions like so:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xyzm.pixels=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(xyzm, <span class="dt">scale =</span> <span class="kw">voxdims</span>(JFRC2013), <span class="dt">center =</span> <span class="ot">FALSE</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">colnames</a></span>(xyzm.pixels)=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"XM"</span>,<span class="st">"YM"</span>,<span class="st">"ZM"</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/write.table">write.table</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">cbind</a></span>(elm.landmarks, xyzm.pixels), <span class="st">'elm.landmarks-with-mirror.tsv'</span>,
-            <span class="dt">col.names =</span> T, <span class="dt">sep=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, <span class="dt">row.names =</span> F)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">xyzm.pixels=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/scale">scale</a></span>(xyzm, <span class="dt">scale =</span> <span class="kw">voxdims</span>(JFRC2013), <span class="dt">center =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">colnames</a></span>(xyzm.pixels)=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"XM"</span>,<span class="st">"YM"</span>,<span class="st">"ZM"</span>)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/write.table">write.table</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">cbind</a></span>(elm.landmarks, xyzm.pixels), <span class="st">'elm.landmarks-with-mirror.tsv'</span>,</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">            <span class="dt">col.names =</span> T, <span class="dt">sep=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, <span class="dt">row.names =</span> F)</a></code></pre></div>
 <p>If one were then to take the mirror image landmarks in JFRC2013 space and manually pick the corresponding locations in EM space, one should be able to compare two different paths to the same point (one mirroring in FAFB, the other mirroring in JFRC2013) and see whether there is a difference in the calculated position. Differences would presumably reflect the uncertainty in picking positions in the EM volume (and a small contribution from the mirroring uncertainty in JFRC2013, which nevertheless expect to be &lt;1 µm based on analysis in <a href="https://doi.org/10.1101/006353">Manton et al 2014</a>).</p>
 </div>
   </div>

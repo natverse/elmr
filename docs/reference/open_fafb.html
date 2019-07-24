@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.5.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
       <a href="../articles/articles/multiple_somata.html">Finding Neurons with Multiple Somata</a>
     </li>
     <li>
-      <a href="../articles/landmarks.html">Landmarks</a>
+      <a href="../articles/landmarks.html">Landmarks defining transforms</a>
     </li>
     <li>
       <a href="../articles/making_meshes.html">Making Surface Meshes</a>
@@ -98,7 +98,7 @@
       <a href="../articles/selecting_random_synapses.html">Selecting random synapses</a>
     </li>
     <li>
-      <a href="../articles/xform_brain.html">Transforming between FAFB and light level template brains </a>
+      <a href="../articles/xform_brain.html">Transforming from FAFB to other templates</a>
     </li>
   </ul>
 </li>
@@ -139,7 +139,8 @@
 
     <pre class="usage"><span class='fu'>open_fafb</span>(<span class='no'>x</span>, <span class='kw'>s</span> <span class='kw'>=</span> <span class='kw pkg'>rgl</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/rgl/topics/select3d'>select3d</a></span>(), <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>sample</span> <span class='kw'>=</span> <span class='kw pkg'>elmr</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/elmr/topics/FAFB'>FAFB</a></span>, <span class='kw'>rowwise</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>open</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>() <span class='kw'>&amp;</span> !<span class='no'>rowwise</span>,
-  <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>active_skeleton_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>active_node_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>active_skeleton_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>active_node_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -183,6 +184,11 @@ Defaults to <code>TRUE</code> when R is running in interactive mode.</p></td>
 CATMAID.</p></td>
     </tr>
     <tr>
+      <th>server</th>
+      <td><p>Optional string or <code>catmaid_connection</code> that
+specifies the server URL (otherwise a harcoded URL will be used).</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Additional arguments to be added to URL.</p></td>
     </tr>
@@ -214,10 +220,14 @@ CATMAID.</p></td>
     <pre class="examples"><div class='input'><span class='fu'>open_fafb</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>316</span>, <span class='fl'>143</span>, <span class='fl'>26</span>), <span class='kw'>sample</span><span class='kw'>=</span><span class='no'>JFRC2013</span>, <span class='kw'>open</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=61259&amp;yp=291206&amp;xp=580356&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>nat</span>)</div><span class='co'># NOT RUN {</span>
 <span class='fu'>open3d</span>()
 <span class='fu'><a href='https://www.rdocumentation.org/packages/nat/topics/plot3d'>plot3d</a></span>(<span class='no'>kcs20</span>)
-<span class='co'># waits for used to draw a selection rectangle</span>
+<span class='co'># waits for user to draw a selection rectangle</span>
 <span class='fu'>open_fafb</span>(<span class='no'>kcs20</span>, <span class='kw'>sample</span><span class='kw'>=</span><span class='no'>FCWB</span>)
 <span class='co'># same but mirrors selected points to opposite hemisphere</span>
 <span class='fu'>open_fafb</span>(<span class='no'>kcs20</span>, <span class='kw'>sample</span><span class='kw'>=</span><span class='no'>FCWB</span>, <span class='kw'>mirror</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+
+<span class='fu'>open_fafb</span>(<span class='no'>kcs20</span>, <span class='kw'>sample</span><span class='kw'>=</span><span class='no'>FCWB</span>, <span class='kw'>server</span><span class='kw'>=</span><span class='st'>"https://bigbrain.org/tracing"</span>)
+<span class='co'># Uses last CATMAID connection to specify URL to open</span>
+<span class='fu'>open_fafb</span>(<span class='no'>kcs20</span>, <span class='kw'>sample</span><span class='kw'>=</span><span class='no'>FCWB</span>, <span class='kw'>server</span><span class='kw'>=</span><span class='fu'>catmaid_login</span>())
 <span class='co'># }</span><div class='input'>
 </div><div class='input'><span class='co'># make one URL for each row of the input</span>
 <span class='fu'>open_fafb</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>6</span>, <span class='kw'>max</span><span class='kw'>=</span><span class='fl'>1000</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>3</span>), <span class='kw'>rowwise</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=7&amp;yp=601&amp;xp=81&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000"   
@@ -250,7 +260,8 @@ CATMAID.</p></td>
 #&gt; 3 https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=40080&amp;yp=231543&amp;xp=466322&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=16&amp;active_node_id=3068690
 #&gt; 4 https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=39280&amp;yp=240916&amp;xp=464086&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=16&amp;active_node_id=3068757
 #&gt; 5 https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=35480&amp;yp=244391&amp;xp=465499&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=16&amp;active_node_id=3068829
-#&gt; 6 https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=33320&amp;yp=248051&amp;xp=463304&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=16&amp;active_node_id=3073189</div><span class='co'># NOT RUN {</span>
+#&gt; 6 https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=33320&amp;yp=248051&amp;xp=463304&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=16&amp;active_node_id=3073189</div><div class='input'>
+</div><span class='co'># NOT RUN {</span>
 <span class='co'># copy results to clipboard e.g. to paste into a spreadsheet</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>clipr</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/clipr/topics/write_clip'>write_clip</a></span>(<span class='no'>tagged_details</span>)

@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.5.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
       <a href="../articles/articles/multiple_somata.html">Finding Neurons with Multiple Somata</a>
     </li>
     <li>
-      <a href="../articles/landmarks.html">Landmarks</a>
+      <a href="../articles/landmarks.html">Landmarks defining transforms</a>
     </li>
     <li>
       <a href="../articles/making_meshes.html">Making Surface Meshes</a>
@@ -98,7 +98,7 @@
       <a href="../articles/selecting_random_synapses.html">Selecting random synapses</a>
     </li>
     <li>
-      <a href="../articles/xform_brain.html">Transforming between FAFB and light level template brains </a>
+      <a href="../articles/xform_brain.html">Transforming from FAFB to other templates</a>
     </li>
   </ul>
 </li>
@@ -139,7 +139,8 @@
 
     <pre class="usage"><span class='fu'>nblast_fafb</span>(<span class='no'>skids</span>, <span class='kw'>db</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>normalised</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>reverse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>reference</span> <span class='kw'>=</span> <span class='kw pkg'>nat.flybrains</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/nat.flybrains/topics/FCWB'>FCWB</a></span>, <span class='kw'>.parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>reference</span> <span class='kw'>=</span> <span class='kw pkg'>nat.flybrains</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/nat.flybrains/topics/FCWB'>FCWB</a></span>, <span class='kw'>prune_twigs</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>.parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -183,6 +184,13 @@ object such as <code><a href='https://www.rdocumentation.org/packages/nat.flybra
 naming such an object.</p></td>
     </tr>
     <tr>
+      <th>prune_twigs</th>
+      <td><p>Twigs smaller than this value will be removed before
+creating the <code>dotprops</code> object for NBLAST search. The default
+value of 2 microns is a good compromise for EM neurons. Setting
+<code>prune_twigs=NA</code> prevents any pruning.</p></td>
+    </tr>
+    <tr>
       <th>.parallel</th>
       <td><p>Whether to parallelise the NBLAST search (see details and
 also <code><a href='https://www.rdocumentation.org/packages/nat.nblast/topics/nblast'>nblast</a></code> for how to use the parallel interface
@@ -202,17 +210,18 @@ provided by the <code>doMC</code> package.)</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Still depends on having a <code><a href='https://www.rdocumentation.org/packages/nat/topics/neuronlist'>neuronlist</a></code> containing
-  registered neurons (usually from <code>flycircuit.tw</code>). The example code downloads
-  a set of projection neurons. The full data must be requested from Greg
-  Jefferis.</p>
-<p>When <code>.parallel=TRUE</code>, <code>nblast_fafb</code> will parallelise the search across
-  multiple cores if possible. You can set an option specifying a default
-  number of cores <code>elmr.nblast.cores</code>. See <code><a href='elmr-package.html'>elmr-package</a></code>.
-  Otherwise the default will either be roughly half the number of cores as
-  determined by <code><a href='https://www.rdocumentation.org/packages/doParallel/topics/registerDoParallel'>registerDoParallel</a></code>. If your machine
-  does not have multiple cores (or you do not want to use them), the search
-  will be a bit more efficient if you set the option
-  <code>elmr.nblast.cores=1</code> or the argument <code>.parallel=TRUE</code>.</p>
+  registered neurons (usually from <code>flycircuit.tw</code>). The example code
+  downloads a set of projection neurons. The full data must be requested from
+  Greg Jefferis.</p>
+<p>When <code>.parallel=TRUE</code>, <code>nblast_fafb</code> will parallelise the search
+  across multiple cores if possible. You can set an option specifying a
+  default number of cores <code>elmr.nblast.cores</code>. See
+  <code><a href='elmr-package.html'>elmr-package</a></code>. Otherwise the default will either be roughly
+  half the number of cores as determined by
+  <code><a href='https://www.rdocumentation.org/packages/doParallel/topics/registerDoParallel'>registerDoParallel</a></code>. If your machine does not have
+  multiple cores (or you do not want to use them), the search will be a bit
+  more efficient if you set the option <code>elmr.nblast.cores=1</code> or the
+  argument <code>.parallel=TRUE</code>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -236,11 +245,21 @@ provided by the <code>doMC</code> package.)</p></td>
 <span class='co'># catmaid::catmaid_login(&lt;your connection args&gt;)</span>
 
 <span class='co'># NBLAST neuron 27884</span>
+<span class='no'>PN27884f</span><span class='kw'>=</span><span class='fu'>nblast_fafb</span>(<span class='fl'>27884</span>, <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>.parallel</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
+
+<span class='co'># set up parallel backend (will be used by default)</span>
+<span class='kw pkg'>doMC</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/doMC/topics/registerDoMC'>registerDoMC</a></span>()
 <span class='no'>PN27884f</span><span class='kw'>=</span><span class='fu'>nblast_fafb</span>(<span class='fl'>27884</span>, <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
 <span class='co'># summary table of results</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>PN27884f</span>)
 <span class='co'># plot results, just top hit</span>
 <span class='fu'>plot3d</span>(<span class='no'>PN27884f</span>, <span class='kw'>hits</span><span class='kw'>=</span><span class='fl'>1</span>)
+
+<span class='co'># aggressive pruning of twigs</span>
+<span class='fu'>nblast_fafb</span>(<span class='fl'>27884</span>, <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>prune_twigs</span><span class='kw'>=</span><span class='fl'>5</span>)
+<span class='co'># no pruning of twigs</span>
+<span class='fu'>nblast_fafb</span>(<span class='fl'>27884</span>, <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>prune_twigs</span><span class='kw'>=</span><span class='fl'>NA</span>)
 
 <span class='co'># alternatively, you can supply an existing neuronlist</span>
 <span class='no'>dc_nl</span> <span class='kw'>=</span> <span class='fu'>nblast_fafb</span>(<span class='no'>dense_core_neurons</span>, <span class='kw'>mirror</span><span class='kw'>=</span><span class='fl'>TRUE</span>)

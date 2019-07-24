@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">elmr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.5.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
       </span>
     </div>
 
@@ -58,7 +58,7 @@
       <a href="articles/articles/multiple_somata.html">Finding Neurons with Multiple Somata</a>
     </li>
     <li>
-      <a href="articles/landmarks.html">Landmarks</a>
+      <a href="articles/landmarks.html">Landmarks defining transforms</a>
     </li>
     <li>
       <a href="articles/making_meshes.html">Making Surface Meshes</a>
@@ -67,7 +67,7 @@
       <a href="articles/selecting_random_synapses.html">Selecting random synapses</a>
     </li>
     <li>
-      <a href="articles/xform_brain.html">Transforming between FAFB and light level template brains </a>
+      <a href="articles/xform_brain.html">Transforming from FAFB to other templates</a>
     </li>
   </ul>
 </li>
@@ -103,27 +103,27 @@
 <h2 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick Start</h2>
 <p>For the impatient …</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install</span>
-<span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(<span class="st">"devtools"</span>)) <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>) 
-devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"jefferis/elmr"</span>)
-
-<span class="co"># use</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(elmr)
-
-<span class="co"># run examples </span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/example">example</a></span>(<span class="st">"open_fafb"</span>)
-
-<span class="co"># get overview help for package </span>
-?elmr 
-
-<span class="co"># help for functions/data </span>
-?FAFB
-?fetchn_fafb
-?nblast_fafb
-?open_fafb
-?xform_brain
-?stitch_neurons
-?tpsreg</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(<span class="st">"devtools"</span>)) <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>) </a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"jefferis/elmr"</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># use</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(elmr)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co"># run examples </span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/example">example</a></span>(<span class="st">"open_fafb"</span>)</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co"># get overview help for package </span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">?elmr </a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co"># help for functions/data </span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">?FAFB</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">?fetchn_fafb</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">?nblast_fafb</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">?open_fafb</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">?xform_brain</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">?stitch_neurons</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21">?tpsreg</a></code></pre></div>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -133,14 +133,14 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <h3 class="hasAnchor">
 <a href="#development-version" class="anchor"></a>Development version</h3>
 <p>You can use the <strong>devtools</strong> package to install the development version:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(<span class="st">"devtools"</span>)) <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)
-devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"jefferis/elmr"</span>)
-
-<span class="co"># to transform skeletons to template brains other than JFRC2013, you also need</span>
-<span class="co"># a CMTK installation (see https://github.com/jefferis/nat/#external-dependencies)</span>
-<span class="co"># and to download some additional bridging registrations.</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(nat.flybrains)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/nat.flybrains/topics/download_jefferislab_registrations">download_jefferislab_registrations</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(<span class="st">"devtools"</span>)) <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"jefferis/elmr"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># to transform skeletons to template brains other than JFRC2013, you also need</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co"># a CMTK installation (see https://github.com/jefferis/nat/#external-dependencies)</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co"># and to download some additional bridging registrations.</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(nat.flybrains)</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/nat.flybrains/topics/download_jefferislab_registrations">download_jefferislab_registrations</a></span>()</a></code></pre></div>
 <p>Note that this should also install the latest version of the necessary dependencies. To carry out nblast comparisons with <a href="http://flycircuit.tw">flycircuit.tw</a> neurons, you may need to install optional dependencies by installing as follows:</p>
 <pre><code><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">devtools::install_github("jefferis/elmr", dependencies=TRUE)</a></code></pre>
 <p>Note: Windows users need <a href="http://www.murdoch-sutherland.com/Rtools/">Rtools</a> and <a href="http://CRAN.R-project.org/package=devtools">devtools</a> to install this way.</p>
@@ -148,8 +148,8 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <div id="updating" class="section level3">
 <h3 class="hasAnchor">
 <a href="#updating" class="anchor"></a>Updating</h3>
-<p><strong>elmr</strong> and its dependencies are still under fairly heavy development. You can conveniently bring the devlopment versions up to date by doing:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">update_packages</a></span>(<span class="st">"elmr"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><strong>elmr</strong> and its dependencies are still under fairly heavy development. You can conveniently bring the development versions up to date by doing:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">update_packages</a></span>(<span class="st">"elmr"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="acknowledgements" class="section level2">
@@ -157,17 +157,19 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <a href="#acknowledgements" class="anchor"></a>Acknowledgements</h2>
 <ul>
 <li><p>elmr is part of a suite of R packages based on the <a href="http://jefferislab.github.io/">NeuroAnatomy Toolbox</a></p></li>
-<li><p>The approach to transforming data between template brains is descibed in</p></li>
-</ul>
+<li>
+<p>The approach to transforming data between template brains is described in</p>
 <p>Combining genome-scale Drosophila 3D neuroanatomical data by bridging template brains James D. Manton, Aaron D. Ostrovsky, Lea Goetz, Marta Costa, Torsten Rohlfing, Gregory S. X. E. Jefferis. bioRxiv 006353; doi: <a href="https://doi.org/10.1101/006353">10.1101/006353</a></p>
-<ul>
-<li>The <a href="https://github.com/saalfeldlab/elm">elm</a> tool originally used to define landmarks is in turn based on <a href="http://fiji.sc/BigWarp">BigWarp</a>:</li>
-</ul>
+</li>
+<li>
+<p>The <a href="https://github.com/saalfeldlab/elm">elm</a> tool originally used to define landmarks is in turn based on <a href="http://fiji.sc/BigWarp">BigWarp</a>:</p>
 <p>JA Bogovic, P Hanslovsky, A Wong, S Saalfeld, “Robust registration of calcium images by learned contrast synthesis”, In <em>Biomedical Imaging (ISBI)</em>, 2016 IEEE 13th International Symposium on, 1123-1126, DOI: <a href="https://doi.org/10.1109/ISBI.2016.7493463">10.1109/ISBI.2016.7493463</a>.</p>
-<ul>
-<li>Finally, the FAFB EM dataset is described in:</li>
-</ul>
+</li>
+<li>
+<p>Finally, the FAFB EM dataset is described in:</p>
 <p>A Complete Electron Microscopy Volume Of The Brain Of Adult Drosophila melanogaster Zhihao Zheng, J. Scott Lauritzen, Eric Perlman, Camenzind G. Robinson, Matthew Nichols, Daniel Milkie, Omar Torrens, John Price, Corey B. Fisher, Nadiya Sharifi, Steven A. Calle-Schuler, Lucia Kmecova, Iqbal J. Ali, Bill Karsh, Eric T. Trautman, John Bogovic, Philipp Hanslovsky, Gregory S. X. E. Jefferis, Michael Kazhdan, Khaled Khairy, Stephan Saalfeld, Richard D. Fetter, Davi D. Bock bioRxiv 140905; doi: <a href="https://doi.org/10.1101/140905">10.1101/140905</a></p>
+</li>
+</ul>
 </div>
 </div>
 

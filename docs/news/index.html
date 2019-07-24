@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.5.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@
       <a href="../articles/articles/multiple_somata.html">Finding Neurons with Multiple Somata</a>
     </li>
     <li>
-      <a href="../articles/landmarks.html">Landmarks</a>
+      <a href="../articles/landmarks.html">Landmarks defining transforms</a>
     </li>
     <li>
       <a href="../articles/making_meshes.html">Making Surface Meshes</a>
@@ -95,7 +95,7 @@
       <a href="../articles/selecting_random_synapses.html">Selecting random synapses</a>
     </li>
     <li>
-      <a href="../articles/xform_brain.html">Transforming between FAFB and light level template brains </a>
+      <a href="../articles/xform_brain.html">Transforming from FAFB to other templates</a>
     </li>
   </ul>
 </li>
@@ -127,11 +127,15 @@
       <small>Source: <a href='https://github.com/jefferis/elmr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="elmr-0-5-5-9000" class="section level1">
+    <div id="elmr-0-5-6" class="section level1">
 <h1 class="page-header">
-<a href="#elmr-0-5-5-9000" class="anchor"></a>elmr 0.5.5.9000</h1>
+<a href="#elmr-0-5-6" class="anchor"></a>elmr 0.5.6</h1>
 <ul>
-<li>new <code><a href="../reference/prune_twigs.html">prune_twigs()</a></code> function that removes twigs less than a threshold length. Useful thing to as part of preparing <code>dotprops()</code> objects for <code>nblast()</code>.</li>
+<li>new <code><a href="../reference/prune_twigs.html">prune_twigs()</a></code> function that removes twigs less than a threshold length. Useful thing to do as part of preparing <code>dotprops()</code> objects for <code>nblast()</code>.</li>
+<li>Fix strange arrows in <code><a href="../reference/plot3d.ngraph.html">plot3d.ngraph()</a></code> (<a href='https://github.com/jefferis/elmr/issues/45'>#45</a>)</li>
+<li>Allow <code><a href="../reference/open_fafb.html">open_fafb()</a></code> to specify a different CATMAID server (including via a <code>catmaid_connection()</code> object) (<a href='https://github.com/jefferis/elmr/issues/44'>#44</a>)</li>
+<li>Teach <code><a href="../reference/nblast_fafb.html">nblast_fafb()</a></code> to prune twigs by default</li>
+<li>fix hitherto silent bugs revealed by R 3.6</li>
 </ul>
 </div>
     <div id="elmr-0-5-5" class="section level1">
@@ -261,7 +265,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#elmr-0-5-5-9000">0.5.5.9000</a></li>
+        <li><a href="#elmr-0-5-6">0.5.6</a></li>
         <li><a href="#elmr-0-5-5">0.5.5</a></li>
         <li><a href="#elmr-0-5-4">0.5.4</a></li>
         <li><a href="#elmr-0-5-3">0.5.3</a></li>

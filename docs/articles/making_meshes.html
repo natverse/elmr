@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.5.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
       </span>
     </div>
 
@@ -56,7 +56,7 @@
       <a href="../articles/articles/multiple_somata.html">Finding Neurons with Multiple Somata</a>
     </li>
     <li>
-      <a href="../articles/landmarks.html">Landmarks</a>
+      <a href="../articles/landmarks.html">Landmarks defining transforms</a>
     </li>
     <li>
       <a href="../articles/making_meshes.html">Making Surface Meshes</a>
@@ -65,7 +65,7 @@
       <a href="../articles/selecting_random_synapses.html">Selecting random synapses</a>
     </li>
     <li>
-      <a href="../articles/xform_brain.html">Transforming between FAFB and light level template brains </a>
+      <a href="../articles/xform_brain.html">Transforming from FAFB to other templates</a>
     </li>
   </ul>
 </li>
@@ -95,7 +95,7 @@
       <h1>Making Surface Meshes</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2019-04-02</h4>
+            <h4 class="date">2019-07-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/making_meshes.Rmd"><code>vignettes/making_meshes.Rmd</code></a></small>
       <div class="hidden name"><code>making_meshes.Rmd</code></div>
@@ -112,63 +112,58 @@
 <h3 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h3>
 <p>First load main packages</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(elmr)
-cl=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/try">try</a></span>(<span class="kw">catmaid_login</span>())
-catmaid_available=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">inherits</a></span>(cl, <span class="st">"catmaid_connection"</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(knitr)
-opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">eval=</span>catmaid_available)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(elmr)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">cl=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/try">try</a></span>(<span class="kw">catmaid_login</span>())</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">catmaid_available=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">inherits</a></span>(cl, <span class="st">"catmaid_connection"</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(knitr)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">eval=</span>catmaid_available)</a></code></pre></div>
 <p>In order to run some of this example we need to ensure that we:</p>
 <ul>
 <li>can login to the FAFB CATMAID server</li>
 </ul>
 <p>We will most our examples run conditionally based on this.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(alphashape3d)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(rgl)
-<span class="co"># set up for 3d plots based on rgl package</span>
-rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/hook_rgl">setupKnitr</a></span>()
-<span class="co"># frontal view</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(alphashape3d)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(rgl)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># set up for 3d plots based on rgl package</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/hook_rgl">setupKnitr</a></span>()</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co"># frontal view</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="selecting-synapses" class="section level2">
 <h2 class="hasAnchor">
 <a href="#selecting-synapses" class="anchor"></a>Selecting synapses</h2>
 <p>We’re going to use synapses between PNs and KCs to define a mesh</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pntokc =<span class="st"> </span><span class="kw">catmaid_get_connectors_between</span>(<span class="dt">pre_skids =</span> <span class="st">'PN'</span>,
-                                        <span class="dt">post_skids =</span> <span class="st">'KC'</span>)
-<span class="co"># select 3d position of presynaptic connectors</span>
-pntokc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>(connector_id, <span class="dt">.keep_all=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(connector_x<span class="op">:</span>connector_z) <span class="op">%&gt;%</span>
-<span class="st">  </span>data.matrix -&gt;<span class="st"> </span>cxyz</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">pntokc =<span class="st"> </span><span class="kw">catmaid_get_connectors_between</span>(<span class="dt">pre_skids =</span> <span class="st">'PN'</span>,</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">                                        <span class="dt">post_skids =</span> <span class="st">'KC'</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># select 3d position of presynaptic connectors</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">pntokc <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>(connector_id, <span class="dt">.keep_all=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(connector_x<span class="op">:</span>connector_z) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">  </span>data.matrix -&gt;<span class="st"> </span>cxyz</a></code></pre></div>
 <p>Now we can make an alphashape based on those connector positions. We need to set the alpha value in the ashape3d function to something sensible based on the spatial scale of our data - he we use alpha=6000 nm.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">calyx.a=<span class="kw"><a href="https://www.rdocumentation.org/packages/alphashape3d/topics/ashape3d">ashape3d</a></span>(cxyz, <span class="dt">alpha =</span> <span class="dv">6000</span>)</code></pre></div>
-<pre><code>## 
-##      PLEASE NOTE:  As of version 0.3-5, no degenerate (zero area) 
-##      regions are returned with the "Qt" option since the R 
-##      code removes them from the triangulation. 
-##      See help("delaunayn").</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">calyx=<span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/mesh3d">as.mesh3d</a></span>(calyx.a)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">calyx.a=<span class="kw"><a href="https://www.rdocumentation.org/packages/alphashape3d/topics/ashape3d">ashape3d</a></span>(cxyz, <span class="dt">alpha =</span> <span class="dv">6000</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">calyx=<span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/as.mesh3d.default">as.mesh3d</a></span>(calyx.a)</a></code></pre></div>
 <p>We can compare the resultant mesh with the location of the connectors</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/mesh3d">wire3d</a></span>(calyx)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/3dobjects">points3d</a></span>(cxyz, <span class="dt">col=</span><span class="st">'red'</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/3dobjects">points3d</a></span>(pntokc[,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'post_node_x'</span>,<span class="st">'post_node_y'</span>,<span class="st">'post_node_z'</span>)], <span class="dt">col=</span><span class="st">'blue'</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/mesh3d">wire3d</a></span>(calyx)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/3dobjects">points3d</a></span>(cxyz, <span class="dt">col=</span><span class="st">'red'</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/3dobjects">points3d</a></span>(pntokc[,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'post_node_x'</span>,<span class="st">'post_node_y'</span>,<span class="st">'post_node_z'</span>)], <span class="dt">col=</span><span class="st">'blue'</span>)</a></code></pre></div>
 <p><img src="making_meshes_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>We can also compare with the mesh supplied with elmr, which was transformed from JFRC2 space via JFRC2013 to FAFB:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/mesh3d">wire3d</a></span>(calyx)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/plot3d">plot3d</a></span>(FAFBNP.surf, <span class="st">"MB_CA_R"</span>, <span class="dt">alpha=</span>.<span class="dv">3</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/mesh3d">wire3d</a></span>(calyx)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/plot3d">plot3d</a></span>(FAFBNP.surf, <span class="st">"MB_CA_R"</span>, <span class="dt">alpha=</span>.<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</a></code></pre></div>
 <p><img src="making_meshes_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <p>And we can also compare the dorsal view as well:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/mesh3d">wire3d</a></span>(calyx)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/plot3d">plot3d</a></span>(FAFBNP.surf, <span class="st">"MB_CA_R"</span>, <span class="dt">alpha=</span>.<span class="dv">3</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> <span class="op">-</span>pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/mesh3d">wire3d</a></span>(calyx)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/plot3d">plot3d</a></span>(FAFBNP.surf, <span class="st">"MB_CA_R"</span>, <span class="dt">alpha=</span>.<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/viewpoint">view3d</a></span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> <span class="op">-</span>pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.8</span>)</a></code></pre></div>
 <p><img src="making_meshes_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <p>It’s clear that there is a mismatch here. This may originate in part from the fact that the JFRC2013 intermediate template has rather flattened MB calyces. The quality of the JFRC2-JFRC2013 bridging registration is likely also a factor.</p>
 <p>Finally if one wanted to place this mesh into CATMAID, one could do it as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">catmaid_add_volume</span>(calyx, <span class="dt">title=</span><span class="st">"fafb14.pn-kc.MB_CA_R"</span>, 
-                   <span class="dt">comment=</span><span class="st">"Constructed by GSXEJ from PN-KC synapses directly in FAFB14 space."</span>)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">catmaid_add_volume</span>(calyx, <span class="dt">title=</span><span class="st">"fafb14.pn-kc.MB_CA_R"</span>, </a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">                   <span class="dt">comment=</span><span class="st">"Constructed by GSXEJ from PN-KC synapses directly in FAFB14 space."</span>)</a></code></pre></div>
 </div>
   </div>
 

@@ -25,7 +25,7 @@ plot3d.ngraph <- function(x, type='lines', soma=1, labels=c('none', "nodes","all
     if(e1 == e2) return()
     p1=xyz[e1,]
     p2=xyz[e2,]
-    if(any(is.na(c(p1,p2))) || p1==p2) {
+    if(any(is.na(c(p1,p2))) || all(p1==p2)) {
       message("Bad edge: ", edge)
       return()
     }

@@ -6,7 +6,8 @@
 \usage{
 nblast_fafb(skids, db = NULL, conn = NULL, mirror = TRUE,
   normalised = TRUE, reverse = FALSE,
-  reference = nat.flybrains::FCWB, .parallel = TRUE, ...)
+  reference = nat.flybrains::FCWB, prune_twigs = 2, .parallel = TRUE,
+  ...)
 }
 \arguments{
 \item{skids}{catmaid skeleton ids (see \code{\link[catmaid]{catmaid_skids}})
@@ -33,6 +34,11 @@ transformed, either a \code{\link[nat.templatebrains]{templatebrain}}
 object such as \code{\link[nat.flybrains]{FCWB}} or a character vector
 naming such an object.}
 
+\item{prune_twigs}{Twigs smaller than this value will be removed before
+creating the \code{\link{dotprops}} object for NBLAST search. The default
+value of 2 microns is a good compromise for EM neurons. Setting
+\code{prune_twigs=NA} prevents any pruning.}
+
 \item{.parallel}{Whether to parallelise the NBLAST search (see details and
 also \code{\link[nat.nblast]{nblast}} for how to use the parallel interface
 provided by the \code{doMC} package.)}
@@ -48,18 +54,19 @@ NBLAST EM tracing against FlyCircuit (or other databases of) neurons
 }
 \details{
 Still depends on having a \code{\link[nat]{neuronlist}} containing
-  registered neurons (usually from \code{flycircuit.tw}). The example code downloads
-  a set of projection neurons. The full data must be requested from Greg
-  Jefferis.
+  registered neurons (usually from \code{flycircuit.tw}). The example code
+  downloads a set of projection neurons. The full data must be requested from
+  Greg Jefferis.
 
-  When \code{.parallel=TRUE}, \code{nblast_fafb} will parallelise the search across
-  multiple cores if possible. You can set an option specifying a default
-  number of cores \code{elmr.nblast.cores}. See \code{\link{elmr-package}}.
-  Otherwise the default will either be roughly half the number of cores as
-  determined by \code{\link[doParallel]{registerDoParallel}}. If your machine
-  does not have multiple cores (or you do not want to use them), the search
-  will be a bit more efficient if you set the option
-  \code{elmr.nblast.cores=1} or the argument \code{.parallel=TRUE}.
+  When \code{.parallel=TRUE}, \code{nblast_fafb} will parallelise the search
+  across multiple cores if possible. You can set an option specifying a
+  default number of cores \code{elmr.nblast.cores}. See
+  \code{\link{elmr-package}}. Otherwise the default will either be roughly
+  half the number of cores as determined by
+  \code{\link[doParallel]{registerDoParallel}}. If your machine does not have
+  multiple cores (or you do not want to use them), the search will be a bit
+  more efficient if you set the option \code{elmr.nblast.cores=1} or the
+  argument \code{.parallel=TRUE}.
 }
 \examples{
 \dontrun{
@@ -72,11 +79,21 @@ options(nat.default.neuronlist='allpndps')
 # catmaid::catmaid_login(<your connection args>)
 
 # NBLAST neuron 27884
+PN27884f=nblast_fafb(27884, mirror = FALSE, .parallel=FALSE)
+
+# set up parallel backend (will be used by default)
+doMC::registerDoMC()
 PN27884f=nblast_fafb(27884, mirror = FALSE)
+
 # summary table of results
 summary(PN27884f)
 # plot results, just top hit
 plot3d(PN27884f, hits=1)
+
+# aggressive pruning of twigs
+nblast_fafb(27884, mirror = FALSE, prune_twigs=5)
+# no pruning of twigs
+nblast_fafb(27884, mirror = FALSE, prune_twigs=NA)
 
 # alternatively, you can supply an existing neuronlist
 dc_nl = nblast_fafb(dense_core_neurons, mirror=TRUE)

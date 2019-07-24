@@ -1,10 +1,10 @@
 ---
-title: "Landmarks"
+title: "Landmarks defining transforms"
 author: "Gregory Jefferis"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Transforming from FAFB to other templates}
+  %\VignetteIndexEntry{Landmarks defining transforms}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

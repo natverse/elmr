@@ -1,5 +1,5 @@
 ---
-title: "Transforming between FAFB and light level template brains "
+title: "Transforming from FAFB to other templates"
 author: "Gregory Jefferis"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette

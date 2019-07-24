@@ -23,8 +23,11 @@ test_that("open_fafb works", {
 
   testdf <- baseline[,-ncol(baseline)]
   expect_equal(open_fafb(testdf), baseline$url)
-  expect_equal(open_fafb(testdf), baseline$url,
-               conn=catmaid_connection(server="https://neuropil.janelia.org/tracing/fafb/v14/"))
+  # make a fake connection to specify server URL
+  fakeconn=catmaid_connection(server="https://neuropil.janelia.org/tracing/fafb/v14/")
+  expect_equal(open_fafb(testdf, conn=fakeconn), baseline$url)
+  fakeconn2=catmaid_connection(server="https://neuropil.janelia.org/tracing/fafb/v14-seg/")
+  expect_equal(open_fafb(testdf, conn=fakeconn2), sub("v14", "v14-seg", baseline$url))
 
   expect_equal(open_fafb(testdf[1,]), baseline$url[1])
   expect_error(open_fafb(testdf[1,], active_node_id = testdf$treenode_id,

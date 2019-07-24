@@ -3,7 +3,7 @@
 #' @param x A \code{\link{ngraph}} object
 #' @param type They type of arrows (lines by default, see \code{\link{arrow3d}}
 #'   for details.
-#' @param soma radius of soma (or \code{FALSE} to supress plotting)
+#' @param soma radius of soma (or \code{FALSE} to suppress plotting)
 #' @param labels Whether to label nodes/alll points with their raw index (not
 #'   id)
 #' @param ... Additional arguments passed to \code{\link{arrow3d}}

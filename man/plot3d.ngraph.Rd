@@ -13,7 +13,7 @@
 \item{type}{They type of arrows (lines by default, see \code{\link{arrow3d}}
 for details.}
 
-\item{soma}{radius of soma (or \code{FALSE} to supress plotting)}
+\item{soma}{radius of soma (or \code{FALSE} to suppress plotting)}
 
 \item{labels}{Whether to label nodes/alll points with their raw index (not
 id)}

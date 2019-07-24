@@ -70,7 +70,7 @@ Note: Windows users need [Rtools](http://www.murdoch-sutherland.com/Rtools/) and
 ### Updating
 
 **elmr** and its dependencies are still under fairly heavy development. You can 
-conveniently bring the devlopment versions up to date by doing:
+conveniently bring the development versions up to date by doing:
 
 ```r
 devtools::update_packages("elmr", dependencies = TRUE)
@@ -81,7 +81,7 @@ devtools::update_packages("elmr", dependencies = TRUE)
 * elmr is part of a suite of R packages based on the [NeuroAnatomy
 Toolbox](http://jefferislab.github.io/)
 
-* The approach to transforming data between template brains is descibed in 
+* The approach to transforming data between template brains is described in 
   
   Combining genome-scale Drosophila 3D neuroanatomical data by bridging template brains
   James D. Manton, Aaron D. Ostrovsky, Lea Goetz, Marta Costa, Torsten Rohlfing,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot3d.R
 \name{plot3d.ngraph}
 \alias{plot3d.ngraph}
-\title{Title}
+\title{Plot 3d representation of neuron (ngraph) with directed edges}
 \usage{
 \method{plot3d}{ngraph}(x, type = "lines", soma = 1,
   labels = c("none", "nodes", "all"), ...)
@@ -10,16 +10,18 @@
 \arguments{
 \item{x}{A \code{\link{ngraph}} object}
 
-\item{type}{They type of arrows (lines by default)}
+\item{type}{They type of arrows (lines by default, see \code{\link{arrow3d}}
+for details.}
 
 \item{soma}{radius of soma (or \code{FALSE} to supress plotting)}
 
-\item{labels}{Whether to label nodes/alll points with their raw index (not id)}
+\item{labels}{Whether to label nodes/alll points with their raw index (not
+id)}
 
 \item{...}{Additional arguments passed to \code{\link{arrow3d}}}
 }
 \description{
-Title
+Plot 3d representation of neuron (ngraph) with directed edges
 }
 \examples{
 plot3d(as.ngraph(Cell07PNs[[1]]))

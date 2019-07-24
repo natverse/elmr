@@ -1,9 +1,11 @@
-#' Title
+#' Plot 3d representation of neuron (ngraph) with directed edges
 #'
 #' @param x A \code{\link{ngraph}} object
-#' @param type They type of arrows (lines by default)
+#' @param type They type of arrows (lines by default, see \code{\link{arrow3d}}
+#'   for details.
 #' @param soma radius of soma (or \code{FALSE} to supress plotting)
-#' @param labels Whether to label nodes/alll points with their raw index (not id)
+#' @param labels Whether to label nodes/alll points with their raw index (not
+#'   id)
 #' @param ... Additional arguments passed to \code{\link{arrow3d}}
 #'
 #' @export
@@ -30,8 +32,12 @@ plot3d.ngraph <- function(x, type='lines', soma=1, labels=c('none', "nodes","all
     # cat(edge,"\n")
     arrow3d(xyz[edge[1],], xyz[edge[2],], type=type, ...)
   }
+  # add points at each vertex so that scene dimensions
+  # are correctly set for arrows
+  pp=points3d(xyz, size=1)
   op=par3d(skipRedraw=T)
   on.exit(par3d(op))
+  on.exit(pop3d(id=pp), add = TRUE, after = TRUE)
   apply(el, 1, draw_edge, ...)
   rp=rootpoints(x)
   if(isTRUE(all.equal(soma, FALSE))) {

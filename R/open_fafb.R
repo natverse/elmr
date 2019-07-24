@@ -29,6 +29,8 @@
 #' @param zoom The CATMAID zoom factor (defaults to 1)
 #' @param active_skeleton_id,active_node_id Set highlighted skeleton and node in
 #'   CATMAID.
+#' @param conn An optional CATMAID connection that specifies the server URL
+#'   (otherwise a harcoded URL will be used).
 #' @param ... Additional arguments to be added to URL.
 #' @export
 #' @importFrom utils browseURL
@@ -40,10 +42,13 @@
 #' \dontrun{
 #' open3d()
 #' plot3d(kcs20)
-#' # waits for used to draw a selection rectangle
+#' # waits for user to draw a selection rectangle
 #' open_fafb(kcs20, sample=FCWB)
 #' # same but mirrors selected points to opposite hemisphere
 #' open_fafb(kcs20, sample=FCWB, mirror=TRUE)
+#'
+#' # Uses last CATMAID connection to specify URL to open
+#' open_fafb(kcs20, sample=FCWB, conn=catmaid_login())
 #' }
 #'
 #' \donttest{
@@ -67,9 +72,17 @@
 #' library(clipr)
 #' write_clip(tagged_details)
 #' }
+#'
+#' #' \dontrun{
+#' # copy results to clipboard e.g. to paste into a spreadsheet
+#' library(clipr)
+#' write_clip(tagged_details)
+#' }
+
 open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB,
                     rowwise=NA, open=interactive() & !rowwise, zoom=1,
-                    active_skeleton_id=NULL, active_node_id=NULL, ...) {
+                    active_skeleton_id=NULL, active_node_id=NULL, conn=NULL,
+                    ...) {
   # special case, looks like results of catmaid_get_treenodes_detail
   if(is.data.frame(x) && c("treenode_id","skid", "x", "y", "z") %in% names(x)) {
     # looks like a data frame from catmaid_get_treenodes_detail
@@ -103,11 +116,19 @@ open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB,
     csample=as.character(elmr::FAFB)
   }
 
-  fafb.version=substr(csample,5,nchar(csample))
+  server_url <- if (isTRUE(is.null(conn))) {
+    fafb.version=substr(csample,5,nchar(csample))
+    paste0("https://neuropil.janelia.org/tracing/fafb/v", fafb.version)
+  } else {
+    conn$server
+  }
+  last_char <- function(s) substr(s, nchar(s), nchar(s))
+  if(!isTRUE(last_char(server_url)=="/"))
+    server_url=paste0(server_url, "/")
   # round to nearest integer
   xyz <- round(xyz)
-  url=sprintf("https://neuropil.janelia.org/tracing/fafb/v%s/?pid=1&zp=%d&yp=%d&xp=%d&tool=tracingtool&sid0=5&s0=%f",
-              fafb.version, xyz[,3], xyz[,2], xyz[,1], zoom)
+  url=sprintf("%s?pid=1&zp=%d&yp=%d&xp=%d&tool=tracingtool&sid0=5&s0=%f",
+              server_url, xyz[,3], xyz[,2], xyz[,1], zoom)
   apl=pairlist(...)
   apl$active_skeleton_id=active_skeleton_id
   apl$active_node_id=active_node_id

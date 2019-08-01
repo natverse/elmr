@@ -1,3 +1,8 @@
+template:
+  params:
+    docsearch:
+      api_key: 9af2dfacacefe7a9e5431ffc3dbefbba
+      index_name: elmr
 reference:
 - title: Package Help
   desc: Provides an overview of key functions and classes

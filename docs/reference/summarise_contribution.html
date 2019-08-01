@@ -29,6 +29,12 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
 
 <meta property="og:title" content="Summarise tracer contributions / suggest authorship for set of neurons — summarise_contribution" />
 
@@ -122,6 +128,12 @@ write_ack produces an acknowledgements wording." />
 </li>
       </ul>
       
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -203,38 +215,38 @@ nodes, the second for synapses.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>pnsc</span><span class='kw'>=</span><span class='fu'>summarise_contribution</span>(<span class='st'>"annotation:^PN$"</span>)
 <span class='fu'>suggest_authorship</span>(<span class='no'>pnsc</span>)</div><div class='output co'>#&gt;     id      n              full_name        pct     cpct action
-#&gt; 1  117 160849         Ruairi Roberts 15.6643742 15.66437   auth
-#&gt; 2   12 110296          Jacob Ratliff 10.7412407 26.40561   auth
-#&gt; 3   11  80444        bailey harrison  7.8340861 34.23970   auth
-#&gt; 4   26  74615             Jawaid Ali  7.2664255 41.50613   auth
-#&gt; 5   94  64528       Philipp Schlegel  6.2840971 47.79022   auth
-#&gt; 6   13  62987           Addy Adesina  6.1340259 53.92425   auth
-#&gt; 7   54  42978        Ben Koppenhaver  4.1854377 58.10969    ack
-#&gt; 8   25  41756          Lucia Kmecova  4.0664326 62.17612    ack
-#&gt; 9   53  40140      Najla Masoodpanah  3.9090574 66.08518    ack
-#&gt; 10   4  34990           Corey Fisher  3.4075217 69.49270    ack
-#&gt; 11  61  33675         Benjamin Gorko  3.2794596 72.77216    ack
-#&gt; 12  17  30538              Adam John  2.9739610 75.74612    ack
-#&gt; 13  22  23721     Michael Lingelbach  2.3100835 78.05620    ack
-#&gt; 14 109  21487             Alex Bates  2.0925241 80.14873    ack
-#&gt; 15  50  18728       Shahrozia Imtiaz  1.8238373 81.97256    ack
-#&gt; 16 164  16787    Mahmoud Elbahnasawi  1.6348118 83.60738    ack
-#&gt; 17 167  16297           Arian Jamasb  1.5870929 85.19447    ack
-#&gt; 18  29  16110         Nadiya Sharifi  1.5688818 86.76335    ack
-#&gt; 19  75  14782          Philipp Ranft  1.4395537 88.20290    ack
-#&gt; 20 127  14652             Lisa Marin  1.4268936 89.62980    ack
-#&gt; 21 251  11453       Nikolas Drummond  1.1153571 90.74516    ack
-#&gt; 22  55  10153          Greg Jefferis  0.9887559 91.73391    ack
-#&gt; 23 123   8007             Fiona Love  0.7797664 92.51368    ack
-#&gt; 24  27   7880             Sri Murthy  0.7673984 93.28108    ack
-#&gt; 25 271   6102        Robert Turnbull  0.5942468 93.87532    ack
-#&gt; 26 118   5064         Clement Hallou  0.4931606 94.36848    ack
-#&gt; 27  44   4592             Ala Haddad  0.4471946 94.81568    ack
-#&gt; 28 120   4566 Amelia Edmondson-Stait  0.4446626 95.26034    ack
-#&gt; 29 245   4136         Farzaan Salman  0.4027868 95.66313    ack
-#&gt; 30  76   3985           Steven Calle  0.3880816 96.05121    ack
-#&gt; 31  28   3769           Bindu Gampah  0.3670463 96.41826    ack
-#&gt; 32   2   3320              Davi Bock  0.3233201 96.74158    ack</div><div class='input'><span class='fu'>write_authors</span>(<span class='no'>pnsc</span>, <span class='kw'>auth</span><span class='kw'>=</span><span class='fl'>3.0</span>)</div><div class='output co'>#&gt; Ruairi Roberts, Jacob Ratliff, bailey harrison, Jawaid Ali, Philipp Schlegel, Addy Adesina, Ben Koppenhaver, Lucia Kmecova, Najla Masoodpanah, Corey Fisher, Benjamin Gorko</div><div class='input'><span class='fu'>write_ack</span>(<span class='no'>pnsc</span>)</div><div class='output co'>#&gt; We thank Ben Koppenhaver, Lucia Kmecova, Najla Masoodpanah, Corey Fisher, Benjamin Gorko, Adam John, Michael Lingelbach, Alex Bates, Shahrozia Imtiaz, Mahmoud Elbahnasawi, Arian Jamasb, Nadiya Sharifi, Philipp Ranft, Lisa Marin, Nikolas Drummond, Greg Jefferis, Fiona Love, Sri Murthy, Robert Turnbull, Clement Hallou, Ala Haddad, Amelia Edmondson-Stait, Farzaan Salman, Steven Calle, Bindu Gampah, Davi Bock for contributing 42.8 % of reconstructed arbour cable.</div><div class='input'>
+#&gt; 1  117 160849         Ruairi Roberts 15.6505351 15.65054   auth
+#&gt; 2   12 110296          Jacob Ratliff 10.7317510 26.38229   auth
+#&gt; 3   11  80444        bailey harrison  7.8271649 34.20945   auth
+#&gt; 4   26  74615             Jawaid Ali  7.2600058 41.46946   auth
+#&gt; 5   94  65323       Philipp Schlegel  6.3558984 47.82536   auth
+#&gt; 6   13  62987           Addy Adesina  6.1286067 53.95396   auth
+#&gt; 7   54  42978        Ben Koppenhaver  4.1817400 58.13570    ack
+#&gt; 8   25  41756          Lucia Kmecova  4.0628399 62.19854    ack
+#&gt; 9   53  40140      Najla Masoodpanah  3.9056039 66.10415    ack
+#&gt; 10   4  34990           Corey Fisher  3.4045112 69.50866    ack
+#&gt; 11  61  33675         Benjamin Gorko  3.2765623 72.78522    ack
+#&gt; 12  17  30538              Adam John  2.9713336 75.75655    ack
+#&gt; 13  22  23721     Michael Lingelbach  2.3080426 78.06460    ack
+#&gt; 14 109  21487             Alex Bates  2.0906754 80.15527    ack
+#&gt; 15  50  18728       Shahrozia Imtiaz  1.8222259 81.97750    ack
+#&gt; 16 164  16787    Mahmoud Elbahnasawi  1.6333675 83.61086    ack
+#&gt; 17 167  16297           Arian Jamasb  1.5856907 85.19655    ack
+#&gt; 18  29  16110         Nadiya Sharifi  1.5674957 86.76405    ack
+#&gt; 19  75  14782          Philipp Ranft  1.4382819 88.20233    ack
+#&gt; 20 127  14658             Lisa Marin  1.4262168 89.62855    ack
+#&gt; 21 251  11453       Nikolas Drummond  1.1143717 90.74292    ack
+#&gt; 22  55  10153          Greg Jefferis  0.9878823 91.73080    ack
+#&gt; 23 123   8007             Fiona Love  0.7790775 92.50988    ack
+#&gt; 24  27   7880             Sri Murthy  0.7667204 93.27660    ack
+#&gt; 25 271   6102        Robert Turnbull  0.5937218 93.87032    ack
+#&gt; 26 118   5064         Clement Hallou  0.4927249 94.36305    ack
+#&gt; 27  44   4592             Ala Haddad  0.4467995 94.80985    ack
+#&gt; 28 120   4566 Amelia Edmondson-Stait  0.4442697 95.25412    ack
+#&gt; 29 245   4141         Farzaan Salman  0.4029174 95.65703    ack
+#&gt; 30  76   3986           Steven Calle  0.3878360 96.04487    ack
+#&gt; 31  28   3769           Bindu Gampah  0.3667220 96.41159    ack
+#&gt; 32   2   3320              Davi Bock  0.3230345 96.73463    ack</div><div class='input'><span class='fu'>write_authors</span>(<span class='no'>pnsc</span>, <span class='kw'>auth</span><span class='kw'>=</span><span class='fl'>3.0</span>)</div><div class='output co'>#&gt; Ruairi Roberts, Jacob Ratliff, bailey harrison, Jawaid Ali, Philipp Schlegel, Addy Adesina, Ben Koppenhaver, Lucia Kmecova, Najla Masoodpanah, Corey Fisher, Benjamin Gorko</div><div class='input'><span class='fu'>write_ack</span>(<span class='no'>pnsc</span>)</div><div class='output co'>#&gt; We thank Ben Koppenhaver, Lucia Kmecova, Najla Masoodpanah, Corey Fisher, Benjamin Gorko, Adam John, Michael Lingelbach, Alex Bates, Shahrozia Imtiaz, Mahmoud Elbahnasawi, Arian Jamasb, Nadiya Sharifi, Philipp Ranft, Lisa Marin, Nikolas Drummond, Greg Jefferis, Fiona Love, Sri Murthy, Robert Turnbull, Clement Hallou, Ala Haddad, Amelia Edmondson-Stait, Farzaan Salman, Steven Calle, Bindu Gampah, Davi Bock for contributing 42.8 % of reconstructed arbour cable.</div><div class='input'>
 <span class='no'>pnsc</span><span class='kw'>=</span><span class='fu'>summarise_contribution</span>(<span class='st'>"annotation:^PN$"</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>'synapses'</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -262,6 +274,23 @@ nodes, the second for synapses.</p></td>
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '9af2dfacacefe7a9e5431ffc3dbefbba',
+    indexName: 'elmr',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
   </body>
 </html>

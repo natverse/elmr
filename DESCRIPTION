@@ -38,7 +38,8 @@ Suggests:
     alphashape3d
 URL: https://github.com/jefferis/elmr
 BugReports: https://github.com/jefferis/elmr/issues
-Remotes: jefferis/nat,
+Remotes: natverse/nat,
+    natverse/nat.nblast,
     jefferislab/nat.templatebrains,
     jefferislab/nat.flybrains,
     jefferis/rcatmaid,

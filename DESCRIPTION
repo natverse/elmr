@@ -13,8 +13,8 @@ Description: Provides tools to move between adult brain EM and
     light level data, emphasising the interaction between the CATMAID web
     application and the R Neuroanatomy Toolbox package.
 License: GPL-3
-URL: https://github.com/jefferis/elmr
-BugReports: https://github.com/jefferis/elmr/issues
+URL: https://github.com/natverse/elmr
+BugReports: https://github.com/natverse/elmr/issues
 Depends:
     catmaid (>= 0.7.2),
     nat.flybrains,

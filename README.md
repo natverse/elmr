@@ -1,10 +1,10 @@
 <!-- badges: start -->
-[![Travis-CI Build Status](https://travis-ci.org/jefferis/elmr.svg?branch=master)](https://travis-ci.org/jefferis/elmr)
+[![Travis-CI Build Status](https://travis-ci.org/natverse/elmr.svg?branch=master)](https://travis-ci.org/natverse/elmr)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Docs](https://img.shields.io/badge/docs-100%25-brightgreen.svg)](http://jefferis.github.io/elmr/reference/)
+[![Docs](https://img.shields.io/badge/docs-100%25-brightgreen.svg)](http://natverse.github.io/elmr/reference/)
 [![DOI](https://zenodo.org/badge/52780580.svg)](https://zenodo.org/badge/latestdoi/52780580)
 [![natverse](https://img.shields.io/badge/natverse-Part%20of%20the%20natverse-a241b6)](https://natverse.github.io)
-[![Docs](https://img.shields.io/badge/docs-100%25-brightgreen.svg)](https://jefferis.github.io/elmr/reference/)
+[![Docs](https://img.shields.io/badge/docs-100%25-brightgreen.svg)](https://natverse.github.io/elmr/reference/)
 <!-- badges: end -->
 
 # elmr
@@ -22,7 +22,7 @@ For the impatient ...
 ```r
 # install
 if (!require("devtools")) install.packages("devtools") 
-devtools::install_github("jefferis/elmr")
+devtools::install_github("natverse/elmr")
 
 # use
 library(elmr)
@@ -52,7 +52,7 @@ You can use the **devtools** package to install the development version:
 
 ```r 
 if (!require("devtools")) install.packages("devtools")
-devtools::install_github("jefferis/elmr")
+devtools::install_github("natverse/elmr")
 
 # to transform skeletons to template brains other than JFRC2013, you also need
 # a CMTK installation (see https://github.com/jefferis/nat/#external-dependencies)
@@ -65,7 +65,7 @@ dependencies. To carry out nblast comparisons with [flycircuit.tw](http://flycir
 need to install optional dependencies by installing as follows:
 
 ```
-devtools::install_github("jefferis/elmr", dependencies=TRUE)
+devtools::install_github("natverse/elmr", dependencies=TRUE)
 ```
 
 Note: Windows users need [Rtools](http://www.murdoch-sutherland.com/Rtools/) and
@@ -83,7 +83,7 @@ devtools::update_packages("elmr", dependencies = TRUE)
 ## Acknowledgements
 
 * elmr is part of a suite of R packages based on the [NeuroAnatomy
-Toolbox](http://jefferislab.github.io/)
+Toolbox](http://natverse.github.io/)
 
 * The approach to transforming data between template brains is described in 
   

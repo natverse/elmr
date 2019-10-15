@@ -76,7 +76,7 @@ navbar:
       href: news/index.html
     github:
       icon: fab fa-github fa-lg
-      href: https://github.com/jefferis/elmr
+      href: https://github.com/natverse/elmr
     natverse:
       text: natverse
       href: https://natverse.github.io

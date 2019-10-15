@@ -6,15 +6,14 @@ template:
 reference:
 - title: Package Help
   desc: Provides an overview of key functions and classes
-  contents:
-  - "`elmr-package`"
+  contents: '`elmr-package`'
 - title: Fetching and searching neurons
   desc: Fetch and transform neurons or NBLAST them
   contents:
   - fetchn_fafb
   - nblast_fafb
 - title: Working with neuron structures
-  desc:
+  desc: ~
   contents:
   - simplify_neuron
   - prune_twigs
@@ -24,11 +23,9 @@ reference:
   - stitch_neurons
   - plot3d.ngraph
 - title: Interacting with CATMAID server
-  contents:
-  - open_fafb
+  contents: open_fafb
 - title: Summarising tracer contributions
-  contents:
-  - summarise_contribution
+  contents: summarise_contribution
 - title: Support functions
   desc: Functions intended primarily for developer use
   contents:
@@ -37,7 +34,53 @@ reference:
 - title: Data
   desc: Data objects
   contents:
-    - FAFB
-    - FAFB13.surf
-    - elm.landmarks
-    - dense_core_neurons
+  - FAFB
+  - FAFB13.surf
+  - elm.landmarks
+  - dense_core_neurons
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - tutorials
+    - news
+    - help
+    right:
+    - natverse
+    - github
+  components:
+    home:
+      icon: fas fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    articles:
+      text: Articles
+      menu:
+      - text: Finding Neurons with Multiple Somata
+        href: articles/articles/multiple_somata.html
+      - text: Landmarks defining transforms
+        href: articles/landmarks.html
+      - text: Making Surface Meshes
+        href: articles/making_meshes.html
+      - text: Selecting random synapses
+        href: articles/selecting_random_synapses.html
+      - text: Transforming from FAFB to other templates
+        href: articles/xform_brain.html
+    news:
+      text: Changelog
+      href: news/index.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/jefferis/elmr
+    natverse:
+      text: natverse
+      href: https://natverse.github.io
+    help:
+      text: Help
+      href: SUPPORT.html
+

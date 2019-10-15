@@ -3,6 +3,7 @@
 \docType{package}
 \name{elmr-package}
 \alias{elmr-package}
+\alias{_PACKAGE}
 \alias{elmr}
 \title{Bridge light and EM flybrain datasets}
 \description{
@@ -90,4 +91,17 @@ kcs13.fafb=xform_brain(kcs20[1:3], sample=FCWB, reference=FAFB)
 }
 
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jefferis/elmr}
+  \item Report bugs at \url{https://github.com/jefferis/elmr/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Gregory Jefferis \email{jefferis@gmail.com} (0000-0002-0587-9355)
+
+}
+\keyword{internal}
 \keyword{package}

@@ -1,49 +1,56 @@
-Package: elmr
 Type: Package
-Title: Support for working with light and electron microscopy fly brain data
+Package: elmr
+Title: Support for working with light and electron microscopy
+    fly brain data
 Version: 0.5.6
-Authors@R: person("Gregory","Jefferis", email="jefferis@gmail.com", 
-    role = c("aut", "cre"), comment = c(ORCID = "0000-0002-0587-9355"))
-Description: Provides tools to move between adult brain EM and light level
-    data, emphasising the interaction between the CATMAID web application and
-    the R Neuroanatomy Toolbox package.
+Authors@R: 
+    person(given = "Gregory",
+           family = "Jefferis",
+           role = c("aut", "cre"),
+           email = "jefferis@gmail.com",
+           comment = c(ORCID = "0000-0002-0587-9355"))
+Description: Provides tools to move between adult brain EM and
+    light level data, emphasising the interaction between the CATMAID web
+    application and the R Neuroanatomy Toolbox package.
 License: GPL-3
-LazyData: TRUE
-Depends:
-    R (>= 2.10),
-    nat.flybrains,
-    nat.nblast,
-    catmaid (>= 0.7.2)
-Imports:
-    nat (>= 1.8.8),
-    rgl,
-    nat.templatebrains (>= 0.8),
-    nabor,
-    igraph (>= 1.0),
-    Morpho,
-    stringr,
-    httr,
-    jsonlite,
-    plyr,
-    dplyr
-RoxygenNote: 6.1.1
-Suggests:
-    spelling,
-    flycircuit,
-    foreach,
-    doParallel,
-    testthat,
-    knitr,
-    rmarkdown,
-    alphashape3d
 URL: https://github.com/jefferis/elmr
 BugReports: https://github.com/jefferis/elmr/issues
-Remotes: natverse/nat,
-    natverse/nat.nblast,
-    jefferislab/nat.templatebrains,
-    jefferislab/nat.flybrains,
+Depends:
+    catmaid (>= 0.7.2),
+    nat.flybrains,
+    nat.nblast,
+    R (>= 2.10)
+Imports:
+    dplyr,
+    httr,
+    igraph (>= 1.0),
+    jsonlite,
+    Morpho,
+    nabor,
+    nat (>= 1.8.8),
+    nat.templatebrains (>= 0.8),
+    plyr,
+    rgl,
+    stringr
+Suggests:
+    alphashape3d,
+    doParallel,
+    flycircuit,
+    foreach,
+    knitr,
+    rmarkdown,
+    spelling,
+    testthat
+VignetteBuilder: 
+    knitr
+Remotes: 
+    jefferis/flycircuit,
     jefferis/rcatmaid,
-    jefferis/flycircuit
-VignetteBuilder: knitr
-Language: en-GB
+    jefferislab/nat.flybrains,
+    jefferislab/nat.templatebrains,
+    natverse/nat,
+    natverse/nat.nblast
 Encoding: UTF-8
+Language: en-GB
+LazyData: TRUE
+RoxygenNote: 6.1.1

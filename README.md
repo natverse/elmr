@@ -1,7 +1,11 @@
+<!-- badges: start -->
 [![Travis-CI Build Status](https://travis-ci.org/jefferis/elmr.svg?branch=master)](https://travis-ci.org/jefferis/elmr)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Docs](https://img.shields.io/badge/docs-100%25-brightgreen.svg)](http://jefferis.github.io/elmr/reference/)
 [![DOI](https://zenodo.org/badge/52780580.svg)](https://zenodo.org/badge/latestdoi/52780580)
+[![natverse](https://img.shields.io/badge/natverse-Part%20of%20the%20natverse-a241b6)](https://natverse.github.io)
+[![Docs](https://img.shields.io/badge/docs-100%25-brightgreen.svg)](https://jefferis.github.io/elmr/reference/)
+<!-- badges: end -->
 
 # elmr
 

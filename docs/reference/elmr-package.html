@@ -8,21 +8,25 @@
 
 <title>Bridge light and EM flybrain datasets — elmr-package • elmr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -36,14 +40,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Bridge light and EM flybrain datasets — elmr-package" />
 
+<meta property="og:title" content="Bridge light and EM flybrain datasets — elmr-package" />
 <meta property="og:description" content="elmr builds on the nat and catmaid
 packages to provide tools to read, analyse, plot, transform and convert
 neuroanatomical data, especially as it relates to whole brain EM volumes
 generated at the HHMI Janelia Research Campus (groups of Davi Bock, Stephan
 Saalfeld and many collaborators)." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -55,6 +60,7 @@ Saalfeld and many collaborators)." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -73,7 +79,7 @@ Saalfeld and many collaborators)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.7</span>
       </span>
     </div>
 
@@ -81,7 +87,7 @@ Saalfeld and many collaborators)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,18 +121,23 @@ Saalfeld and many collaborators)." />
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../SUPPORT.html">Help</a>
+</li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/jefferis/elmr">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://natverse.github.io">natverse</a>
+</li>
+<li>
+  <a href="https://github.com/natverse/elmr">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -137,37 +148,39 @@ Saalfeld and many collaborators)." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Bridge light and EM flybrain datasets</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jefferis/elmr/blob/master/R/elmr-package.R'><code>R/elmr-package.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/natverse/elmr/blob/master/R/elmr-package.R'><code>R/elmr-package.R</code></a></small>
     <div class="hidden name"><code>elmr-package.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
     <p><b><code>elmr</code></b> builds on the <b><code>nat</code></b> and <b><code>catmaid</code></b>
 packages to provide tools to read, analyse, plot, transform and convert
 neuroanatomical data, especially as it relates to whole brain EM volumes
 generated at the HHMI Janelia Research Campus (groups of Davi Bock, Stephan
 Saalfeld and many collaborators).</p>
-    
     </div>
 
-        
+
+
     <h2 class="hasAnchor" id="interesting-functions-data"><a class="anchor" href="#interesting-functions-data"></a>Interesting functions/data</h2>
 
     
-    <p></p><ul>
-<li><p><code><a href='https://www.rdocumentation.org/packages/nat.templatebrains/topics/xform_brain'>xform_brain</a></code></p>
+
+
+<p></p><ul>
+<li><p><code><a href='https://rdrr.io/pkg/nat.templatebrains/man/xform_brain.html'>xform_brain</a></code></p>
 <p>allows you to transform FAFB data into a large number of other template
   brain spaces by making use of the <code>nat.templatebrains</code> and
   <code>nat.flybrains</code> packages. The ability to move beyond the
-  <code><a href='https://www.rdocumentation.org/packages/nat.flybrains/topics/JFRC2013'>JFRC2013</a></code> template brain depends on having a
-  functional CMTK installation. See <code><a href='https://www.rdocumentation.org/packages/nat/topics/cmtk.bindir'>cmtk.bindir</a></code> for more
+  <code><a href='https://rdrr.io/pkg/nat.flybrains/man/JFRC2013.html'>JFRC2013</a></code> template brain depends on having a
+  functional CMTK installation. See <code><a href='https://rdrr.io/pkg/nat/man/cmtk.bindir.html'>cmtk.bindir</a></code> for more
   information and advice about installation.</p></li>
 <li><p><code><a href='fetchn_fafb.html'>fetchn_fafb</a></code> allows you to fetch FAFB CATMAID tracings
   and transform to a new template.</p></li>
@@ -179,12 +192,12 @@ Saalfeld and many collaborators).</p>
   registered GAL4 line.</p></li>
 <li><p><code><a href='stitch_neurons.html'>stitch_neurons</a></code> allows neuron fragments to be stitched
   together reasonably intelligently.</p></li>
-<li><p><code><a href='FAFB.html'>FAFB</a></code> a <code><a href='https://www.rdocumentation.org/packages/nat.templatebrains/topics/templatebrain'>templatebrain</a></code>
+<li><p><code><a href='FAFB.html'>FAFB</a></code> a <code><a href='https://rdrr.io/pkg/nat.templatebrains/man/templatebrain.html'>templatebrain</a></code>
   object specifying the dimensions of the FAFB EM volume.</p></li>
 <li><p><code><a href='elm.landmarks.html'>elm.landmarks</a></code> a set of landmarks that can define a thin
   plate spline transform mapping FAFB to light level template brains.</p></li>
 </ul>
-    
+
     <h2 class="hasAnchor" id="authentication"><a class="anchor" href="#authentication"></a>Authentication</h2>
 
     <p>Interacting with a CATMAID server will normally
@@ -192,8 +205,7 @@ Saalfeld and many collaborators).</p>
   <a href='https://github.com/jefferis/rcatmaid#Authentication'>https://github.com/jefferis/rcatmaid#Authentication</a> for details of
   how to set up authentication. If you regularly use a particular CATMAID
   server it is recommended to put authentication in your
-  <code><a href='https://www.rdocumentation.org/packages/base/topics/Startup'>Rprofile</a></code> file.</p>
-    
+  <code><a href='https://rdrr.io/r/base/Startup.html'>Rprofile</a></code> file.</p>
     <h2 class="hasAnchor" id="options"><a class="anchor" href="#options"></a>Options</h2>
 
     <p>There is one package option:</p><ul>
@@ -201,44 +213,51 @@ Saalfeld and many collaborators).</p>
   parallel NBLAST You will need to ensure that the doParallel package (a
   suggested but not strict dependency of elmr is installed)</p></li>
 </ul>
-    <p>You can set this option in your <code><a href='https://www.rdocumentation.org/packages/base/topics/Startup'>Rprofile</a></code> file.</p>
-    
+
+<p>You can set this option in your <code><a href='https://rdrr.io/r/base/Startup.html'>Rprofile</a></code> file.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Useful links:</p><ul>
+<li><p><a href='https://github.com/jefferis/elmr'>https://github.com/jefferis/elmr</a></p></li>
+<li><p>Report bugs at <a href='https://github.com/jefferis/elmr/issues'>https://github.com/jefferis/elmr/issues</a></p></li>
+</ul>
+
+</div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># position of antennal lobe glomeruli "V" in JFRC2013 template brain</span>
-<span class='no'>vgloms.jfrc2013</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>X</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>316</span>,<span class='fl'>229</span>),
-  <span class='kw'>Y</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>143</span>, <span class='fl'>139</span>),
-  <span class='kw'>Z</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>26</span>,<span class='fl'>22</span>),
-  <span class='kw'>row.names</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"V_L"</span>, <span class='st'>"V_R"</span>))
+<span class='no'>vgloms.jfrc2013</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>X</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>316</span>,<span class='fl'>229</span>),
+  <span class='kw'>Y</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>143</span>, <span class='fl'>139</span>),
+  <span class='kw'>Z</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>26</span>,<span class='fl'>22</span>),
+  <span class='kw'>row.names</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"V_L"</span>, <span class='st'>"V_R"</span>))
 <span class='co'># Convert to FAFB12 coordinates</span>
 <span class='fu'>xform_brain</span>(<span class='no'>vgloms.jfrc2013</span>, <span class='kw'>sample</span> <span class='kw'>=</span> <span class='no'>JFRC2013</span>, <span class='kw'>reference</span> <span class='kw'>=</span> <span class='no'>FAFB</span>)</div><div class='output co'>#&gt;            X        Y        Z
 #&gt; V_L 580356.0 291205.7 61258.68
 #&gt; V_R 465140.9 278772.5 63947.43</div><div class='input'>
 <span class='co'># Show state of elmr package options</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>options</a></span>()[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/grep'>grep</a></span>(<span class='st'>'^elmr'</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>options</a></span>()))]</div><div class='output co'>#&gt; named list()</div><div class='input'>
-</div><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>()[<span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grep</a></span>(<span class='st'>'^elmr'</span>, <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>()))]</div><div class='output co'>#&gt; named list()</div><div class='input'>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Conversion of neurons from FlyCircuit template</span>
 <span class='co'># NB this conversion depends on a full install of nat.flybrains and CMTK</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>nat</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>nat</span>)
 <span class='no'>kcs13.fafb</span><span class='kw'>=</span><span class='fu'>xform_brain</span>(<span class='no'>kcs20</span>[<span class='fl'>1</span>:<span class='fl'>3</span>], <span class='kw'>sample</span><span class='kw'>=</span><span class='no'>FCWB</span>, <span class='kw'>reference</span><span class='kw'>=</span><span class='no'>FAFB</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
       <li><a href="#interesting-functions-data">Interesting functions/data</a></li>
-
       <li><a href="#authentication">Authentication</a></li>
-
       <li><a href="#options">Options</a></li>
-      
+      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
+    <h2>Author</h2>
+    <p><strong>Maintainer</strong>: Gregory Jefferis <a href='mailto:jefferis@gmail.com'>jefferis@gmail.com</a> (0000-0002-0587-9355)</p>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -246,8 +265,9 @@ Saalfeld and many collaborators).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
    </div>
 
@@ -270,6 +290,8 @@ Saalfeld and many collaborators).</p>
 </script>
 
 
+
   </body>
 </html>
+
 

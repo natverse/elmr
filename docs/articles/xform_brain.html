@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Transforming from FAFB to other templates • elmr</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Transforming from FAFB to other templates">
@@ -32,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.7</span>
       </span>
     </div>
 
@@ -40,7 +41,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -74,16 +75,22 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../SUPPORT.html">Help</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/jefferis/elmr">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://natverse.github.io">natverse</a>
+</li>
+<li>
+  <a href="https://github.com/natverse/elmr">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
-<form class="navbar-form navbar-right" role="search">
+<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
@@ -97,15 +104,16 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Transforming from FAFB to other templates</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2019-08-01</h4>
+            <h4 class="date">2019-10-19</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/xform_brain.Rmd"><code>vignettes/xform_brain.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/natverse/elmr/blob/master/vignettes/xform_brain.Rmd"><code>vignettes/xform_brain.Rmd</code></a></small>
       <div class="hidden name"><code>xform_brain.Rmd</code></div>
 
     </div>
@@ -121,27 +129,27 @@
 <a href="#setup" class="anchor"></a>Setup</h3>
 <p>In order to run some of the examples we need to ensure that we have CMTK available and the <a href="https://github.com/jefferislab/nat.flybrains">nat.flybrains</a> package fully installed to provide bridging registrations. We will make some of our examples run conditionally based on this.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">full.bridging=<span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(nat)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="cf">if</span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nchar">nzchar</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/nat/topics/cmtk.bindir">cmtk.bindir</a></span>())){</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="st">"CMTK not available! Some examples will not run."</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nat)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="cf">if</span>(<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/nchar.html">nzchar</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/nat/man/cmtk.bindir.html">cmtk.bindir</a></span>())){</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="st">"CMTK not available! Some examples will not run."</span>)</a>
 <a class="sourceLine" id="cb1-5" data-line-number="5">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">  djrok=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/try">try</a></span>(nat.flybrains<span class="op">::</span><span class="kw">download_jefferislab_registrations</span>())</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">  <span class="cf">if</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">inherits</a></span>(djrok, <span class="st">"try-error"</span>)) </a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="st">"Unable to download bridging registrations! Some examples will not run."</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">  djrok=<span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(nat.flybrains<span class="op">::</span><span class="kw">download_jefferislab_registrations</span>())</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">  <span class="cf">if</span>(<span class="kw"><a href="https://rdrr.io/r/base/class.html">inherits</a></span>(djrok, <span class="st">"try-error"</span>)) </a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">    <span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="st">"Unable to download bridging registrations! Some examples will not run."</span>)</a>
 <a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="cf">else</span> full.bridging=<span class="ot">TRUE</span></a>
 <a class="sourceLine" id="cb1-10" data-line-number="10">}</a>
 <a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co"># set up for 3d plots based on rgl package</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/hook_rgl">setupKnitr</a></span>()</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">rgl<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rgl/man/hook_rgl.html">setupKnitr</a></span>()</a>
 <a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co"># frontal view</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.6</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rgl/man/matrices.html">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.6</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="available-template-brains" class="section level2">
 <h2 class="hasAnchor">
 <a href="#available-template-brains" class="anchor"></a>Available Template Brains</h2>
-<p>We have support for a significant number of template brains at this point. <strong>elmr</strong> itself adds support for transforms between different assemblies of the <code>FAFB</code> EM dataset and a single light level dataset (<code>JFRC2013</code>) - see the <a href="landmarks.html">Landmarks vignette</a> for details about the origin of this. You can plot a full set of the known connections using the <code><a href="https://www.rdocumentation.org/packages/nat.templatebrains/topics/shortest_bridging_seq">nat.templatebrains::bridging_graph</a></code> function.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(nat.templatebrains)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/nat.templatebrains/topics/shortest_bridging_seq">bridging_graph</a></span>(), <span class="dt">vertex.size=</span><span class="dv">15</span>)</a></code></pre></div>
+<p>We have support for a significant number of template brains at this point. <strong>elmr</strong> itself adds support for transforms between different assemblies of the <code>FAFB</code> EM dataset and a single light level dataset (<code>JFRC2013</code>) - see the <a href="landmarks.html">Landmarks vignette</a> for details about the origin of this. You can plot a full set of the known connections using the <code><a href="https://rdrr.io/pkg/nat.templatebrains/man/shortest_bridging_seq.html">nat.templatebrains::bridging_graph</a></code> function.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nat.templatebrains)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/nat.templatebrains/man/shortest_bridging_seq.html">bridging_graph</a></span>(), <span class="dt">vertex.size=</span><span class="dv">15</span>)</a></code></pre></div>
 <p><img src="xform_brain_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
 <p>Note that there are multiple <code>FAFB</code> spaces based on different assemblies of the EM image data. The <code>FAFB</code> space always refers to the most recent assembly.</p>
 </div>
@@ -149,13 +157,13 @@
 <h2 class="hasAnchor">
 <a href="#example---3d-locations" class="anchor"></a>Example - 3D locations</h2>
 <p>As our first example, we take the position of the centre of the left and right olfactory V glomeruli (CO2 responsive). We transform these from <code>JFRC2013</code> to <code>FAFB</code> space.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(elmr)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">vgloms.jfrc2013=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">X=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">316</span>,<span class="dv">229</span>),</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">Y=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">143</span>, <span class="dv">139</span>),</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">Z=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">26</span>,<span class="dv">22</span>),</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">row.names=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"V_L"</span>, <span class="st">"V_R"</span>))</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(elmr)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">vgloms.jfrc2013=<span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">X=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">316</span>,<span class="dv">229</span>),</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">Y=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">143</span>, <span class="dv">139</span>),</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">Z=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">26</span>,<span class="dv">22</span>),</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">row.names=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"V_L"</span>, <span class="st">"V_R"</span>))</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co"># Convert to FAFB13 coordinates</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/nat.templatebrains/topics/xform_brain">xform_brain</a></span>(vgloms.jfrc2013, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB)</a></code></pre></div>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw"><a href="https://rdrr.io/pkg/nat.templatebrains/man/xform_brain.html">xform_brain</a></span>(vgloms.jfrc2013, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB)</a></code></pre></div>
 <pre><code>##            X        Y        Z
 ## V_L 580356.0 291205.7 61258.68
 ## V_R 465140.9 278772.5 63947.43</code></pre>
@@ -167,8 +175,8 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># Conversion of neurons from the IS2 light level template brain</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co"># NB this conversion depends on a full install of nat.flybrains and CMTK</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co"># ensure that we have all the relevant bridging registrations downloaded</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">Cell07PNs13.fafb=<span class="kw"><a href="https://www.rdocumentation.org/packages/nat.templatebrains/topics/xform_brain">xform_brain</a></span>(Cell07PNs[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">sample=</span>IS2, <span class="dt">reference=</span>FAFB)</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(Cell07PNs13.fafb)</a></code></pre></div>
+<a class="sourceLine" id="cb5-4" data-line-number="4">Cell07PNs13.fafb=<span class="kw"><a href="https://rdrr.io/pkg/nat.templatebrains/man/xform_brain.html">xform_brain</a></span>(Cell07PNs[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">sample=</span>IS2, <span class="dt">reference=</span>FAFB)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(Cell07PNs13.fafb)</a></code></pre></div>
 <p><img src="xform_brain_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
 <div id="neurons-surface" class="section level2">
@@ -176,18 +184,18 @@
 <a href="#neurons-surface" class="anchor"></a>Neurons + Surface</h2>
 <p>We can transform neurons and surfaces in order to compare EM tracings with light derived meshes describing the whole brain or neuropil subdomains.</p>
 <p>We’ll start with an example where we convert a brain surface mesh to FAFB space and then plot a pair of sample neurons distributed with <strong>elmr</strong>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">FAFBJFRC2013.surf=<span class="kw"><a href="https://www.rdocumentation.org/packages/nat.templatebrains/topics/xform_brain">xform_brain</a></span>(JFRC2013.surf, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB)</a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">FAFBJFRC2013.surf=<span class="kw"><a href="https://rdrr.io/pkg/nat.templatebrains/man/xform_brain.html">xform_brain</a></span>(JFRC2013.surf, <span class="dt">sample =</span> JFRC2013, <span class="dt">reference =</span> FAFB)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co"># NB plot3d.templaterain gives nice defaults for brain surface plot but assumes</span></a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co"># that the surface object is called XXXX.surf</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/nat/topics/plot3d">plot3d</a></span>(FAFBJFRC2013.surf, <span class="dt">alpha=</span>.<span class="dv">3</span>, <span class="dt">col=</span><span class="st">'grey'</span>)</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/nat/topics/plot3d">plot3d</a></span>(dense_core_neurons, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">soma=</span><span class="dv">3000</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/pkg/nat/man/plot3d.html">plot3d</a></span>(FAFBJFRC2013.surf, <span class="dt">alpha=</span>.<span class="dv">3</span>, <span class="dt">col=</span><span class="st">'grey'</span>)</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/pkg/nat/man/plot3d.html">plot3d</a></span>(dense_core_neurons, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">soma=</span><span class="dv">3000</span>)</a></code></pre></div>
 <p><img src="xform_brain_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>There are also surface objects available for individual neuropil domains that have been pre-transformed using this approach:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">FAFBNP.surf=<span class="kw"><a href="https://www.rdocumentation.org/packages/nat.templatebrains/topics/xform_brain">xform_brain</a></span>(JFRC2NP.surf, <span class="dt">sample =</span> JFRC2, <span class="dt">reference =</span> FAFB)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">FAFBNP.surf=<span class="kw"><a href="https://rdrr.io/pkg/nat.templatebrains/man/xform_brain.html">xform_brain</a></span>(JFRC2NP.surf, <span class="dt">sample =</span> JFRC2, <span class="dt">reference =</span> FAFB)</a></code></pre></div>
 <p>and bundled with the <code>elmr</code> package.</p>
 <p>We can plot neuropil subsets as follows:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/nat/topics/plot3d">plot3d</a></span>(FAFBNP.surf, <span class="st">"LH"</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/nat/topics/plot3d">plot3d</a></span>(dense_core_neurons, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">soma=</span><span class="dv">3000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/nat/man/plot3d.html">plot3d</a></span>(FAFBNP.surf, <span class="st">"LH"</span>, <span class="dt">alpha=</span><span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/pkg/nat/man/plot3d.html">plot3d</a></span>(dense_core_neurons, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">soma=</span><span class="dv">3000</span>)</a></code></pre></div>
 <p><img src="xform_brain_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 </div>
 <div id="default-sample-space" class="section level2">
@@ -195,11 +203,11 @@
 <a href="#default-sample-space" class="anchor"></a>Default sample space</h2>
 <p>nat.templatebrains and elmr now provide support for tagging objects e.g. neurons/surfaces with a template space. You can get / set this using the <code>regtemplate</code> function. We can repeat the earlier example, this time</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># set the template space for the input coordinates</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/nat.templatebrains/topics/regtemplate">regtemplate</a></span>(vgloms.jfrc2013)=JFRC2013</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/pkg/nat.templatebrains/man/regtemplate.html">regtemplate</a></span>(vgloms.jfrc2013)=JFRC2013</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co"># now we do not need to specify it in the xform_brain call</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">vgloms.fafb=<span class="kw"><a href="https://www.rdocumentation.org/packages/nat.templatebrains/topics/xform_brain">xform_brain</a></span>(vgloms.jfrc2013, <span class="dt">reference =</span> FAFB)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">vgloms.fafb=<span class="kw"><a href="https://rdrr.io/pkg/nat.templatebrains/man/xform_brain.html">xform_brain</a></span>(vgloms.jfrc2013, <span class="dt">reference =</span> FAFB)</a>
 <a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co"># check ouput space</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/nat.templatebrains/topics/regtemplate">regtemplate</a></span>(vgloms.fafb)</a></code></pre></div>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/pkg/nat.templatebrains/man/regtemplate.html">regtemplate</a></span>(vgloms.fafb)</a></code></pre></div>
 <pre><code>## === Template Brain === 
 ## Name: FAFB14 
 ## Short Name: FAFB14 
@@ -220,6 +228,7 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -237,13 +246,15 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Gregory Jefferis.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 

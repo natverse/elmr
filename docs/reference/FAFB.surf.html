@@ -8,21 +8,25 @@
 
 <title>FAFB brain and neuropil surface objects — FAFB.surf • elmr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -36,8 +40,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="FAFB brain and neuropil surface objects — FAFB.surf" />
 
+<meta property="og:title" content="FAFB brain and neuropil surface objects — FAFB.surf" />
 <meta property="og:description" content="FAFB13.surf describes the neuropil surface of the FAFB13
   brain.
 FAFB13NP.surf is a surface object for the Ito et al
@@ -54,6 +58,7 @@ FAFBNP.surf is a surface object for the Ito et al (2014)
 
 
 
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -62,6 +67,7 @@ FAFBNP.surf is a surface object for the Ito et al (2014)
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -80,7 +86,7 @@ FAFBNP.surf is a surface object for the Ito et al (2014)
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.7</span>
       </span>
     </div>
 
@@ -88,7 +94,7 @@ FAFBNP.surf is a surface object for the Ito et al (2014)
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -122,18 +128,23 @@ FAFBNP.surf is a surface object for the Ito et al (2014)
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../SUPPORT.html">Help</a>
+</li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/jefferis/elmr">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://natverse.github.io">natverse</a>
+</li>
+<li>
+  <a href="https://github.com/natverse/elmr">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -144,18 +155,18 @@ FAFBNP.surf is a surface object for the Ito et al (2014)
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>FAFB brain and neuropil surface objects</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jefferis/elmr/blob/master/R/elmr-data.R'><code>R/elmr-data.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/natverse/elmr/blob/master/R/elmr-data.R'><code>R/elmr-data.R</code></a></small>
     <div class="hidden name"><code>FAFB.surf.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
     <p><code>FAFB13.surf</code> describes the neuropil surface of the FAFB13
   brain.</p>
 <p><code>FAFB13NP.surf</code> is a surface object for the Ito et al
@@ -168,15 +179,15 @@ FAFBNP.surf is a surface object for the Ito et al (2014)
   (2014) neuropil regions in <code><a href='FAFB.html'>FAFB14</a></code> space</p>
 <p><code>FAFBNP.surf</code> is a surface object for the Ito et al (2014)
   neuropil regions in the default FAFB space (currently <code><a href='FAFB.html'>FAFB14</a></code>)</p>
-    
     </div>
 
-        
+
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>These neuropil regions are generated from the
-  <code><a href='https://www.rdocumentation.org/packages/nat.flybrains/topics/JFRC2'>JFRC2.surf</a></code> and
-  <code><a href='https://www.rdocumentation.org/packages/nat.flybrains/topics/JFRC2NP.surf'>JFRC2NP.surf</a></code> objects, respectively. Because
+  <code><a href='https://rdrr.io/pkg/nat.flybrains/man/JFRC2.html'>JFRC2.surf</a></code> and
+  <code><a href='https://rdrr.io/pkg/nat.flybrains/man/JFRC2NP.surf.html'>JFRC2NP.surf</a></code> objects, respectively. Because
   they are not defined from FAFB itself but transformed using bridging
   registrations, they are only as good as those bridging registrations. In
   particular although the <code><a href='elm.landmarks.html'>elm.landmarks</a></code> used to bridge
@@ -187,11 +198,9 @@ FAFBNP.surf is a surface object for the Ito et al (2014)
   significantly improved the situation.</p>
 <p>The acronyms for the neuropil regions are those used in Ito et al. 2014 and
   can also be looked up at <a href='http://virtualflybrain.org'>http://virtualflybrain.org</a>.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='FAFB.html'>FAFB</a></code> template brain</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>boundingbox</span>(<span class='no'>FAFB14.surf</span>)</div><div class='output co'>#&gt;          [,1]     [,2]     [,3]
@@ -210,7 +219,7 @@ FAFBNP.surf is a surface object for the Ito et al (2014)
 #&gt; [55] "MB_VL_L"  "MB_ML_L"  "FLA_L"    "LOP_L"    "AL_L"     "ME_L"    
 #&gt; [61] "SLP_L"    "SIP_L"    "SMP_L"    "AVLP_L"   "PVLP_L"   "WED_L"   
 #&gt; [67] "PLP_L"    "AOTU_L"   "GOR_L"    "MB_CA_L"  "SPS_L"    "IPS_L"   
-#&gt; [73] "SCL_L"    "EPA_L"    "GA_L"    </div><span class='co'># NOT RUN {</span>
+#&gt; [73] "SCL_L"    "EPA_L"    "GA_L"    </div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'>plot3d</span>(<span class='no'>FAFB14.surf</span>)
 <span class='fu'>clear3d</span>()
 <span class='co'># a short cut which plots the surface in semi-transparent grey.</span>
@@ -221,21 +230,19 @@ FAFBNP.surf is a surface object for the Ito et al (2014)
 <span class='co'># plot both antennal lobe surfaces (second arg is regex if no exact match)</span>
 <span class='co'># note use of initial anchor (^) to avoid matches to LAL</span>
 <span class='fu'>plot3d</span>(<span class='no'>FAFB14NP.surf</span>, <span class='st'>"^AL"</span>, <span class='kw'>alpha</span><span class='kw'>=</span><span class='fl'>0.4</span>)
-<span class='co'># }</span></pre>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
       <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -243,8 +250,9 @@ FAFBNP.surf is a surface object for the Ito et al (2014)
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
    </div>
 
@@ -267,6 +275,8 @@ FAFBNP.surf is a surface object for the Ito et al (2014)
 </script>
 
 
+
   </body>
 </html>
+
 

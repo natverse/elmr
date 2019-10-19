@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Selecting random synapses • elmr</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Selecting random synapses">
@@ -32,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.7</span>
       </span>
     </div>
 
@@ -40,7 +41,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -74,16 +75,22 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../SUPPORT.html">Help</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/jefferis/elmr">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://natverse.github.io">natverse</a>
+</li>
+<li>
+  <a href="https://github.com/natverse/elmr">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
-<form class="navbar-form navbar-right" role="search">
+<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
@@ -97,15 +104,16 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Selecting random synapses</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2019-08-01</h4>
+            <h4 class="date">2019-10-19</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/jefferis/elmr/blob/master/vignettes/selecting_random_synapses.Rmd"><code>vignettes/selecting_random_synapses.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/natverse/elmr/blob/master/vignettes/selecting_random_synapses.Rmd"><code>vignettes/selecting_random_synapses.Rmd</code></a></small>
       <div class="hidden name"><code>selecting_random_synapses.Rmd</code></div>
 
     </div>
@@ -120,11 +128,11 @@
 <h3 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h3>
 <p>First load main packages</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(elmr)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(elmr)</a></code></pre></div>
 <pre><code>## Loading required package: nat.flybrains</code></pre>
 <pre><code>## Loading required package: nat.templatebrains</code></pre>
-<pre><code>## Loading required package: rgl</code></pre>
 <pre><code>## Loading required package: nat</code></pre>
+<pre><code>## Loading required package: rgl</code></pre>
 <pre><code>## Registered S3 method overwritten by 'nat':
 ##   method             from
 ##   as.mesh3d.ashape3d rgl</code></pre>
@@ -136,35 +144,35 @@
 <pre><code>## Loading required package: nat.nblast</code></pre>
 <pre><code>## Loading required package: catmaid</code></pre>
 <pre><code>## Loading required package: httr</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(catmaid)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(nat)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(catmaid)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nat)</a></code></pre></div>
 <p>In order to run some of the examples we need to ensure that we:</p>
 <ul>
 <li>can login to the FAFB CATMAID server</li>
 </ul>
 <p>We will most our examples run conditionally based on this.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">cl=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/try">try</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/catmaid/topics/catmaid_login">catmaid_login</a></span>())</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">catmaid_available=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">inherits</a></span>(cl, <span class="st">"catmaid_connection"</span>)</a>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">cl=<span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/catmaid/man/catmaid_login.html">catmaid_login</a></span>())</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">catmaid_available=<span class="kw"><a href="https://rdrr.io/r/base/class.html">inherits</a></span>(cl, <span class="st">"catmaid_connection"</span>)</a>
 <a class="sourceLine" id="cb13-3" data-line-number="3">run_vignette=catmaid_available</a>
 <a class="sourceLine" id="cb13-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co"># set up for 3d plots based on rgl package</span></a>
-<a class="sourceLine" id="cb13-6" data-line-number="6">rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/hook_rgl">setupKnitr</a></span>()</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">rgl<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rgl/man/hook_rgl.html">setupKnitr</a></span>()</a>
 <a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co"># frontal view</span></a>
-<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rgl/topics/matrices">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.6</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="kw">view3d</span>(<span class="dt">userMatrix=</span>rgl<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rgl/man/matrices.html">rotationMatrix</a></span>(<span class="dt">angle =</span> pi, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">zoom=</span><span class="fl">0.6</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="selecting-synapses" class="section level2">
 <h2 class="hasAnchor">
 <a href="#selecting-synapses" class="anchor"></a>Selecting synapses</h2>
 <p>We’re going to look at synapses downstream of DA1 PNs</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">cda1=<span class="kw"><a href="https://www.rdocumentation.org/packages/catmaid/topics/catmaid_get_connectors_between">catmaid_get_connectors_between</a></span>(<span class="st">'name:PN Glomerulus DA1'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">cda1=<span class="kw"><a href="https://rdrr.io/pkg/catmaid/man/catmaid_get_connectors_between.html">catmaid_get_connectors_between</a></span>(<span class="st">'name:PN Glomerulus DA1'</span>)</a></code></pre></div>
 <p>If we wanted to get the upstream synapses, we could do that as follows:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">cda1.in=<span class="kw"><a href="https://www.rdocumentation.org/packages/catmaid/topics/catmaid_get_connectors_between">catmaid_get_connectors_between</a></span>(<span class="dt">post_skids =</span> <span class="st">'name:PN Glomerulus DA1'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">cda1.in=<span class="kw"><a href="https://rdrr.io/pkg/catmaid/man/catmaid_get_connectors_between.html">catmaid_get_connectors_between</a></span>(<span class="dt">post_skids =</span> <span class="st">'name:PN Glomerulus DA1'</span>)</a></code></pre></div>
 <p>We then want to select synapses within a neuropil region, the lateral horn. The <code>elmr</code> package now has a neuropil surface object <code>FAFBNP13.surf</code> that we can use for this purpose. To look for points inside the right LH, we can extract just that region from the surface object containing all neuropils as follows:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># convert subset of regions to rgl::mesh3d object</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">lhr=<span class="kw"><a href="https://www.rdocumentation.org/packages/nat/topics/as.mesh3d">as.mesh3d</a></span>(FAFBNP.surf, <span class="st">'LH_R'</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb16-2" data-line-number="2">lhr=<span class="kw"><a href="https://rdrr.io/pkg/nat/man/as.mesh3d.html">as.mesh3d</a></span>(FAFBNP.surf, <span class="st">'LH_R'</span>)</a></code></pre></div>
 <p>Now we can select just those synapses within the LH volume, by piping the XYZ positions of the presynaptic connector node to the <code>pointsinside</code> function.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a></code></pre></div>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:nat':
@@ -178,7 +186,7 @@
 ##     intersect, setdiff, setequal, union</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># make a new logical column indicating if connector is inside LH</span></a>
 <a class="sourceLine" id="cb22-2" data-line-number="2">cda1<span class="op">$</span>inlh=<span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(cda1, connector_x<span class="op">:</span>connector_z) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/nat/topics/pointsinside">pointsinside</a></span>(<span class="dt">surf =</span> lhr)</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/nat/man/pointsinside.html">pointsinside</a></span>(<span class="dt">surf =</span> lhr)</a>
 <a class="sourceLine" id="cb22-4" data-line-number="4">cda1 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb22-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(inlh) -&gt;</a>
 <a class="sourceLine" id="cb22-6" data-line-number="6"><span class="st">  </span>cda1.lh</a></code></pre></div>
@@ -188,58 +196,59 @@
 <a class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_frac</a></span>(<span class="dt">size=</span><span class="fl">0.1</span>) -&gt;</a>
 <a class="sourceLine" id="cb23-4" data-line-number="4">random_syn</a></code></pre></div>
 <p>We can then construct CATMAID URLs for all those synapses:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">synapse_urls=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">sapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(random_syn), </a>
-<a class="sourceLine" id="cb24-2" data-line-number="2">       <span class="cf">function</span>(i) <span class="kw"><a href="../reference/open_fafb.html">open_fafb</a></span>(random_syn[i, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"post_node_x"</span>, <span class="st">"post_node_y"</span>, <span class="st">"post_node_z"</span>)],</a>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">synapse_urls=<span class="kw"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span>(<span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(random_syn), </a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">       <span class="cf">function</span>(i) <span class="kw"><a href="../reference/open_fafb.html">open_fafb</a></span>(random_syn[i, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"post_node_x"</span>, <span class="st">"post_node_y"</span>, <span class="st">"post_node_z"</span>)],</a>
 <a class="sourceLine" id="cb24-3" data-line-number="3">            <span class="dt">active_skeleton_id =</span> random_syn<span class="op">$</span>post_skid[i],</a>
 <a class="sourceLine" id="cb24-4" data-line-number="4">            <span class="dt">active_node_id =</span> random_syn<span class="op">$</span>post_node_id[i], <span class="dt">open =</span> F)</a>
 <a class="sourceLine" id="cb24-5" data-line-number="5">)</a></code></pre></div>
 <p>That was a little bit clunky but we basically feed the <code>open_fafb</code> function the data one row at a time centering the URL on the postsynaptic node and selecting that node in the CATMAID viewer.</p>
 <p>So here are the results</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/nat/topics/neuronlist-dataframe-methods">head</a></span>(synapse_urls)</a></code></pre></div>
-<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=156320&amp;yp=166961&amp;xp=361014&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=497506&amp;active_node_id=2596208"  
-## [2] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=150720&amp;yp=157526&amp;xp=356405&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=1897652&amp;active_node_id=6732898" 
-## [3] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=148240&amp;yp=157342&amp;xp=354327&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=5842191&amp;active_node_id=19606946"
-## [4] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=148120&amp;yp=160585&amp;xp=358070&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=487663&amp;active_node_id=2574164"  
-## [5] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=149280&amp;yp=147960&amp;xp=356525&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=486066&amp;active_node_id=2571242"  
-## [6] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=152480&amp;yp=163274&amp;xp=360735&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=496601&amp;active_node_id=2595320"</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/nat/man/neuronlist-dataframe-methods.html">head</a></span>(synapse_urls)</a></code></pre></div>
+<pre><code>## [1] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=156400&amp;yp=167121&amp;xp=360787&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=2402951&amp;active_node_id=25302620"
+## [2] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=159880&amp;yp=151292&amp;xp=370141&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=479276&amp;active_node_id=2555913"  
+## [3] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=155160&amp;yp=158290&amp;xp=346502&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=485631&amp;active_node_id=2570810"  
+## [4] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=154320&amp;yp=159185&amp;xp=362571&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=496507&amp;active_node_id=2595237"  
+## [5] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=146840&amp;yp=146084&amp;xp=357487&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=487020&amp;active_node_id=2572798"  
+## [6] "https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=148080&amp;yp=159490&amp;xp=356842&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=493109&amp;active_node_id=2590174"</code></pre>
 </div>
 <div id="using-the-results" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-the-results" class="anchor"></a>Using the results</h2>
 <p>Let’s make a plot to get an idea of where those synapses are: First fetch the full structure of the seed PN</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">seedpn=<span class="kw"><a href="https://www.rdocumentation.org/packages/catmaid/topics/read.neuron.catmaid">read.neuron.catmaid</a></span>(<span class="dv">61221</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">seedpn=<span class="kw"><a href="https://rdrr.io/pkg/catmaid/man/read.neuron.catmaid.html">read.neuron.catmaid</a></span>(<span class="dv">61221</span>)</a></code></pre></div>
 <p>Now plot the selected and unselected synapses</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># find bounding box containing selected synapses</span></a>
-<a class="sourceLine" id="cb28-2" data-line-number="2">synapse_bounds=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/apply">apply</a></span>(random_syn[,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"post_node_x"</span>, <span class="st">"post_node_y"</span>, <span class="st">"post_node_z"</span>)],<span class="dv">2</span>,range)</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(seedpn, <span class="dt">WithNodes=</span>F, <span class="dt">boundingbox=</span>synapse_bounds)</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">synapse_bounds=<span class="kw"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(random_syn[,<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"post_node_x"</span>, <span class="st">"post_node_y"</span>, <span class="st">"post_node_z"</span>)],<span class="dv">2</span>,range)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(seedpn, <span class="dt">WithNodes=</span>F, <span class="dt">boundingbox=</span>synapse_bounds)</a>
 <a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co"># plot the synapses we didn't select</span></a>
 <a class="sourceLine" id="cb28-5" data-line-number="5">cda1.lh <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb28-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="op">!</span>post_node_id <span class="op">%in%</span><span class="st"> </span>random_syn<span class="op">$</span>post_node_id <span class="op">&amp;</span><span class="st"> </span>pre_skid <span class="op">%in%</span><span class="st"> </span>random_syn<span class="op">$</span>pre_skid) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb28-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(post_node_x<span class="op">:</span>post_node_y) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/points">points</a></span>(<span class="dt">col=</span><span class="st">'grey'</span>)</a>
+<a class="sourceLine" id="cb28-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="dt">col=</span><span class="st">'grey'</span>)</a>
 <a class="sourceLine" id="cb28-9" data-line-number="9"><span class="co"># and then the ones we did</span></a>
-<a class="sourceLine" id="cb28-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/points">points</a></span>(random_syn<span class="op">$</span>post_node_x, random_syn<span class="op">$</span>post_node_y, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">pch=</span><span class="dv">19</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb28-10" data-line-number="10"><span class="kw"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(random_syn<span class="op">$</span>post_node_x, random_syn<span class="op">$</span>post_node_y, <span class="dt">col=</span><span class="st">'red'</span>, <span class="dt">pch=</span><span class="dv">19</span>)</a></code></pre></div>
 <p><img src="selecting_random_synapses_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <p>Then you can open those urls directly in CATMAID:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="cf">for</span> (u <span class="cf">in</span> synapse_urls) {</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/readline">readline</a></span>(<span class="st">"Press a key to move to open the next synapse (or Esc to cancel)."</span>)</a>
-<a class="sourceLine" id="cb29-3" data-line-number="3">  <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/browseURL">browseURL</a></span>(u)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">  <span class="kw"><a href="https://rdrr.io/r/base/readline.html">readline</a></span>(<span class="st">"Press a key to move to open the next synapse (or Esc to cancel)."</span>)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">  <span class="kw"><a href="https://rdrr.io/r/utils/browseURL.html">browseURL</a></span>(u)</a>
 <a class="sourceLine" id="cb29-4" data-line-number="4">}</a></code></pre></div>
 <p>or write them to a text file</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/writeLines">writeLines</a></span>(synapse_urls, <span class="dt">con =</span> <span class="st">'PN61221_rand_synapse_urls.txt'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(synapse_urls, <span class="dt">con =</span> <span class="st">'PN61221_rand_synapse_urls.txt'</span>)</a></code></pre></div>
 <p>or upload them to a google doc</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(googlesheets)</a>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(googlesheets)</a>
 <a class="sourceLine" id="cb31-2" data-line-number="2">random_syn<span class="op">$</span>url=synapse_urls</a>
 <a class="sourceLine" id="cb31-3" data-line-number="3">random_syn<span class="op">$</span>tracer=<span class="st">""</span></a>
 <a class="sourceLine" id="cb31-4" data-line-number="4">random_syn<span class="op">$</span>date_started=<span class="st">""</span></a>
-<a class="sourceLine" id="cb31-5" data-line-number="5">tf=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempfile</a></span>(<span class="dt">fileext =</span> <span class="st">'.tsv'</span>)</a>
-<a class="sourceLine" id="cb31-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/write.table">write.table</a></span>(random_syn, <span class="dt">file=</span>tf, <span class="dt">sep=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</a>
-<a class="sourceLine" id="cb31-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/googlesheets/topics/gs_upload">gs_upload</a></span>(tf, <span class="dt">sheet_title =</span> <span class="st">'PN61221_rand_synapse_urls'</span>)</a>
-<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unlink">unlink</a></span>(tf)</a></code></pre></div>
+<a class="sourceLine" id="cb31-5" data-line-number="5">tf=<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>(<span class="dt">fileext =</span> <span class="st">'.tsv'</span>)</a>
+<a class="sourceLine" id="cb31-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/utils/write.table.html">write.table</a></span>(random_syn, <span class="dt">file=</span>tf, <span class="dt">sep=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</a>
+<a class="sourceLine" id="cb31-7" data-line-number="7"><span class="kw"><a href="https://rdrr.io/pkg/googlesheets/man/gs_upload.html">gs_upload</a></span>(tf, <span class="dt">sheet_title =</span> <span class="st">'PN61221_rand_synapse_urls'</span>)</a>
+<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span>(tf)</a></code></pre></div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -254,13 +263,15 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Gregory Jefferis.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 

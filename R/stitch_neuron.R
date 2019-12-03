@@ -108,3 +108,42 @@ stitch_neurons <- function(x, prefer_soma=TRUE, sort=TRUE, warndist=1000) {
   # no need to sort any more
   stitch_neurons(x[-chosen], prefer_soma=FALSE, sort=FALSE)
 }
+
+# apl=neuprintr::neuprint_read_neuron_simple(425790257, heal = F)
+# g2=stitch_neurons_mst(apl)
+stitch_neurons_mst <- function(n) {
+  ng=as.ngraph(n)
+  cc=igraph::components(ng)
+  eps=endpoints(ng)
+  # cc$membership[eps]
+  xyz=xyzmatrix(ng)
+
+  sorted=order(cc$csize, decreasing = T)
+
+  clustersforeps=cc$membership[eps]
+  i=1
+  j=2
+
+  g <- igraph::make_empty_graph(directed = F)
+  g <- igraph::add_vertices(g, cc$no)
+
+  for(i in seq.int(from=1, to=cc$no-1L)) {
+    c1=sorted[i]
+    xyz1=xyz[eps[clustersforeps==c1],,drop=F]
+    for(j in seq.int(from=i+1,to=cc$no)) {
+      c2=sorted[j]
+      xyz2=xyz[eps[clustersforeps==c2],,drop=F]
+      res=nabor::knn(xyz1, xyz2, k=1)
+      min_dist_index=which.min(res$nn.dists)
+      min_dist=res$nn.dists[min_dist_index]
+      from_index=eps[clustersforeps==c1][res$nn.idx[min_dist_index]]
+      to_index=eps[clustersforeps==c2][min_dist_index]
+      g=igraph::add_edges(g, c(c1,c2), attr=list(weight=min_dist, from=from_index, to=to_index))
+    }
+  }
+  g
+  mst=igraph::minimum.spanning.tree(g)
+  tos=igraph::edge_attr(mst, 'to')
+  froms=igraph::edge_attr(mst, 'from')
+}
+

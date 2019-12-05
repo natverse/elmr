@@ -94,8 +94,8 @@ kcs13.fafb=xform_brain(kcs20[1:3], sample=FCWB, reference=FAFB)
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/jefferis/elmr}
-  \item Report bugs at \url{https://github.com/jefferis/elmr/issues}
+  \item \url{https://github.com/natverse/elmr}
+  \item Report bugs at \url{https://github.com/natverse/elmr/issues}
 }
 
 }

@@ -8,11 +8,7 @@ cache:
 jobs:
   include:
     - stage: prepare cache
-    - script:
-      -if ! [ -x "$(command -v cmtk)" ]; then
-         - curl -OL https://raw.githubusercontent.com/jefferis/nat/master/build-cmtk.sh
-         - bash build-cmtk.sh
-      -fi
+    - script: ./cmtk_build.sh
     - stage: test
 warnings_are_errors: true
 before_script:

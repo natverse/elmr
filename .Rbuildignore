@@ -8,3 +8,4 @@
 ^build-cmtk.sh$
 ^LICENSE\.md$
 ^\.github$
+^cmtk_build\.sh$

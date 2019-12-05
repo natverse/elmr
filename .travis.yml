@@ -9,10 +9,10 @@ jobs:
     - stage: test
 warnings_are_errors: true
 before_install:
-  - curl -OL https://raw.githubusercontent.com/jefferis/nat/master/build-cmtk.sh
-  - bash build-cmtk.sh
   - echo 'options(Ncpus = 2)' >> ~/.Rprofile
 before_script:
+  - curl -OL https://raw.githubusercontent.com/jefferis/nat/master/build-cmtk.sh
+  - bash build-cmtk.sh
   - export PATH=$PATH:$HOME/usr/local/bin
 addons:
   apt:

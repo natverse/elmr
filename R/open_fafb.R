@@ -30,7 +30,7 @@
 #' @param active_skeleton_id,active_node_id Set highlighted skeleton and node in
 #'   CATMAID.
 #' @param server Optional string or \code{\link{catmaid_connection}} that
-#'   specifies the server URL (otherwise a harcoded URL will be used).
+#'   specifies the server URL (otherwise a hardcoded URL will be used).
 #' @param ... Additional arguments to be added to URL.
 #' @export
 #' @importFrom utils browseURL

@@ -33,7 +33,7 @@ Defaults to \code{TRUE} when R is running in interactive mode.}
 CATMAID.}
 
 \item{server}{Optional string or \code{\link{catmaid_connection}} that
-specifies the server URL (otherwise a harcoded URL will be used).}
+specifies the server URL (otherwise a hardcoded URL will be used).}
 
 \item{...}{Additional arguments to be added to URL.}
 }

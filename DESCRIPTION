@@ -31,8 +31,7 @@ Imports:
     nat.templatebrains (>= 0.8),
     plyr,
     rgl,
-    stringr,
-    tibble (>= 1.4.2)
+    stringr
 Suggests:
     alphashape3d,
     doParallel,
@@ -45,10 +44,10 @@ Suggests:
 VignetteBuilder: 
     knitr
 Remotes: 
-    jefferis/flycircuit,
-    jefferis/rcatmaid,
-    jefferislab/nat.flybrains,
-    jefferislab/nat.templatebrains,
+    natverse/flycircuit,
+    natverse/rcatmaid,
+    natverse/nat.flybrains,
+    natverse/nat.templatebrains,
     natverse/nat,
     natverse/nat.nblast
 Encoding: UTF-8

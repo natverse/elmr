@@ -1,18 +1,23 @@
 # Header
 language: r
-cache: packages
+cache: 
+  packages: true
+  directories:
+  - $HOME/usr/local
 
 jobs:
   include:
     - stage: prepare cache
+    - script:
+      if ! [ -x "$(command -v cmtk)" ]; then
+         - curl -OL https://raw.githubusercontent.com/jefferis/nat/master/build-cmtk.sh
+         - bash build-cmtk.sh
+      fi
     - stage: test
 warnings_are_errors: true
-install:
-   - curl -OL https://raw.githubusercontent.com/jefferis/nat/master/build-cmtk.sh
-   - bash build-cmtk.sh
+before_script:
+   - echo 'options(Ncpus = 2)' >> ~/.Rprofile
    - export PATH=$PATH:$HOME/usr/local/bin
-before_install:
-  - echo 'options(Ncpus = 2)' >> ~/.Rprofile
 addons:
   apt:
     packages:

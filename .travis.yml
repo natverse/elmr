@@ -8,12 +8,12 @@ cache:
 jobs:
   include:
     - stage: prepare cache
-    - script: ./cmtk_build.sh
     - stage: test
 warnings_are_errors: true
-before_script:
+before_install:
    - echo 'options(Ncpus = 2)' >> ~/.Rprofile
    - export PATH=$PATH:$HOME/usr/local/bin
+   - sh ./cmtk_build.sh
 addons:
   apt:
     packages:

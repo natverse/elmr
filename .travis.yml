@@ -4,16 +4,16 @@ cache: packages
 
 jobs:
   include:
-      name: "warm cache"
     - stage: prepare cache
-      name: "cmtk" 
+      name: "warm cache"
     - stage: 
+      name: "cmtk" 
         - curl -OL https://raw.githubusercontent.com/jefferis/nat/master/build-cmtk.sh
         - bash build-cmtk.sh
         - export PATH=$PATH:$HOME/usr/local/bin
-      name: "checks"
+    - stage:
+      name: "checks" 
       script: true
-      name: "tests"
     - stage: test
 warnings_are_errors: true
 before_install:

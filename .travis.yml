@@ -7,7 +7,7 @@ jobs:
       name: "warm cache"
     - stage: prepare cache
       name: "cmtk" 
-    - stage: cmtk
+    - stage: 
         - curl -OL https://raw.githubusercontent.com/jefferis/nat/master/build-cmtk.sh
         - bash build-cmtk.sh
         - export PATH=$PATH:$HOME/usr/local/bin

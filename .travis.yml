@@ -10,7 +10,6 @@ jobs:
         - curl -OL https://raw.githubusercontent.com/jefferis/nat/master/build-cmtk.sh
         - bash build-cmtk.sh
         - export PATH=$PATH:$HOME/usr/local/bin
-        script: true
 warnings_are_errors: true
 before_install:
   - echo 'options(Ncpus = 2)' >> ~/.Rprofile

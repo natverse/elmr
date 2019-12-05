@@ -31,7 +31,8 @@ Imports:
     nat.templatebrains (>= 0.8),
     plyr,
     rgl,
-    stringr
+    stringr,
+    tibble (>= 1.4.2)
 Suggests:
     alphashape3d,
     doParallel,

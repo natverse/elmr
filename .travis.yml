@@ -5,29 +5,15 @@ cache:
   directories:
   - $HOME/usr/local
   
-before_install:
-   - echo 'options(Ncpus = 2)' >> ~/.Rprofile
-   - export PATH=$PATH:$HOME/usr/local/bin
-   - sh ./cmtk_build.sh
-   
+
 warnings_are_errors: true
 
-jobs:
+matrix:
   include:
-    - stage:
-       name: skip_dep
-       install:
-        - R -e 'devtools::install_deps(dep = F)'
-    - stage: precache
-      install:
-        - R -e 'devtools::install_deps(dep = T)'
-    - stage: test
-      script:
-        - R CMD build .
-        - R CMD check --as-cran
-        - Rscript -e 'res=devtools::test(reporter="summary");df=as.data.frame(res);if(sum(df$failed) > 0 || any(df$error)) {q(status=1)}'
-      after_script:
-        - if [ -e ${TRAVIS_BUILD_DIR}/OOSAP.Rcheck/00install.out ];then cat ${TRAVIS_BUILD_DIR}/OOSAP.Rcheck/00install.out; else echo '00install.log not found'; fi
+    before_install:
+         - echo 'options(Ncpus = 2)' >> ~/.Rprofile
+         - export PATH=$PATH:$HOME/usr/local/bin
+         - sh ./cmtk_build.sh
 
 addons:
   apt:

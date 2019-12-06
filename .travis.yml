@@ -14,7 +14,8 @@ warnings_are_errors: true
 
 jobs:
   include:
-  - stage: nat_install
+  - stage:
+       name: nat installation
        script:
         - Rscript -e 'remotes::install_github("natverse/nat")'
     - stage: precache

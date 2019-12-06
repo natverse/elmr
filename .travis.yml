@@ -15,11 +15,12 @@ warnings_are_errors: true
 jobs:
   include:
     - stage:
-       name: nat installation
-       script:
-        - Rscript -e 'remotes::install_github("natverse/nat")'
+       name: skip_dep
+       install:
+        - R -e 'devtools::install_deps(dep = F)'
     - stage: precache
-      script: true
+      install:
+        - R -e 'devtools::install_deps(dep = T)'
     - stage: test
       script:
         - R CMD build .
@@ -32,7 +33,7 @@ addons:
   apt:
     packages:
     - libglu1-mesa-dev
-    
+        
 #env
 env:
   global:

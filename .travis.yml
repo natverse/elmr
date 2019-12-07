@@ -7,6 +7,9 @@ cache:
 
 warnings_are_errors: true
 
+r_github_packages:
+  - r-lib/remotes
+
 matrix:
   include:
     before_install:

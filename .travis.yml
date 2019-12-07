@@ -16,7 +16,9 @@ matrix:
          - R -e 'install.packages("remotes")'
     install:
          - R -e 'remotes::install_cran(c("rgl", "nabor", "filehash","digest", "plyr", "yaml", "progress"),dependencies = TRUE)'
-         - R -e 'remotes::install_cran(c("graph","igraph"),dependencies = TRUE)'
+         - R -e 'remotes::install.packages("BiocManager")'
+         - R -e 'BiocManager::install("graph")'
+         - R -e 'remotes::install_cran("igraph",dependencies = TRUE)'
          - R -e 'remotes::install_github("natverse/nat.utils",dependencies = TRUE)'
          - R -e 'remotes::install_github("natverse/nat",dependencies = FALSE)'
          - R -e 'remotes::install_deps(dependencies = TRUE)'

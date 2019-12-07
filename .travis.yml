@@ -15,7 +15,8 @@ matrix:
          - sh ./cmtk_build.sh
          - R -e 'install.packages("remotes")'
     install:
-         - R -e 'remotes::install_deps(dependencies = c("Depends", "Imports", "Suggests"))'
+         - R -e 'remotes::install_github("natverse/nat",dependencies = FALSE)'
+         - R -e 'remotes::install_deps(dependencies = TRUE)'
     script: true
 
 addons:

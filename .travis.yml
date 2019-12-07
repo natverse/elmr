@@ -1,10 +1,9 @@
 # Header
 language: r
-cache: 
+cache:
   packages: true
   directories:
   - $HOME/usr/local
-  
 
 warnings_are_errors: true
 
@@ -14,12 +13,17 @@ matrix:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile
          - export PATH=$PATH:$HOME/usr/local/bin
          - sh ./cmtk_build.sh
+    install:
+         - R -e 'remotes::install_deps(dep = F)'
+    script:
+         - R CMD build .
+         - R CMD check *tar.gz
 
 addons:
   apt:
     packages:
     - libglu1-mesa-dev
-        
+
 #env
 env:
   global:

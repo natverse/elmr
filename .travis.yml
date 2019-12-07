@@ -19,7 +19,7 @@ matrix:
          - R -e 'remotes::install_cran("BiocManager")'
          - R -e 'BiocManager::install("graph")'
          - R -e 'remotes::install_cran("igraph",dependencies = TRUE)'
-         - R -e 'remotes::install_github("natverse/nat.utils",dependencies = TRUE)'
+         - R -e 'remotes::install_github("jefferis/nat.utils",dependencies = TRUE)'
          - R -e 'remotes::install_github("natverse/nat",dependencies = FALSE)'
          - R -e 'remotes::install_deps(dependencies = TRUE)'
     script: true

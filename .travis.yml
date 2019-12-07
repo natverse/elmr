@@ -15,10 +15,10 @@ matrix:
          - sh ./cmtk_build.sh
          - R -e 'install.packages("remotes")'
     install:
-         - R -e 'remotes::install_deps(dep = F)'
+         - R -e 'remotes::install_deps(dependencies = NA)'
     script:
-         - R CMD build .
-         - R CMD check *tar.gz
+         - R CMD build
+         - R CMD check
 
 addons:
   apt:

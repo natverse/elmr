@@ -13,7 +13,7 @@ matrix:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile
          - export PATH=$PATH:$HOME/usr/local/bin
          - sh ./cmtk_build.sh
-         - R -e 'install.packages('remotes')
+         - R -e 'install.packages("remotes")'
     install:
          - R -e 'remotes::install_deps(dep = F)'
     script:

@@ -8,7 +8,7 @@ cache:
 warnings_are_errors: true
 
 stages:
-  - name: pre-cache
+  - name: pre-cache1
   - name: pre-cache2
   - name: test
 

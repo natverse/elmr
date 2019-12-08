@@ -8,14 +8,14 @@ cache:
 warnings_are_errors: true
 
 stages:
-  - name: rgl_install
-  - name: nat_install
-  - name: dep_install
+  - name: rgl-install
+  - name: nat-install
+  - name: dep-install
   - name: test
 
 jobs:
   include:
-    - stage: rgl_install
+    - stage: rgl-install
       before_install:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile
          - export PATH=$PATH:$HOME/usr/local/bin
@@ -24,7 +24,7 @@ jobs:
       install:
          - R -e 'remotes::install_cran(c("rgl", "nabor", "filehash","digest", "plyr", "yaml", "progress"),dependencies = TRUE)'
       script: true
-    - stage: nat_install
+    - stage: nat-install
       before_install:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile
          - export PATH=$PATH:$HOME/usr/local/bin
@@ -36,7 +36,7 @@ jobs:
          - R -e 'remotes::install_github("jefferis/nat.utils",dependencies = TRUE)'
          - R -e 'remotes::install_github("natverse/nat",dependencies = FALSE)'
       script: true
-    - stage: dep_install
+    - stage: dep-install
       before_install:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile
          - export PATH=$PATH:$HOME/usr/local/bin

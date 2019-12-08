@@ -9,7 +9,6 @@ warnings_are_errors: true
 
 stages:
   - name: pre-cache
-  - name: prepare cache
   - name: test
 
 jobs:
@@ -29,14 +28,11 @@ jobs:
          - R -e 'remotes::install_github("natverse/nat",dependencies = FALSE)'
          - R -e 'remotes::install_deps(dependencies = TRUE)'
       script: true
-    - stage: prepare cache
+    - stage: test
       before_install:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile
          - export PATH=$PATH:$HOME/usr/local/bin
          - sh ./cmtk_build.sh
-         - R -e 'install.packages("remotes")'
-      script: true
-    - stage: test
 
 addons:
   apt:

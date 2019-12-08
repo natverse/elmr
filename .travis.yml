@@ -9,7 +9,6 @@ warnings_are_errors: true
 
 stages:
   - name: pre-cache
-    if ! [ -x "$(command -v cmtk)" ]
   - name: prepare cache
   - name: test
 

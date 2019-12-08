@@ -8,13 +8,12 @@ cache:
 warnings_are_errors: true
 
 stages:
-  - name: pre-cache1
-  - name: pre-cache2
+  - name: pre-cache
   - name: test
 
 jobs:
   include:
-   - stage: pre-cache1
+    - stage: pre-cache
       before_install:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile
          - export PATH=$PATH:$HOME/usr/local/bin
@@ -22,14 +21,6 @@ jobs:
          - R -e 'install.packages("remotes")'
       install:
          - R -e 'remotes::install_cran(c("rgl", "nabor", "filehash","digest", "plyr", "yaml", "progress"),dependencies = TRUE)'
-      script: true
-    - stage: pre-cache2
-      before_install:
-         - echo 'options(Ncpus = 2)' >> ~/.Rprofile
-         - export PATH=$PATH:$HOME/usr/local/bin
-         - sh ./cmtk_build.sh
-         - R -e 'install.packages("remotes")'
-      install:
          - R -e 'remotes::install_cran("BiocManager")'
          - R -e 'BiocManager::install("graph")'
          - R -e 'remotes::install_cran("igraph",dependencies = TRUE)'

@@ -35,7 +35,15 @@ jobs:
          - export PATH=$PATH:$HOME/usr/local/bin
          - sh ./cmtk_build.sh
          - R -e 'install.packages("remotes")'
-     script: true
+      install:
+         - R -e 'remotes::install_cran(c("rgl", "nabor", "filehash","digest", "plyr", "yaml", "progress"),dependencies = TRUE)'
+         - R -e 'remotes::install_cran("BiocManager")'
+         - R -e 'BiocManager::install("graph")'
+         - R -e 'remotes::install_cran("igraph",dependencies = TRUE)'
+         - R -e 'remotes::install_github("jefferis/nat.utils",dependencies = TRUE)'
+         - R -e 'remotes::install_github("natverse/nat",dependencies = FALSE)'
+         - R -e 'remotes::install_deps(dependencies = TRUE)'
+      script: true
     - stage: test
       before_install:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile

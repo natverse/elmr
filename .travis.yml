@@ -14,7 +14,7 @@ stages:
 
 jobs:
   include:
-   - stage: pre-cache
+   - stage: rgl_install
       before_install:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile
          - export PATH=$PATH:$HOME/usr/local/bin

@@ -8,13 +8,13 @@ cache:
 warnings_are_errors: true
 
 stages:
-  - name: rgl_install
-  - name: pre-cache
+  - name: pre-cache1
+  - name: pre-cache2
   - name: test
 
 jobs:
   include:
-   - stage: rgl_install
+   - stage: pre-cache1
       before_install:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile
          - export PATH=$PATH:$HOME/usr/local/bin
@@ -23,7 +23,7 @@ jobs:
       install:
          - R -e 'remotes::install_cran(c("rgl", "nabor", "filehash","digest", "plyr", "yaml", "progress"),dependencies = TRUE)'
       script: true
-    - stage: pre-cache
+    - stage: pre-cache2
       before_install:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile
          - export PATH=$PATH:$HOME/usr/local/bin

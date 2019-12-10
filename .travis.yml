@@ -38,7 +38,6 @@ addons:
   apt:
     packages:
     - libglu1-mesa-dev
-    - libmagick++-dev
 
 #env
 env:

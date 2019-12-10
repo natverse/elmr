@@ -10,7 +10,6 @@ warnings_are_errors: true
 stages:
   - name: pre-cache1
   - name: pre-cache2
-  - name: pre-cache3
   - name: test
 
 jobs:
@@ -20,43 +19,25 @@ jobs:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile
          - export PATH=$PATH:$HOME/usr/local/bin
          - sh ./cmtk_build.sh
-         - R -e 'install.packages("remotes")'
       install:
-         - R -e 'remotes::install_cran(c("rgl", "nabor", "filehash","digest", "plyr", "yaml", "progress"),dependencies = TRUE)'
+         - R -e 'install.packages(c("remotes", "rgl"))'
       script: true
     - stage: pre-cache2
       before_install:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile
          - export PATH=$PATH:$HOME/usr/local/bin
-         - sh ./cmtk_build.sh
-         - R -e 'install.packages("remotes")'
       install:
-         - R -e 'remotes::install_cran("BiocManager")'
-         - R -e 'BiocManager::install("graph")'
-         - R -e 'remotes::install_cran("igraph",dependencies = TRUE)'
-         - R -e 'remotes::install_github("jefferis/nat.utils",dependencies = TRUE)'
-         - R -e 'remotes::install_github("natverse/nat",dependencies = FALSE)'
-      script: true
-    - stage: pre-cache3
-      before_install:
-         - echo 'options(Ncpus = 2)' >> ~/.Rprofile
-         - export PATH=$PATH:$HOME/usr/local/bin
-         - sh ./cmtk_build.sh
-         - R -e 'install.packages("remotes")'
-      install:
-         - R -e 'remotes::install_deps(dependencies = TRUE)'
+         - R -e 'remotes::install_github("natverse/nat",dependencies = TRUE)'
       script: true
     - stage: test
       before_install:
          - echo 'options(Ncpus = 2)' >> ~/.Rprofile
          - export PATH=$PATH:$HOME/usr/local/bin
-         - sh ./cmtk_build.sh
 
 addons:
   apt:
     packages:
     - libglu1-mesa-dev
-    - libmagick++-dev
 
 #env
 env:

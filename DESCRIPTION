@@ -27,7 +27,7 @@ Imports:
     jsonlite,
     Morpho,
     nabor,
-    nat (>= 1.8.8),
+    nat (>= 1.9.2.9000),
     nat.templatebrains (>= 0.8),
     plyr,
     rgl,

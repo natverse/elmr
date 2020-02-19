@@ -5,8 +5,9 @@
 \title{Convert coordinates between different FAFB assemblies}
 \usage{
 fafb_world_mapper(xyz, from, to,
-  baseurl = "http://tem-services.int.janelia.org:8080/render-ws/v1/owner/flyTEM/project/FAFB00/stack",
-  method = c("single", "many"), ...)
+  baseurl = paste0("http://tem-services.int.janelia.org:8080/render-ws/v1/",
+  "owner/flyTEM/project/FAFB00/stack"), method = c("single", "many"),
+  ...)
 }
 \arguments{
 \item{xyz}{xyz coordinates (in nm)}

@@ -27,7 +27,8 @@
 #' # current assembly
 #' FAFB.surf=xform_brain(JFRC2013.surf, sample=JFRC2013, ref=FAFB)
 #' }
-fafb_world_mapper <- function(xyz, from, to, baseurl="http://tem-services.int.janelia.org:8080/render-ws/v1/owner/flyTEM/project/FAFB00/stack",
+fafb_world_mapper <- function(xyz, from, to,baseurl=paste0("http://tem-services.int.janelia.org:8080/render-ws/v1/",
+                                                           "owner/flyTEM/project/FAFB00/stack"),
                               method=c('single', 'many'), ...) {
   method=match.arg(method)
   assemblies=c("v12_align_tps", "v13_align_tps", "v14_align_tps_20170818")

@@ -12,6 +12,7 @@
 #'
 #' @importFrom igraph as_edgelist V
 #' @importFrom rgl arrow3d par3d spheres3d text3d points3d pop3d
+#' @importFrom nat xyzmatrix rootpoints branchpoints endpoints
 #' @examples
 #' plot3d(as.ngraph(Cell07PNs[[1]]))
 plot3d.ngraph <- function(x, type='lines', soma=1, labels=c('none', "nodes","all"), ...) {

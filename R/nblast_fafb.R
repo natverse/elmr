@@ -6,6 +6,7 @@
 #'   Input can also be a pre-downloaded neuronlist.
 #' @export
 #' @inheritParams nblast_fafb
+#' @importFrom nat is.neuronlist
 #' @param reference The reference brain to which the neurons will be
 #'   transformed, either a \code{\link[nat.templatebrains]{templatebrain}}
 #'   object such as \code{\link[nat.flybrains]{FCWB}} or a character vector
@@ -141,7 +142,7 @@ nblast_fafb <- function(skids, db=NULL, conn=NULL, mirror=TRUE, normalised=TRUE,
   n=fetchn_fafb(skids=skids, mirror=mirror, conn=conn, reference = reference)
   # store the templatebrain for later
   tb=regtemplate(n)
-  if(length(n)>1) n=elmr::stitch_neurons(n)
+  if(length(n)>1) n=nat::stitch_neurons_mst(n)
   else n=n[[1]]
   regtemplate(n)=tb
   if(isTRUE(is.finite(prune_twigs)))

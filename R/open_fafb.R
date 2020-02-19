@@ -34,6 +34,7 @@
 #' @param ... Additional arguments to be added to URL.
 #' @export
 #' @importFrom utils browseURL
+#' @importFrom nat xyzmatrix
 #' @seealso \code{\link{xform_brain}},
 #'   \code{\link{catmaid_get_treenodes_detail}}
 #' @examples

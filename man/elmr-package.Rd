@@ -38,9 +38,6 @@ Saalfeld and many collaborators).
   template brain space e.g. a \code{flycircuit.tw} neuron or a JFRC2010
   registered GAL4 line.
 
-  \item \code{\link{stitch_neurons}} allows neuron fragments to be stitched
-  together reasonably intelligently.
-
   \item \code{\link{FAFB}} a \code{\link[nat.templatebrains]{templatebrain}}
   object specifying the dimensions of the FAFB EM volume.
 

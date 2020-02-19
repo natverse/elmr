@@ -48,6 +48,7 @@ unspike.catmaidneuron <- function(x, threshold, ...) {
 #' @export
 #' @rdname unspike
 #' @importFrom nat seglist2swc as.seglist
+#' @importFrom nat as.neuron
 unspike.neuron <- function(x, threshold, ...) {
   # extract original vertex array before resampling
   cols=c("X","Y","Z")
@@ -115,6 +116,7 @@ unspike.neuronlist <- function(x, threshold, ...) {
   nlapply(x, unspike, threshold=threshold, ...)
 }
 
+#' @importFrom nat xyzmatrix
 unspike_segment <- function(d, threshold, ...){
   # we must have at least 2 points to resample
   if(nrow(d) < 2) return(NULL)

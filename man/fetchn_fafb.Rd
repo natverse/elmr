@@ -5,8 +5,7 @@
 \alias{fetchdp_fafb}
 \title{Fetch neurons from FAFB CATMAID server, transforming them as appropriate}
 \usage{
-fetchn_fafb(skids, mirror = TRUE, conn = NULL,
-  reference = nat.flybrains::FCWB)
+fetchn_fafb(skids, mirror = TRUE, conn = NULL, reference = nat.flybrains::FCWB)
 
 fetchdp_fafb(skids, mirror = TRUE, conn = NULL, ...)
 }

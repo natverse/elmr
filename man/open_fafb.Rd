@@ -4,10 +4,19 @@
 \alias{open_fafb}
 \title{Generate URLs to open FAFB CATMAID in browser at a given XYZ location}
 \usage{
-open_fafb(x, s = rgl::select3d(), mirror = FALSE,
-  sample = elmr::FAFB, rowwise = NA, open = interactive() & !rowwise,
-  zoom = 1, active_skeleton_id = NULL, active_node_id = NULL,
-  server = NULL, ...)
+open_fafb(
+  x,
+  s = rgl::select3d(),
+  mirror = FALSE,
+  sample = elmr::FAFB,
+  rowwise = NA,
+  open = interactive() & !rowwise,
+  zoom = 1,
+  active_skeleton_id = NULL,
+  active_node_id = NULL,
+  server = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{A numeric vector or any object compatible with

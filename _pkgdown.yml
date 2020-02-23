@@ -21,7 +21,6 @@ reference:
   - distal_to
   - stitch_neuron
   - stitch_neurons
-  - plot3d.ngraph
 - title: Interacting with CATMAID server
   contents: open_fafb
 - title: Summarising tracer contributions

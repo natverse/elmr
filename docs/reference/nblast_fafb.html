@@ -75,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6</span>
       </span>
     </div>
 
@@ -159,10 +159,18 @@
     <p>NBLAST EM tracing against FlyCircuit (or other databases of) neurons</p>
     </div>
 
-    <pre class="usage"><span class='fu'>nblast_fafb</span>(<span class='no'>skids</span>, <span class='kw'>db</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>normalised</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>reverse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>reference</span> <span class='kw'>=</span> <span class='kw pkg'>nat.flybrains</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/nat.flybrains/man/FCWB.html'>FCWB</a></span>, <span class='kw'>prune_twigs</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>.parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>nblast_fafb</span>(
+  <span class='no'>skids</span>,
+  <span class='kw'>db</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>conn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>normalised</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>reverse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>reference</span> <span class='kw'>=</span> <span class='kw pkg'>nat.flybrains</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/nat.flybrains/man/FCWB.html'>FCWB</a></span>,
+  <span class='kw'>prune_twigs</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>.parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -305,7 +313,7 @@ provided by the <code>doMC</code> package.)</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

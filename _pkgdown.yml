@@ -15,12 +15,8 @@ reference:
 - title: Working with neuron structures
   desc: ~
   contents:
-  - simplify_neuron
-  - prune_twigs
   - unspike
-  - distal_to
-  - stitch_neuron
-  - stitch_neurons
+  - '`elmr-defunct`'
 - title: Interacting with CATMAID server
   contents: open_fafb
 - title: Summarising tracer contributions
@@ -28,7 +24,6 @@ reference:
 - title: Support functions
   desc: Functions intended primarily for developer use
   contents:
-  - tpsreg
   - fafb_world_mapper
 - title: Data
   desc: Data objects

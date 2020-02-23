@@ -75,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6</span>
       </span>
     </div>
 
@@ -159,10 +159,19 @@
     <p>Generate URLs to open FAFB CATMAID in browser at a given XYZ location</p>
     </div>
 
-    <pre class="usage"><span class='fu'>open_fafb</span>(<span class='no'>x</span>, <span class='kw'>s</span> <span class='kw'>=</span> <span class='kw pkg'>rgl</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rgl/man/select3d.html'>select3d</a></span>(), <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>sample</span> <span class='kw'>=</span> <span class='kw pkg'>elmr</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/elmr/man/FAFB.html'>FAFB</a></span>, <span class='kw'>rowwise</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>open</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>() <span class='kw'>&amp;</span> !<span class='no'>rowwise</span>,
-  <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>active_skeleton_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>active_node_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>open_fafb</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>s</span> <span class='kw'>=</span> <span class='kw pkg'>rgl</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rgl/man/select3d.html'>select3d</a></span>(),
+  <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>sample</span> <span class='kw'>=</span> <span class='kw pkg'>elmr</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/elmr/man/FAFB.html'>FAFB</a></span>,
+  <span class='kw'>rowwise</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>open</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>() <span class='kw'>&amp;</span> !<span class='no'>rowwise</span>,
+  <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>active_skeleton_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>active_node_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -208,7 +217,7 @@ CATMAID.</p></td>
     <tr>
       <th>server</th>
       <td><p>Optional string or <code>catmaid_connection</code> that
-specifies the server URL (otherwise a harcoded URL will be used).</p></td>
+specifies the server URL (otherwise a hardcoded URL will be used).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -312,7 +321,7 @@ specifies the server URL (otherwise a harcoded URL will be used).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

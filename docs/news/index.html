@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">elmr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6</span>
       </span>
     </div>
 
@@ -152,6 +152,22 @@
       <small>Source: <a href='https://github.com/natverse/elmr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="elmr-0-6" class="section level1">
+<h1 class="page-header">
+<a href="#elmr-0-6" class="anchor"></a>elmr 0.6</h1>
+<ul>
+<li>move general purpose functions to nat. See <a href='https://github.com/natverse/elmr/issues/50'>#50</a>.
+<ul>
+<li>prune_twigs</li>
+<li>distal_to</li>
+<li>stitch_neuron</li>
+<li>stitch_neurons</li>
+<li>tpsreg</li>
+<li>plot3d.ngraph</li>
+</ul>
+</li>
+</ul>
+</div>
     <div id="elmr-0-5-7" class="section level1">
 <h1 class="page-header">
 <a href="#elmr-0-5-7" class="anchor"></a>elmr 0.5.7</h1>
@@ -163,8 +179,8 @@
 <h1 class="page-header">
 <a href="#elmr-0-5-6" class="anchor"></a>elmr 0.5.6</h1>
 <ul>
-<li>new <code><a href="../reference/prune_twigs.html">prune_twigs()</a></code> function that removes twigs less than a threshold length. Useful thing to do as part of preparing <code>dotprops()</code> objects for <code>nblast()</code>.</li>
-<li>Fix strange arrows in <code><a href="../reference/plot3d.ngraph.html">plot3d.ngraph()</a></code> (<a href='https://github.com/natverse/elmr/issues/45'>#45</a>)</li>
+<li>new <code>prune_twigs()</code> function that removes twigs less than a threshold length. Useful thing to do as part of preparing <code>dotprops()</code> objects for <code>nblast()</code>.</li>
+<li>Fix strange arrows in <code>plot3d.ngraph()</code> (<a href='https://github.com/natverse/elmr/issues/45'>#45</a>)</li>
 <li>Allow <code><a href="../reference/open_fafb.html">open_fafb()</a></code> to specify a different CATMAID server (including via a <code>catmaid_connection()</code> object) (<a href='https://github.com/natverse/elmr/issues/44'>#44</a>)</li>
 <li>Teach <code><a href="../reference/nblast_fafb.html">nblast_fafb()</a></code> to prune twigs by default</li>
 <li>fix hitherto silent bugs revealed by R 3.6</li>
@@ -181,8 +197,8 @@
 <h1 class="page-header">
 <a href="#elmr-0-5-4" class="anchor"></a>elmr 0.5.4</h1>
 <ul>
-<li>add <code><a href="../reference/plot3d.ngraph.html">plot3d.ngraph()</a></code> (shows directed graph in 3d)</li>
-<li>fix <code><a href="../reference/simplify_neuron.html">simplify_neuron()</a></code> when spine has 1 branch only (<a href='https://github.com/natverse/elmr/issues/40'>#40</a>)</li>
+<li>add <code>plot3d.ngraph()</code> (shows directed graph in 3d)</li>
+<li>fix <code>simplify_neuron()</code> when spine has 1 branch only (<a href='https://github.com/natverse/elmr/issues/40'>#40</a>)</li>
 <li>vignette tweaks</li>
 </ul>
 </div>
@@ -190,7 +206,7 @@
 <h1 class="page-header">
 <a href="#elmr-0-5-3" class="anchor"></a>elmr 0.5.3</h1>
 <ul>
-<li>teach <code><a href="../reference/simplify_neuron.html">simplify_neuron()</a></code> to handle the inverse as well (<a href='https://github.com/natverse/elmr/issues/38'>#38</a>)</li>
+<li>teach <code>simplify_neuron()</code> to handle the inverse as well (<a href='https://github.com/natverse/elmr/issues/38'>#38</a>)</li>
 <li>change IVLP -&gt; WED in FAFBNP surfaces as well as FAFB14NP (<a href='https://github.com/natverse/elmr/issues/35'>#35</a>)</li>
 <li>teach fetchn_fafb to work even if FAFB is given as the reference brain (<a href='https://github.com/natverse/elmr/issues/39'>#39</a>)</li>
 </ul>
@@ -199,7 +215,7 @@
 <h1 class="page-header">
 <a href="#elmr-0-5-2" class="anchor"></a>elmr 0.5.2</h1>
 <ul>
-<li>teach <code><a href="../reference/simplify_neuron.html">simplify_neuron()</a></code> to handle arbitrary number of branch points (<a href='https://github.com/natverse/elmr/issues/37'>#37</a>)</li>
+<li>teach <code>simplify_neuron()</code> to handle arbitrary number of branch points (<a href='https://github.com/natverse/elmr/issues/37'>#37</a>)</li>
 <li>minor doc fixes</li>
 </ul>
 </div>
@@ -207,11 +223,11 @@
 <h1 class="page-header">
 <a href="#elmr-0-5-1" class="anchor"></a>elmr 0.5.1</h1>
 <ul>
-<li>teach <code><a href="../reference/distal_to.html">distal_to()</a></code> to handle multiple input nodes</li>
+<li>teach <code>distal_to()</code> to handle multiple input nodes</li>
 <li>add <code>simplify_neuron function()</code> to make neuron with just one branchpoint</li>
 <li>fix <code>summarise_contributions()</code> for ‘synapses’ (<a href='https://github.com/natverse/elmr/issues/34'>#34</a>)</li>
 <li>change IVLP -&gt; WED in FAFBNP surfaces (<a href='https://github.com/natverse/elmr/issues/35'>#35</a>)</li>
-<li>fix <code><a href="../reference/stitch_neurons.html">stitch_neurons()</a></code> for latest nat 1.9 prerelease (<a href='https://github.com/natverse/elmr/issues/36'>#36</a>)</li>
+<li>fix <code>stitch_neurons()</code> for latest nat 1.9 prerelease (<a href='https://github.com/natverse/elmr/issues/36'>#36</a>)</li>
 </ul>
 </div>
     <div id="elmr-0-5" class="section level1">
@@ -220,8 +236,8 @@
 <ul>
 <li>switch to FAFB14 as the default EM assembly</li>
 <li>provide default objects (FAFB, FAFB.surf, FAFBNP.surf) that will always point to current assembly.</li>
-<li>fix bug in <code><a href="../reference/distal_to.html">distal_to()</a></code> (<a href='https://github.com/natverse/elmr/issues/31'>#31</a>)</li>
-<li>doc improvements for <code><a href="../reference/distal_to.html">distal_to()</a></code>
+<li>fix bug in <code>distal_to()</code> (<a href='https://github.com/natverse/elmr/issues/31'>#31</a>)</li>
+<li>doc improvements for <code>distal_to()</code>
 </li>
 </ul>
 </div>
@@ -297,6 +313,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#elmr-0-6">0.6</a></li>
         <li><a href="#elmr-0-5-7">0.5.7</a></li>
         <li><a href="#elmr-0-5-6">0.5.6</a></li>
         <li><a href="#elmr-0-5-5">0.5.5</a></li>
@@ -325,7 +342,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

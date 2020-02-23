@@ -1,3 +1,13 @@
+# elmr 0.6
+
+* move general purpose functions to nat. See #50.
+  - prune_twigs
+  - distal_to
+  - stitch_neuron
+  - stitch_neurons
+  - tpsreg
+  - plot3d.ngraph
+
 # elmr 0.5.7
 
 * switch repo to natverse github organisation

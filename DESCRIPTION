@@ -2,7 +2,7 @@ Type: Package
 Package: elmr
 Title: Support for working with light and electron microscopy
     fly brain data
-Version: 0.5.7
+Version: 0.6
 Authors@R: 
     person(given = "Gregory",
            family = "Jefferis",
@@ -27,7 +27,7 @@ Imports:
     jsonlite,
     Morpho,
     nabor,
-    nat (>= 1.9.2.9000),
+    nat (>= 1.10.0),
     nat.templatebrains (>= 0.8),
     plyr,
     rgl,

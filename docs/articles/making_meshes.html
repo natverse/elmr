@@ -150,35 +150,60 @@
 <div id="selecting-synapses" class="section level2">
 <h2 class="hasAnchor">
 <a href="#selecting-synapses" class="anchor"></a>Selecting synapses</h2>
-<p>We’re going to use synapses between PNs and KCs to define a mesh</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">pntokc</span> <span class="kw">=</span> <span class="fu">catmaid_get_connectors_between</span>(<span class="kw">pre_skids</span> <span class="kw">=</span> <span class="st">'PN'</span>,
+<p>We’re going to use synapses between PNs and KCs to define a mesh. Note that we only use the RHS PNS.</p>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">pntokc</span> <span class="kw">=</span> <span class="fu">catmaid_get_connectors_between</span>(<span class="kw">pre_skids</span> <span class="kw">=</span> <span class="st">'WTPN2017_mALT_right'</span>,
                                         <span class="kw">post_skids</span> <span class="kw">=</span> <span class="st">'KC'</span>)
 <span class="co"># select 3d position of presynaptic connectors</span>
 <span class="no">pntokc</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>(<span class="no">connector_id</span>, <span class="kw">.keep_all</span><span class="kw">=</span><span class="fl">TRUE</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">connector_x</span>:<span class="no">connector_z</span>) <span class="kw">%&gt;%</span>
   <span class="no">data.matrix</span> <span class="kw">-&gt;</span> <span class="no">cxyz</span></pre></body></html></div>
-<p>Now we can make an alphashape based on those connector positions. We need to set the alpha value in the ashape3d function to something sensible based on the spatial scale of our data - he we use alpha=6000 nm.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">calyx.a</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/pkg/alphashape3d/man/ashape3d.html">ashape3d</a></span>(<span class="no">cxyz</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">6000</span>)
+<p>Where are those points in the brain?</p>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/rgl/man/3dobjects.html">points3d</a></span>(<span class="no">cxyz</span>, <span class="kw">col</span><span class="kw">=</span><span class="st">'red'</span>)
+<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/plot3d.html">plot3d</a></span>(<span class="no">FAFB</span>)</pre></body></html></div>
+<p><img src="making_meshes_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p>Oh, we still need to remove some points that are distant from the others i.e. on wrong side of brain or too far forward (i.e. not in calyx). They may come from e.g. bilateral PNs making connections on both sides of the brain.</p>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># pick 100 random points</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">42</span>)
+<span class="no">s</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">cxyz</span>), <span class="fl">100</span>)
+<span class="no">sxyz</span><span class="kw">=</span><span class="no">cxyz</span>[<span class="no">s</span>,]
+<span class="co"># knn is normally used for nearest neighbour calculation of a point subset</span>
+<span class="co"># but here we do a brute force calculation against all target points</span>
+<span class="no">nnres</span> <span class="kw">&lt;-</span> <span class="kw pkg">nabor</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/nabor/man/knn.html">knn</a></span>(<span class="no">sxyz</span>, <span class="no">cxyz</span>, <span class="kw">searchtype</span> <span class="kw">=</span> <span class="st">"brute"</span>, <span class="kw">k</span><span class="kw">=</span><span class="fl">100</span>)
+<span class="co"># mean distance from those 100 target points</span>
+<span class="no">meand</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="no">nnres</span>$<span class="no">nn.dists</span>)
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">meand</span>, <span class="kw">col</span><span class="kw">=</span><span class="st">'red'</span>, <span class="kw">ylim</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">100</span>), <span class="kw">br</span><span class="kw">=</span><span class="fl">100</span>)</pre></body></html></div>
+<p><img src="making_meshes_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p>Let’s take everything less than 50,000 nm</p>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">cxyz.orig</span><span class="kw">=</span><span class="no">cxyz</span>
+<span class="no">cxyz</span><span class="kw">=</span><span class="no">cxyz</span>[<span class="no">meand</span><span class="kw">&lt;</span><span class="fl">50e3</span>,]</pre></body></html></div>
+<p>We could of course use fancier criteria based on dispersion, quantiles etc.</p>
+<p>Where are the selected points in the brain?</p>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/rgl/man/3dobjects.html">points3d</a></span>(<span class="no">cxyz</span>, <span class="kw">col</span><span class="kw">=</span><span class="st">'red'</span>)
+<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/3dobjects.html">points3d</a></span>(<span class="no">cxyz.orig</span>, <span class="kw">col</span><span class="kw">=</span><span class="st">'black'</span>)
+<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/plot3d.html">plot3d</a></span>(<span class="no">FAFB</span>)</pre></body></html></div>
+<p><img src="making_meshes_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<p>OK, that looks good. Now we can make an alphashape based on those connector positions. We need to set the alpha value in the <code><a href="https://rdrr.io/pkg/alphashape3d/man/ashape3d.html">ashape3d()</a></code> function to something sensible based on the spatial scale of our data - he we use alpha=6000 nm.</p>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">calyx.a</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/pkg/alphashape3d/man/ashape3d.html">ashape3d</a></span>(<span class="no">cxyz</span>, <span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">6000</span>)
 <span class="no">calyx</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/pkg/rgl/man/as.mesh3d.default.html">as.mesh3d</a></span>(<span class="no">calyx.a</span>)</pre></body></html></div>
 <p>We can compare the resultant mesh with the location of the connectors</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/rgl/man/mesh3d.html">wire3d</a></span>(<span class="no">calyx</span>)
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/rgl/man/mesh3d.html">wire3d</a></span>(<span class="no">calyx</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/rgl/man/3dobjects.html">points3d</a></span>(<span class="no">cxyz</span>, <span class="kw">col</span><span class="kw">=</span><span class="st">'red'</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/rgl/man/3dobjects.html">points3d</a></span>(<span class="no">pntokc</span>[,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'post_node_x'</span>,<span class="st">'post_node_y'</span>,<span class="st">'post_node_z'</span>)], <span class="kw">col</span><span class="kw">=</span><span class="st">'blue'</span>)</pre></body></html></div>
-<p><img src="making_meshes_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p><img src="making_meshes_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <p>We can also compare with the mesh supplied with elmr, which was transformed from JFRC2 space via JFRC2013 to FAFB:</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/rgl/man/mesh3d.html">wire3d</a></span>(<span class="no">calyx</span>)
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/rgl/man/mesh3d.html">wire3d</a></span>(<span class="no">calyx</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/rgl/man/plot3d.html">plot3d</a></span>(<span class="no">FAFBNP.surf</span>, <span class="st">"MB_CA_R"</span>, <span class="kw">alpha</span><span class="kw">=</span><span class="fl">.3</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/rgl/man/viewpoint.html">view3d</a></span>(<span class="kw">userMatrix</span><span class="kw">=</span><span class="kw pkg">rgl</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/rgl/man/matrices.html">rotationMatrix</a></span>(<span class="kw">angle</span> <span class="kw">=</span> <span class="no">pi</span>, <span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>), <span class="kw">zoom</span><span class="kw">=</span><span class="fl">0.8</span>)</pre></body></html></div>
-<p><img src="making_meshes_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="making_meshes_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 <p>And we can also compare the dorsal view as well:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/rgl/man/mesh3d.html">wire3d</a></span>(<span class="no">calyx</span>)
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/rgl/man/mesh3d.html">wire3d</a></span>(<span class="no">calyx</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/rgl/man/plot3d.html">plot3d</a></span>(<span class="no">FAFBNP.surf</span>, <span class="st">"MB_CA_R"</span>, <span class="kw">alpha</span><span class="kw">=</span><span class="fl">.3</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/rgl/man/viewpoint.html">view3d</a></span>(<span class="kw">userMatrix</span><span class="kw">=</span><span class="kw pkg">rgl</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/rgl/man/matrices.html">rotationMatrix</a></span>(<span class="kw">angle</span> <span class="kw">=</span> -<span class="no">pi</span>/<span class="fl">2</span>, <span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>), <span class="kw">zoom</span><span class="kw">=</span><span class="fl">0.8</span>)</pre></body></html></div>
-<p><img src="making_meshes_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<p><img src="making_meshes_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <p>It’s clear that there is a mismatch here. This may originate in part from the fact that the JFRC2013 intermediate template has rather flattened MB calyces. The quality of the JFRC2-JFRC2013 bridging registration is likely also a factor.</p>
 <p>Finally if one wanted to place this mesh into CATMAID, one could do it as follows:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu">catmaid_add_volume</span>(<span class="no">calyx</span>, <span class="kw">title</span><span class="kw">=</span><span class="st">"fafb14.pn-kc.MB_CA_R"</span>,
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu">catmaid_add_volume</span>(<span class="no">calyx</span>, <span class="kw">title</span><span class="kw">=</span><span class="st">"fafb14.pn-kc.MB_CA_R"</span>,
                    <span class="kw">comment</span><span class="kw">=</span><span class="st">"Constructed by GSXEJ from PN-KC synapses directly in FAFB14 space."</span>)</pre></body></html></div>
 </div>
   </div>

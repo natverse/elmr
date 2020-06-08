@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,7 +39,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -43,7 +47,6 @@
 
 <meta property="og:title" content="Generate URLs to open FAFB CATMAID in browser at a given XYZ location — open_fafb" />
 <meta property="og:description" content="Generate URLs to open FAFB CATMAID in browser at a given XYZ location" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -61,7 +64,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -163,7 +166,7 @@
   <span class='no'>x</span>,
   <span class='kw'>s</span> <span class='kw'>=</span> <span class='kw pkg'>rgl</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/rgl/man/select3d.html'>select3d</a></span>(),
   <span class='kw'>mirror</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>sample</span> <span class='kw'>=</span> <span class='kw pkg'>elmr</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/elmr/man/FAFB.html'>FAFB</a></span>,
+  <span class='kw'>sample</span> <span class='kw'>=</span> <span class='kw pkg'>elmr</span><span class='kw ns'>::</span><span class='no'><a href='FAFB.html'>FAFB</a></span>,
   <span class='kw'>rowwise</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
   <span class='kw'>open</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>() <span class='kw'>&amp;</span> !<span class='no'>rowwise</span>,
   <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>1</span>,
@@ -274,20 +277,20 @@ specifies the server URL (otherwise a hardcoded URL will be used).</p></td>
 <span class='co'># now find FAFB URLs</span>
 <span class='no'>tagged_details</span>$<span class='no'>url</span> <span class='kw'>&lt;-</span> <span class='fu'>open_fafb</span>(<span class='no'>tagged_details</span>)
 <span class='co'># take a look at results</span>
-<span class='fu'><a href='https://rdrr.io/pkg/nat/man/neuronlist-dataframe-methods.html'>head</a></span>(<span class='no'>tagged_details</span>)</div><div class='output co'>#&gt;   treenode_id parent_id      x      y     z confidence radius skid edition_time
-#&gt; 1     3068665   3068660 466369 232377 41360          5     -1   16   1459444379
-#&gt; 2     3068677   3068676 466173 234685 40000          5     -1   16   1459444409
-#&gt; 3     3068690   3068688 466322 231543 40080          5     32   16   1568560341
-#&gt; 4     3068757   3068753 464086 240916 39280          5     32   16   1568560345
-#&gt; 5     3068829   3068826 465499 244391 35480          5     81   16   1568560341
-#&gt; 6     3073189   3073187 463304 248051 33320          5    198   16   1568560341
-#&gt;   user_id
-#&gt; 1      26
-#&gt; 2      26
-#&gt; 3      26
-#&gt; 4      26
-#&gt; 5      26
-#&gt; 6      61
+<span class='fu'><a href='https://rdrr.io/pkg/nat/man/neuronlist-dataframe-methods.html'>head</a></span>(<span class='no'>tagged_details</span>)</div><div class='output co'>#&gt;   treenode_id parent_id        x        y     z confidence radius skid
+#&gt; 1     3068665   3068660 466368.6 232377.5 41360          5     -1   16
+#&gt; 2     3068677   3068676 466173.1 234684.7 40000          5     -1   16
+#&gt; 3     3068690   3068688 466321.6 231542.7 40080          5     32   16
+#&gt; 4     3068757   3068753 464086.1 240916.5 39280          5     32   16
+#&gt; 5     3068829   3068826 465499.3 244390.8 35480          5     81   16
+#&gt; 6     3073189   3073187 463303.9 248051.1 33320          5    198   16
+#&gt;   edition_time user_id
+#&gt; 1   1459444379      26
+#&gt; 2   1459444409      26
+#&gt; 3   1568560341      26
+#&gt; 4   1568560345      26
+#&gt; 5   1568560341      26
+#&gt; 6   1568560341      61
 #&gt;                                                                                                                                                                  url
 #&gt; 1 https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=41360&amp;yp=232377&amp;xp=466369&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=16&amp;active_node_id=3068665
 #&gt; 2 https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&amp;zp=40000&amp;yp=234685&amp;xp=466173&amp;tool=tracingtool&amp;sid0=5&amp;s0=1.000000&amp;active_skeleton_id=16&amp;active_node_id=3068677
@@ -302,15 +305,10 @@ specifies the server URL (otherwise a hardcoded URL will be used).</p></td>
 <span class='fu'><a href='https://rdrr.io/pkg/clipr/man/write_clip.html'>write_clip</a></span>(<span class='no'>tagged_details</span>)
 }</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -321,7 +319,7 @@ specifies the server URL (otherwise a hardcoded URL will be used).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

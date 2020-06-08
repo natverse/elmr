@@ -5,22 +5,22 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Finding Neurons with Multiple Somata • elmr</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
-<script src="../../pkgdown.js"></script><!-- docsearch --><script src="../../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
+<title>Finding neurons with multiple somata • elmr</title>
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
+<script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
+<script src="../../pkgdown.js"></script><!-- docsearch --><script src="../../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../../docsearch.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Finding Neurons with Multiple Somata">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Finding neurons with multiple somata">
+<meta property="og:description" content="elmr">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -108,10 +108,10 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Finding Neurons with Multiple Somata</h1>
+      <h1 data-toc-skip>Finding neurons with multiple somata</h1>
                         <h4 class="author">Gregory Jefferis</h4>
             
-            <h4 class="date">2020-02-23</h4>
+            <h4 class="date">2020-06-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/natverse/elmr/blob/master/vignettes/articles/multiple_somata.Rmd"><code>vignettes/articles/multiple_somata.Rmd</code></a></small>
       <div class="hidden name"><code>multiple_somata.Rmd</code></div>
@@ -128,65 +128,65 @@
 <h3 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h3>
 <p>First load main packages</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(elmr)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">cl=<span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(<span class="kw">catmaid_login</span>())</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">catmaid_available=<span class="kw"><a href="https://rdrr.io/r/base/class.html">inherits</a></span>(cl, <span class="st">"catmaid_connection"</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(knitr)</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># only run if catmaid available</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># and cache so only run once per day</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">eval=</span><span class="kw"><a href="https://rdrr.io/r/base/class.html">inherits</a></span>(cl, <span class="st">"catmaid_connection"</span>),<span class="dt">cache.extra=</span><span class="kw"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span>())</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">rgl<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rgl/man/hook_rgl.html">setupKnitr</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">elmr</span>)
+<span class="no">cl</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/try.html">try</a></span>(<span class="fu">catmaid_login</span>())
+<span class="no">catmaid_available</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span>(<span class="no">cl</span>, <span class="st">"catmaid_connection"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">knitr</span>)
+<span class="co"># only run if catmaid available</span>
+<span class="co"># and cache so only run once per day</span>
+<span class="no">opts_chunk</span>$<span class="fu">set</span>(<span class="kw">eval</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span>(<span class="no">cl</span>, <span class="st">"catmaid_connection"</span>),<span class="kw">cache.extra</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span>())
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+<span class="kw pkg">rgl</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/rgl/man/hook_rgl.html">setupKnitr</a></span>()</pre></body></html></div>
 </div>
 </div>
 <div id="finding-neurons-with-multiple-somata" class="section level2">
 <h2 class="hasAnchor">
 <a href="#finding-neurons-with-multiple-somata" class="anchor"></a>Finding neurons with multiple somata</h2>
 <p>First let’s fetch information about all the labels (aka tags) applied to nodes in the current project.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">label_stats=<span class="kw">catmaid_get_label_stats</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">label_stats</span><span class="kw">=</span><span class="fu">catmaid_get_label_stats</span>()</pre></body></html></div>
 <p>Now let’s restrict to cases where there are multiple soma tags per skeleton</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># select soma labels</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">soma_labels =<span class="st"> </span>label_stats <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(labelName <span class="op">==</span><span class="st"> 'soma'</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(skeletonID)</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co"># select skeleton ids for neurons with multiple cell bodies</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">multiple_soma =<span class="st"> </span>soma_labels <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(skeletonID) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(n))</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">  multiple_soma_info =<span class="st"> </span>soma_labels <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(skeletonID <span class="op">%in%</span><span class="st"> </span>multiple_soma<span class="op">$</span>skeletonID)</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">multiple_soma_info =<span class="st"> </span>soma_labels <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(skeletonID<span class="op">%in%</span><span class="st"> </span>multiple_soma<span class="op">$</span>skeletonID)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># select soma labels</span>
+<span class="no">soma_labels</span> <span class="kw">=</span> <span class="no">label_stats</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">labelName</span> <span class="kw">==</span> <span class="st">'soma'</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">skeletonID</span>)
+
+<span class="co"># select skeleton ids for neurons with multiple cell bodies</span>
+<span class="no">multiple_soma</span> <span class="kw">=</span> <span class="no">soma_labels</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span>(<span class="no">skeletonID</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">n</span> <span class="kw">&gt;</span> <span class="fl">1</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="no">n</span>))
+  <span class="no">multiple_soma_info</span> <span class="kw">=</span> <span class="no">soma_labels</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">skeletonID</span> <span class="kw">%in%</span> <span class="no">multiple_soma</span>$<span class="no">skeletonID</span>)
+
+<span class="no">multiple_soma_info</span> <span class="kw">=</span> <span class="no">soma_labels</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">skeletonID</span><span class="kw">%in%</span> <span class="no">multiple_soma</span>$<span class="no">skeletonID</span>)</pre></body></html></div>
 </div>
 <div id="xyz-position-of-the-nodes-we-picked" class="section level2">
 <h2 class="hasAnchor">
 <a href="#xyz-position-of-the-nodes-we-picked" class="anchor"></a>XYZ position of the nodes we picked</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># wrapper for tree node details</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">node_details &lt;-<span class="st"> </span><span class="cf">function</span>(tnid) {</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">  res=<span class="kw">catmaid_get_treenodes_detail</span>(tnid)</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">  ul=<span class="kw">catmaid_get_user_list</span>()</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">  res<span class="op">$</span>login=ul<span class="op">$</span>login[<span class="kw"><a href="https://rdrr.io/r/base/match.html">match</a></span>(res<span class="op">$</span>user_id, ul<span class="op">$</span>id)]</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="co"># we expect these to be capitalised elsewhere</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">  cn=<span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(res)</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">  cn[cn<span class="op">%in%</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x"</span>,<span class="st">"y"</span>,<span class="st">"z"</span>)]=<span class="kw"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span>(cn[cn<span class="op">%in%</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x"</span>,<span class="st">"y"</span>,<span class="st">"z"</span>)])</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="kw"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(res) &lt;-<span class="st"> </span>cn</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">  res[<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"X"</span>,<span class="st">"Y"</span>,<span class="st">"Z"</span>,<span class="st">"radius"</span>,<span class="st">"login"</span>)]</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">}</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co"># note that we need to transpose the results of vnode_xyz to get X,Y,Z columns</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">multiple_soma_info &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(multiple_soma_info),</a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">                            <span class="kw">node_details</span>(multiple_soma_info<span class="op">$</span>treenodeID))</a></code></pre></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># wrapper for tree node details</span>
+<span class="no">node_details</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">tnid</span>) {
+  <span class="no">res</span><span class="kw">=</span><span class="fu">catmaid_get_treenodes_detail</span>(<span class="no">tnid</span>)
+  <span class="no">ul</span><span class="kw">=</span><span class="fu">catmaid_get_user_list</span>()
+  <span class="no">res</span>$<span class="no">login</span><span class="kw">=</span><span class="no">ul</span>$<span class="no">login</span>[<span class="fu"><a href="https://rdrr.io/r/base/match.html">match</a></span>(<span class="no">res</span>$<span class="no">user_id</span>, <span class="no">ul</span>$<span class="no">id</span>)]
+  <span class="co"># we expect these to be capitalised elsewhere</span>
+  <span class="no">cn</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">res</span>)
+  <span class="no">cn</span>[<span class="no">cn</span><span class="kw">%in%</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x"</span>,<span class="st">"y"</span>,<span class="st">"z"</span>)]<span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span>(<span class="no">cn</span>[<span class="no">cn</span><span class="kw">%in%</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x"</span>,<span class="st">"y"</span>,<span class="st">"z"</span>)])
+  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">res</span>) <span class="kw">&lt;-</span> <span class="no">cn</span>
+  <span class="no">res</span>[<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"X"</span>,<span class="st">"Y"</span>,<span class="st">"Z"</span>,<span class="st">"radius"</span>,<span class="st">"login"</span>)]
+}
+
+<span class="co"># note that we need to transpose the results of vnode_xyz to get X,Y,Z columns</span>
+<span class="no">multiple_soma_info</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">multiple_soma_info</span>),
+                            <span class="fu">node_details</span>(<span class="no">multiple_soma_info</span>$<span class="no">treenodeID</span>))</pre></body></html></div>
 <p>Now let’s calculate the distance from the neuropil surface</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">multiple_soma_info<span class="op">$</span>d=<span class="kw">pointsinside</span>(<span class="kw">xyzmatrix</span>(multiple_soma_info),</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">                                  FAFB.surf, <span class="dt">rval =</span> <span class="st">'distance'</span>)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(skeletonID, d) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(skeletonID) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">rank=</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span>()) -&gt;<span class="st"> </span>multiple_soma_info</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(multiple_soma_info)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">multiple_soma_info</span>$<span class="no">d</span><span class="kw">=</span><span class="fu">pointsinside</span>(<span class="fu">xyzmatrix</span>(<span class="no">multiple_soma_info</span>),
+                                  <span class="no">FAFB.surf</span>, <span class="kw">rval</span> <span class="kw">=</span> <span class="st">'distance'</span>)
+<span class="no">multiple_soma_info</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="no">skeletonID</span>, <span class="no">d</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">skeletonID</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">rank</span><span class="kw">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span>()) <span class="kw">-&gt;</span> <span class="no">multiple_soma_info</span>
+<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">multiple_soma_info</span>)</pre></body></html></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">labelID</th>
@@ -207,12 +207,12 @@
 <td align="left">soma</td>
 <td align="right">1298891</td>
 <td align="right">7525237</td>
-<td align="right">395633</td>
-<td align="right">95574.1</td>
+<td align="right">395632.7</td>
+<td align="right">95574.06</td>
 <td align="right">177520</td>
 <td align="right">2855</td>
 <td align="left">batesa</td>
-<td align="right">-9679.3672</td>
+<td align="right">-9679.5078</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
@@ -220,12 +220,12 @@
 <td align="left">soma</td>
 <td align="right">1298891</td>
 <td align="right">59494856</td>
-<td align="right">404914</td>
-<td align="right">96547.4</td>
+<td align="right">404913.9</td>
+<td align="right">96547.42</td>
 <td align="right">161000</td>
 <td align="right">51</td>
 <td align="left">serratosal</td>
-<td align="right">5889.5078</td>
+<td align="right">5889.5156</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
@@ -233,12 +233,12 @@
 <td align="left">soma</td>
 <td align="right">2015619</td>
 <td align="right">56565186</td>
-<td align="right">322684</td>
-<td align="right">154162.0</td>
+<td align="right">322684.0</td>
+<td align="right">154162.50</td>
 <td align="right">201600</td>
 <td align="right">1985</td>
 <td align="left">serratosal</td>
-<td align="right">-13418.3672</td>
+<td align="right">-13418.5234</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
@@ -246,38 +246,12 @@
 <td align="left">soma</td>
 <td align="right">2015619</td>
 <td align="right">18010667</td>
-<td align="right">371782</td>
-<td align="right">128203.0</td>
+<td align="right">371781.5</td>
+<td align="right">128202.72</td>
 <td align="right">176640</td>
 <td align="right">-1</td>
 <td align="left">batesa</td>
-<td align="right">14364.7969</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="right">2773</td>
-<td align="left">soma</td>
-<td align="right">3106997</td>
-<td align="right">13589617</td>
-<td align="right">513563</td>
-<td align="right">144817.0</td>
-<td align="right">165880</td>
-<td align="right">1597</td>
-<td align="left">masoodpanahn</td>
-<td align="right">-1645.4375</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="right">2773</td>
-<td align="left">soma</td>
-<td align="right">3106997</td>
-<td align="right">13588952</td>
-<td align="right">519345</td>
-<td align="right">161710.0</td>
-<td align="right">160000</td>
-<td align="right">1745</td>
-<td align="left">masoodpanahn</td>
-<td align="right">1982.2188</td>
+<td align="right">14364.6289</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
@@ -285,12 +259,12 @@
 <td align="left">soma</td>
 <td align="right">3658067</td>
 <td align="right">12345094</td>
-<td align="right">618824</td>
-<td align="right">218757.0</td>
+<td align="right">618823.6</td>
+<td align="right">218756.61</td>
 <td align="right">60680</td>
 <td align="right">2440</td>
 <td align="left">alghailanis</td>
-<td align="right">2672.0000</td>
+<td align="right">2672.3125</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
@@ -298,8 +272,8 @@
 <td align="left">soma</td>
 <td align="right">3658067</td>
 <td align="right">30290984</td>
-<td align="right">413013</td>
-<td align="right">240218.0</td>
+<td align="right">413013.0</td>
+<td align="right">240218.00</td>
 <td align="right">145680</td>
 <td align="right">-1</td>
 <td align="left">polskyj</td>
@@ -311,12 +285,12 @@
 <td align="left">soma</td>
 <td align="right">3721315</td>
 <td align="right">12460766</td>
-<td align="right">434532</td>
-<td align="right">254146.0</td>
+<td align="right">434532.3</td>
+<td align="right">254146.14</td>
 <td align="right">84880</td>
 <td align="right">3918</td>
 <td align="left">calles</td>
-<td align="right">-1958.2266</td>
+<td align="right">-1958.2344</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
@@ -324,12 +298,12 @@
 <td align="left">soma</td>
 <td align="right">3721315</td>
 <td align="right">12459557</td>
-<td align="right">433766</td>
-<td align="right">253732.0</td>
+<td align="right">433765.5</td>
+<td align="right">253732.36</td>
 <td align="right">84320</td>
 <td align="right">-1</td>
 <td align="left">dacksa</td>
-<td align="right">-1411.4219</td>
+<td align="right">-1411.6875</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
@@ -337,12 +311,12 @@
 <td align="left">soma</td>
 <td align="right">3726283</td>
 <td align="right">35469519</td>
-<td align="right">322772</td>
-<td align="right">155344.0</td>
+<td align="right">322771.5</td>
+<td align="right">155343.50</td>
 <td align="right">181680</td>
 <td align="right">2093</td>
 <td align="left">tenshawe</td>
-<td align="right">-4882.7500</td>
+<td align="right">-4883.0469</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
@@ -350,8 +324,8 @@
 <td align="left">soma</td>
 <td align="right">3726283</td>
 <td align="right">35469478</td>
-<td align="right">323028</td>
-<td align="right">155599.0</td>
+<td align="right">323028.0</td>
+<td align="right">155599.00</td>
 <td align="right">181200</td>
 <td align="right">-1</td>
 <td align="left">tenshawe</td>
@@ -363,8 +337,8 @@
 <td align="left">soma</td>
 <td align="right">3788293</td>
 <td align="right">19104385</td>
-<td align="right">370375</td>
-<td align="right">152519.0</td>
+<td align="right">370375.0</td>
+<td align="right">152519.00</td>
 <td align="right">215520</td>
 <td align="right">1904</td>
 <td align="left">batesa</td>
@@ -376,8 +350,8 @@
 <td align="left">soma</td>
 <td align="right">3788293</td>
 <td align="right">19104384</td>
-<td align="right">370363</td>
-<td align="right">152491.0</td>
+<td align="right">370363.0</td>
+<td align="right">152491.00</td>
 <td align="right">215400</td>
 <td align="right">1889</td>
 <td align="left">batesa</td>
@@ -387,10 +361,36 @@
 <tr class="odd">
 <td align="right">2773</td>
 <td align="left">soma</td>
+<td align="right">4705224</td>
+<td align="right">61576868</td>
+<td align="right">333411.7</td>
+<td align="right">155215.83</td>
+<td align="right">196000</td>
+<td align="right">1791</td>
+<td align="left">serratosal</td>
+<td align="right">-2653.0000</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">4705224</td>
+<td align="right">21007576</td>
+<td align="right">381708.0</td>
+<td align="right">129635.00</td>
+<td align="right">171280</td>
+<td align="right">-1</td>
+<td align="left">robertsr</td>
+<td align="right">17971.9297</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
 <td align="right">6645033</td>
 <td align="right">6781342</td>
-<td align="right">617127</td>
-<td align="right">261972.0</td>
+<td align="right">617127.0</td>
+<td align="right">261972.00</td>
 <td align="right">67160</td>
 <td align="right">3076</td>
 <td align="left">calles</td>
@@ -402,12 +402,12 @@
 <td align="left">soma</td>
 <td align="right">6645033</td>
 <td align="right">41219199</td>
-<td align="right">495505</td>
-<td align="right">264349.0</td>
+<td align="right">495504.6</td>
+<td align="right">264349.25</td>
 <td align="right">62520</td>
 <td align="right">-1</td>
 <td align="left">coatesk</td>
-<td align="right">11138.4375</td>
+<td align="right">11138.5625</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
@@ -415,25 +415,51 @@
 <td align="left">soma</td>
 <td align="right">6645033</td>
 <td align="right">43899462</td>
-<td align="right">484171</td>
-<td align="right">264798.0</td>
+<td align="right">484171.5</td>
+<td align="right">264798.03</td>
 <td align="right">77240</td>
 <td align="right">-1</td>
 <td align="left">dacksa</td>
-<td align="right">19888.5879</td>
+<td align="right">19888.3066</td>
 <td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">7145440</td>
+<td align="right">61582172</td>
+<td align="right">334965.7</td>
+<td align="right">152653.12</td>
+<td align="right">194360</td>
+<td align="right">2081</td>
+<td align="left">serratosal</td>
+<td align="right">352.7344</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">7145440</td>
+<td align="right">23455383</td>
+<td align="right">358511.0</td>
+<td align="right">139952.00</td>
+<td align="right">190680</td>
+<td align="right">-1</td>
+<td align="left">batesa</td>
+<td align="right">10689.1250</td>
+<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
 <td align="right">7937976</td>
 <td align="right">57573136</td>
-<td align="right">320075</td>
-<td align="right">162848.0</td>
+<td align="right">320074.8</td>
+<td align="right">162848.39</td>
 <td align="right">185360</td>
 <td align="right">1702</td>
 <td align="left">serratosal</td>
-<td align="right">-8638.3906</td>
+<td align="right">-8637.9688</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
@@ -441,12 +467,12 @@
 <td align="left">soma</td>
 <td align="right">7937976</td>
 <td align="right">13380406</td>
-<td align="right">377685</td>
-<td align="right">210574.0</td>
+<td align="right">377685.2</td>
+<td align="right">210574.42</td>
 <td align="right">176800</td>
 <td align="right">-1</td>
 <td align="left">batesa</td>
-<td align="right">4119.5508</td>
+<td align="right">4119.2852</td>
 <td align="right">2</td>
 </tr>
 <tr class="even">
@@ -454,12 +480,12 @@
 <td align="left">soma</td>
 <td align="right">8758601</td>
 <td align="right">49116764</td>
-<td align="right">440102</td>
-<td align="right">203967.0</td>
+<td align="right">440101.5</td>
+<td align="right">203967.33</td>
 <td align="right">56360</td>
 <td align="right">2454</td>
 <td align="left">helmickl</td>
-<td align="right">988.2188</td>
+<td align="right">988.2656</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
@@ -467,12 +493,12 @@
 <td align="left">soma</td>
 <td align="right">8758601</td>
 <td align="right">52299679</td>
-<td align="right">476735</td>
-<td align="right">214771.0</td>
+<td align="right">476734.8</td>
+<td align="right">214770.89</td>
 <td align="right">39800</td>
 <td align="right">-1</td>
 <td align="left">helmickl</td>
-<td align="right">11180.5352</td>
+<td align="right">11180.4805</td>
 <td align="right">2</td>
 </tr>
 <tr class="even">
@@ -480,12 +506,12 @@
 <td align="left">soma</td>
 <td align="right">9623317</td>
 <td align="right">32110234</td>
-<td align="right">428951</td>
-<td align="right">298439.0</td>
+<td align="right">428951.1</td>
+<td align="right">298439.03</td>
 <td align="right">209400</td>
 <td align="right">1781</td>
 <td align="left">eichlerk</td>
-<td align="right">-8578.3516</td>
+<td align="right">-8578.3359</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
@@ -493,12 +519,12 @@
 <td align="left">soma</td>
 <td align="right">9623317</td>
 <td align="right">59058312</td>
-<td align="right">497414</td>
-<td align="right">339922.0</td>
+<td align="right">497413.8</td>
+<td align="right">339922.00</td>
 <td align="right">164720</td>
 <td align="right">42</td>
 <td align="left">eichlerk</td>
-<td align="right">19744.7969</td>
+<td align="right">19744.7188</td>
 <td align="right">2</td>
 </tr>
 <tr class="even">
@@ -506,8 +532,8 @@
 <td align="left">soma</td>
 <td align="right">10108062</td>
 <td align="right">33531079</td>
-<td align="right">419915</td>
-<td align="right">224525.0</td>
+<td align="right">419915.0</td>
+<td align="right">224525.00</td>
 <td align="right">51080</td>
 <td align="right">-1</td>
 <td align="left">coatesk</td>
@@ -519,8 +545,8 @@
 <td align="left">soma</td>
 <td align="right">10108062</td>
 <td align="right">40684585</td>
-<td align="right">513639</td>
-<td align="right">219860.0</td>
+<td align="right">513639.0</td>
+<td align="right">219860.00</td>
 <td align="right">46640</td>
 <td align="right">-1</td>
 <td align="left">sweetn</td>
@@ -532,8 +558,8 @@
 <td align="left">soma</td>
 <td align="right">10110812</td>
 <td align="right">44656714</td>
-<td align="right">657952</td>
-<td align="right">265904.0</td>
+<td align="right">657952.0</td>
+<td align="right">265904.00</td>
 <td align="right">156680</td>
 <td align="right">-1</td>
 <td align="left">marquism</td>
@@ -545,8 +571,8 @@
 <td align="left">soma</td>
 <td align="right">10110812</td>
 <td align="right">44656784</td>
-<td align="right">667914</td>
-<td align="right">256180.0</td>
+<td align="right">667914.0</td>
+<td align="right">256180.00</td>
 <td align="right">145520</td>
 <td align="right">-1</td>
 <td align="left">marquism</td>
@@ -558,12 +584,12 @@
 <td align="left">soma</td>
 <td align="right">10234277</td>
 <td align="right">34371718</td>
-<td align="right">493445</td>
-<td align="right">360456.0</td>
+<td align="right">493445.3</td>
+<td align="right">360456.34</td>
 <td align="right">122800</td>
 <td align="right">2392</td>
 <td align="left">eichlerk</td>
-<td align="right">-4578.3750</td>
+<td align="right">-4578.6562</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
@@ -571,12 +597,38 @@
 <td align="left">soma</td>
 <td align="right">10234277</td>
 <td align="right">36336623</td>
-<td align="right">493429</td>
-<td align="right">360356.0</td>
+<td align="right">493429.4</td>
+<td align="right">360356.44</td>
 <td align="right">122560</td>
 <td align="right">2197</td>
 <td align="left">jefferis</td>
-<td align="right">-4491.7812</td>
+<td align="right">-4492.1562</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">10479161</td>
+<td align="right">35374843</td>
+<td align="right">192769.0</td>
+<td align="right">213598.00</td>
+<td align="right">202960</td>
+<td align="right">1960</td>
+<td align="left">obrusnikt</td>
+<td align="right">-29056.5000</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">10479161</td>
+<td align="right">35376150</td>
+<td align="right">327465.0</td>
+<td align="right">208878.00</td>
+<td align="right">219720</td>
+<td align="right">-1</td>
+<td align="left">obrusnikt</td>
+<td align="right">13896.2900</td>
 <td align="right">2</td>
 </tr>
 <tr class="even">
@@ -584,8 +636,8 @@
 <td align="left">soma</td>
 <td align="right">12173355</td>
 <td align="right">44728863</td>
-<td align="right">649485</td>
-<td align="right">226483.0</td>
+<td align="right">649485.0</td>
+<td align="right">226483.00</td>
 <td align="right">181440</td>
 <td align="right">-1</td>
 <td align="left">marquism</td>
@@ -597,8 +649,8 @@
 <td align="left">soma</td>
 <td align="right">12173355</td>
 <td align="right">44728872</td>
-<td align="right">648709</td>
-<td align="right">227851.0</td>
+<td align="right">648709.0</td>
+<td align="right">227851.00</td>
 <td align="right">181120</td>
 <td align="right">-1</td>
 <td align="left">marquism</td>
@@ -608,10 +660,62 @@
 <tr class="even">
 <td align="right">2773</td>
 <td align="left">soma</td>
+<td align="right">12526415</td>
+<td align="right">1112769</td>
+<td align="right">486046.6</td>
+<td align="right">126634.30</td>
+<td align="right">162360</td>
+<td align="right">1926</td>
+<td align="left">adamjohn</td>
+<td align="right">-2019.5625</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">12526415</td>
+<td align="right">49202602</td>
+<td align="right">486127.0</td>
+<td align="right">127527.00</td>
+<td align="right">162600</td>
+<td align="right">3513</td>
+<td align="left">gibbp</td>
+<td align="right">-1784.5625</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">12526731</td>
+<td align="right">4375796</td>
+<td align="right">600107.4</td>
+<td align="right">164816.88</td>
+<td align="right">209640</td>
+<td align="right">1787</td>
+<td align="left">alis</td>
+<td align="right">-19557.8125</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">12526731</td>
+<td align="right">49752844</td>
+<td align="right">600100.0</td>
+<td align="right">164768.00</td>
+<td align="right">209640</td>
+<td align="right">2471</td>
+<td align="left">gibbp</td>
+<td align="right">-19553.0625</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
 <td align="right">12529405</td>
 <td align="right">51019292</td>
-<td align="right">432457</td>
-<td align="right">146688.0</td>
+<td align="right">432457.0</td>
+<td align="right">146688.00</td>
 <td align="right">62800</td>
 <td align="right">1948</td>
 <td align="left">lia</td>
@@ -623,8 +727,8 @@
 <td align="left">soma</td>
 <td align="right">12529405</td>
 <td align="right">51021568</td>
-<td align="right">462561</td>
-<td align="right">275852.0</td>
+<td align="right">462561.0</td>
+<td align="right">275852.00</td>
 <td align="right">192680</td>
 <td align="right">-1</td>
 <td align="left">lia</td>
@@ -636,12 +740,12 @@
 <td align="left">soma</td>
 <td align="right">13082053</td>
 <td align="right">52561173</td>
-<td align="right">632767</td>
-<td align="right">284886.0</td>
+<td align="right">632767.4</td>
+<td align="right">284886.38</td>
 <td align="right">29440</td>
 <td align="right">2426</td>
 <td align="left">toj</td>
-<td align="right">-13823.0625</td>
+<td align="right">-13823.5625</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
@@ -649,12 +753,12 @@
 <td align="left">soma</td>
 <td align="right">13082053</td>
 <td align="right">52561151</td>
-<td align="right">632533</td>
-<td align="right">284312.0</td>
+<td align="right">632533.3</td>
+<td align="right">284312.50</td>
 <td align="right">30280</td>
 <td align="right">-1</td>
 <td align="left">toj</td>
-<td align="right">-13010.6250</td>
+<td align="right">-13011.1875</td>
 <td align="right">2</td>
 </tr>
 <tr class="even">
@@ -662,12 +766,12 @@
 <td align="left">soma</td>
 <td align="right">14019704</td>
 <td align="right">44310666</td>
-<td align="right">411763</td>
-<td align="right">163520.0</td>
+<td align="right">411763.0</td>
+<td align="right">163520.42</td>
 <td align="right">79080</td>
 <td align="right">2336</td>
 <td align="left">tenshawe</td>
-<td align="right">979.7429</td>
+<td align="right">979.3810</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
@@ -675,12 +779,12 @@
 <td align="left">soma</td>
 <td align="right">14019704</td>
 <td align="right">44310655</td>
-<td align="right">411512</td>
-<td align="right">163639.0</td>
+<td align="right">411511.6</td>
+<td align="right">163639.28</td>
 <td align="right">79320</td>
 <td align="right">-1</td>
 <td align="left">tenshawe</td>
-<td align="right">984.1561</td>
+<td align="right">983.9166</td>
 <td align="right">2</td>
 </tr>
 <tr class="even">
@@ -688,12 +792,12 @@
 <td align="left">soma</td>
 <td align="right">14462790</td>
 <td align="right">56638440</td>
-<td align="right">392006</td>
-<td align="right">167674.0</td>
+<td align="right">392006.1</td>
+<td align="right">167674.31</td>
 <td align="right">87520</td>
 <td align="right">1750</td>
 <td align="left">ludwigh</td>
-<td align="right">681.5938</td>
+<td align="right">681.3281</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
@@ -701,12 +805,12 @@
 <td align="left">soma</td>
 <td align="right">14462790</td>
 <td align="right">57473239</td>
-<td align="right">372964</td>
-<td align="right">161629.0</td>
+<td align="right">372964.3</td>
+<td align="right">161629.42</td>
 <td align="right">106960</td>
 <td align="right">-1</td>
 <td align="left">ludwigh</td>
-<td align="right">4346.0000</td>
+<td align="right">4346.0938</td>
 <td align="right">2</td>
 </tr>
 <tr class="even">
@@ -714,12 +818,12 @@
 <td align="left">soma</td>
 <td align="right">14933802</td>
 <td align="right">59013131</td>
-<td align="right">293731</td>
-<td align="right">147387.0</td>
+<td align="right">293730.8</td>
+<td align="right">147386.66</td>
 <td align="right">207680</td>
 <td align="right">2541</td>
 <td align="left">kinde</td>
-<td align="right">-8970.4141</td>
+<td align="right">-8970.6250</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
@@ -727,100 +831,118 @@
 <td align="left">soma</td>
 <td align="right">14933802</td>
 <td align="right">56163931</td>
-<td align="right">272602</td>
-<td align="right">161879.0</td>
+<td align="right">272602.0</td>
+<td align="right">161879.00</td>
 <td align="right">235200</td>
 <td align="right">-1</td>
 <td align="left">sancerg</td>
 <td align="right">-7160.1328</td>
 <td align="right">2</td>
 </tr>
+<tr class="even">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">14997019</td>
+<td align="right">59362821</td>
+<td align="right">440576.4</td>
+<td align="right">190338.95</td>
+<td align="right">55000</td>
+<td align="right">3113</td>
+<td align="left">kandimallap</td>
+<td align="right">-4747.6250</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2773</td>
+<td align="left">soma</td>
+<td align="right">14997019</td>
+<td align="right">59844352</td>
+<td align="right">440777.4</td>
+<td align="right">183727.28</td>
+<td align="right">93760</td>
+<td align="right">-1</td>
+<td align="left">kandimallap</td>
+<td align="right">10568.4600</td>
+<td align="right">2</td>
+</tr>
 </tbody>
 </table>
 <p>This lets us see that in some cases there are two soma tags outside the neuropil (negative d) and close together - these are probably duplicates - whereas in other cases it is likely that points were added in error. We can also plot the points colouring them by their rank order (most external first).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># make a colour palette with as many entries as the maximum number of soma </span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co"># tags in a neuron</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">pal=<span class="kw"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(multiple_soma_info<span class="op">$</span>rank))</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/with.html">with</a></span>(<span class="dt">expr =</span> <span class="kw">spheres3d</span>(X,Y,Z, <span class="dt">col=</span>pal[rank], <span class="dt">rad=</span><span class="dv">2000</span>))</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="kw">plot3d</span>(FAFB)</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="kw">par3d</span>(<span class="dt">zoom=</span>.<span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># make a colour palette with as many entries as the maximum number of soma </span>
+<span class="co"># tags in a neuron</span>
+<span class="no">pal</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">multiple_soma_info</span>$<span class="no">rank</span>))
+<span class="no">multiple_soma_info</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span>(<span class="kw">expr</span> <span class="kw">=</span> <span class="fu">spheres3d</span>(<span class="no">X</span>,<span class="no">Y</span>,<span class="no">Z</span>, <span class="kw">col</span><span class="kw">=</span><span class="no">pal</span>[<span class="no">rank</span>], <span class="kw">rad</span><span class="kw">=</span><span class="fl">2000</span>))
+<span class="fu">plot3d</span>(<span class="no">FAFB</span>)
+<span class="fu">par3d</span>(<span class="kw">zoom</span><span class="kw">=</span><span class="fl">.6</span>)</pre></body></html></div>
 <p><img src="multiple_somata_files/figure-html/unnamed-chunk-4-1.png" width="768"></p>
 <p>Now we can use this information to construct an url for each node.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">multiple_soma_info <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">url =</span> <span class="kw"><a href="../../reference/open_fafb.html">open_fafb</a></span>(</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">    <span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(X, Y, Z),</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">    <span class="dt">active_skeleton_id =</span> skeletonID,</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">    <span class="dt">active_node_id =</span> treenodeID,</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">    <span class="dt">open =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8">  )) -&gt;<span class="st"> </span>multiple_soma_info</a></code></pre></div>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">multiple_soma_info</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span>() <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">url</span> <span class="kw">=</span> <span class="fu"><a href="../../reference/open_fafb.html">open_fafb</a></span>(
+    <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">X</span>, <span class="no">Y</span>, <span class="no">Z</span>),
+    <span class="kw">active_skeleton_id</span> <span class="kw">=</span> <span class="no">skeletonID</span>,
+    <span class="kw">active_node_id</span> <span class="kw">=</span> <span class="no">treenodeID</span>,
+    <span class="kw">open</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+  )) <span class="kw">-&gt;</span> <span class="no">multiple_soma_info</span></pre></body></html></div>
 <p>It might be useful to know who ‘owns’ each neuron. I think the simplest way to assign this is by the user who has traced most nodes for each skeleton (since there may be different users responsible for each soma).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">get_top_user &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">  ul=<span class="kw">catmaid_get_user_list</span>(...)</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">  <span class="co"># save time by checking unique skids only</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">  ddx=<span class="kw"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(x)</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">  gtu_one &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">    t &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>({</a>
-<a class="sourceLine" id="cb8-7" data-line-number="7">      res=<span class="kw">catmaid_get_contributor_stats</span>(x, ...)</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8">      w=<span class="kw"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span>(res<span class="op">$</span>node_contributors<span class="op">$</span>n)</a>
-<a class="sourceLine" id="cb8-9" data-line-number="9">      ul<span class="op">$</span>login[<span class="kw"><a href="https://rdrr.io/r/base/match.html">match</a></span>(res<span class="op">$</span>node_contributors<span class="op">$</span>id[w], ul<span class="op">$</span>id)]</a>
-<a class="sourceLine" id="cb8-10" data-line-number="10">    })</a>
-<a class="sourceLine" id="cb8-11" data-line-number="11">    <span class="cf">if</span>(<span class="kw"><a href="https://rdrr.io/r/base/class.html">inherits</a></span>(t, <span class="st">'try-error'</span>)) <span class="ot">NA_character_</span> <span class="cf">else</span> t</a>
-<a class="sourceLine" id="cb8-12" data-line-number="12">  }</a>
-<a class="sourceLine" id="cb8-13" data-line-number="13">  topus &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span>(ddx, gtu_one)</a>
-<a class="sourceLine" id="cb8-14" data-line-number="14">  topus[<span class="kw"><a href="https://rdrr.io/r/base/match.html">match</a></span>(x, ddx)]</a>
-<a class="sourceLine" id="cb8-15" data-line-number="15">}</a></code></pre></div>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">get_top_user</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>, <span class="no">...</span>) {
+  <span class="no">ul</span><span class="kw">=</span><span class="fu">catmaid_get_user_list</span>(<span class="no">...</span>)
+  <span class="co"># save time by checking unique skids only</span>
+  <span class="no">ddx</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">x</span>)
+  <span class="no">gtu_one</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>, <span class="no">...</span>) {
+    <span class="no">t</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/try.html">try</a></span>({
+      <span class="no">res</span><span class="kw">=</span><span class="fu">catmaid_get_contributor_stats</span>(<span class="no">x</span>, <span class="no">...</span>)
+      <span class="no">w</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span>(<span class="no">res</span>$<span class="no">node_contributors</span>$<span class="no">n</span>)
+      <span class="no">ul</span>$<span class="no">login</span>[<span class="fu"><a href="https://rdrr.io/r/base/match.html">match</a></span>(<span class="no">res</span>$<span class="no">node_contributors</span>$<span class="no">id</span>[<span class="no">w</span>], <span class="no">ul</span>$<span class="no">id</span>)]
+    })
+    <span class="kw">if</span>(<span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span>(<span class="no">t</span>, <span class="st">'try-error'</span>)) <span class="fl">NA_character_</span> <span class="kw">else</span> <span class="no">t</span>
+  }
+  <span class="no">topus</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span>(<span class="no">ddx</span>, <span class="no">gtu_one</span>)
+  <span class="no">topus</span>[<span class="fu"><a href="https://rdrr.io/r/base/match.html">match</a></span>(<span class="no">x</span>, <span class="no">ddx</span>)]
+}</pre></body></html></div>
 </div>
 <div id="google-sheet" class="section level2">
 <h2 class="hasAnchor">
 <a href="#google-sheet" class="anchor"></a>Google sheet</h2>
 <p>Let’s make a google sheet with all those urls that we can then review manually:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(googlesheets)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co"># helper function to upload via temp file</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co"># since writing cells via API is very slow</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">gs_upload_tf &lt;-<span class="st"> </span><span class="cf">function</span>(x, ...) {</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">  tf=<span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>(<span class="dt">fileext =</span> <span class="st">'.tsv'</span>)</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">  <span class="kw"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span>(tf))</a>
-<a class="sourceLine" id="cb9-7" data-line-number="7">  <span class="kw"><a href="https://rdrr.io/r/utils/write.table.html">write.table</a></span>(x, <span class="dt">file=</span>tf, <span class="dt">sep=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb9-8" data-line-number="8">  <span class="kw"><a href="https://rdrr.io/pkg/googlesheets/man/gs_upload.html">gs_upload</a></span>(tf, ...)</a>
-<a class="sourceLine" id="cb9-9" data-line-number="9">}</a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11">multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(skeletonID, d) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(skeletonID) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-14" data-line-number="14"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">user=</span><span class="kw">get_top_user</span>(skeletonID)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-15" data-line-number="15"><span class="st">  </span><span class="kw">gs_upload_tf</span>(<span class="dt">sheet_title =</span> <span class="st">'multi_soma_neurons'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">googlesheets</span>)
+<span class="co"># helper function to upload via temp file</span>
+<span class="co"># since writing cells via API is very slow</span>
+<span class="no">gs_upload_tf</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>, <span class="no">...</span>) {
+  <span class="no">tf</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>(<span class="kw">fileext</span> <span class="kw">=</span> <span class="st">'.tsv'</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span>(<span class="no">tf</span>))
+  <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.table</a></span>(<span class="no">x</span>, <span class="kw">file</span><span class="kw">=</span><span class="no">tf</span>, <span class="kw">sep</span><span class="kw">=</span><span class="st">"\t"</span>, <span class="kw">row.names</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+  <span class="fu"><a href="https://rdrr.io/pkg/googlesheets/man/gs_upload.html">gs_upload</a></span>(<span class="no">tf</span>, <span class="no">...</span>)
+}
+
+<span class="no">multiple_soma_info</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="no">skeletonID</span>, <span class="no">d</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">skeletonID</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">user</span><span class="kw">=</span><span class="fu">get_top_user</span>(<span class="no">skeletonID</span>)) <span class="kw">%&gt;%</span>
+  <span class="fu">gs_upload_tf</span>(<span class="kw">sheet_title</span> <span class="kw">=</span> <span class="st">'multi_soma_neurons'</span>)</pre></body></html></div>
 <p>As an alternative we can divide that up with one worksheet per user.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(googlesheets)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">gs &lt;-<span class="st"> </span>googlesheets<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/googlesheets/man/gs_new.html">gs_new</a></span>(<span class="st">"multi_soma_neurons_by_user"</span>)</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">gs_add_sheet &lt;-<span class="st"> </span><span class="cf">function</span>(x, gs, ...) {</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="kw"><a href="https://rdrr.io/pkg/googlesheets/man/gs_ws_new.html">gs_ws_new</a></span>(<span class="dt">row_extent =</span> <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(x)<span class="op">+</span><span class="dv">1</span>, <span class="dt">col_extent =</span> <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(x), <span class="dt">ss =</span> gs, ..., <span class="dt">input=</span>x, <span class="dt">col_names=</span>T)</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5">}</a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">multiple_soma_info <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(skeletonID, d) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">user=</span><span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="kw">get_top_user</span>(skeletonID))) -&gt;<span class="st"> </span>msi2</a>
-<a class="sourceLine" id="cb10-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="cf">for</span>(u <span class="cf">in</span> <span class="kw"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(msi2<span class="op">$</span>user)) {</a>
-<a class="sourceLine" id="cb10-11" data-line-number="11">  <span class="kw">gs_add_sheet</span>(<span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(msi2, user<span class="op">==</span>u), gs, <span class="dt">ws_title=</span>u)</a>
-<a class="sourceLine" id="cb10-12" data-line-number="12">  <span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="st">"."</span>)</a>
-<a class="sourceLine" id="cb10-13" data-line-number="13">}</a></code></pre></div>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">googlesheets</span>)
+<span class="no">gs</span> <span class="kw">&lt;-</span> <span class="kw pkg">googlesheets</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/googlesheets/man/gs_new.html">gs_new</a></span>(<span class="st">"multi_soma_neurons_by_user"</span>)
+<span class="no">gs_add_sheet</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>, <span class="no">gs</span>, <span class="no">...</span>) {
+  <span class="fu"><a href="https://rdrr.io/pkg/googlesheets/man/gs_ws_new.html">gs_ws_new</a></span>(<span class="kw">row_extent</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">x</span>)+<span class="fl">1</span>, <span class="kw">col_extent</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(<span class="no">x</span>), <span class="kw">ss</span> <span class="kw">=</span> <span class="no">gs</span>, <span class="no">...</span>, <span class="kw">input</span><span class="kw">=</span><span class="no">x</span>, <span class="kw">col_names</span><span class="kw">=</span><span class="no">T</span>)
+}
+<span class="no">multiple_soma_info</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="no">skeletonID</span>, <span class="no">d</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">user</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu">get_top_user</span>(<span class="no">skeletonID</span>))) <span class="kw">-&gt;</span> <span class="no">msi2</span>
+
+<span class="kw">for</span>(<span class="no">u</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="no">msi2</span>$<span class="no">user</span>)) {
+  <span class="fu">gs_add_sheet</span>(<span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(<span class="no">msi2</span>, <span class="no">user</span><span class="kw">==</span><span class="no">u</span>), <span class="no">gs</span>, <span class="kw">ws_title</span><span class="kw">=</span><span class="no">u</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="st">"."</span>)
+}</pre></body></html></div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#intro">Intro</a></li>
-      <li><a href="#finding-neurons-with-multiple-somata">Finding neurons with multiple somata</a></li>
-      <li><a href="#xyz-position-of-the-nodes-we-picked">XYZ position of the nodes we picked</a></li>
-      <li><a href="#google-sheet">Google sheet</a></li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
 
@@ -831,7 +953,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

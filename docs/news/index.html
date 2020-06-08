@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,7 +39,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -59,7 +63,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -148,36 +152,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
       <small>Source: <a href='https://github.com/natverse/elmr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="elmr-0-6" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-6" class="anchor"></a>elmr 0.6</h1>
+    <div id="elmr-06" class="section level1">
+<h1 class="page-header" data-toc-text="0.6">
+<a href="#elmr-06" class="anchor"></a>elmr 0.6</h1>
 <ul>
 <li>move general purpose functions to nat. See <a href='https://github.com/natverse/elmr/issues/50'>#50</a>.
 <ul>
-<li>prune_twigs</li>
-<li>distal_to</li>
-<li>stitch_neuron</li>
-<li>stitch_neurons</li>
-<li>tpsreg</li>
-<li>plot3d.ngraph</li>
+<li><code>prune_twigs</code></li>
+<li><code>distal_to</code></li>
+<li><code>stitch_neuron</code></li>
+<li><code>stitch_neurons</code></li>
+<li><code>tpsreg</code></li>
+<li><code>plot3d.ngraph</code></li>
 </ul>
 </li>
 </ul>
 </div>
-    <div id="elmr-0-5-7" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-5-7" class="anchor"></a>elmr 0.5.7</h1>
+    <div id="elmr-057" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.7">
+<a href="#elmr-057" class="anchor"></a>elmr 0.5.7</h1>
 <ul>
 <li>switch repo to natverse github organisation</li>
 </ul>
 </div>
-    <div id="elmr-0-5-6" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-5-6" class="anchor"></a>elmr 0.5.6</h1>
+    <div id="elmr-056" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.6">
+<a href="#elmr-056" class="anchor"></a>elmr 0.5.6</h1>
 <ul>
 <li>new <code>prune_twigs()</code> function that removes twigs less than a threshold length. Useful thing to do as part of preparing <code>dotprops()</code> objects for <code>nblast()</code>.</li>
 <li>Fix strange arrows in <code>plot3d.ngraph()</code> (<a href='https://github.com/natverse/elmr/issues/45'>#45</a>)</li>
@@ -186,42 +190,42 @@
 <li>fix hitherto silent bugs revealed by R 3.6</li>
 </ul>
 </div>
-    <div id="elmr-0-5-5" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-5-5" class="anchor"></a>elmr 0.5.5</h1>
+    <div id="elmr-055" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.5">
+<a href="#elmr-055" class="anchor"></a>elmr 0.5.5</h1>
 <ul>
 <li>teach <code><a href="../reference/open_fafb.html">open_fafb()</a></code> to make many URLs at once e.g. for results of tagged_details (<a href='https://github.com/natverse/elmr/issues/41'>#41</a>)</li>
 </ul>
 </div>
-    <div id="elmr-0-5-4" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-5-4" class="anchor"></a>elmr 0.5.4</h1>
+    <div id="elmr-054" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.4">
+<a href="#elmr-054" class="anchor"></a>elmr 0.5.4</h1>
 <ul>
 <li>add <code>plot3d.ngraph()</code> (shows directed graph in 3d)</li>
 <li>fix <code>simplify_neuron()</code> when spine has 1 branch only (<a href='https://github.com/natverse/elmr/issues/40'>#40</a>)</li>
 <li>vignette tweaks</li>
 </ul>
 </div>
-    <div id="elmr-0-5-3" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-5-3" class="anchor"></a>elmr 0.5.3</h1>
+    <div id="elmr-053" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.3">
+<a href="#elmr-053" class="anchor"></a>elmr 0.5.3</h1>
 <ul>
 <li>teach <code>simplify_neuron()</code> to handle the inverse as well (<a href='https://github.com/natverse/elmr/issues/38'>#38</a>)</li>
 <li>change IVLP -&gt; WED in FAFBNP surfaces as well as FAFB14NP (<a href='https://github.com/natverse/elmr/issues/35'>#35</a>)</li>
 <li>teach fetchn_fafb to work even if FAFB is given as the reference brain (<a href='https://github.com/natverse/elmr/issues/39'>#39</a>)</li>
 </ul>
 </div>
-    <div id="elmr-0-5-2" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-5-2" class="anchor"></a>elmr 0.5.2</h1>
+    <div id="elmr-052" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.2">
+<a href="#elmr-052" class="anchor"></a>elmr 0.5.2</h1>
 <ul>
 <li>teach <code>simplify_neuron()</code> to handle arbitrary number of branch points (<a href='https://github.com/natverse/elmr/issues/37'>#37</a>)</li>
 <li>minor doc fixes</li>
 </ul>
 </div>
-    <div id="elmr-0-5-1" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-5-1" class="anchor"></a>elmr 0.5.1</h1>
+    <div id="elmr-051" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.1">
+<a href="#elmr-051" class="anchor"></a>elmr 0.5.1</h1>
 <ul>
 <li>teach <code>distal_to()</code> to handle multiple input nodes</li>
 <li>add <code>simplify_neuron function()</code> to make neuron with just one branchpoint</li>
@@ -230,9 +234,9 @@
 <li>fix <code>stitch_neurons()</code> for latest nat 1.9 prerelease (<a href='https://github.com/natverse/elmr/issues/36'>#36</a>)</li>
 </ul>
 </div>
-    <div id="elmr-0-5" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-5" class="anchor"></a>elmr 0.5</h1>
+    <div id="elmr-05" class="section level1">
+<h1 class="page-header" data-toc-text="0.5">
+<a href="#elmr-05" class="anchor"></a>elmr 0.5</h1>
 <ul>
 <li>switch to FAFB14 as the default EM assembly</li>
 <li>provide default objects (FAFB, FAFB.surf, FAFBNP.surf) that will always point to current assembly.</li>
@@ -241,9 +245,9 @@
 </li>
 </ul>
 </div>
-    <div id="elmr-0-4-2" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-4-2" class="anchor"></a>elmr 0.4.2</h1>
+    <div id="elmr-042" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.2">
+<a href="#elmr-042" class="anchor"></a>elmr 0.4.2</h1>
 <ul>
 <li>update to 170303_ELM_landmarks_v14 landmarks (including transforming surfaces)</li>
 <li>first version of <code><a href="../reference/unspike.html">unspike()</a></code> function</li>
@@ -254,16 +258,16 @@
 <li>teach <code><a href="../reference/unspike.html">unspike()</a></code> to keep connectors/soma (<a href='https://github.com/natverse/elmr/issues/29'>#29</a>)</li>
 </ul>
 </div>
-    <div id="elmr-0-4-1" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-4-1" class="anchor"></a>elmr 0.4.1</h1>
+    <div id="elmr-041" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.1">
+<a href="#elmr-041" class="anchor"></a>elmr 0.4.1</h1>
 <ul>
 <li>Add functions to summarise tracer effort</li>
 </ul>
 </div>
-    <div id="elmr-0-4" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-4" class="anchor"></a>elmr 0.4</h1>
+    <div id="elmr-04" class="section level1">
+<h1 class="page-header" data-toc-text="0.4">
+<a href="#elmr-04" class="anchor"></a>elmr 0.4</h1>
 <ul>
 <li>switch FAFB13-JFRC2013 transform to 170211_new_ELM_landmarks_v7.csv (71 landmarks more evenly spaced on both sides of the brain)</li>
 <li>update FAFB13 and FAFB13NP surface objects accordingly</li>
@@ -271,9 +275,9 @@
 <li>add landmarks vignette</li>
 </ul>
 </div>
-    <div id="elmr-0-3" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-3" class="anchor"></a>elmr 0.3</h1>
+    <div id="elmr-03" class="section level1">
+<h1 class="page-header" data-toc-text="0.3">
+<a href="#elmr-03" class="anchor"></a>elmr 0.3</h1>
 <ul>
 <li>make <code><a href="../reference/nblast_fafb.html">nblast_fafb()</a></code> parallelised by default</li>
 <li>give <code><a href="../reference/open_fafb.html">open_fafb()</a></code> arguments for selecting neuron/nodes (<a href='https://github.com/natverse/elmr/issues/24'>#24</a>)</li>
@@ -282,16 +286,16 @@
 <li>fix <code><a href="../reference/open_fafb.html">open_fafb()</a></code> for v13 (<a href='https://github.com/natverse/elmr/issues/23'>#23</a>)</li>
 </ul>
 </div>
-    <div id="elmr-0-2-1" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-2-1" class="anchor"></a>elmr 0.2.1</h1>
+    <div id="elmr-021" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.1">
+<a href="#elmr-021" class="anchor"></a>elmr 0.2.1</h1>
 <ul>
 <li>teach <code><a href="../reference/nblast_fafb.html">nblast_fafb()</a></code> to cope with db length &lt;100 (<a href='https://github.com/natverse/elmr/issues/22'>#22</a>)</li>
 </ul>
 </div>
-    <div id="elmr-0-2" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-2" class="anchor"></a>elmr 0.2</h1>
+    <div id="elmr-02" class="section level1">
+<h1 class="page-header" data-toc-text="0.2">
+<a href="#elmr-02" class="anchor"></a>elmr 0.2</h1>
 <ul>
 <li>switch to FAFB13 as default template brain</li>
 <li>much new functionality including transforming between template brains via <code>xform_brain()</code>
@@ -300,37 +304,19 @@
 <code><a href="../reference/nblast_fafb.html">nblast_fafb()</a></code> for searches</li>
 </ul>
 </div>
-    <div id="elmr-0-1" class="section level1">
-<h1 class="page-header">
-<a href="#elmr-0-1" class="anchor"></a>elmr 0.1</h1>
+    <div id="elmr-01" class="section level1">
+<h1 class="page-header" data-toc-text="0.1">
+<a href="#elmr-01" class="anchor"></a>elmr 0.1</h1>
 <ul>
 <li>first version</li>
 </ul>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#elmr-0-6">0.6</a></li>
-        <li><a href="#elmr-0-5-7">0.5.7</a></li>
-        <li><a href="#elmr-0-5-6">0.5.6</a></li>
-        <li><a href="#elmr-0-5-5">0.5.5</a></li>
-        <li><a href="#elmr-0-5-4">0.5.4</a></li>
-        <li><a href="#elmr-0-5-3">0.5.3</a></li>
-        <li><a href="#elmr-0-5-2">0.5.2</a></li>
-        <li><a href="#elmr-0-5-1">0.5.1</a></li>
-        <li><a href="#elmr-0-5">0.5</a></li>
-        <li><a href="#elmr-0-4-2">0.4.2</a></li>
-        <li><a href="#elmr-0-4-1">0.4.1</a></li>
-        <li><a href="#elmr-0-4">0.4</a></li>
-        <li><a href="#elmr-0-3">0.3</a></li>
-        <li><a href="#elmr-0-2-1">0.2.1</a></li>
-        <li><a href="#elmr-0-2">0.2</a></li>
-        <li><a href="#elmr-0-1">0.1</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
@@ -342,7 +328,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

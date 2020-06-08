@@ -1,8 +1,12 @@
 ---
-title: "Finding Neurons with Multiple Somata"
+title: "Finding neurons with multiple somata"
 author: "Gregory Jefferis"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Finding neurons with multiple somata}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 ## Intro
 Occasionally CATMAID users add the soma tag multiple times in error. We can

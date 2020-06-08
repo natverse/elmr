@@ -41,10 +41,11 @@ view3d(userMatrix=rgl::rotationMatrix(angle = pi, 1,0,0), zoom=0.8)
 
 ## Selecting synapses 
 
-We're going to use synapses between PNs and KCs to define a mesh
+We're going to use synapses between PNs and KCs to define a mesh. Note
+that we only use the RHS PNS. 
 
 ```{r, message=FALSE}
-pntokc = catmaid_get_connectors_between(pre_skids = 'PN',
+pntokc = catmaid_get_connectors_between(pre_skids = 'WTPN2017_mALT_right',
                                         post_skids = 'KC')
 # select 3d position of presynaptic connectors
 pntokc %>% 
@@ -53,9 +54,48 @@ pntokc %>%
   data.matrix -> cxyz
 ```
 
-Now we can make an alphashape based on those connector positions. We need to set
-the alpha value in the ashape3d function to something sensible based on the 
-spatial scale of our data - he we use alpha=6000 nm.
+Where are those points in the brain?
+```{r, rgl=TRUE}
+points3d(cxyz, col='red')
+plot3d(FAFB)
+```
+
+
+Oh, we still need to remove some points that are distant from the others
+i.e. on wrong side of brain or too far forward (i.e. not in calyx). They may
+come from e.g. bilateral PNs making connections on both sides of the brain.
+
+```{r}
+# pick 100 random points
+set.seed(42)
+s=sample(nrow(cxyz), 100)
+sxyz=cxyz[s,]
+# knn is normally used for nearest neighbour calculation of a point subset
+# but here we do a brute force calculation against all target points
+nnres <- nabor::knn(sxyz, cxyz, searchtype = "brute", k=100)
+# mean distance from those 100 target points
+meand=rowMeans(nnres$nn.dists)
+hist(meand, col='red', ylim=c(0,100), br=100)
+```
+
+Let's take everything less than 50,000 nm
+```{r}
+cxyz.orig=cxyz
+cxyz=cxyz[meand<50e3,]
+```
+
+We could of course use fancier criteria based on dispersion, quantiles etc.
+
+Where are the selected points in the brain?
+```{r, rgl=TRUE}
+points3d(cxyz, col='red')
+points3d(cxyz.orig, col='black')
+plot3d(FAFB)
+```
+
+OK, that looks good. Now we can make an alphashape based on those connector
+positions. We need to set the alpha value in the `ashape3d()` function to
+something sensible based on the spatial scale of our data - he we use alpha=6000 nm.
 
 ```{r}
 calyx.a=ashape3d(cxyz, alpha = 6000)
@@ -69,6 +109,8 @@ wire3d(calyx)
 points3d(cxyz, col='red')
 points3d(pntokc[,c('post_node_x','post_node_y','post_node_z')], col='blue')
 ```
+
+
 
 We can also compare with the mesh supplied with elmr, which was transformed from
 JFRC2 space via JFRC2013 to FAFB:

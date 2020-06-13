@@ -10,6 +10,7 @@ reference:
 - title: Fetching and searching neurons
   desc: Fetch and transform neurons or NBLAST them
   contents:
+  - read.neurons.fafb
   - fetchn_fafb
   - nblast_fafb
 - title: Working with neuron structures

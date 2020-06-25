@@ -9,7 +9,8 @@ read.neurons.fafb(
   skids,
   meta = c("neuron name", "whimsical name", "cell type", "ItoLee_Lineage",
     "ItoLee_Hemilineage", "Hartenstein_Lineage", "Hartenstein_Hemilineage",
-    "Putative_Neurotransmitter", "tracing status", "hemibrain match", "paper"),
+    "Putative_Neurotransmitter", "tracing status", "hemibrain match", "synonym", "paper",
+    "citation"),
   sub = ".*:",
   OmitFailures = TRUE,
   ...
@@ -19,7 +20,8 @@ fafb_get_meta(
   skids,
   meta = c("neuron name", "whimsical name", "cell type", "ItoLee_Lineage",
     "ItoLee_Hemilineage", "Hartenstein_Lineage", "Hartenstein_Hemilineage",
-    "Putative_Neurotransmitter", "tracing status", "hemibrain match", "paper"),
+    "Putative_Neurotransmitter", "tracing status", "hemibrain match", "synonym", "paper",
+    "citation"),
   sub = ".*:",
   OmitFailures = TRUE,
   ...

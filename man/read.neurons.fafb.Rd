@@ -13,6 +13,7 @@ read.neurons.fafb(
     "citation"),
   sub = ".*:",
   OmitFailures = TRUE,
+  batch = FALSE,
   ...
 )
 
@@ -42,6 +43,10 @@ Can be set to "" if you do not wish to remove anything.}
 error. The default value (\code{NA}) will result in \code{\link{nlapply}}
 stopping with an error message the moment there is an error. For other
 values, see details.}
+
+\item{batch}{numeric, if \code{FALSE} or \code{0} neurons are read from CATMAID without being batched.
+If a number, neurons are read in batches of size \code{batch}. If \code{batch} is set to \code{TRUE}, a batch size of
+1000 is used. This can help overcome server time out errors.}
 
 \item{...}{Additional arguments passed to the \code{\link[catmaid]{catmaid_fetch}}
 function}

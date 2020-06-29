@@ -12,6 +12,9 @@
 #' entries in the \code{data.frame} attached to the returned \code{neuronlist}.
 #' @param sub what to remove from pulled annotations, to clean them up a little.
 #' Can be set to "" if you do not wish to remove anything.
+#' @param batch numeric, if \code{FALSE} or \code{0} neurons are read from CATMAID without being batched.
+#' If a number, neurons are read in batches of size \code{batch}. If \code{batch} is set to \code{TRUE}, a batch size of
+#' 1000 is used. This can help overcome server time out errors.
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -44,11 +47,23 @@ read.neurons.fafb <- function(skids,
                                 "citation"),
                               sub = ".*:",
                               OmitFailures = TRUE,
+                              batch = FALSE,
                               ...){
   skids = catmaid::catmaid_skids(skids, ...)
-  maddf <- fafb_get_meta(skids = skids, meta, sub = sub, OmitFailures = OmitFailures)
-  n <-  catmaid::read.neurons.catmaid(skids, OmitFailures = OmitFailures, ...)
-  n[,] = maddf
+  if(batch){
+    if(batch==TRUE){ batch = 1000}
+    batches = split(1:length(skids), ceiling(seq_along(1:length(skids))/batch))
+    n = nat::neuronlist()
+    for(i in batches){
+      message("Reading neurons ", min(i)," to ",  max(i))
+      b = read.neurons.fafb(skids = skids[min(i):max(i)], meta = meta, sub = sub, OmitFailures = OmitFailures, batch = FALSE)
+      n = nat::union(n, b)
+    }
+  }else{
+    maddf <- fafb_get_meta(skids = skids, meta, sub = sub, OmitFailures = OmitFailures)
+    n <-  catmaid::read.neurons.catmaid(skids, OmitFailures = OmitFailures, ...)
+    n[,] = maddf
+  }
   n
 }
 

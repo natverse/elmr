@@ -23,7 +23,7 @@
 #' meta = fafb_get_meta("11519370")
 #'
 #' # We can get all of the lineage annotations made in the FAFB dataset
-#' ## These come from two differebnt naming schemes, one by Volker Hartenstein
+#' ## These come from two different naming schemes, one by Volker Hartenstein
 #' ## and another by the groups' of K. Ito and T. Lee.
 #' fafb.neurons.lineage =
 #' read.neurons.fafb("annotation:Lineage_annotated")

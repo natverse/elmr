@@ -35,6 +35,7 @@ read.neurons.fafb <- function(skids,
                                 "neuron name",
                                 "whimsical name",
                                 "cell type",
+                                "cell body fiber",
                                 "ItoLee_Lineage",
                                 "ItoLee_Hemilineage",
                                 "Hartenstein_Lineage",
@@ -74,6 +75,7 @@ fafb_get_meta <- function(skids,
                             "neuron name",
                             "whimsical name",
                             "cell type",
+                            "cell body fiber",
                             "ItoLee_Lineage",
                             "ItoLee_Hemilineage",
                             "Hartenstein_Lineage",
@@ -129,4 +131,17 @@ fafb_get_meta <- function(skids,
   rownames(n) = n$skid
   n
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 

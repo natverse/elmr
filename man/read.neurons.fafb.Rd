@@ -7,10 +7,10 @@
 \usage{
 read.neurons.fafb(
   skids,
-  meta = c("neuron name", "whimsical name", "cell type", "ItoLee_Lineage",
-    "ItoLee_Hemilineage", "Hartenstein_Lineage", "Hartenstein_Hemilineage",
-    "Putative_Neurotransmitter", "tracing status", "hemibrain match", "synonym", "paper",
-    "citation"),
+  meta = c("neuron name", "whimsical name", "cell type", "cell body fiber",
+    "ItoLee_Lineage", "ItoLee_Hemilineage", "Hartenstein_Lineage",
+    "Hartenstein_Hemilineage", "Putative_Neurotransmitter", "tracing status",
+    "hemibrain match", "synonym", "paper", "citation"),
   sub = ".*:",
   OmitFailures = TRUE,
   batch = FALSE,
@@ -19,10 +19,10 @@ read.neurons.fafb(
 
 fafb_get_meta(
   skids,
-  meta = c("neuron name", "whimsical name", "cell type", "ItoLee_Lineage",
-    "ItoLee_Hemilineage", "Hartenstein_Lineage", "Hartenstein_Hemilineage",
-    "Putative_Neurotransmitter", "tracing status", "hemibrain match", "synonym", "paper",
-    "citation"),
+  meta = c("neuron name", "whimsical name", "cell type", "cell body fiber",
+    "ItoLee_Lineage", "ItoLee_Hemilineage", "Hartenstein_Lineage",
+    "Hartenstein_Hemilineage", "Putative_Neurotransmitter", "tracing status",
+    "hemibrain match", "synonym", "paper", "citation"),
   sub = ".*:",
   OmitFailures = TRUE,
   ...
@@ -66,7 +66,7 @@ to get the lineage / hemilineage to which a FAFB Drosophila neuron belongs.
 meta = fafb_get_meta("11519370")
 
 # We can get all of the lineage annotations made in the FAFB dataset
-## These come from two differebnt naming schemes, one by Volker Hartenstein
+## These come from two different naming schemes, one by Volker Hartenstein
 ## and another by the groups' of K. Ito and T. Lee.
 fafb.neurons.lineage =
 read.neurons.fafb("annotation:Lineage_annotated")

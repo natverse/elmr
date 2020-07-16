@@ -2,6 +2,7 @@
 % Please edit documentation in R/open_fafb.R
 \name{open_fafb}
 \alias{open_fafb}
+\alias{mirror_fafb_url}
 \title{Generate URLs to open FAFB CATMAID in browser at a given XYZ location}
 \usage{
 open_fafb(
@@ -17,6 +18,8 @@ open_fafb(
   server = NULL,
   ...
 )
+
+mirror_fafb_url(url, ...)
 }
 \arguments{
 \item{x}{A numeric vector or any object compatible with
@@ -44,7 +47,9 @@ CATMAID.}
 \item{server}{Optional string or \code{\link{catmaid_connection}} that
 specifies the server URL (otherwise a hardcoded URL will be used).}
 
-\item{...}{Additional arguments to be added to URL.}
+\item{...}{Additional arguments to be added to URL or sent to \code{mirror_brain}.}
+
+\item{url}{a CATMAID URL.}
 }
 \description{
 Generate URLs to open FAFB CATMAID in browser at a given XYZ location

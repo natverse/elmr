@@ -31,7 +31,8 @@
 #'   CATMAID.
 #' @param server Optional string or \code{\link{catmaid_connection}} that
 #'   specifies the server URL (otherwise a hardcoded URL will be used).
-#' @param ... Additional arguments to be added to URL.
+#'@param url a CATMAID URL.
+#' @param ... Additional arguments to be added to URL or sent to \code{mirror_brain}.
 #' @export
 #' @importFrom utils browseURL
 #' @importFrom nat xyzmatrix
@@ -162,3 +163,21 @@ open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB,
     url
   }
 }
+
+#' @export
+#' @rdname open_fafb
+mirror_fafb_url <- function(url, ...){
+  x = gsub(".*xp=|&tool.*","",url)
+  y = gsub(".*yp=|&xp.*","",url)
+  z = gsub(".*zp=|&yp.*","",url)
+  xyz = t(matrix(as.numeric(c(x,y,z))))
+  xyz.m = mirror_brain(x=as.matrix(xyz),brain=elmr::FAFB, ...)
+  url.m = gsub(x,xyz.m[1,1],url)
+  url.m = gsub(y,xyz.m[1,2],url.m)
+  url.m = gsub(z,xyz.m[1,3],url.m)
+  url.m
+}
+
+
+
+

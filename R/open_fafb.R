@@ -167,14 +167,21 @@ open_fafb<-function(x, s=rgl::select3d(), mirror=FALSE, sample=elmr::FAFB,
 #' @export
 #' @rdname open_fafb
 mirror_fafb_url <- function(url, ...){
-  x = gsub(".*xp=|&tool.*","",url)
-  y = gsub(".*yp=|&xp.*","",url)
-  z = gsub(".*zp=|&yp.*","",url)
-  xyz = t(matrix(as.numeric(c(x,y,z))))
-  xyz.m = mirror_brain(x=as.matrix(xyz),brain=elmr::FAFB, ...)
-  url.m = gsub(x,xyz.m[1,1],url)
-  url.m = gsub(y,xyz.m[1,2],url.m)
-  url.m = gsub(z,xyz.m[1,3],url.m)
+  if(length(url)>1){
+    url.m = sapply(url, mirror_fafb_url, ...)
+  }else{
+    x = gsub(".*xp=|&tool.*","",url)
+    y = gsub(".*yp=|&xp.*","",url)
+    z = gsub(".*zp=|&yp.*","",url)
+    xyz = t(matrix(as.numeric(c(x,y,z))))
+    xyz.jfrc2 = xform_brain(xyz, sample = elmr::FAFB, reference = JFRC2, ...)
+    xyz.jfrc2.m = mirror_brain(x=xyz.jfrc2,brain=JFRC2, ...)
+    xyz.m = xform_brain(xyz.jfrc2.m, reference = elmr::FAFB, sample = JFRC2, ...)
+    url.m = gsub(x,xyz.m[1,1],url)
+    url.m = gsub(y,xyz.m[1,2],url.m)
+    url.m = gsub(z,xyz.m[1,3],url.m)
+    url.m = gsub("&active_.*","",url.m)
+  }
   url.m
 }
 

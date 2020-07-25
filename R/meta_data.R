@@ -40,7 +40,7 @@ read.neurons.fafb <- function(skids,
                                 "ItoLee_Hemilineage",
                                 "Hartenstein_Lineage",
                                 "Hartenstein_Hemilineage",
-                                "Putative_Neurotransmitter",
+                                "transmitter",
                                 "tracing status",
                                 "hemibrain match",
                                 "synonym",
@@ -80,7 +80,7 @@ fafb_get_meta <- function(skids,
                             "ItoLee_Hemilineage",
                             "Hartenstein_Lineage",
                             "Hartenstein_Hemilineage",
-                            "Putative_Neurotransmitter",
+                            "transmitter",
                             "tracing status",
                             "hemibrain match",
                             "synonym",
@@ -126,6 +126,10 @@ fafb_get_meta <- function(skids,
     }
     n[as.character(skid), "unique.assignment"] <- unique.assignment
     n[as.character(skid), meta] <- mmm[match(meta, mmm$meta),"field"]
+  }
+  if(!is.null(n$cell_body_fiber)){
+    n$cellBodyFiber = n$cell_body_fiber
+    n$cell_body_fiber = NULL
   }
   colnames(n) = gsub(" ","_",colnames(n))
   rownames(n) = n$skid

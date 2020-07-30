@@ -16,7 +16,7 @@ fafb_hemilineage_contents(
 \item{hemilineage}{a valid hemilineage name. In CATMAID FAFB v14, these appear as annotation that start either in the form \code{ItoLee_Hemilineage}
 or \code{hartenstein_Hemilineage}.}
 
-\item{side}{the side of the brain for which you want to get neurons. Depends on the annotationd \code{"side: left"}.}
+\item{side}{the side of the brain for which you want to get neurons. Depends on the annotation \code{"side: left"}.}
 
 \item{nomenclature}{whether you are looking for hemilineages in the form \code{ItoLee_Hemilineage}
 or \code{hartenstein_Hemilineage}.}
@@ -36,6 +36,6 @@ To see the available hemilineages you can load the package \code{hemibrainr} and
 \donttest{
 \dontrun{
 ## A hemilineage of mostly laterla horn neurons
-fafb_hemilineage_contents("Dl2_dorsal")
+fafb_hemilineage_contents("DL2_dorsal", side = "right")
 }}
 }

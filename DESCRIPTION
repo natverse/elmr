@@ -31,6 +31,8 @@ Imports:
     nat.templatebrains (>= 0.8),
     plyr,
     rgl,
+    remotes,
+    fafbseg,
     stringr
 Suggests:
     alphashape3d,
@@ -49,8 +51,9 @@ Remotes:
     natverse/nat.flybrains,
     natverse/nat.templatebrains,
     natverse/nat,
-    natverse/nat.nblast
+    natverse/nat.nblast,
+    natverse/fafbseg
 Encoding: UTF-8
 Language: en-GB
 LazyData: TRUE
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

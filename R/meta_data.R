@@ -189,6 +189,7 @@ fafb_hemilineage_contents <- function(hemilineage,
   points = do.call(rbind, lapply(hl, function(x) nat::xyzmatrix(x)[nat::rootpoints(x),]))
   fw.xyz = nat.templatebrains::xform_brain(points, sample='FAFB14', ref="FlyWire")
   colnames(fw.xyz) = c("fw.x","fw.y","fw.z")
+  fw.xyz = fw.xyz**c(4,4,40) # pixels to nm
   roots = sapply(hl, function(x)
     sprintf("https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&zp=%s&yp=%s&xp=%s&tool=tracingtool&active_node_id=%s&sid0=5&s0=0",
             nat::xyzmatrix(x)[nat::rootpoints(x),]["Z"],

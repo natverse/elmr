@@ -2,15 +2,18 @@
 #'
 #' @description \code{fetchn_fafb} is a thin wrapper around the
 #'   \code{catmaid::\link[catmaid]{read.neurons.catmaid}} function with the
-#'   additional convenience of automating conversion to a reference brain.
-#'   Input can also be a pre-downloaded neuronlist.
+#'   additional convenience of automating conversion to a reference brain. Input
+#'   can also be a pre-downloaded neuronlist.
 #' @export
 #' @inheritParams nblast_fafb
-#' @importFrom nat is.neuronlist
+#' @inheritParams catmaid::read.neurons.catmaid
 #' @param reference The reference brain to which the neurons will be
 #'   transformed, either a \code{\link[nat.templatebrains]{templatebrain}}
 #'   object such as \code{\link[nat.flybrains]{FCWB}} or a character vector
 #'   naming such an object.
+#' @param ... Additional arguments passed to \code{\link{xform_brain}} and
+#'   \code{\link{mirror_brain}}.
+#' @importFrom nat is.neuronlist
 #' @examples
 #' \dontrun{
 #' # fetch all neurons with an annotation exactly matching "KC" and convert
@@ -21,7 +24,8 @@
 #' # to a reference brain
 #' dc_nl=fetchn_fafb(dense_core_neurons, reference=JFRC2013)
 #' }
-fetchn_fafb<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FCWB) {
+fetchn_fafb<-function(skids, mirror=TRUE, conn=NULL, pid=1,
+                      reference=nat.flybrains::FCWB, ...) {
   if (is.neuronlist(skids)) {
     x = skids
     tb = regtemplate(x)
@@ -31,10 +35,10 @@ fetchn_fafb<-function(skids, mirror=TRUE, conn=NULL, reference=nat.flybrains::FC
       # the current FAFB brain
       warning("Neuronlist must be from the current FAFB templatebrain!")
     }
-  } else x=catmaid::read.neurons.catmaid(skids, conn=conn)
+  } else x=catmaid::read.neurons.catmaid(skids, conn=conn, pid=pid)
   xt <- if(isTRUE(all.equal(elmr::FAFB, reference))) x
-    else xform_brain(x, sample=elmr::FAFB, reference = reference)
-  if(mirror) xt=mirror_brain(xt, reference)
+    else xform_brain(x, sample=elmr::FAFB, reference = reference, ...)
+  if(mirror) xt=mirror_brain(xt, reference, ...)
   xt
 }
 

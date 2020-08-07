@@ -5,7 +5,14 @@
 \alias{fetchdp_fafb}
 \title{Fetch neurons from FAFB CATMAID server, transforming them as appropriate}
 \usage{
-fetchn_fafb(skids, mirror = TRUE, conn = NULL, reference = nat.flybrains::FCWB)
+fetchn_fafb(
+  skids,
+  mirror = TRUE,
+  conn = NULL,
+  pid = 1,
+  reference = nat.flybrains::FCWB,
+  ...
+)
 
 fetchdp_fafb(skids, mirror = TRUE, conn = NULL, ...)
 }
@@ -20,18 +27,21 @@ right.)}
 \item{conn}{a \code{catmaid} connection object (see
 \code{\link[catmaid]{catmaid_connection}})}
 
+\item{pid}{Project id (default 1)}
+
 \item{reference}{The reference brain to which the neurons will be
 transformed, either a \code{\link[nat.templatebrains]{templatebrain}}
 object such as \code{\link[nat.flybrains]{FCWB}} or a character vector
 naming such an object.}
 
-\item{...}{Additional parameters passed to \code{\link[nat.nblast]{nblast}}}
+\item{...}{Additional arguments passed to \code{\link{xform_brain}} and
+\code{\link{mirror_brain}}.}
 }
 \description{
 \code{fetchn_fafb} is a thin wrapper around the
   \code{catmaid::\link[catmaid]{read.neurons.catmaid}} function with the
-  additional convenience of automating conversion to a reference brain.
-  Input can also be a pre-downloaded neuronlist.
+  additional convenience of automating conversion to a reference brain. Input
+  can also be a pre-downloaded neuronlist.
 
 \code{fetchdp_fafb} extends \code{fetchn_fafb} by additionally converting
   neurons to the \code{\link[nat]{dotprops}} representation suitable for

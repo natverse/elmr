@@ -199,81 +199,86 @@ fafb_hemilineage_contents <- function(hemilineage,
     NULL
   }else{
     hl = read.neurons.fafb(skds, OmitFailures = TRUE, ...)
-    putative = suppressWarnings(catmaid::catmaid_skids(sprintf("annotation:%s_Hemilineage: %s_putative",nomenclature,hemilineage),...))
-
-    # Get xyz for primary branch points
     simp = nat::nlapply(hl,nat::simplify_neuron,n=1, .parallel = TRUE, OmitFailures = TRUE)
-    branchpoints = sapply(simp, function(y) nat::xyzmatrix(y)[ifelse(length(nat::branchpoints(y)),nat::branchpoints(y),max(nat::endpoints(y))),])
-    branchpoints = t(branchpoints)
-    FAFB.xyz = apply(branchpoints, 1, paste_coords)
-
-    # Get FlyWire voxel coordinates
-    branchpoints.flywire = nat.templatebrains::xform_brain(branchpoints, reference = "FlyWire", sample = "FAFB14", .parallel = TRUE, verbose = TRUE)
-    rownames(branchpoints.flywire) = rownames(branchpoints)
-    branchpoints.flywire.raw = scale(branchpoints.flywire, scale = c(4, 4, 40), center = FALSE)
-    fw.ids = fafbseg::flywire_xyz2id(branchpoints.flywire.raw, rawcoords = TRUE)
-    fw.ids[fw.ids=="0"] = NA
-    flywire.xyz = apply(branchpoints.flywire.raw, 1, paste_coords)
-
-    # Get URLs to rootpoints
-    roots = sapply(hl, function(x)
-      sprintf("https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&zp=%s&yp=%s&xp=%s&tool=tracingtool&active_node_id=%s&sid0=5&s0=0",
-              nat::xyzmatrix(x)[nat::rootpoints(x),]["Z"],
-              nat::xyzmatrix(x)[nat::rootpoints(x),]["Y"],
-              nat::xyzmatrix(x)[nat::rootpoints(x),]["X"],
-              x$d$PointNo[nat::rootpoints(x)]))
-    roots2 = sapply(hl, function(x)
-      sprintf("https://neuropil.janelia.org/tracing/fafb/v14-seg-li-190805.0/?pid=1&zp=%s&yp=%s&xp=%s&tool=tracingtool&active_node_id=%s&sid0=5&s0=0",
-              nat::xyzmatrix(x)[nat::rootpoints(x),]["Z"],
-              nat::xyzmatrix(x)[nat::rootpoints(x),]["Y"],
-              nat::xyzmatrix(x)[nat::rootpoints(x),]["X"],
-              x$d$PointNo[nat::rootpoints(x)]))
-
-    # Assemble data frame
-    hl.df = hl[,]
-    hl.df$confirmed = !hl.df$skid %in% putative
-    hl.df$side = side
-    hl.df$FAFB.url = roots
-    hl.df$FAFB.seg.url = roots2
-    hl.df$FAFB.xyz = FAFB.xyz
-    hl.df$flywire.xyz = flywire.xyz
-    hl.df$flywire.url = ""
-    hl.df$flywire.id = paste0('"',fw.ids, '"')
-    hl.df$status = "incomplete"
-    hl.df$catmaid.user = "flyconnectome"
-    hl.df$flywire.user = "flyconnectome"
-    hl.df$matching.user = "flyconnectome"
-    hl.df$also.in = hl.df$total.edts =  hl.df$hemibrain.match.quality = NA
-    hl.df$hemibrain.match = hl.df$hemibrain_match
-    hl.df$duplicated = duplicated(fw.ids)
-    hl.df$notes = ""
-    file = sprintf("%s/%s_Hemilineage_%s_%s.csv",path,nomenclature,hemilineage,side)
-
-    # Choose columns
-    chosen.cols = c(
-      "FAFB.xyz",
-      "skid",
-      "flywire.xyz",
-      "flywire.id",
-      "status",
-      "confirmed",
-      "side",
-      "ItoLee_Hemilineage","transmitter",
-      "hemibrain.match", "hemibrain.match.quality",
-      "FAFB.hemisphere.match","FAFB.hemisphere.match.quality",
-      "catmaid.user", "flywire.user", "matching.user",
-      "duplicated", "also.in", "total.edits",
-      "notes",
-      "FAFB.url", "FAFB.seg.url", "flywire.url")
-    hl.df= hl.df[,intersect(chosen.cols,colnames(hl.df))]
-
-    # return
-    if(return == "csv"){
-      message("Saving .csv at: ", file)
-      #hl.df.2 = t(apply(hl.df, 2, function(r) paste0('"=""',r, '"""')))
-      utils::write.csv(hl.df,file=file, row.names= FALSE)
+    if(!length(simp)){
+      warning("No skids could be read for this hemilneage and side")
+      NULL
     }else{
-      hl.df
+      putative = suppressWarnings(catmaid::catmaid_skids(sprintf("annotation:%s_Hemilineage: %s_putative",nomenclature,hemilineage),...))
+
+      # Get xyz for primary branch points
+      branchpoints = sapply(simp, function(y) nat::xyzmatrix(y)[ifelse(length(nat::branchpoints(y)),nat::branchpoints(y),max(nat::endpoints(y))),])
+      branchpoints = t(branchpoints)
+      FAFB.xyz = apply(branchpoints, 1, paste_coords)
+
+      # Get FlyWire voxel coordinates
+      branchpoints.flywire = nat.templatebrains::xform_brain(branchpoints, reference = "FlyWire", sample = "FAFB14", .parallel = TRUE, verbose = TRUE)
+      rownames(branchpoints.flywire) = rownames(branchpoints)
+      branchpoints.flywire.raw = scale(branchpoints.flywire, scale = c(4, 4, 40), center = FALSE)
+      fw.ids = fafbseg::flywire_xyz2id(branchpoints.flywire.raw, rawcoords = TRUE)
+      fw.ids[fw.ids=="0"] = NA
+      flywire.xyz = apply(branchpoints.flywire.raw, 1, paste_coords)
+
+      # Get URLs to rootpoints
+      roots = sapply(simp, function(x)
+        sprintf("https://neuropil.janelia.org/tracing/fafb/v14/?pid=1&zp=%s&yp=%s&xp=%s&tool=tracingtool&active_node_id=%s&sid0=5&s0=0",
+                nat::xyzmatrix(x)[nat::rootpoints(x),]["Z"],
+                nat::xyzmatrix(x)[nat::rootpoints(x),]["Y"],
+                nat::xyzmatrix(x)[nat::rootpoints(x),]["X"],
+                x$d$PointNo[nat::rootpoints(x)]))
+      roots2 = sapply(simp, function(x)
+        sprintf("https://neuropil.janelia.org/tracing/fafb/v14-seg-li-190805.0/?pid=1&zp=%s&yp=%s&xp=%s&tool=tracingtool&active_node_id=%s&sid0=5&s0=0",
+                nat::xyzmatrix(x)[nat::rootpoints(x),]["Z"],
+                nat::xyzmatrix(x)[nat::rootpoints(x),]["Y"],
+                nat::xyzmatrix(x)[nat::rootpoints(x),]["X"],
+                x$d$PointNo[nat::rootpoints(x)]))
+
+      # Assemble data frame
+      hl.df = simp[,]
+      hl.df$confirmed = !hl.df$skid %in% putative
+      hl.df$side = side
+      hl.df$FAFB.url = roots
+      hl.df$FAFB.seg.url = roots2
+      hl.df$FAFB.xyz = FAFB.xyz
+      hl.df$flywire.xyz = flywire.xyz
+      hl.df$flywire.url = ""
+      hl.df$flywire.id = paste0('"',fw.ids, '"')
+      hl.df$status = "incomplete"
+      hl.df$catmaid.user = "flyconnectome"
+      hl.df$flywire.user = "flyconnectome"
+      hl.df$matching.user = "flyconnectome"
+      hl.df$also.in = hl.df$total.edts =  hl.df$hemibrain.match.quality = NA
+      hl.df$hemibrain.match = hl.df$hemibrain_match
+      hl.df$duplicated = duplicated(fw.ids)
+      hl.df$notes = ""
+
+      # Choose columns
+      chosen.cols = c(
+        "FAFB.xyz",
+        "skid",
+        "flywire.xyz",
+        "flywire.id",
+        "status",
+        "confirmed",
+        "side",
+        "ItoLee_Hemilineage","transmitter",
+        "hemibrain.match", "hemibrain.match.quality",
+        "FAFB.hemisphere.match","FAFB.hemisphere.match.quality",
+        "catmaid.user", "flywire.user", "matching.user",
+        "duplicated", "also.in", "total.edits",
+        "notes",
+        "FAFB.url", "FAFB.seg.url", "flywire.url")
+      hl.df= hl.df[,intersect(chosen.cols,colnames(hl.df))]
+
+      # return
+      if(return == "csv"){
+        file = sprintf("%s/%s_Hemilineage_%s_%s.csv",path,nomenclature,hemilineage,side)
+        message("Saving .csv at: ", file)
+        #hl.df.2 = t(apply(hl.df, 2, function(r) paste0('"=""',r, '"""')))
+        utils::write.csv(hl.df,file=file, row.names= FALSE)
+      }else{
+        hl.df
+      }
     }
   }
 }

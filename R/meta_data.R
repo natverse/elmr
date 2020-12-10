@@ -238,7 +238,7 @@ fafb_hemilineage_contents <- function(hemilineage,
     hl.df$FAFB.xyz = FAFB.xyz
     hl.df$flywire.xyz = flywire.xyz
     hl.df$flywire.url = ""
-    hl.df$flywire.id = as.character(fw.ids)
+    hl.df$flywire.id = paste0('"',fw.ids, '"')
     hl.df$status = "incomplete"
     hl.df$catmaid.user = "flyconnectome"
     hl.df$flywire.user = "flyconnectome"
@@ -270,6 +270,7 @@ fafb_hemilineage_contents <- function(hemilineage,
     # return
     if(return == "csv"){
       message("Saving .csv at: ", file)
+      #hl.df.2 = t(apply(hl.df, 2, function(r) paste0('"=""',r, '"""')))
       utils::write.csv(hl.df,file=file, row.names= FALSE)
     }else{
       hl.df

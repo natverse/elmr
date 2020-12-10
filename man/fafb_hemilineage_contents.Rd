@@ -9,6 +9,7 @@ fafb_hemilineage_contents(
   side = c("right", "left"),
   nomenclature = c("ItoLee", "Hartenstein"),
   path = getwd(),
+  return = c("data.frame", "csv"),
   ...
 )
 }
@@ -19,9 +20,11 @@ or \code{hartenstein_Hemilineage}.}
 \item{side}{the side of the brain for which you want to get neurons. Depends on the annotation \code{"side: left"}.}
 
 \item{nomenclature}{whether you are looking for hemilineages in the form \code{ItoLee_Hemilineage}
-or \code{hartenstein_Hemilineage}.}
+or \code{Hartenstein_Hemilineage}.}
 
 \item{path}{where to save the outputted \code{.csv} file.}
+
+\item{return}{whether to return a \code{data.frame} or write to a \code{.csv} at location \code{path}.}
 
 \item{...}{methods passed to \code{catmaid} functions.}
 }
@@ -36,6 +39,16 @@ To see the available hemilineages you can load the package \code{hemibrainr} and
 \donttest{
 \dontrun{
 ## A hemilineage of mostly laterla horn neurons
-fafb_hemilineage_contents("DL2_dorsal", side = "right")
+df = fafb_hemilineage_contents("DL2_dorsal", side = "right")
+
+# from a list of found hemilineages
+gs = googlesheets4::read_sheet("1HI8RZJhV8aWC6hw5T0qh2
+__9D8V0zKdtxx2kkDsuI8Y")
+for(i in 1:nrow(gs)){
+  hl = gs[i,"ItoLee_Hemilineage"]
+  message("Processing ", hl)
+  fafb_hemilineage_contents(hl, side = "right", return = "csv")
+  fafb_hemilineage_contents(hl, side = "left", return = "csv")
+}
 }}
 }

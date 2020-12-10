@@ -22,7 +22,7 @@ fafb_get_meta(
   meta = c("neuron name", "whimsical name", "cell type", "cell body fiber",
     "ItoLee_Lineage", "ItoLee_Hemilineage", "Hartenstein_Lineage",
     "Hartenstein_Hemilineage", "transmitter", "tracing status", "hemibrain match",
-    "synonym", "paper", "citation"),
+    "flywire id", "flywire xyz", "FAFB xyz", "synonym", "paper", "citation"),
   sub = ".*:",
   OmitFailures = TRUE,
   ...

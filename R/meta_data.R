@@ -199,7 +199,7 @@ fafb_hemilineage_contents <- function(hemilineage,
     NULL
   }else{
     hl = read.neurons.fafb(skds, OmitFailures = TRUE, ...)
-    simp = nat::nlapply(hl,nat::simplify_neuron,n=1, .parallel = TRUE, OmitFailures = TRUE)
+    simp = nat::nlapply(hl,nat::simplify_neuron,n=1, OmitFailures = TRUE, ...)
     if(!length(simp)){
       warning("No skids could be read for this hemilneage and side")
       NULL
@@ -234,6 +234,7 @@ fafb_hemilineage_contents <- function(hemilineage,
                 x$d$PointNo[nat::rootpoints(x)]))
 
       # Assemble data frame
+      hl.data = nat:::summary.neuronlist(hl)
       hl.df = simp[,]
       hl.df$confirmed = !hl.df$skid %in% putative
       hl.df$side = side
@@ -241,6 +242,7 @@ fafb_hemilineage_contents <- function(hemilineage,
       hl.df$FAFB.seg.url = roots2
       hl.df$FAFB.xyz = FAFB.xyz
       hl.df$flywire.xyz = flywire.xyz
+      hl.df$CATMAID.nodes = hl.data[as.character(hl.df$skid),"nodes"]
       hl.df$flywire.url = ""
       hl.df$flywire.id = paste0('"',fw.ids, '"')
       hl.df$status = "incomplete"
@@ -261,6 +263,7 @@ fafb_hemilineage_contents <- function(hemilineage,
         "status",
         "confirmed",
         "side",
+        "CATMAID.nodes",
         "ItoLee_Hemilineage","transmitter",
         "hemibrain.match", "hemibrain.match.quality",
         "FAFB.hemisphere.match","FAFB.hemisphere.match.quality",

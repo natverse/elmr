@@ -63,12 +63,14 @@ unspike.neuron <- function(x, threshold, ...) {
   sl=as.seglist(x, all = T, flatten = T)
   npoints=nrow(d)
   dl=list(d)
+  modified <- FALSE
   for (i in seq_along(sl)){
     s=sl[[i]]
     # interpolate this segment
     dold=d[s, , drop=FALSE]
     dnew=unspike_segment(dold, threshold = threshold, ...)
     if(is.null(dnew)) next
+    modified=TRUE
     dl[[length(dl)+1]]=dnew
     # if we've got here, we need to do something
     # add new points to the end of the swc block
@@ -79,6 +81,8 @@ unspike.neuron <- function(x, threshold, ...) {
     # and distal point is connected to tail
     sl[[i]]=c(s[1], newids, s[length(s)])
   }
+  # If we didn't need to touch anything, just return x
+  if(!modified) return(x)
   d=do.call(rbind, dl)
   d=as.data.frame(d)
   rownames(d)=NULL
@@ -127,17 +131,17 @@ unspike_segment <- function(d, threshold, ...){
   diffsxy=sqrt(rowSums(diffs[,1:2, drop=FALSE]*diffs[,1:2, drop=FALSE]))
   bad_deltas=diffsxy>threshold
   if(!any(bad_deltas)) {
-    return(d)
+    return(NULL)
   }
   if(sum(bad_deltas)==1){
     # we could get rid of this if it were a terminal branch
     # how do we know?
     warning('segment with one bad point')
-    return(d)
+    return(NULL)
   }
   if(sum(bad_deltas)%%2){
     warning("I can only cope with non-contiguous runs of bad points fully contained within one segment!")
-    return(d)
+    return(NULL)
   }
   # nb +1 because these are found by diffing
   idxs=which(bad_deltas)+1

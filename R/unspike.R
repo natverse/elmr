@@ -117,7 +117,9 @@ unspike.neuron <- function(x, threshold, ...) {
 #' @rdname unspike
 #' @importFrom nat nlapply
 unspike.neuronlist <- function(x, threshold, ...) {
-  nlapply(x, unspike, threshold=threshold, ...)
+  res=nlapply(x, unspike, threshold=threshold, ...)
+  regtemplate(res) <- regtemplate(x)
+  res
 }
 
 #' @importFrom nat xyzmatrix

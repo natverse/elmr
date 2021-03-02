@@ -62,58 +62,47 @@ unspike.neuron <- function(x, threshold, ...) {
   # fetch all segments and process each segment in turn
   sl=as.seglist(x, all = T, flatten = T)
   npoints=nrow(d)
-  dl=list(d)
+  allbadpoints=integer()
+  modified <- FALSE
   for (i in seq_along(sl)){
     s=sl[[i]]
     # interpolate this segment
     dold=d[s, , drop=FALSE]
-    dnew=unspike_segment(dold, threshold = threshold, ...)
-    if(is.null(dnew)) next
-    dl[[length(dl)+1]]=dnew
-    # if we've got here, we need to do something
-    # add new points to the end of the swc block
-    # and give them sequential point numbers
-    newids=seq.int(from = npoints+1, length.out = nrow(dnew))
-    npoints=npoints+nrow(dnew)
-    # replace internal ids in segment so that proximal point is connected to head
-    # and distal point is connected to tail
-    sl[[i]]=c(s[1], newids, s[length(s)])
+    badpoints=unspike_segment(dold, threshold = threshold, ...)
+    if(is.null(badpoints))
+      next
+    modified=TRUE
+    # NB unspike_segment returns the index into the point array for one segment
+    # not the point array for the whole neuron
+    sl[[i]]=s[-badpoints]
+    allbadpoints=c(allbadpoints, s[badpoints])
   }
-  d=do.call(rbind, dl)
-  d=as.data.frame(d)
-  rownames(d)=NULL
-  # let's deal with the label column which was dropped - assume that always the
-  # same within a segment
-  head_idxs=sapply(sl, "[", 1)
-  seglabels=x$d$Label[head_idxs]
+  # If we didn't need to touch anything, just return x
+  if(!modified) return(x)
 
-  # in order to avoid re-ordering the segments when as.neuron.ngraph is called
-  # we can renumber the raw indices in the seglist (and therefore the vertices)
-  # in a strictly ascending sequence based on the seglist
-  # it is *much* more efficient to compute this on a single vector rather than
-  # separately on each segment in the seglist. However this does involve some
-  # gymnastics
-  usl=unlist(sl)
-  old_ids=unique(usl)
-  # reorder vertex information to match this
-  d=d[old_ids,]
-
-  node_per_seg=sapply(sl, length)
-  df=data.frame(id=usl, seg=rep(seq_along(sl), node_per_seg))
-  df$newid=match(df$id, old_ids)
-  sl=split(df$newid, df$seg)
-  labels_by_seg=rep(seglabels, node_per_seg)
-  # but there will be some duplicated ids (branch points) that we must remove
-  d$Label=labels_by_seg[!duplicated(df$newid)]
-  swc=seglist2swc(sl, d)
-  as.neuron(swc, origin=match(x$StartPoint, old_ids))
+  if(x$StartPoint %in% allbadpoints) {
+    warning("Original root id was removed by unspike!")
+    startid=NULL
+  } else {
+    startid=x$d$PointNo[x$StartPoint]
+  }
+  swc=seglist2swc(sl, x$d)
+  # now the problem is that our swc isn't quite right as the bad rows are still
+  # in there. They should be just isolated points without parents as they were
+  # not mentioned in the seglist
+  if(!all(swc$Parent[allbadpoints] == -1L))
+    stop("Error identifying bad points in unspike")
+  swc=swc[-allbadpoints,,drop=FALSE]
+  as.neuron(swc, origin=startid, NeuronName=x$NeuronName, skid=x$skid)
 }
 
 #' @export
 #' @rdname unspike
 #' @importFrom nat nlapply
 unspike.neuronlist <- function(x, threshold, ...) {
-  nlapply(x, unspike, threshold=threshold, ...)
+  res=nlapply(x, unspike, threshold=threshold, ...)
+  regtemplate(res) <- regtemplate(x)
+  res
 }
 
 #' @importFrom nat xyzmatrix
@@ -127,21 +116,21 @@ unspike_segment <- function(d, threshold, ...){
   diffsxy=sqrt(rowSums(diffs[,1:2, drop=FALSE]*diffs[,1:2, drop=FALSE]))
   bad_deltas=diffsxy>threshold
   if(!any(bad_deltas)) {
-    return(d)
+    return(NULL)
   }
   if(sum(bad_deltas)==1){
     # we could get rid of this if it were a terminal branch
     # how do we know?
     warning('segment with one bad point')
-    return(d)
+    return(NULL)
   }
   if(sum(bad_deltas)%%2){
     warning("I can only cope with non-contiguous runs of bad points fully contained within one segment!")
-    return(d)
+    return(NULL)
   }
   # nb +1 because these are found by diffing
   idxs=which(bad_deltas)+1
   badpoints=idxs[seq.int(from=1, by=2, length.out = length(idxs)/2)]
   if(any(idxs==1)) stop("I cannot cope with a bad point which is also a branch point")
-  d[-badpoints,]
+  badpoints
 }

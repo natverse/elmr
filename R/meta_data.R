@@ -15,6 +15,8 @@
 #' @param batch numeric, if \code{FALSE} or \code{0} neurons are read from CATMAID without being batched.
 #' If a number, neurons are read in batches of size \code{batch}. If \code{batch} is set to \code{TRUE}, a batch size of
 #' 1000 is used. This can help overcome server time out errors.
+#' @param catmaid_get_compact_skeleton whether to use \code{catmaid::catmaid_get_compact_skeleton} or \code{catmaid::read.neurons.catmaid} to obtain neuron data. In the former case,
+#' connectors and tags are not returned.
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -49,6 +51,7 @@ read.neurons.fafb <- function(skids,
                               sub = ".*:",
                               OmitFailures = TRUE,
                               batch = FALSE,
+                              catmaid_get_compact_skeleton = TRUE,
                               ...){
   skids = catmaid::catmaid_skids(skids, ...)
   if(batch){
@@ -57,13 +60,40 @@ read.neurons.fafb <- function(skids,
     n = nat::neuronlist()
     for(i in batches){
       message("Reading neurons ", min(i)," to ",  max(i))
-      b = read.neurons.fafb(skids = skids[min(i):max(i)], meta = meta, sub = sub, OmitFailures = OmitFailures, batch = FALSE)
+      b = read.neurons.fafb(skids = skids[min(i):max(i)], meta = meta, sub = sub, OmitFailures = OmitFailures, catmaid_get_compact_skeleton = catmaid_get_compact_skeleton, batch = FALSE)
       n = nat::union(n, b)
     }
   }else{
     maddf <- fafb_get_meta(skids = skids, meta, sub = sub, OmitFailures = OmitFailures)
-    n <-  catmaid::read.neurons.catmaid(skids, OmitFailures = OmitFailures, ...)
-    n[,] = maddf
+    if(catmaid_get_compact_skeleton){
+      sort_skel <- function(skid, ...){
+        res = catmaid::catmaid_get_compact_skeleton(skid, ...)
+        if (!length(res$nodes))
+          stop("no valid nodes for skid:", skid)
+        swc = with(res$nodes, data.frame(PointNo = id, Label = 0,
+                                         X = x, Y = y, Z = z, W = radius * 2, Parent = parent_id))
+        swc$Parent[is.na(swc$Parent)] = -1L
+        sp = catmaid:::somapos.catmaidneuron(swc = swc, tags = res$tags)
+        if (nrow(sp) == 0) {
+          soma_id_in_neuron = NULL
+        }
+        else {
+          soma_id_in_neuron = sp$PointNo
+          swc$Label[match(soma_id_in_neuron, swc$PointNo)] = 1L
+        }
+        n = nat::as.neuron(swc, origin = soma_id_in_neuron, skid = skid, InputFileName = as.character(skid))
+        n[names(res[-1])] = res[-1]
+        n$skid = skid
+        class(n) = c("catmaidneuron", "neuron")
+        n
+      }
+      n <-  nat::nlapply(as.character(skids), sort_skel, connectors = FALSE, tags = FALSE, OmitFailures = OmitFailures, ...)
+      n <- nat::as.neuronlist(n)
+      names(n) <- unlist(sapply(n, function(x) x$skid))
+    }else{
+      n <-  catmaid::read.neurons.catmaid(skids, OmitFailures = OmitFailures, ...)
+    }
+    n[,] = maddf[names(n),]
   }
   n
 }
@@ -198,7 +228,7 @@ fafb_hemilineage_contents <- function(hemilineage,
     warning("No skids could be found for this hemilneage and side")
     NULL
   }else{
-    hl = read.neurons.fafb(skds, OmitFailures = TRUE, ...)
+    hl = read.neurons.fafb(skds, OmitFailures = TRUE, catmaid_get_compact_skeleton = TRUE, ...)
     simp = nat::nlapply(hl,nat::simplify_neuron,n=1, OmitFailures = TRUE, ...)
     if(!length(simp)){
       warning("No skids could be read for this hemilneage and side")

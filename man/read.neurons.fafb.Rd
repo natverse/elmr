@@ -14,6 +14,7 @@ read.neurons.fafb(
   sub = ".*:",
   OmitFailures = TRUE,
   batch = FALSE,
+  catmaid_get_compact_skeleton = TRUE,
   ...
 )
 
@@ -47,6 +48,9 @@ values, see details.}
 \item{batch}{numeric, if \code{FALSE} or \code{0} neurons are read from CATMAID without being batched.
 If a number, neurons are read in batches of size \code{batch}. If \code{batch} is set to \code{TRUE}, a batch size of
 1000 is used. This can help overcome server time out errors.}
+
+\item{catmaid_get_compact_skeleton}{whether to use \code{catmaid::catmaid_get_compact_skeleton} or \code{catmaid::read.neurons.catmaid} to obtain neuron data. In the former case,
+connectors and tags are not returned.}
 
 \item{...}{Additional arguments passed to the \code{\link[catmaid]{catmaid_fetch}}
 function}

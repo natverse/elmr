@@ -165,7 +165,7 @@ fafb_get_meta <- function(skids,
     n$cell_body_fiber = NULL
   }
   colnames(n) = sapply(colnames(n),function(x) paste(unlist(strsplit(x," ")),collapse = "_"))
-  n$whimsical_name = catmaid_get_neuronnames(n$skid, ...)
+  n$whimsical_name = catmaid::catmaid_get_neuronnames(n$skid, ...)
   colnames(n) = gsub(" ","_",colnames(n))
   rownames(n) = n$skid
   n

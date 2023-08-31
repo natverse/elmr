@@ -56,7 +56,7 @@ A data.frame describing contributions or for
 \code{write_ack} produces an acknowledgements wording.
 }
 \examples{
-\donttest{
+\dontrun{
 pnsc=summarise_contribution("annotation:^PN$")
 suggest_authorship(pnsc)
 write_authors(pnsc, auth=3.0)

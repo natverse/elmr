@@ -19,7 +19,7 @@
 #'   mutate_ %>%
 #' @importFrom catmaid catmaid_get_contributor_stats catmaid_get_user_list
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' pnsc=summarise_contribution("annotation:^PN$")
 #' suggest_authorship(pnsc)
 #' write_authors(pnsc, auth=3.0)

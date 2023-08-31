@@ -95,7 +95,7 @@ open_fafb(matrix(runif(n=6, max=1000), ncol = 3), rowwise=TRUE)
 \donttest{
 ## Special case using catmaid_get_treenodes_detail() as input
 # fetch a neuron and extract the node ids for a given tag
-n=read.neuron.catmaid(16)
+n=read.neuron.catmaid(16, conn = catmaid::vfbcatmaid('fafb'))
 tagged = n$tags[['TODO']]
 tagged_details <- catmaid_get_treenodes_detail(tagged)
 # now find FAFB URLs

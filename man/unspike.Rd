@@ -50,7 +50,8 @@ Remove artefactual spikes in neuron tracing due to registration errors
 
 \examples{
 \donttest{
-da1pns=read.neurons.catmaid("annotation:^glomerulus DA1$")
+
+da1pns=read.neurons.catmaid("annotation:^glomerulus DA1$", conn=vfbcatmaid("fafb"))
 # set threshold to 5000 nm
 da1pns.fix=unspike(da1pns, threshold=5000)
 plot(da1pns, col='red', WithNodes=FALSE)

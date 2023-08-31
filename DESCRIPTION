@@ -47,7 +47,7 @@ VignetteBuilder:
     knitr
 Remotes: 
     natverse/flycircuit,
-    natverse/rcatmaid,
+    catmaid=natverse/rcatmaid,
     natverse/nat.flybrains,
     natverse/nat.templatebrains,
     natverse/nat,
